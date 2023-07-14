@@ -13,7 +13,7 @@ class Post extends Model
     use HasFactory;
     use Rateable;
 
-      protected $fillable = ['titol','slug','user_id','body','imatge','data','active','font','url'];
+      protected $fillable = ['titol','slug','user_id','body','image','data','active','font','url'];
 
 
     public function getRouteKeyName()

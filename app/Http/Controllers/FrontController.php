@@ -8,6 +8,7 @@ use App\Models\Genere;
 use App\Models\Autor;
 use App\Models\Editorial;
 use App\Models\Bookshop;
+use App\Models\Post;
 use willvincent\Rateable\Rating;
 
 
@@ -60,6 +61,10 @@ class FrontController extends Controller
     public function genere(Genere $genere){
         $books = Book::where('genere_id',$genere->id)->get();
         return view('front.genere',compact('books','genere'));
+    }
+    public function allPosts(){
+        $posts = Post::all();
+        return view('front.posts',compact('posts'));
     }
 
 

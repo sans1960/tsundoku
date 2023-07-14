@@ -73,32 +73,67 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Post $post)
     {
-        return view('admin.posts.show');
+        return view('admin.posts.show',compact('post'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Post $post)
     {
-        return view('admin.posts.edit');
+        return view('admin.posts.edit',compact('post'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Post $post)
     {
-        //
+             $request->validate([
+        'titol' => 'required|string|max:255',
+        'active'=>'numeric',
+        'font'=>'required|string',
+        'url'=>'required|string',
+        'data'=>'required',
+        'image'=> 'image|mimes:jpg,png,jpeg',
+        'body' => 'required',
+       
+         ]);
+            if ($request->hasFile('image')) {
+            // delete image
+            Storage::disk('public')->delete($post->image);
+
+            $filePath = Storage::disk('public')->put('images/posts', request()->file('image'),'public');
+             $post->image = $filePath;
+            }
+                   $post->titol = $request->titol;
+        $post->slug = Str::slug($request->titol) ;
+       
+        $post->active = $request->active;
+        $post->font = $request->font;
+        $post->url = $request->url;
+        $post->data = $request->data;
+        $post->body = $request->body;
+        $post->user_id = $request->user_id;
+        $post->update();
+
+        session()->flash('notif.success', 'Post actualitzat amb éxit!');
+        return redirect()->route('admin.posts.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Post $post)
     {
-        //
+        Storage::disk('public')->delete($post->image);
+        $delete = $post->delete();
+
+        if($delete) {
+            session()->flash('notif.success', 'Post deleted successfully!');
+            return redirect()->route('admin.posts.index');
+        }
     }
 }

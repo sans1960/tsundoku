@@ -26,6 +26,7 @@ Route::get('/generes',[Frontcontroller::class,'generes'])->name('generes');
 Route::get('/generes/{genere}',[Frontcontroller::class,'genere'])->name('genere');
 Route::get('/bookshops',[Frontcontroller::class,'bookshops'])->name('bookshops');
 Route::get('/bookshops/{bookshop}',[Frontcontroller::class,'bookshop'])->name('bookshop');
+Route::get('/posts',[Frontcontroller::class,'allPosts'])->name('posts');
 
 
 
