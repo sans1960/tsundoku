@@ -9,6 +9,7 @@ use App\Models\Book;
 use App\Models\Autor;
 use App\Models\Editorial;
 use App\Models\User;
+use Illuminate\Support\Str;
 
 class BookController extends Controller
 {
@@ -26,11 +27,11 @@ class BookController extends Controller
      */
     public function create()
     {
-        $users = User::all();
+      
         $generes = Genere::all();
         $autors = Autor::all();
         $editorials= Editorial::all();
-        return view('admin.books.create',compact('generes','users','autors','editorials'));
+        return view('admin.books.create',compact('generes','autors','editorials'));
     }
 
     /**
@@ -40,7 +41,7 @@ class BookController extends Controller
     {
         $request->validate([
         'titol' => 'required|string|max:255',
-        'slug' => 'required',
+       
         'autor_nom'=>'required',
         'genere_id'=>'required',
         'active'=>'numeric',
@@ -53,7 +54,29 @@ class BookController extends Controller
         'isbn' => 'required|string',
         
              ]);
-             Book::create($request->all());
+             $book = new Book;
+             $book->titol = $request->titol;
+             $book->slug = Str::slug($request->titol);
+             $book->autor_nom = $request->autor_nom;
+             $book->genere_id = $request->genere_id;
+             $book->autor_id = $request->autor_id;
+             $book->active = $request->active;
+             $book->editorial_nom = $request->editorial_nom;
+             $book->editorial_web = $request->editorial_web;
+             $book->editorial_id = $request->editorial_id;
+             $book->user_id = $request->user_id;
+             $book->idioma = $request->idioma;
+             $book->imatge = $request->imatge;
+             $book->sinopsi = $request->sinopsi;
+             $book->isbn = $request->isbn;
+             $book->save();
+
+
+
+
+
+
+
              if (Auth()->user()->type == 'admin') {
                 session()->flash('notif.success', 'Llibre creat amb éxit!');
                 return redirect()->route('admin.books.index');
@@ -77,11 +100,11 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        $users = User::all();
+      
         $generes = Genere::all();
         $autors = Autor::all();
         $editorials= Editorial::all();
-        return view('admin.books.edit',compact('users','generes','book','autors','editorials'));
+        return view('admin.books.edit',compact('generes','book','autors','editorials'));
     }
 
     /**
@@ -91,7 +114,7 @@ class BookController extends Controller
     {
         $request->validate([
             'titol' => 'required|string|max:255',
-            'slug' => 'required',
+           
             'autor_nom'=>'required',
             'genere_id'=>'required',
             'active'=>'numeric',
@@ -104,7 +127,23 @@ class BookController extends Controller
             'isbn' => 'required|string',
             
                  ]);
-            $book->update($request->all());
+                   
+             $book->titol = $request->titol;
+             $book->slug = Str::slug($request->titol);
+             $book->autor_nom = $request->autor_nom;
+             $book->genere_id = $request->genere_id;
+             $book->autor_id = $request->autor_id;
+             $book->active = $request->active;
+             $book->editorial_nom = $request->editorial_nom;
+             $book->editorial_web = $request->editorial_web;
+             $book->editorial_id = $request->editorial_id;
+             $book->user_id = $request->user_id;
+             $book->idioma = $request->idioma;
+             $book->imatge = $request->imatge;
+             $book->sinopsi = $request->sinopsi;
+             $book->isbn = $request->isbn;
+             $book->update();
+           
             session()->flash('notif.success', 'Llibre actualitzat amb éxit!');
             return redirect()->route('admin.books.index');
     }

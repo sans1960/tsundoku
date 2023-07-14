@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\EditorialController;
 use App\Http\Controllers\Admin\BookshopController;
 use App\Http\Controllers\Admin\BookController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\CommentController;
@@ -54,7 +55,7 @@ Route::get('/admin/comments', [AdminController::class, 'allcomments'])->name('ad
 Route::delete('/admin/comments{comment}', [AdminController::class, 'deletecomment'])->name('admin.comments.destroy');
 Route::resource('/admin/generes', GenereController::class)->middleware('auth')->names('admin.generes');
 Route::resource('/admin/autors', AutorController::class)->middleware('auth')->names('admin.autors');
-
+Route::resource('/admin/posts', PostController::class)->middleware('auth')->names('admin.posts');
 Route::resource('/admin/editorials', EditorialController::class)->middleware('auth')->names('admin.editorials');
 Route::resource('/admin/bookshops', BookshopController::class)->middleware('auth')->names('admin.bookshops');
 Route::resource('/admin/books', BookController::class)->middleware('auth')->names('admin.books');
