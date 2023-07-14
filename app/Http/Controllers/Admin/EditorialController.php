@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Editorial;
+use Illuminate\Support\Str;
 
 class EditorialController extends Controller
 {
@@ -24,14 +25,7 @@ class EditorialController extends Controller
     {
          return view('admin.editorials.create');
     }
-    public function generateUniqueCode()
-    {
-        do {
-            $editorial_id = random_int(100000, 999999);
-        } while (Editorial::where("editorial_id", "=", $editorial_id)->first());
-  
-        return $editorial_id;
-    }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -39,7 +33,7 @@ class EditorialController extends Controller
     {
          $request->validate([
         'editorial_nom' => 'required|string|max:255',
-        'slug' => 'required',
+        
         'descripcio'=>'required',
         'logo'=>'required',
         'active'=>'numeric',
@@ -50,13 +44,14 @@ class EditorialController extends Controller
              ]);
              $editorial = new Editorial();
              $editorial->editorial_nom = $request->editorial_nom;
-             $editorial->slug = $request->slug;
+             $editorial->slug = Str::slug($request->editorial_nom);
              $editorial->descripcio = $request->descripcio;
              $editorial->logo = $request->logo;
              $editorial->active = $request->active;
              $editorial->url = $request->url;
              $editorial->url_vendes = $request->url_vendes;
              $editorial->adreça = $request->adreça;
+             $editorial->user_id = $request->user_id;
     
              $editorial->save();
           
@@ -88,7 +83,7 @@ class EditorialController extends Controller
     {
           $request->validate([
         'editorial_nom' => 'required|string|max:255',
-        'slug' => 'required',
+        
         'descripcio'=>'required',
         'logo'=>'required',
         'active'=>'numeric',
@@ -97,7 +92,18 @@ class EditorialController extends Controller
        
         
              ]);
-            $editorial->update($request->all());
+             $editorial->editorial_nom = $request->editorial_nom;
+             $editorial->slug = Str::slug($request->editorial_nom);
+             $editorial->descripcio = $request->descripcio;
+             $editorial->logo = $request->logo;
+             $editorial->active = $request->active;
+             $editorial->url = $request->url;
+             $editorial->url_vendes = $request->url_vendes;
+             $editorial->adreça = $request->adreça;
+             $editorial->user_id = $request->user_id;
+    
+             $editorial->update();
+           
          session()->flash('notif.success', 'Editorial actualitzada amb éxit!');
             return redirect()->route('admin.editorials.index');
     }

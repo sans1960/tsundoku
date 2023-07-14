@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Genere;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+
 
 
 class GenereController extends Controller
@@ -35,18 +36,14 @@ class GenereController extends Controller
     
         $request->validate([
         'nom' => 'required|string|max:255',
-        'slug' => 'required',
+        
         
     ]);
-          if ($request->hasFile('icon')) {
-             // put image in the public storage
-            $filePath = Storage::disk('public')->put('images/generes/images', request()->file('icon'));
-            
-        }   
+         
           $genere = new Genere;
           $genere->nom = $request->nom;
-          $genere->slug = $request->slug;
-          $genere->icon = $filePath;
+          $genere->slug = Str::slug($request->nom);
+       
           $genere->active = $request->active;
           $genere->save();
 
@@ -80,18 +77,12 @@ class GenereController extends Controller
     {
               $request->validate([
                   'nom' => 'required|string|max:255',
-                  'slug' => 'required',
+               
                ]);
-            if ($request->hasFile('icon')) {
-            // delete image
-            Storage::disk('public')->delete($genere->icon);
-
-            $filePath = Storage::disk('public')->put('images/generes/images', request()->file('icon'),'public');
-            $genere->icon = $filePath;
-        }
+    
         
           $genere->nom = $request->nom;
-          $genere->slug = $request->slug;
+          $genere->slug = Str::slug($request->nom);
           
           $genere->active = $request->active;
           $genere->update();

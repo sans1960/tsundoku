@@ -31,16 +31,7 @@ Route::get('/bookshops/{bookshop}',[Frontcontroller::class,'bookshop'])->name('b
 
 
 
-Route::get('/check_slug_book', [GeneralController::class,'check_slug_book'])
-  ->name('check_slug_book');
-Route::get('/check_slug_bookshop', [GeneralController::class,'check_slug_bookshop'])
-  ->name('check_slug_bookshop');
-Route::get('/check_slug_editorial', [GeneralController::class,'check_slug_editorial'])
-  ->name('check_slug_editorial');
-Route::get('/check_slug', [GeneralController::class,'check_slug'])
-  ->name('check_slug');
-Route::get('/check_slug_genere', [GeneralController::class,'check_slug_genere'])
-  ->name('check_slug_genere');
+
 Route::post('/ratingbook',[Frontcontroller::class,'ratingbook'])->name('rating.book');
 Route::post('/ratingautor',[Frontcontroller::class,'ratingautor'])->name('rating.autor');
 Route::post('/ratingeditorial',[Frontcontroller::class,'ratingeditorial'])->name('rating.editorial');

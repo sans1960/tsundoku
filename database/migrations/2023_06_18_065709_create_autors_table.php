@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('biopic');
             $table->string('url_foto');
             $table->tinyInteger('active')->default(0);
-           
+            $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });
     }

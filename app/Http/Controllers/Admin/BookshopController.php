@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Bookshop;
+use Illuminate\Support\Str;
 
 class BookshopController extends Controller
 {
@@ -32,7 +33,7 @@ class BookshopController extends Controller
     {
          $request->validate([
         'nom' => 'required|string|max:255',
-        'slug' => 'required',
+        
         'qui_som'=>'required',
         'logo'=>'required',
         'active'=>'numeric',
@@ -43,7 +44,21 @@ class BookshopController extends Controller
         'ciutat' => 'string'
         
              ]);
-            Bookshop::create($request->all());
+        $bookshop = new Bookshop;
+        $bookshop->nom = $request->nom;
+        $bookshop->slug = Str::slug($request->nom);
+        $bookshop->qui_som = $request->qui_som;
+        $bookshop->logo = $request->logo;
+        $bookshop->active = $request->active;
+        $bookshop->url = $request->url;
+        $bookshop->latitud = $request->latitud;
+        $bookshop->longitud = $request->longitud;
+        $bookshop->zoom = $request->zoom;
+        $bookshop->ciutat = $request->ciutat;
+        $bookshop->user_id = $request->user_id;
+        $bookshop->save();
+            
+           
          session()->flash('notif.success', 'Llibreria creada amb éxit!');
             return redirect()->route('admin.bookshops.index');
     }
@@ -71,7 +86,7 @@ class BookshopController extends Controller
     {
           $request->validate([
         'nom' => 'required|string|max:255',
-        'slug' => 'required',
+        
         'qui_som'=>'required',
         'logo'=>'required',
         'active'=>'numeric',
@@ -82,7 +97,18 @@ class BookshopController extends Controller
         'ciutat' => 'string'
         
              ]);
-            $bookshop->update($request->all());
+        $bookshop->nom = $request->nom;
+        $bookshop->slug = Str::slug($request->nom);
+        $bookshop->qui_som = $request->qui_som;
+        $bookshop->logo = $request->logo;
+        $bookshop->active = $request->active;
+        $bookshop->url = $request->url;
+        $bookshop->latitud = $request->latitud;
+        $bookshop->longitud = $request->longitud;
+        $bookshop->zoom = $request->zoom;
+        $bookshop->ciutat = $request->ciutat;
+        $bookshop->user_id = $request->user_id;
+        $bookshop->update();
          session()->flash('notif.success', 'Llibreria actualitzada amb éxit!');
             return redirect()->route('admin.bookshops.index');
     }

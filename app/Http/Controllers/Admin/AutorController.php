@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Autor;
+use Illuminate\Support\Str;
 
 class AutorController extends Controller
 {
@@ -31,9 +32,9 @@ class AutorController extends Controller
      */
     public function store(Request $request)
     {
-            $request->validate([
+        $request->validate([
         'autor_nom' => 'required|string|max:255',
-        'slug' => 'required',
+        
         'biopic'=>'required',
         'url_foto'=>'required',
         'active'=>'numeric'
@@ -41,10 +42,11 @@ class AutorController extends Controller
              ]);
          $autor = new Autor();
          $autor->autor_nom = $request->autor_nom;
-         $autor->slug = $request->slug;
          $autor->url_foto = $request->url_foto;
+         $autor->slug = Str::slug($request->autor_nom) ;
          $autor->biopic = $request->biopic;
          $autor->active = $request->active;
+         $autor->user_id = $request->user_id;
         
          $autor->save();
           
@@ -76,15 +78,21 @@ class AutorController extends Controller
     {
              $request->validate([
         'autor_nom' => 'required|string|max:255',
-        'slug' => 'required',
+     
         'biopic'=>'required',
         'url_foto'=>'required',
         'active'=>'numeric'
         
              ]);
-         
+           $autor->autor_nom = $request->autor_nom;
+         $autor->url_foto = $request->url_foto;
+         $autor->slug = Str::slug($request->autor_nom) ;
+         $autor->biopic = $request->biopic;
+         $autor->active = $request->active;
+        
+         $autor->update();
        
-        $autor->update($request->all());
+        
          session()->flash('notif.success', 'Autor actualitzat amb éxit!');
             return redirect()->route('admin.autors.index');
     }

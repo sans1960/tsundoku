@@ -22,6 +22,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'nickname',
+        'avatar',
+        'condicio',
+        'type',
         
     ];
 
@@ -46,6 +50,15 @@ class User extends Authenticatable
     ];
     public function book(){
         return $this->hasMany(Book::class);
+    }
+    public function autor(){
+        return $this->hasMany(Autor::class);
+    }
+    public function editorial(){
+        return $this->hasMany(Editorial::class);
+    }
+    public function bookshop(){
+        return $this->hasMany(Bookshop::class);
     }
    
   
