@@ -66,6 +66,10 @@ class FrontController extends Controller
         $posts = Post::all();
         return view('front.posts',compact('posts'));
     }
+    public function onepost(Post $post){
+         $com = $post->comments->count();
+        return view('front.post',compact('post','com'));
+    }
 
 
 
@@ -113,6 +117,16 @@ class FrontController extends Controller
     $rating->rating = $request->rating;
     $rating->user_id = auth()->user()->id;
     $bookshop->rateOnce($request->rating);
+     return redirect()->back();
+  
+  }
+    public function ratingpost(Request $request){
+    request()->validate(['rating' => 'required']);
+    $post = Post::find($request->id);
+    $rating = new Rating();
+    $rating->rating = $request->rating;
+    $rating->user_id = auth()->user()->id;
+    $post->rateOnce($request->rating);
      return redirect()->back();
   
   }

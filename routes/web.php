@@ -27,6 +27,7 @@ Route::get('/generes/{genere}',[Frontcontroller::class,'genere'])->name('genere'
 Route::get('/bookshops',[Frontcontroller::class,'bookshops'])->name('bookshops');
 Route::get('/bookshops/{bookshop}',[Frontcontroller::class,'bookshop'])->name('bookshop');
 Route::get('/posts',[Frontcontroller::class,'allPosts'])->name('posts');
+Route::get('/posts/{post}',[Frontcontroller::class,'onepost'])->name('post');
 
 
 
@@ -38,6 +39,7 @@ Route::post('/ratingbook',[Frontcontroller::class,'ratingbook'])->name('rating.b
 Route::post('/ratingautor',[Frontcontroller::class,'ratingautor'])->name('rating.autor');
 Route::post('/ratingeditorial',[Frontcontroller::class,'ratingeditorial'])->name('rating.editorial');
 Route::post('/ratingbookshop',[Frontcontroller::class,'ratingbookshop'])->name('rating.bookshop');
+Route::post('/ratingpost',[Frontcontroller::class,'ratingpost'])->name('rating.post');
 Route::post('/commentbook', [CommentController::class,'commentbook'])->name('comment.book');
 Route::post('/replybook', [CommentController::class,'replybook'])->name('reply.book');
 Route::post('/commentautor', [CommentController::class,'commentautor'])->name('comment.autor');
@@ -46,6 +48,8 @@ Route::post('/commenteditorial', [CommentController::class,'commenteditorial'])-
 Route::post('/replyeditorial', [CommentController::class,'replyeditorial'])->name('reply.editorial');
 Route::post('/commentbookshop', [CommentController::class,'commentbookshop'])->name('comment.bookshop');
 Route::post('/replybookshop', [CommentController::class,'replybookshop'])->name('reply.bookshop');
+Route::post('/commentpost', [CommentController::class,'commentpost'])->name('comment.post');
+Route::post('/replypost', [CommentController::class,'replypost'])->name('reply.post');
 
 Auth::routes();
 

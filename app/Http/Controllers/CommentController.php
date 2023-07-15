@@ -8,6 +8,7 @@ use App\Models\Book;
 use App\Models\Autor;
 use App\Models\Editorial;
 use App\Models\Bookshop;
+use App\Models\Post;
 
 class CommentController extends Controller
 {
@@ -96,6 +97,28 @@ class CommentController extends Controller
         
         $bookshop = Bookshop::find($request->get('bookshop_id'));
         $bookshop->comments()->save($reply);
+         
+        return back();
+    }
+        public function commentpost(Request $request)
+    {
+        $comment = new Comment;
+        $comment->body = $request->get('comment_body');
+        $comment->user()->associate($request->user());
+        $post = Post::find($request->get('post_id'));
+        $post->comments()->save($comment);
+
+        return back();
+    }
+        public function replypost(Request $request)
+    {
+        $reply = new Comment;
+        $reply->body = $request->get('body');
+        $reply->user()->associate($request->user());
+        $reply->parent_id = $request->get('parent_id');
+        
+        $post = Post::find($request->get('post_id'));
+        $post->comments()->save($reply);
          
         return back();
     }

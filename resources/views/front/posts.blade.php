@@ -7,7 +7,7 @@ Noticies
     <div class="row">
         @foreach ($posts as $post)
         <div class="col-md-4">
-            <a href="" class="nav-link">
+            <a href="{{route('post',$post)}}" class="nav-link">
                 <div class="card mb-3">
                     <div class="row g-0">
                         <div class="col-md-4">
