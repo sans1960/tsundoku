@@ -10,6 +10,7 @@ use App\Models\Editorial;
 use App\Models\Bookshop;
 use App\Models\Post;
 use App\Models\Medi;
+use App\Models\Acte;
 
 class CommentController extends Controller
 {
@@ -142,6 +143,28 @@ class CommentController extends Controller
         
         $medi = Medi::find($request->get('medi_id'));
         $medi->comments()->save($reply);
+         
+        return back();
+    }
+         public function commentacte(Request $request)
+    {
+        $comment = new Comment;
+        $comment->body = $request->get('comment_body');
+        $comment->user()->associate($request->user());
+        $acte = Acte::find($request->get('acte_id'));
+        $acte->comments()->save($comment);
+
+        return back();
+    }
+        public function replyacte(Request $request)
+    {
+        $reply = new Comment;
+        $reply->body = $request->get('body');
+        $reply->user()->associate($request->user());
+        $reply->parent_id = $request->get('parent_id');
+        
+        $acte = Acte::find($request->get('acte_id'));
+        $acte->comments()->save($reply);
          
         return back();
     }

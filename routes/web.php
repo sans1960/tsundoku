@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\BookController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\Medicontroller;
+use App\Http\Controllers\Admin\ActeController;
 use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\CommentController;
@@ -31,6 +32,8 @@ Route::get('/posts',[Frontcontroller::class,'allPosts'])->name('posts');
 Route::get('/posts/{post}',[Frontcontroller::class,'onepost'])->name('post');
 Route::get('/medis',[Frontcontroller::class,'allMedis'])->name('medis');
 Route::get('/medis/{medi}',[Frontcontroller::class,'onemedi'])->name('medi');
+Route::get('/actes',[Frontcontroller::class,'allActes'])->name('actes');
+Route::get('/actes/{acte}',[Frontcontroller::class,'oneacte'])->name('acte');
 
 
 
@@ -44,6 +47,7 @@ Route::post('/ratingeditorial',[Frontcontroller::class,'ratingeditorial'])->name
 Route::post('/ratingbookshop',[Frontcontroller::class,'ratingbookshop'])->name('rating.bookshop');
 Route::post('/ratingpost',[Frontcontroller::class,'ratingpost'])->name('rating.post');
 Route::post('/ratingmedi',[Frontcontroller::class,'ratingmedi'])->name('rating.medi');
+Route::post('/ratingacte',[Frontcontroller::class,'ratingacte'])->name('rating.acte');
 Route::post('/commentbook', [CommentController::class,'commentbook'])->name('comment.book');
 Route::post('/replybook', [CommentController::class,'replybook'])->name('reply.book');
 Route::post('/commentautor', [CommentController::class,'commentautor'])->name('comment.autor');
@@ -56,6 +60,9 @@ Route::post('/commentpost', [CommentController::class,'commentpost'])->name('com
 Route::post('/replypost', [CommentController::class,'replypost'])->name('reply.post');
 Route::post('/commentmedi', [CommentController::class,'commentmedi'])->name('comment.medi');
 Route::post('/replymedi', [CommentController::class,'replymedi'])->name('reply.medi');
+Route::post('/commentacte', [CommentController::class,'commentacte'])->name('comment.acte');
+Route::post('/replyacte', [CommentController::class,'replyacte'])->name('reply.acte');
+
 
 Auth::routes();
 
@@ -71,3 +78,4 @@ Route::resource('/admin/editorials', EditorialController::class)->middleware('au
 Route::resource('/admin/bookshops', BookshopController::class)->middleware('auth')->names('admin.bookshops');
 Route::resource('/admin/books', BookController::class)->middleware('auth')->names('admin.books');
 Route::resource('/admin/medis', Medicontroller::class)->middleware('auth')->names('admin.medis');
+Route::resource('/admin/actes', ActeController::class)->middleware('auth')->names('admin.actes');

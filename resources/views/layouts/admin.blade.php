@@ -68,7 +68,7 @@
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                <li><a class="dropdown-item" href="{{route('admin.actes.index')}}">Agenda</a></li>
                             </ul>
                         </li>
                     </ul>
