@@ -35,6 +35,9 @@
 
                     </div>
                     <p class="mt-5 mb-5">{{$bookshop->user->nickname}}</p>
+                    @foreach ($bookshop->ratings as $rating)
+                    <p>{{$rating->user->nickname}} {{$rating->rating}}</p>
+                    @endforeach
                 </div>
             </div>
         </div>

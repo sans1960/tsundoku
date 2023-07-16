@@ -64,7 +64,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="{{route('admin.posts.index')}}">Noticies</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item" href="{{route('admin.medis.index')}}">Medis</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>

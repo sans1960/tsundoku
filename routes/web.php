@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\BookshopController;
 use App\Http\Controllers\Admin\BookController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\Medicontroller;
 use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\CommentController;
@@ -64,3 +65,4 @@ Route::resource('/admin/posts', PostController::class)->middleware('auth')->name
 Route::resource('/admin/editorials', EditorialController::class)->middleware('auth')->names('admin.editorials');
 Route::resource('/admin/bookshops', BookshopController::class)->middleware('auth')->names('admin.bookshops');
 Route::resource('/admin/books', BookController::class)->middleware('auth')->names('admin.books');
+Route::resource('/admin/medis', Medicontroller::class)->middleware('auth')->names('admin.medis');

@@ -36,6 +36,9 @@
                     <p>{{$book->titol}} <span>{{$book->autor_nom}}</span></p>
                     @endforeach
                 </div>
+                @foreach ($editorial->ratings as $rating)
+                <p>{{$rating->user->nickname}} {{$rating->rating}}</p>
+                @endforeach
             </div>
             <p>{{$editorial->user->nickname}}</p>
 
