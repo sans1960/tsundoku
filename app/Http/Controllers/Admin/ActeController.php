@@ -9,6 +9,19 @@ use Illuminate\Support\Str;
 
 class ActeController extends Controller
 {
+       public function __construct()
+    {
+        $this->middleware('admin')->except('create','store');
+ 
+       
+    }
+
+
+
+
+
+
+
     /**
      * Display a listing of the resource.
      */

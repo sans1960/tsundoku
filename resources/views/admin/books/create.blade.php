@@ -80,6 +80,14 @@
                                 </div>
 
                             </div>
+                            @else
+                            <div class="form-check d-none">
+                                <input class="form-check-input me-2" type="radio" name="active" id="flexRadioDefault1"
+                                    value="0">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    No actiu
+                                </label>
+                            </div>
                             @endif
 
 

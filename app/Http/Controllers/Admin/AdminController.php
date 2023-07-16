@@ -9,6 +9,16 @@ use App\Models\Comment;
 
 class AdminController extends Controller
 {
+      public function __construct()
+    {
+        $this->middleware('admin');
+ 
+       
+    }
+
+
+
+
     public function allusers(){
         $users = User::paginate(10);
         return view('admin.users.index',compact('users'));

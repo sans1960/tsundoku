@@ -9,6 +9,17 @@ use Illuminate\Support\Str;
 
 class Medicontroller extends Controller
 {
+      public function __construct()
+    {
+        $this->middleware('admin')->except('create','store');
+ 
+       
+    }
+
+
+
+
+
     /**
      * Display a listing of the resource.
      */

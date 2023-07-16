@@ -38,6 +38,41 @@
     </div>
     <div class="row">
         <h4>Accions</h4>
+        <div class="col-md-3 mb-3">
+            <div class="card p-2">
+                <a href="{{route('admin.books.create')}}" class="btn btn-outline-success">Afegir Llibre</a>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card p-2">
+                <a href="{{route('admin.autors.create')}}" class="btn btn-outline-success">Afegir Autor</a>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card p-2">
+                <a href="{{route('admin.editorials.create')}}" class="btn btn-outline-success">Afegir Editorial</a>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card p-2">
+                <a href="{{route('admin.bookshops.create')}}" class="btn btn-outline-success">Afegir Llibreria</a>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card p-2">
+                <a href="{{route('admin.posts.create')}}" class="btn btn-outline-success">Afegir Noticia</a>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card p-2">
+                <a href="{{route('admin.medis.create')}}" class="btn btn-outline-success">Afegir Medi</a>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card p-2">
+                <a href="{{route('admin.actes.create')}}" class="btn btn-outline-success">Afegir Acte</a>
+            </div>
+        </div>
 
     </div>
 </div>
