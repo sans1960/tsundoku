@@ -29,6 +29,8 @@ Route::get('/bookshops',[Frontcontroller::class,'bookshops'])->name('bookshops')
 Route::get('/bookshops/{bookshop}',[Frontcontroller::class,'bookshop'])->name('bookshop');
 Route::get('/posts',[Frontcontroller::class,'allPosts'])->name('posts');
 Route::get('/posts/{post}',[Frontcontroller::class,'onepost'])->name('post');
+Route::get('/medis',[Frontcontroller::class,'allMedis'])->name('medis');
+Route::get('/medis/{medi}',[Frontcontroller::class,'onemedi'])->name('medi');
 
 
 
@@ -41,6 +43,7 @@ Route::post('/ratingautor',[Frontcontroller::class,'ratingautor'])->name('rating
 Route::post('/ratingeditorial',[Frontcontroller::class,'ratingeditorial'])->name('rating.editorial');
 Route::post('/ratingbookshop',[Frontcontroller::class,'ratingbookshop'])->name('rating.bookshop');
 Route::post('/ratingpost',[Frontcontroller::class,'ratingpost'])->name('rating.post');
+Route::post('/ratingmedi',[Frontcontroller::class,'ratingmedi'])->name('rating.medi');
 Route::post('/commentbook', [CommentController::class,'commentbook'])->name('comment.book');
 Route::post('/replybook', [CommentController::class,'replybook'])->name('reply.book');
 Route::post('/commentautor', [CommentController::class,'commentautor'])->name('comment.autor');
@@ -51,6 +54,8 @@ Route::post('/commentbookshop', [CommentController::class,'commentbookshop'])->n
 Route::post('/replybookshop', [CommentController::class,'replybookshop'])->name('reply.bookshop');
 Route::post('/commentpost', [CommentController::class,'commentpost'])->name('comment.post');
 Route::post('/replypost', [CommentController::class,'replypost'])->name('reply.post');
+Route::post('/commentmedi', [CommentController::class,'commentmedi'])->name('comment.medi');
+Route::post('/replymedi', [CommentController::class,'replymedi'])->name('reply.medi');
 
 Auth::routes();
 

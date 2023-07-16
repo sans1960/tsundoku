@@ -9,6 +9,7 @@ use App\Models\Autor;
 use App\Models\Editorial;
 use App\Models\Bookshop;
 use App\Models\Post;
+use App\Models\Medi;
 use willvincent\Rateable\Rating;
 
 
@@ -70,6 +71,14 @@ class FrontController extends Controller
          $com = $post->comments->count();
         return view('front.post',compact('post','com'));
     }
+     public function allMedis(){
+         $medis = Medi::all();
+        return view('front.medis',compact('medis'));
+    }
+    public function onemedi(Medi $medi){
+         $com = $medi->comments->count();
+        return view('front.medi',compact('medi','com'));
+    }
 
 
 
@@ -127,6 +136,16 @@ class FrontController extends Controller
     $rating->rating = $request->rating;
     $rating->user_id = auth()->user()->id;
     $post->rateOnce($request->rating);
+     return redirect()->back();
+  
+  }
+    public function ratingmedi(Request $request){
+    request()->validate(['rating' => 'required']);
+    $medi = Medi::find($request->id);
+    $rating = new Rating();
+    $rating->rating = $request->rating;
+    $rating->user_id = auth()->user()->id;
+    $medi->rateOnce($request->rating);
      return redirect()->back();
   
   }

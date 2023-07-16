@@ -64,6 +64,12 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('posts')}}">Noticies</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('medis')}}">Medis</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Agenda</a>
+                    </li>
 
                 </ul>
 
