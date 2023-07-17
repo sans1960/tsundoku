@@ -60,6 +60,16 @@ class User extends Authenticatable
     public function bookshop(){
         return $this->hasMany(Bookshop::class);
     }
+    public function post(){
+        return $this->hasMany(Post::class);
+    }
+    public function medi(){
+        return $this->hasMany(Medi::class);
+    }
+    public function acte(){
+        return $this->hasMany(Acte::class);
+    }
+   
    
   
 }
