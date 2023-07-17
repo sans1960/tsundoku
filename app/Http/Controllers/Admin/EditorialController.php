@@ -68,8 +68,13 @@ class EditorialController extends Controller
              $editorial->save();
           
           
-         session()->flash('notif.success', 'Editorial creada amb éxit!');
-            return redirect()->route('admin.editorials.index');
+        if (Auth()->user()->type == 'admin') {
+                session()->flash('notif.success', 'Editorial creada amb éxit!');
+                return redirect()->route('admin.editorials.index');
+             }else {
+                session()->flash('notif.success', 'Editorial creada amb éxit!');
+                return redirect()->route('home');
+             }
     }
 
     /**

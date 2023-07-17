@@ -36,6 +36,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
+                        @if (Auth()->user()->type == 'admin')
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('admin.generes.index') }}">Géneres</a>
                         </li>
@@ -71,6 +72,8 @@
                                 <li><a class="dropdown-item" href="{{route('admin.actes.index')}}">Agenda</a></li>
                             </ul>
                         </li>
+                        @endif
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->

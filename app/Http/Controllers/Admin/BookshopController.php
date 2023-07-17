@@ -72,8 +72,13 @@ class BookshopController extends Controller
         $bookshop->save();
             
            
-         session()->flash('notif.success', 'Llibreria creada amb éxit!');
-            return redirect()->route('admin.bookshops.index');
+        if (Auth()->user()->type == 'admin') {
+                session()->flash('notif.success', 'Llibreria creada amb éxit!');
+                return redirect()->route('admin.bookshops.index');
+             }else {
+                session()->flash('notif.success', 'Llibreria creada amb éxit!');
+                return redirect()->route('home');
+             }
     }
 
     /**

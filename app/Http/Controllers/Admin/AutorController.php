@@ -63,8 +63,13 @@ class AutorController extends Controller
          $autor->save();
           
         
-         session()->flash('notif.success', 'Autor creat amb éxit!');
-            return redirect()->route('admin.autors.index');
+           if (Auth()->user()->type == 'admin') {
+                session()->flash('notif.success', 'Autor creat amb éxit!');
+                return redirect()->route('admin.autors.index');
+             }else {
+                session()->flash('notif.success', 'Autor creat amb éxit!');
+                return redirect()->route('home');
+             }
     }
 
     /**

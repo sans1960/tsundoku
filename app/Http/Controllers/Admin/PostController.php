@@ -50,7 +50,7 @@ class PostController extends Controller
         'font'=>'required|string',
         'url'=>'required|string',
         'data'=>'required',
-        'image'=> 'required|image|mimes:jpg,png,jpeg',
+        'image'=> 'required|image|mimes:jpg,png,jpeg,webp',
         'body' => 'required',
        
          ]);
