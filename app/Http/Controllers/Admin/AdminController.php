@@ -23,6 +23,9 @@ class AdminController extends Controller
         $users = User::paginate(10);
         return view('admin.users.index',compact('users'));
     }
+    public function oneuser(User $user){
+        return view('admin.users.show',compact('user'));
+    }
     public function allcomments(){
        $comments = Comment::paginate(5);
        return view('admin.comments.index',compact('comments'));

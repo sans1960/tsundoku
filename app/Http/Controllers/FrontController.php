@@ -80,14 +80,14 @@ class FrontController extends Controller
          $com = $medi->comments->count();
         return view('front.medi',compact('medi','com'));
     }
-    public function allActes(){
-         $actes = Acte::all();
-        return view('front.actes',compact('actes'));
-    }
+    // public function allActes(){
+    //      $actes = Acte::all();
+    //     return view('front.actes',compact('actes'));
+    // }
     public function oneacte(Acte $acte){
-         $com = $acte->comments->count();
-        return view('front.acte',compact('acte','com'));
-    }
+          $com = $acte->comments->count();
+         return view('front.acte',compact('acte','com'));
+     }
 
 
 

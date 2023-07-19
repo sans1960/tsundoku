@@ -68,7 +68,7 @@
                         <a class="nav-link" href="{{route('medis')}}">Medis</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('actes')}}">Agenda</a>
+                        <a class="nav-link" href="{{route('calendari')}}">Agenda</a>
                     </li>
 
                 </ul>

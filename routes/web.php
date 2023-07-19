@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\Medicontroller;
 use App\Http\Controllers\Admin\ActeController;
 use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\FrontController;
+use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\CommentController;
 
 
@@ -32,7 +33,9 @@ Route::get('/posts',[Frontcontroller::class,'allPosts'])->name('posts');
 Route::get('/posts/{post}',[Frontcontroller::class,'onepost'])->name('post');
 Route::get('/medis',[Frontcontroller::class,'allMedis'])->name('medis');
 Route::get('/medis/{medi}',[Frontcontroller::class,'onemedi'])->name('medi');
-Route::get('/actes',[Frontcontroller::class,'allActes'])->name('actes');
+Route::get('/calendari',[Calendarcontroller::class,'index'])->name('calendari');
+Route::get('/calendari/{mes}',[Calendarcontroller::class,'index_month'])->name('calendari.mes');
+
 Route::get('/actes/{acte}',[Frontcontroller::class,'oneacte'])->name('acte');
 
 
@@ -68,8 +71,9 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/admin', [App\Http\Controllers\HomeController::class, 'admin'])->name('admin');
-Route::get('/admin/users', [AdminController::class, 'allusers'])->name('admin.users.index');
-Route::get('/admin/comments', [AdminController::class, 'allcomments'])->name('admin.comments.index');
+Route::get('/admin/users', [AdminController::class, 'allusers'])->middleware('auth')->name('admin.users.index');
+Route::get('/admin/users/{user}', [AdminController::class, 'oneuser'])->middleware('auth')->name('admin.users.show');
+Route::get('/admin/comments', [AdminController::class, 'allcomments'])->middleware('auth')->name('admin.comments.index');
 Route::delete('/admin/comments{comment}', [AdminController::class, 'deletecomment'])->name('admin.comments.destroy');
 Route::resource('/admin/generes', GenereController::class)->middleware('auth')->names('admin.generes');
 Route::resource('/admin/autors', AutorController::class)->middleware('auth')->names('admin.autors');

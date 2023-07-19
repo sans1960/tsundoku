@@ -75,7 +75,7 @@
                             <label for="" class="col-md-4 col-form-label text-md-end">{{ __('Tipus usuari') }}</label>
                             <div class="col-md-6">
                                 <select class="form-select" aria-label="Default select example" name="condicio">
-                                    <option>Escull</option>
+                                    <option selected disabled hidden>Escull</option>
                                     <option></option>
                                     <option value="lector">Lector</option>
                                     <option value="autor">Autor</option>
