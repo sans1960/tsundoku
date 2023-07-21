@@ -3,15 +3,18 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Cog\Contracts\Ban\Bannable as BannableInterface;
+use Cog\Laravel\Ban\Traits\Bannable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class User extends Authenticatable
+class User extends Authenticatable implements BannableInterface
 {
     use HasApiTokens, HasFactory, Notifiable;
+    use Bannable;
 
     /**
      * The attributes that are mass assignable.
@@ -26,6 +29,7 @@ class User extends Authenticatable
         'avatar',
         'condicio',
         'type',
+        'banned_at',
         
     ];
 

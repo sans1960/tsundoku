@@ -26,6 +26,23 @@ class AdminController extends Controller
     public function oneuser(User $user){
         return view('admin.users.show',compact('user'));
     }
+    public function ban(User $user){
+        return view('admin.users.ban',compact('user'));
+    }
+    public function unban(User $user){
+        $user->unban();
+               session()->flash('notif.success', 'Usuari desbloquejat amb éxit!');
+        return redirect()->route('admin.users.index');
+    }
+      public function updateban(User $user){
+        if(!empty(request('banned'))){
+            $user->ban([
+                'comment' => request('comment'),
+            ]);
+        }
+            session()->flash('notif.success', 'Usuari bloquejat amb éxit!');
+        return redirect()->route('admin.users.index');
+    }
     public function allcomments(){
        $comments = Comment::paginate(5);
        return view('admin.comments.index',compact('comments'));

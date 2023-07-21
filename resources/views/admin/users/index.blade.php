@@ -34,6 +34,7 @@ Tots els usuaris
                         <th>Tipus</th>
                         <th>Condició</th>
                         <th>Data</th>
+                        <th>Bannejat</th>
 
 
                         <th colspan="3" class="text-center">Accions</th>
@@ -52,12 +53,27 @@ Tots els usuaris
                         <td>{{$user->condicio}}</td>
                         <td>{{\Carbon\Carbon::parse($user->created_at)->format('d/m/Y');}}</td>
                         <td>
+                            {{$user->isBanned()}}
+
+
+
+                        </td>
+                        <td>
                             <a href="{{route('admin.users.show',$user)}}" class="btn btn-success btn-sm">
                                 <i class="bi bi-eye"></i>
                             </a>
                         </td>
-
                         <td>
+                            <a href="{{route('admin.users.ban',$user)}}" class="btn btn-danger btn-sm">
+                                <i class="bi bi-emoji-angry-fill"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{{route('admin.users.unban',$user)}}" class="btn btn-warning btn-sm">
+                                <i class="bi bi-balloon"></i>
+                            </a>
+                        </td>
+                        {{-- <td>
                             <form action="" method="post">
                                 @csrf
                                 @method('delete')
@@ -65,7 +81,7 @@ Tots els usuaris
                                     <i class="bi bi-trash3"></i>
                                 </button>
                             </form>
-                        </td>
+                        </td> --}}
 
                     </tr>
 

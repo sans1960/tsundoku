@@ -19,7 +19,11 @@
             <h4 class="ms-3">{{ $user->type }}</h4>
             <h4 class="ms-3">{{ $user->condicio }}</h4>
             <h4 class="ms-3">{{ $user->nickname }}</h4>
+            @foreach ($user->bans as $item)
+            <h4 class="text-danger fw-bold ms-3">{{$item->comment}}</h4>
+            @endforeach
         </div>
+
     </div>
     <div class="row">
         <h4 class="mt-3">Activitat</h4>

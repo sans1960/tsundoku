@@ -68,18 +68,22 @@ Route::post('/replyacte', [CommentController::class,'replyacte'])->name('reply.a
 
 
 Auth::routes();
-
+Route::middleware(['auth', 'forbid-banned-user'])->group(function () {
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/admin', [App\Http\Controllers\HomeController::class, 'admin'])->name('admin');
-Route::get('/admin/users', [AdminController::class, 'allusers'])->middleware('auth')->name('admin.users.index');
-Route::get('/admin/users/{user}', [AdminController::class, 'oneuser'])->middleware('auth')->name('admin.users.show');
-Route::get('/admin/comments', [AdminController::class, 'allcomments'])->middleware('auth')->name('admin.comments.index');
+Route::get('/admin/users', [AdminController::class, 'allusers'])->name('admin.users.index');
+Route::get('/admin/users/{user}', [AdminController::class, 'oneuser'])->name('admin.users.show');
+Route::get('/admin/users/{user}/ban', [AdminController::class, 'ban'])->name('admin.users.ban');
+Route::get('/admin/users/{user}/unban', [AdminController::class, 'unban'])->name('admin.users.unban');
+Route::patch('/admin/users/{user}/updateban', [AdminController::class, 'updateban'])->name('admin.users.updateban');
+Route::get('/admin/comments', [AdminController::class, 'allcomments'])->name('admin.comments.index');
 Route::delete('/admin/comments{comment}', [AdminController::class, 'deletecomment'])->name('admin.comments.destroy');
-Route::resource('/admin/generes', GenereController::class)->middleware('auth')->names('admin.generes');
-Route::resource('/admin/autors', AutorController::class)->middleware('auth')->names('admin.autors');
-Route::resource('/admin/posts', PostController::class)->middleware('auth')->names('admin.posts');
-Route::resource('/admin/editorials', EditorialController::class)->middleware('auth')->names('admin.editorials');
-Route::resource('/admin/bookshops', BookshopController::class)->middleware('auth')->names('admin.bookshops');
-Route::resource('/admin/books', BookController::class)->middleware('auth')->names('admin.books');
-Route::resource('/admin/medis', Medicontroller::class)->middleware('auth')->names('admin.medis');
-Route::resource('/admin/actes', ActeController::class)->middleware('auth')->names('admin.actes');
+Route::resource('/admin/generes', GenereController::class)->names('admin.generes');
+Route::resource('/admin/autors', AutorController::class)->names('admin.autors');
+Route::resource('/admin/posts', PostController::class)->names('admin.posts');
+Route::resource('/admin/editorials', EditorialController::class)->names('admin.editorials');
+Route::resource('/admin/bookshops', BookshopController::class)->names('admin.bookshops');
+Route::resource('/admin/books', BookController::class)->names('admin.books');
+Route::resource('/admin/medis', Medicontroller::class)->names('admin.medis');
+Route::resource('/admin/actes', ActeController::class)->names('admin.actes');
+});
