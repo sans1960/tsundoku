@@ -49,6 +49,7 @@ class GenereController extends Controller
     
         $request->validate([
         'nom' => 'required|string|max:255',
+        'active' => 'required|boolean',
         
         
     ]);

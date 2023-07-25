@@ -57,7 +57,7 @@ class BookController extends Controller
        
         'autor_nom'=>'required',
         'genere_id'=>'required',
-        'active'=>'numeric',
+        'active'=>'boolean',
         'editorial_nom'=>'required|string',
         'editorial_web'=>'required|string',
         'idioma'=>'required|string',
@@ -73,7 +73,9 @@ class BookController extends Controller
              $book->autor_nom = $request->autor_nom;
              $book->genere_id = $request->genere_id;
              $book->autor_id = $request->autor_id;
+             if (Auth()->user()->type == 'admin') {
              $book->active = $request->active;
+             }
              $book->editorial_nom = $request->editorial_nom;
              $book->editorial_web = $request->editorial_web;
              $book->editorial_id = $request->editorial_id;
@@ -113,11 +115,11 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-      
+        $users = User::All();
         $generes = Genere::all();
         $autors = Autor::all();
         $editorials= Editorial::all();
-        return view('admin.books.edit',compact('generes','book','autors','editorials'));
+        return view('admin.books.edit',compact('generes','book','autors','editorials','users'));
     }
 
     /**

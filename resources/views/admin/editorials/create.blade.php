@@ -16,24 +16,31 @@
                         <div class="mb-3">
                             <label for="nom" class="form-label">Nom</label>
                             <input type="text" class="form-control" id="editorial_nom" placeholder="Nom"
-                                name="editorial_nom" autofocus required>
+                                name="editorial_nom" autofocus required value="{{old('editorial_nom')}}">
+                            @if ($errors->has('editorial_nom'))
+                            <span class="text-danger">{{ $errors->first('editorial_nom') }}</span>
+                            @endif
                         </div>
                         <input type="hidden" name="user_id" value="{{Auth()->user()->id}}">
                         <div class="row mb-3">
                             <div class="col">
                                 <label for="url" class="form-label">Url</label>
-                                <input class="form-control" type="text" id="url" name="url">
+                                <input class="form-control" value="{{old('url')}}" type=" text" id="url" name="url">
+                                @if ($errors->has('url'))
+                                <span class="text-danger">{{ $errors->first('url') }}</span>
+                                @endif
                             </div>
-                            <div class="col">
-                                <label for="url_ventas" class="form-label">Url Vendes</label>
-                                <input class="form-control" type="text" id="url_ventas" name="url_vendes">
-                            </div>
+
                         </div>
                         <div class="row mb-3">
                             <div class="col">
                                 <label for="foto" class="form-label">Logo</label>
-                                <input class="form-control" type="text" id="foto" name="logo">
+                                <input class="form-control" type="text" id="foto" value="{{old('logo')}}" name="logo">
+                                @if ($errors->has('logo'))
+                                <span class="text-danger">{{ $errors->first('logo') }}</span>
+                                @endif
                             </div>
+                            @if (Auth()->user()->type == 'admin')
                             <div class="col d-flex flex-column align-items-center">
                                 <div class="form-check">
                                     <input class="form-check-input me-2" type="radio" name="active"
@@ -49,17 +56,21 @@
                                         Actiu
                                     </label>
                                 </div>
-
+                                @if ($errors->has('active'))
+                                <span class="text-danger">{{ $errors->first('active') }}</span>
+                                @endif
                             </div>
+                            @endif
+                        </div>
 
-                        </div>
-                        <div class="mb-3">
-                            <label for="adreça" class="form-label">Adreça</label>
-                            <input type="text" class="form-control" id="adreça" name="adreça" placeholder="Adreça">
-                        </div>
                         <div class="mb-3">
                             <label for="" class="form-label">Descripció</label>
-                            <textarea class="form-control " name="descripcio" id="" rows="3"></textarea>
+                            <textarea class="form-control " name="descripcio" id="" rows="3">
+                                {!! old('descripcio')!!}
+                            </textarea>
+                            @if ($errors->has('descripcio'))
+                            <span class="text-danger">{{ $errors->first('descripcio') }}</span>
+                            @endif
                         </div>
                         <div class="mb-3 d-flex justify-content-center">
                             <button type="submit" class="btn btn-success">

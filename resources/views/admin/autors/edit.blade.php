@@ -20,6 +20,14 @@ Editar {{ $autor->nom }}
                             <input type="text" class="form-control" id="autor_nom" value="{{ $autor->autor_nom }}"
                                 name="autor_nom" required>
                         </div>
+                        <div class="mb-3">
+                            <select name="user_id" id="" class="form-select">
+                                @foreach ($users as $user)
+                                <option value="{{$user->id}}" @if ($autor->user_id == $user->id)
+                                    selected @endif>{{$user->nickname}}</option>
+                                @endforeach
+                            </select>
+                        </div>
 
                         <div class="row mb-3">
                             <div class="col">

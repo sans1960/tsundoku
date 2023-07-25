@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Editorial;
+use App\Models\User;
 use Illuminate\Support\Str;
 
 class EditorialController extends Controller
@@ -48,9 +49,9 @@ class EditorialController extends Controller
         
         'descripcio'=>'required',
         'logo'=>'required',
-        'active'=>'numeric',
-        'url'=>'required|string',
-        'url_vendes'=>'required|string',
+        'active'=>'boolean',
+        'url'=>'required',
+        
          'adreça' => 'string'
         
              ]);
@@ -59,10 +60,11 @@ class EditorialController extends Controller
              $editorial->slug = Str::slug($request->editorial_nom);
              $editorial->descripcio = $request->descripcio;
              $editorial->logo = $request->logo;
+               if (Auth()->user()->type == 'admin') {
              $editorial->active = $request->active;
+               }
              $editorial->url = $request->url;
-             $editorial->url_vendes = $request->url_vendes;
-             $editorial->adreça = $request->adreça;
+        
              $editorial->user_id = $request->user_id;
     
              $editorial->save();
@@ -90,7 +92,8 @@ class EditorialController extends Controller
      */
     public function edit(Editorial $editorial)
     {
-         return view('admin.editorials.edit',compact('editorial'));
+          $users = User::all();
+         return view('admin.editorials.edit',compact('editorial','users'));
     }
 
     /**
@@ -105,7 +108,7 @@ class EditorialController extends Controller
         'logo'=>'required',
         'active'=>'numeric',
         'url'=>'required|string',
-        'url_vendes'=>'required|string',
+     
        
         
              ]);
@@ -115,8 +118,7 @@ class EditorialController extends Controller
              $editorial->logo = $request->logo;
              $editorial->active = $request->active;
              $editorial->url = $request->url;
-             $editorial->url_vendes = $request->url_vendes;
-             $editorial->adreça = $request->adreça;
+         
              $editorial->user_id = $request->user_id;
     
              $editorial->update();

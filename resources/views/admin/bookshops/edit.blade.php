@@ -19,7 +19,7 @@
                             <input type="text" class="form-control" id="nom" value="{{ $bookshop->nom }}" name="nom"
                                 required>
                         </div>
-                        <input type="hidden" name="user_id" value="{{Auth()->user()->id}}">
+
                         <div class="row mb-3">
                             <div class="col">
                                 <label for="url" class="form-label">Url</label>
@@ -34,10 +34,14 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col">
-                                <label for="ciutat" class="form-label">Ciutat</label>
-                                <input type="text" class="form-control" id="ciutat" name="ciutat"
-                                    value="{{ $bookshop->ciutat }}">
+                                <select name="user_id" id="" class="form-select">
+                                    @foreach ($users as $user)
+                                    <option value="{{$user->id}}" @if ($bookshop->user_id == $user->id)
+                                        selected @endif>{{$user->nickname}}</option>
+                                    @endforeach
+                                </select>
                             </div>
+
                             <div class="col d-flex flex-column align-items-center">
                                 <div class="form-check">
                                     <input class="form-check-input me-2" type="radio" name="active"

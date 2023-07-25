@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Acte;
+use App\Models\User;
 use Illuminate\Support\Str;
 
 class ActeController extends Controller
@@ -46,7 +47,7 @@ class ActeController extends Controller
     {
          $request->validate([
         'titol' => 'required|string|max:255',
-        'active'=>'numeric',
+      
         'hora' => 'required|string',
         'url'=>'required|string',
         'data'=>'required',
@@ -58,7 +59,9 @@ class ActeController extends Controller
         $acte->titol = $request->titol;
         $acte->slug = Str::slug($request->titol) ;
         $acte->image = $request->image;
+         if (Auth()->user()->type == 'admin') {
         $acte->active = $request->active;
+         }
         $acte->hora = $request->hora;
         $acte->url = $request->url;
         $acte->data = $request->data;
@@ -87,7 +90,8 @@ class ActeController extends Controller
      */
     public function edit(Acte $acte)
     {
-        return view('admin.actes.edit',compact('acte'));
+         $users = User::all();
+        return view('admin.actes.edit',compact('acte','users'));
     }
 
     /**
@@ -97,7 +101,7 @@ class ActeController extends Controller
     {
            $request->validate([
         'titol' => 'required|string|max:255',
-        'active'=>'numeric',
+       
         'hora' => 'required|string',
         'url'=>'required|string',
         'data'=>'required',

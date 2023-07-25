@@ -51,7 +51,9 @@
                                 <input class="form-control" type="text" id="imatge" name="imatge"
                                     value="{{$book->imatge}}">
                             </div>
+
                         </div>
+
                         <div class="row mb-3">
                             <div class="col">
                                 <select class="form-select" aria-label="Default select example" name="genere_id">
@@ -107,7 +109,12 @@
                                     required value="{{$book->idioma}}">
                             </div>
                             <div class="col">
-                                <input type="hidden" name="user_id" value="{{Auth()->user()->id}}" id="">
+                                <select name="user_id" id="" class="form-select">
+                                    @foreach ($users as $user)
+                                    <option value="{{$user->id}}" @if ($book->user_id == $user->id)
+                                        selected @endif>{{$user->nickname}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="mb-3">

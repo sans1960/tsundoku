@@ -21,13 +21,13 @@ return new class extends Migration
             $table->unsignedBigInteger('editorial_id')->nullable();
             $table->string('editorial_nom');
             $table->string('isbn');
-            $table->string('imatge');
+            $table->string('imatge',255);
             $table->text('sinopsi');
             $table->string('editorial_web');
             $table->string('idioma');
             
             $table->foreignId('user_id')->constrained('users');
-            $table->boolean('active')->default(0);
+            $table->boolean('active')->default(1);
             $table->timestamps();
         });
     }

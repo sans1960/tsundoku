@@ -15,7 +15,7 @@ class Editorial extends Model
     use HasFactory;
     use Rateable;
     
-    protected $fillable = ['editorial_nom','slug','descripcio','url','active','url_vendes','logo','adreça','user_id'];
+    protected $fillable = ['editorial_nom','slug','descripcio','url','active','logo','adreça','user_id'];
   
 
     public function getRouteKeyName()

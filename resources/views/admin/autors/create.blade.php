@@ -16,15 +16,22 @@
                         <input type="hidden" name="user_id" value="{{Auth()->user()->id}}">
                         <div class="mb-3">
                             <label for="nom" class="form-label">Nom</label>
-                            <input type="text" class="form-control" id="autor_nom" placeholder="Nom" name="autor_nom"
-                                autofocus required>
+                            <input type="text" class="form-control" value="{{old('autor_nom')}}" id="autor_nom"
+                                placeholder="Nom" name="autor_nom" autofocus required>
+                            @if ($errors->has('autor_nom'))
+                            <span class="text-danger">{{ $errors->first('autor_nom') }}</span>
+                            @endif
                         </div>
 
                         <div class="row mb-3">
                             <div class="col">
                                 <label for="foto" class="form-label">Foto</label>
                                 <input class="form-control" type="text" id="foto" name="url_foto">
+                                @if ($errors->has('url_foto'))
+                                <span class="text-danger">{{ $errors->first('url_foto') }}</span>
+                                @endif
                             </div>
+                            @if (Auth()->user()->type == 'admin')
                             <div class="col">
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="active" id="flexRadioDefault1"
@@ -39,14 +46,24 @@
                                     <label class="form-check-label" for="flexRadioDefault2">
                                         Actiu
                                     </label>
+                                    @if ($errors->has('active'))
+                                    <span class="text-danger">{{ $errors->first('active') }}</span>
+                                    @endif
                                 </div>
 
                             </div>
+                            @endif
+
 
                         </div>
                         <div class="mb-3">
                             <label for="" class="form-label">Biopic</label>
-                            <textarea class="form-control " name="biopic" id="" rows="3"></textarea>
+                            <textarea class="form-control " name="biopic" id="" rows="3">
+                                {!! old('biopic')!!}
+                            </textarea>
+                            @if ($errors->has('biopic'))
+                            <span class="text-danger">{{ $errors->first('biopic') }}</span>
+                            @endif
                         </div>
                         <div class="mb-3 d-flex justify-content-center">
                             <button type="submit" class="btn btn-success">

@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('slug');
            
             $table->text('biopic');
-            $table->string('url_foto');
-            $table->tinyInteger('active')->default(0);
+            $table->text('url_foto');
+            $table->tinyInteger('active')->default(1);
             $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });

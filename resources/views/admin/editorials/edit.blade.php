@@ -19,7 +19,7 @@
                             <input type="text" class="form-control" id="editorial_nom"
                                 value="{{ $editorial->editorial_nom }}" name="editorial_nom" required>
                         </div>
-                        <input type="hidden" name="user_id" value="{{Auth()->user()->id}}">
+
                         <div class="row mb-3">
                             <div class="col">
                                 <label for="url" class="form-label">Url</label>
@@ -27,9 +27,12 @@
                                     name="url">
                             </div>
                             <div class="col">
-                                <label for="url_ventas" class="form-label">Url Vendes</label>
-                                <input class="form-control" type="text" id="url_ventas"
-                                    value="{{ $editorial->url_vendes }}" name="url_vendes">
+                                <select name="user_id" id="" class="form-select">
+                                    @foreach ($users as $user)
+                                    <option value="{{$user->id}}" @if ($editorial->user_id == $user->id)
+                                        selected @endif>{{$user->nickname}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -57,11 +60,7 @@
                             </div>
 
                         </div>
-                        <div class="mb-3">
-                            <label for="adreça" class="form-label">Adreça</label>
-                            <input type="text" class="form-control" id="adreça" name="adreça"
-                                value="{{ $editorial->adreça }}">
-                        </div>
+
                         <div class="mb-3">
                             <label for="" class="form-label">Descripció</label>
                             <textarea class="form-control " name="descripcio" id="" rows="3">

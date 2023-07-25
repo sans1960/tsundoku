@@ -15,8 +15,11 @@
                         @csrf
                         <div class="mb-3">
                             <label for="nom" class="form-label">Nom</label>
-                            <input type="text" class="form-control" id="nom" placeholder="Nom" name="nom" autofocus
-                                required>
+                            <input type="text" value="{{old('nom')}}" class="form-control" id="nom" placeholder="Nom"
+                                name="nom" autofocus required>
+                            @if ($errors->has('nom'))
+                            <span class="text-danger">{{ $errors->first('nom') }}</span>
+                            @endif
                         </div>
 
 
@@ -32,7 +35,9 @@
                                 Actiu
                             </label>
                         </div>
-
+                        @if ($errors->has('active'))
+                        <span class="text-danger">{{ $errors->first('active') }}</span>
+                        @endif
                         <div class="mb-3 d-flex justify-content-center">
                             <button type="submit" class="btn btn-success">
                                 <i class="bi bi-check-circle"></i>

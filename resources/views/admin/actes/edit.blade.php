@@ -27,7 +27,14 @@
                             <input class="form-control" type="text" id="image" name="image" value="{{$acte->image}}">
 
                         </div>
-
+                        <div class="mb-3">
+                            <select name="user_id" id="" class="form-select">
+                                @foreach ($users as $user)
+                                <option value="{{$user->id}}" @if ($acte->user_id == $user->id)
+                                    selected @endif>{{$user->nickname}}</option>
+                                @endforeach
+                            </select>
+                        </div>
 
                         <div class="mb-3">
 

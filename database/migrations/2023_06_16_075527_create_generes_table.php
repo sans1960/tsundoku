@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nom');
             $table->string('slug');
            
-            $table->tinyInteger('active')->default(0);
+            $table->tinyInteger('active')->default(1);
             $table->softDeletes();
             $table->timestamps();
         });

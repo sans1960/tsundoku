@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Autor;
+use App\Models\User;
 use Illuminate\Support\Str;
 
 class AutorController extends Controller
@@ -49,7 +50,7 @@ class AutorController extends Controller
         
         'biopic'=>'required',
         'url_foto'=>'required',
-        'active'=>'numeric'
+        'active'=>'boolean'
         
              ]);
          $autor = new Autor();
@@ -57,7 +58,10 @@ class AutorController extends Controller
          $autor->url_foto = $request->url_foto;
          $autor->slug = Str::slug($request->autor_nom) ;
          $autor->biopic = $request->biopic;
-         $autor->active = $request->active;
+         if (Auth()->user()->type == 'admin') {
+           $autor->active = $request->active;
+         }
+         
          $autor->user_id = $request->user_id;
         
          $autor->save();
@@ -85,7 +89,8 @@ class AutorController extends Controller
      */
     public function edit(Autor $autor)
     {
-        return view('admin.autors.edit',compact('autor'));
+        $users = User::all();
+        return view('admin.autors.edit',compact('autor','users'));
     }
 
     /**
@@ -98,14 +103,15 @@ class AutorController extends Controller
      
         'biopic'=>'required',
         'url_foto'=>'required',
-        'active'=>'numeric'
+        'active'=>'boolean'
         
              ]);
-           $autor->autor_nom = $request->autor_nom;
+         $autor->autor_nom = $request->autor_nom;
          $autor->url_foto = $request->url_foto;
          $autor->slug = Str::slug($request->autor_nom) ;
          $autor->biopic = $request->biopic;
          $autor->active = $request->active;
+         $autor->user_id = $request->user_id;
         
          $autor->update();
        

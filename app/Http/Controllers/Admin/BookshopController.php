@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Bookshop;
+use App\Models\User;
 use Illuminate\Support\Str;
 
 class BookshopController extends Controller
@@ -49,12 +50,12 @@ class BookshopController extends Controller
         
         'qui_som'=>'required',
         'logo'=>'required',
-        'active'=>'numeric',
+        'active'=>'boolean',
         'url'=>'required|string',
         'latitud'=>'required|string',
         'longitud'=>'required|string',
         'zoom'=> 'required|integer',
-        'ciutat' => 'string'
+        
         
              ]);
         $bookshop = new Bookshop;
@@ -62,12 +63,14 @@ class BookshopController extends Controller
         $bookshop->slug = Str::slug($request->nom);
         $bookshop->qui_som = $request->qui_som;
         $bookshop->logo = $request->logo;
+         if (Auth()->user()->type == 'admin') {
         $bookshop->active = $request->active;
+         }
         $bookshop->url = $request->url;
         $bookshop->latitud = $request->latitud;
         $bookshop->longitud = $request->longitud;
         $bookshop->zoom = $request->zoom;
-        $bookshop->ciutat = $request->ciutat;
+      
         $bookshop->user_id = $request->user_id;
         $bookshop->save();
             
@@ -94,7 +97,8 @@ class BookshopController extends Controller
      */
     public function edit(Bookshop $bookshop)
     {
-        return view('admin.bookshops.edit',compact('bookshop'));
+        $users = User::all();
+        return view('admin.bookshops.edit',compact('bookshop','users'));
     }
 
     /**
@@ -107,12 +111,12 @@ class BookshopController extends Controller
         
         'qui_som'=>'required',
         'logo'=>'required',
-        'active'=>'numeric',
+        'active'=>'boolean',
         'url'=>'required|string',
         'latitud'=>'required|string',
         'longitud'=>'required|string',
         'zoom'=> 'required|integer',
-        'ciutat' => 'string'
+       
         
              ]);
         $bookshop->nom = $request->nom;
@@ -124,7 +128,7 @@ class BookshopController extends Controller
         $bookshop->latitud = $request->latitud;
         $bookshop->longitud = $request->longitud;
         $bookshop->zoom = $request->zoom;
-        $bookshop->ciutat = $request->ciutat;
+   
         $bookshop->user_id = $request->user_id;
         $bookshop->update();
          session()->flash('notif.success', 'Llibreria actualitzada amb éxit!');

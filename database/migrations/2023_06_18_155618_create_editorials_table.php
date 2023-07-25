@@ -17,10 +17,10 @@ return new class extends Migration
             $table->string('slug');
             $table->text('descripcio');
             $table->string('url');
-            $table->string('url_vendes');
+           
             $table->string('logo');
             $table->string('adreça')->nullable();
-            $table->tinyInteger('active')->default(0);
+            $table->tinyInteger('active')->default(1);
             $table->foreignId('user_id')->constrained('users');
            
             $table->timestamps();
