@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\Medicontroller;
 use App\Http\Controllers\Admin\ActeController;
+use App\Http\Controllers\Admin\DenunciaController;
 use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\CalendarController;
@@ -86,4 +87,5 @@ Route::resource('/admin/bookshops', BookshopController::class)->names('admin.boo
 Route::resource('/admin/books', BookController::class)->names('admin.books');
 Route::resource('/admin/medis', Medicontroller::class)->names('admin.medis');
 Route::resource('/admin/actes', ActeController::class)->names('admin.actes');
+Route::resource('/admin/denuncia', DenunciaController::class)->names('admin.denuncia');
 });

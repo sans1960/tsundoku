@@ -75,7 +75,14 @@
 
 
 
-                        <input type="hidden" name="user_id" value="{{Auth()->user()->id}}" id="">
+                        <div class="mb-3">
+                            <select name="user_id" id="" class="form-select">
+                                @foreach ($users as $user)
+                                <option value="{{$user->id}}" @if ($post->user_id == $user->id)
+                                    selected @endif>{{$user->nickname}}</option>
+                                @endforeach
+                            </select>
+                        </div>
 
 
 

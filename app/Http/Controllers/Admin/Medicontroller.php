@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Medi;
+use App\Models\User;
 use Illuminate\Support\Str;
 
 class Medicontroller extends Controller
@@ -44,7 +45,7 @@ class Medicontroller extends Controller
     {
         $request->validate([
         'titol' => 'required|string|max:255',
-        'active'=>'numeric',
+        
         
         'url'=>'required|string',
         'data'=>'required',
@@ -56,7 +57,9 @@ class Medicontroller extends Controller
         $medi->titol = $request->titol;
         $medi->slug = Str::slug($request->titol) ;
         $medi->image = $request->image;
+        if (Auth()->user()->type == 'admin') {
         $medi->active = $request->active;
+        }
         
         $medi->url = $request->url;
         $medi->data = $request->data;
@@ -85,7 +88,8 @@ class Medicontroller extends Controller
      */
     public function edit(Medi $medi)
     {
-        return view('admin.medis.edit',compact('medi'));
+        $users = User::all();
+        return view('admin.medis.edit',compact('medi','users'));
     }
 
     /**

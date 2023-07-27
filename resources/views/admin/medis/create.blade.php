@@ -15,16 +15,21 @@
                         @csrf
                         <div class="mb-3">
                             <label for="titol" class="form-label">Titol</label>
-                            <input type="text" class="form-control" id="titol" placeholder="Títol" name="titol"
-                                autofocus required>
+                            <input type="text" class="form-control" id="titol" value="{{old('titol')}}"
+                                placeholder="Títol" name="titol" autofocus required>
+                            @if ($errors->has('titol'))
+                            <span class="text-danger">{{ $errors->first('titol') }}</span>
+                            @endif
                         </div>
 
 
                         <div class=" mb-3">
 
                             <label for="image" class="form-label">Imatge</label>
-                            <input class="form-control" type="text" id="image" name="image">
-
+                            <input class="form-control" value="{{old('image')}}" type="text" id="image" name="image">
+                            @if ($errors->has('image'))
+                            <span class="text-danger">{{ $errors->first('image') }}</span>
+                            @endif
                         </div>
 
 
@@ -32,15 +37,20 @@
 
 
                             <label for="url" class="form-label">Url medi</label>
-                            <input class="form-control" type="text" id="url" name="url">
-
+                            <input class="form-control" type="text" value="{{old('url')}}" id="url" name="url">
+                            @if ($errors->has('url'))
+                            <span class="text-danger">{{ $errors->first('url') }}</span>
+                            @endif
                         </div>
                         <div class="row mb-3">
                             <div class="col">
                                 <label for="data" class="form-label">Data</label>
-                                <input class="form-control" type="date" id="data" name="data">
+                                <input class="form-control" value="{{old('data')}}" type="date" id="data" name="data">
+                                @if ($errors->has('data'))
+                                <span class="text-danger">{{ $errors->first('data') }}</span>
+                                @endif
                             </div>
-
+                            @if (Auth()->user()->type == 'admin')
                             <div class="col d-flex flex-column align-items-center">
                                 <div class="form-check">
                                     <input class="form-check-input me-2" type="radio" name="active"
@@ -58,6 +68,7 @@
                                 </div>
 
                             </div>
+                            @endif
 
 
 
@@ -74,7 +85,12 @@
 
                         <div class="mb-3">
                             <label for="" class="form-label">Descripció</label>
-                            <textarea class="form-control " name="body" id="" rows="3"></textarea>
+                            <textarea class="form-control " name="body" id="" rows="3">
+                                {!!old('body')!!}
+                            </textarea>
+                            @if ($errors->has('body'))
+                            <span class="text-danger">{{ $errors->first('body') }}</span>
+                            @endif
                         </div>
                         <div class="mb-3 d-flex justify-content-center">
                             <button type="submit" class="btn btn-success">

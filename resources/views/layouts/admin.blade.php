@@ -72,6 +72,20 @@
                                 <li><a class="dropdown-item" href="{{route('admin.actes.index')}}">Agenda</a></li>
                             </ul>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Notificacions
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{route('admin.denuncia.index')}}">Denuncies</a></li>
+                                <li><a class="dropdown-item" href=""></a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href=""></a></li>
+                            </ul>
+                        </li>
                         @endif
 
                     </ul>

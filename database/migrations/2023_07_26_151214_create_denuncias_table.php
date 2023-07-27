@@ -11,17 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('medis', function (Blueprint $table) {
+        Schema::create('denuncias', function (Blueprint $table) {
             $table->id();
-            $table->string('titol');
-            $table->string('slug');
-            $table->string('image');
-            
-            $table->string('url');
-            $table->text('body');
-            $table->date('data');
-            $table->tinyInteger('active')->default(1);
             $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('comment_id')->constrained('comments');
+            $table->string('nickname_comentari');
+            $table->string('objecte_comentari');
+            $table->text('comentari');
+            $table->date('data_comentari');
+            $table->date('data');
+            $table->text('motiu');
+
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('medis');
+        Schema::dropIfExists('denuncias');
     }
 };

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('url');
             $table->text('body');
             $table->date('data');
-            $table->tinyInteger('active')->default(0);
+            $table->tinyInteger('active')->default(1);
             $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });

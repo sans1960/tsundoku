@@ -46,7 +46,7 @@
 
                             <div class="col-md-6">
                                 <input id="avatar" type="file"
-                                    class="form-control @error('nickname') is-invalid @enderror" name="avatar">
+                                    class="form-control @error('avatar') is-invalid @enderror" name="avatar">
 
 
                                 @error('avatar')

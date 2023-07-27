@@ -73,7 +73,9 @@ class User extends Authenticatable implements BannableInterface
     public function acte(){
         return $this->hasMany(Acte::class);
     }
-   
+    public function denuncia(){
+        return $this->hasMany(Denuncia::class);
+    }
    
   
 }

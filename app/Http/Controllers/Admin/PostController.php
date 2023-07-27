@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Support\Str;
 
 class PostController extends Controller
@@ -46,7 +47,7 @@ class PostController extends Controller
     {
         $request->validate([
         'titol' => 'required|string|max:255',
-        'active'=>'numeric',
+       
         'font'=>'required|string',
         'url'=>'required|string',
         'data'=>'required',
@@ -63,7 +64,9 @@ class PostController extends Controller
         $post->titol = $request->titol;
         $post->slug = Str::slug($request->titol) ;
         $post->image = $filePath;
+        if (Auth()->user()->type == 'admin') {
         $post->active = $request->active;
+        }
         $post->font = $request->font;
         $post->url = $request->url;
         $post->data = $request->data;
@@ -95,7 +98,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('admin.posts.edit',compact('post'));
+        $users = User::all();
+        return view('admin.posts.edit',compact('post','users'));
     }
 
     /**
