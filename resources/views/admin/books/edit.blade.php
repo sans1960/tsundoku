@@ -105,8 +105,15 @@
                                     value="{{$book->isbn}}">
                             </div>
                             <div class="col">
-                                <input type="text" class="form-control" id="" placeholder="Idioma" name="idioma"
-                                    required value="{{$book->idioma}}">
+                                <select name="idioma" class="form-select" id="">
+                                    <option selected disabled hidden>Escull idioma</option>
+                                    <option></option>
+                                    <option value="Català" {{$book->idioma === 'Català' ? 'selected' : '' }} >Català
+                                    </option>
+                                    <option value="Occità" {{$book->idioma === 'Occità' ? 'selected' : '' }}>Occità
+                                    </option>
+
+                                </select>
                             </div>
                             <div class="col">
                                 <select name="user_id" id="" class="form-select">

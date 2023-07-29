@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
 <div class="container">
@@ -41,6 +41,9 @@
 
 
     </div>
+    @if (Auth()->user()->type == 'admin')
+    <a href="{{route('admin')}}">Admin</a>
+    @else
     <div class="row">
         <h4 class="mt-3">Accions</h4>
         @if (Auth()->user()->condicio == 'lector')
@@ -391,5 +394,7 @@
 
 
     </div>
+    @endif
+
 </div>
 @endsection

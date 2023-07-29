@@ -15,6 +15,7 @@ use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\MessagesController;
 
 
 
@@ -88,4 +89,12 @@ Route::resource('/admin/books', BookController::class)->names('admin.books');
 Route::resource('/admin/medis', Medicontroller::class)->names('admin.medis');
 Route::resource('/admin/actes', ActeController::class)->names('admin.actes');
 Route::resource('/admin/denuncia', DenunciaController::class)->names('admin.denuncia');
+});
+Route::group(['middleware' => 'auth', 'prefix' => 'messages', 'as' => 'messages'], function () {
+    Route::get('/', [MessagesController::class, 'index']);
+    Route::get('create', [MessagesController::class, 'create'])->name('.create');
+    Route::post('/', [MessagesController::class, 'store'])->name('.store');
+    Route::get('{thread}', [MessagesController::class, 'show'])->name('.show');
+    Route::put('{thread}', [MessagesController::class, 'update'])->name('.update');
+    Route::delete('{thread}', [MessagesController::class, 'destroy'])->name('.destroy');
 });

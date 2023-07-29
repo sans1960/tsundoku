@@ -134,11 +134,18 @@
                     </div>
 
                     <div class="col">
-                        <input type="text" class="form-control" id="" value="{{old('idioma')}}" placeholder="Idioma"
-                            name="idioma" required>
+                        <select name="idioma" class="form-select" id="">
+                            <option selected disabled hidden>Escull idioma</option>
+                            <option></option>
+                            <option value="Català" {{ "Català"===old('idioma') ? 'selected' : '' }}>Català</option>
+                            <option value="Occità" {{ "Occità"===old('idioma') ? 'selected' : '' }}>Occità</option>
+
+                        </select>
                         @if ($errors->has('idioma'))
                         <span class="text-danger">{{ $errors->first('idioma') }}</span>
                         @endif
+
+
                     </div>
                 </div>
 

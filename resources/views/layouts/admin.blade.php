@@ -36,22 +36,38 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('index') }}">
+                                <i class="bi bi-house-door-fill "></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('messages') }}">
+                                <i class="bi bi-chat"></i>
+                                @include('messenger.unread-count')
+                            </a>
+                        </li>
                         @if (Auth()->user()->type == 'admin')
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.generes.index') }}">Géneres</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Models
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{route('admin.generes.index')}}">Generes</a></li>
+                                <li><a class="dropdown-item" href="{{route('admin.autors.index')}}">Autors</a></li>
+
+                                <li><a class="dropdown-item" href="{{route('admin.editorials.index')}}">Editorials</a>
+                                </li>
+                                <li><a class="dropdown-item" href="{{route('admin.bookshops.index')}}">Llibreries</a>
+                                </li>
+                                <li><a class="dropdown-item" href="{{route('admin.books.index')}}">Llibres</a></li>
+                            </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.autors.index') }}">Autors</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.editorials.index') }}">Editorials</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.bookshops.index') }}">Llibreries</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.books.index') }}">Llibres</a>
-                        </li>
+
+
+
+
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('admin.users.index') }}">Usuaris</a>
                         </li>
@@ -86,6 +102,7 @@
                                 <li><a class="dropdown-item" href=""></a></li>
                             </ul>
                         </li>
+
                         @endif
 
                     </ul>
