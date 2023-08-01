@@ -25,7 +25,7 @@
 
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="active" id="flexRadioDefault1" value="0">
-                            <label class="form-check-label" for="flexRadioDefault1">
+                            <label class="form-check-label" for="flexRadioDefault1" required>
                                 No actiu
                             </label>
                         </div>

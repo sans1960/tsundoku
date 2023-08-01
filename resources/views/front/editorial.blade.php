@@ -14,9 +14,7 @@
                         <div class="col">
                             <a href="{{ $editorial->url }}" target="_blank">Lloc web</a>
                         </div>
-                        <div class="col">
-                            <a href="{{ $editorial->url_vendes }}" target="_blank">Compres</a>
-                        </div>
+
                         <div class="col">
                             <p>{{ $editorial->adreça }}</p>
                         </div>
@@ -74,7 +72,7 @@
     </div>
     <div class="row">
         <div class="col-md-8 mx-auto mt-5">
-           
+
             <div class="card">
                 <h5 class="card-header">Veure Comentaris</h5>
                 <div class="card-body">

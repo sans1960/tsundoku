@@ -68,7 +68,7 @@
                             <div class="col d-flex flex-column align-items-center">
                                 <div class="form-check">
                                     <input class="form-check-input me-2" type="radio" name="active"
-                                        id="flexRadioDefault1" value="0">
+                                        id="flexRadioDefault1" value="0" required>
                                     <label class="form-check-label" for="flexRadioDefault1">
                                         No actiu
                                     </label>

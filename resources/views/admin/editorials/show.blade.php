@@ -24,9 +24,7 @@
                         <div class="col">
                             <a href="{{ $editorial->url }}" target="_blank">Lloc web</a>
                         </div>
-                        <div class="col">
-                            <a href="{{ $editorial->url_vendes }}" target="_blank">Compres</a>
-                        </div>
+
                     </div>
                     <div>
                         {!! $editorial->descripcio !!}
