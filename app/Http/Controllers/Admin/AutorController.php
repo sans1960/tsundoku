@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Autor;
 use App\Models\User;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rules\File;
 
 class AutorController extends Controller
 {
@@ -49,13 +51,26 @@ class AutorController extends Controller
         'autor_nom' => 'required|string|max:255',
         
         'biopic'=>'required',
-        'url_foto'=>'required',
+       
+        'image'=> File::types(['jpg', 'png','webp','jpeg'])
+                    
+                    ->max(1024),
         'active'=>'boolean'
         
              ]);
+              if ($request->hasFile('image')) {
+             // put image in the public storage
+            $filePath = Storage::disk('public')->put('images/autors', request()->file('image'));
+            
+        }
          $autor = new Autor();
          $autor->autor_nom = $request->autor_nom;
+         if ($request->url_foto) {
+            
          $autor->url_foto = $request->url_foto;
+         }else{
+            $autor->image =$filePath;
+         }
          $autor->slug = Str::slug($request->autor_nom) ;
          $autor->biopic = $request->biopic;
          if (Auth()->user()->type == 'admin') {
@@ -102,12 +117,30 @@ class AutorController extends Controller
         'autor_nom' => 'required|string|max:255',
      
         'biopic'=>'required',
-        'url_foto'=>'required',
-        'active'=>'boolean'
+       
+        'active'=>'boolean',
+          'image'=> File::types(['jpg', 'png','webp','jpeg'])
+                    
+                    ->max(1024),
         
              ]);
+           if ($request->hasFile('image')) {
+              if ($autor->image) {
+                  Storage::disk('public')->delete($autor->image);
+
+            $filePath = Storage::disk('public')->put('images/autors', request()->file('image'));
+             $autor->image = $filePath;
+              }else{
+                  $filePath = Storage::disk('public')->put('images/autors', request()->file('image'));
+                    $autor->image = $filePath;
+              }
+          
+            }
          $autor->autor_nom = $request->autor_nom;
+        if (empty($request->url_foto)) {
+            
          $autor->url_foto = $request->url_foto;
+               }
          $autor->slug = Str::slug($request->autor_nom) ;
          $autor->biopic = $request->biopic;
          $autor->active = $request->active;

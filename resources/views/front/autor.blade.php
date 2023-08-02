@@ -7,7 +7,14 @@
     <div class="row">
         <div class="col-md-8 ">
             <div class="card p-3">
-                <img src="{{ $autor->url_foto }}" class="card-img-top img-fluid w-25 d-block mx-auto" alt="...">
+
+                @if ($autor->url_foto != null)
+                <img src="{{ $autor->url_foto }}" alt="" class="d-block mx-auto" width="80">
+                @else
+                <img src="{{Storage::url($autor->image)}}" alt="" class="d-block mx-auto" width="80">
+                @endif
+
+
                 <div class="card-body">
                     <h5 class="card-title">{{ $autor->autor_nom }}</h5>
                     <div>
@@ -64,7 +71,7 @@
     </div>
     <div class="row">
         <div class="col-md-8 mx-auto mt-5">
-           
+
 
             <div class="card">
                 <h5 class="card-header">Veure Comentaris</h5>

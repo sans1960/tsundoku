@@ -50,7 +50,7 @@ Totes les denuncies
                         </td>
 
                         <td>
-                            <form action="" method="post">
+                            <form action="{{route('admin.denuncia.destroy',$denuncia->id)}}" method="post">
                                 @csrf
                                 @method('delete')
                                 <button type="submit" class="btn btn-danger btn-sm show_confirm">

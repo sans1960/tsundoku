@@ -11,7 +11,7 @@
                     Crear Autor
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admin.autors.store') }}" method="post">
+                    <form action="{{ route('admin.autors.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="user_id" value="{{Auth()->user()->id}}">
                         <div class="mb-3">
@@ -56,6 +56,21 @@
 
 
                         </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="image" class="form-label">Imatge</label>
+                                <input class="form-control" type="file" id="image" name="image"
+                                    value="{{old('image')}}">
+                            </div>
+                            <div class="col">
+                                <img id="preview-image-before-upload" class="img-fluid w-50 d-block mx-auto"
+                                    src="https://cdn.pixabay.com/photo/2022/02/22/17/25/stork-7029266_960_720.jpg"
+                                    alt="">
+                            </div>
+                            @if ($errors->has('image'))
+                            <span class="text-danger">{{ $errors->first('image') }}</span>
+                            @endif
+                        </div>
                         <div class="mb-3">
                             <label for="" class="form-label">Biopic</label>
                             <textarea class="form-control " name="biopic" id="" rows="3">
@@ -91,5 +106,16 @@
             menubar: false,
             language: 'ca',
         });
+</script>
+<script>
+    $(document).ready(function (e) {
+       $('#image').change(function(){
+        let reader = new FileReader();
+        reader.onload = (e) => {
+          $('#preview-image-before-upload').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(this.files[0]);
+       });
+    });
 </script>
 @endsection

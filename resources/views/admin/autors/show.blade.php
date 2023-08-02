@@ -7,7 +7,12 @@
     <div class="row mt-5">
         <div class="col-md-8 mt-5 mx-auto">
             <div class="card p-1">
+                @if ($autor->url_foto != null)
                 <img src="{{ $autor->url_foto }}" alt="" class="d-block mx-auto" width="80">
+                @else
+                <img src="{{Storage::url($autor->image)}}" alt="" class="d-block mx-auto" width="80">
+                @endif
+
                 <div class="card-body">
                     <h5 class="card-title">{{ $autor->autor_nom }}</h5>
                     <div class="row">

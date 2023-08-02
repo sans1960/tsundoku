@@ -83,6 +83,9 @@ class DenunciaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $denuncia = Denuncia::find($id);
+             $denuncia->delete();
+           session()->flash('notif.success', 'Denuncia eliminada amb éxit!');
+            return redirect()->route('admin.denuncia.index');
     }
 }
