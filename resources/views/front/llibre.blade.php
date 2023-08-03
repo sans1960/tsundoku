@@ -12,7 +12,12 @@
             <div class="card mb-3">
                 <div class="row g-0">
                     <div class="col-md-3 d-flex flex-column p-2">
+                        @if ($book->imatge != null)
                         <img src="{{ $book->imatge }}" class="img-fluid rounded-start" alt="...">
+                        @else
+                        <img src="{{Storage::url($book->foto)}}" alt="" class="d-block mx-auto" width="80">
+                        @endif
+                       
                         <p>{{ $book->isbn }}</p>
 
                         <p class="mb-2">{{$book->usersRated()}} Valoracions</p>

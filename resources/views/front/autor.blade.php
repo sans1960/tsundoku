@@ -47,7 +47,11 @@
             <div class="card mb-3">
                 <div class="row g-0">
                     <div class="col-md-4">
+                        @if ($book->imatge != null)
                         <img src="{{ $book->imatge }}" class="img-fluid rounded-start" alt="...">
+                        @else
+                        <img src="{{Storage::url($book->foto)}}" alt="" class="d-block mx-auto" width="80">
+                        @endif
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">

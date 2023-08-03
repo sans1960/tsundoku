@@ -11,7 +11,7 @@
                     Crear Llibre
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admin.books.store') }}" method="post">
+                    <form action="{{ route('admin.books.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
                             <label for="titol" class="form-label">Titol</label>
@@ -65,13 +65,27 @@
                             @endif
                         </div>
 
-
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="foto" class="form-label">Foto</label>
+                                <input class="form-control" type="file" id="foto" name="foto"
+                                    value="{{old('foto')}}">
+                            </div>
+                            <div class="col">
+                                <img id="preview-image-before-upload" class="img-fluid w-50 d-block mx-auto"
+                                    src="https://cdn.pixabay.com/photo/2022/02/22/17/25/stork-7029266_960_720.jpg"
+                                    alt="">
+                            </div>
+                            @if ($errors->has('foto'))
+                            <span class="text-danger">{{ $errors->first('foto') }}</span>
+                            @endif
+                        </div>
                         <div class="row mb-3">
                             <div class="col">
                                 <select class="form-select" aria-label="Default select example" name="genere_id">
                                     <option>Escull génere</option>
                                     @foreach ($generes as $genere)
-                                    <option value="{{ $genere->id }}">{{ $genere->nom }}</option>
+                                    <option value="{{ $genere->id }}"   {{ $genere->id === old('genere_id') ? 'selected' : '' }} >{{ $genere->nom }}</option>
                                     @endforeach
 
                                 </select>
@@ -84,14 +98,14 @@
                         <div class="col d-flex flex-column align-items-center">
                             <div class="form-check">
                                 <input class="form-check-input me-2" type="radio" name="active" id="flexRadioDefault1"
-                                    value="0" required>
+                                    value="0"  {{ (old('active') == '0') ? 'checked' : ''}}  required>
                                 <label class="form-check-label" for="flexRadioDefault1">
                                     No actiu
                                 </label>
                             </div>
                             <div class="form-check">
                                 <input class="form-check-input me-2" type="radio" name="active" id="flexRadioDefault2"
-                                    value="1">
+                                    value="1"   {{ (old('active') == '1') ? 'checked' : ''}} >
                                 <label class="form-check-label" for="flexRadioDefault2">
                                     Actiu
                                 </label>
@@ -190,5 +204,16 @@
             menubar: false,
             language: 'ca',
         });
+</script>
+<script>
+    $(document).ready(function (e) {
+       $('#foto').change(function(){
+        let reader = new FileReader();
+        reader.onload = (e) => {
+          $('#preview-image-before-upload').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(this.files[0]);
+       });
+    });
 </script>
 @endsection

@@ -11,7 +11,7 @@
                     Editar Llibre
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admin.books.update',$book) }}" method="post">
+                    <form action="{{ route('admin.books.update',$book) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('put')
                         <div class="mb-3">
@@ -25,7 +25,9 @@
                                 <select class="form-select" aria-label="Default select example" name="autor_id">
                                     <option></option>
                                     @foreach ($autors as $autor)
-                                    <option value="{{ $autor->id }}">{{ $autor->autor_nom }}</option>
+                                    <option value="{{ $autor->id }}"   @if ($book->autor_id == $autor->id) selected
+
+                                        @endif  >{{ $autor->autor_nom }}</option>
                                     @endforeach
 
                                 </select>
@@ -34,7 +36,9 @@
                                 <select class="form-select" aria-label="Default select example" name="editorial_id">
                                     <option></option>
                                     @foreach ($editorials as $editorial)
-                                    <option value="{{ $editorial->id }}">{{ $editorial->editorial_nom }}</option>
+                                    <option value="{{ $editorial->id }}"   @if ($book->editorial_id == $editorial->id) selected
+
+                                        @endif>{{ $editorial->editorial_nom }}</option>
                                     @endforeach
 
                                 </select>
@@ -53,7 +57,21 @@
                             </div>
 
                         </div>
-
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="foto" class="form-label">Foto</label>
+                                <input class="form-control" type="file" id="foto" name="foto"
+                                    value="{{$book->foto}}">
+                            </div>
+                            <div class="col">
+                                <img id="preview-image-before-upload" class="img-fluid w-50 d-block mx-auto"
+                                    src="{{Storage::url($book->foto)}}"
+                                    alt="">
+                            </div>
+                            @if ($errors->has('foto'))
+                            <span class="text-danger">{{ $errors->first('foto') }}</span>
+                            @endif
+                        </div>
                         <div class="row mb-3">
                             <div class="col">
                                 <select class="form-select" aria-label="Default select example" name="genere_id">
@@ -156,5 +174,16 @@
             menubar: false,
             language: 'ca',
         });
+</script>
+<script>
+    $(document).ready(function (e) {
+       $('#foto').change(function(){
+        let reader = new FileReader();
+        reader.onload = (e) => {
+          $('#preview-image-before-upload').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(this.files[0]);
+       });
+    });
 </script>
 @endsection

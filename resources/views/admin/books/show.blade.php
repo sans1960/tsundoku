@@ -8,7 +8,12 @@
         <h1 class="text-center">{{$book->titol}}</h1>
         <div class="col-md-8 mt-3 mx-auto">
             <div class="card p-2">
+                @if ($book->imatge  != null)
                 <img src="{{ $book->imatge }}" width="150" class=" d-block mx-auto" alt="...">
+                @else
+                <img src="{{Storage::url($book->foto)}}" alt="" class="d-block mx-auto" width="80">
+                @endif
+                
                 <div class="card-body">
                     <h5 class="card-title">{{ $book->autor_nom }}</h5>
                     <div class="row">

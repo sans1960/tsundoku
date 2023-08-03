@@ -35,14 +35,14 @@
                             <div class="col">
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="active" id="flexRadioDefault1"
-                                        value="0" required>
+                                        value="0" {{ (old('active') == '0') ? 'checked' : ''}} required>
                                     <label class="form-check-label" for="flexRadioDefault1">
                                         No actiu
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="active" id="flexRadioDefault2"
-                                        value="1">
+                                        value="1"   {{ (old('active') == '1') ? 'checked' : ''}}>
                                     <label class="form-check-label" for="flexRadioDefault2">
                                         Actiu
                                     </label>

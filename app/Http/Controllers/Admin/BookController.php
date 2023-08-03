@@ -10,6 +10,8 @@ use App\Models\Autor;
 use App\Models\Editorial;
 use App\Models\User;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rules\File;
 
 class BookController extends Controller
 {
@@ -61,12 +63,19 @@ class BookController extends Controller
         'editorial_nom'=>'required|string',
         'editorial_web'=>'required|string',
         'idioma'=>'required|string',
-        'imatge'=> 'required|string',
+        'foto'=> File::types(['jpg', 'png','webp','jpeg'])
+                    
+        ->max(1024),
         'sinopsi' => 'required',
         'user_id' => 'required',
         'isbn' => 'required|string',
         
              ]);
+             if ($request->hasFile('foto')) {
+                // put image in the public storage
+               $filePath = Storage::disk('public')->put('images/books', request()->file('foto'));
+               
+           }
              $book = new Book;
              $book->titol = $request->titol;
              $book->slug = Str::slug($request->titol);
@@ -81,7 +90,13 @@ class BookController extends Controller
              $book->editorial_id = $request->editorial_id;
              $book->user_id = $request->user_id;
              $book->idioma = $request->idioma;
-             $book->imatge = $request->imatge;
+             if ($request->imatge) {
+            
+                $book->imatge = $request->imatge;
+                }else{
+                   $book->foto =$filePath;
+                }
+             
              $book->sinopsi = $request->sinopsi;
              $book->isbn = $request->isbn;
              $book->save();
@@ -136,12 +151,28 @@ class BookController extends Controller
             'editorial_nom'=>'required|string',
             'editorial_web'=>'required|string',
             'idioma'=>'required|string',
-            'imatge'=> 'required|string',
+            'foto'=> File::types(['jpg', 'png','webp','jpeg'])
+                    
+            ->max(1024),
+
+    
             'sinopsi' => 'required',
             'user_id' => 'required',
             'isbn' => 'required|string',
             
                  ]);
+                 if ($request->hasFile('foto')) {
+                    if ($book->foto) {
+                        Storage::disk('public')->delete($book->foto);
+      
+                  $filePath = Storage::disk('public')->put('images/books', request()->file('foto'));
+                   $book->foto = $filePath;
+                    }else{
+                        $filePath = Storage::disk('public')->put('images/books', request()->file('foto'));
+                          $book->foto = $filePath;
+                    }
+                
+                  }
                    
              $book->titol = $request->titol;
              $book->slug = Str::slug($request->titol);
@@ -154,7 +185,10 @@ class BookController extends Controller
              $book->editorial_id = $request->editorial_id;
              $book->user_id = $request->user_id;
              $book->idioma = $request->idioma;
-             $book->imatge = $request->imatge;
+             if (empty($request->imatge)) {
+                $book->imatge = $request->imatge; 
+             }
+             
              $book->sinopsi = $request->sinopsi;
              $book->isbn = $request->isbn;
              $book->update();
