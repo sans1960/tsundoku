@@ -7,7 +7,12 @@
     <div class="row">
         <div class="col-md-8 ">
             <div class="card p-3">
+                @if ($editorial->logo != null)
                 <img src="{{ $editorial->logo }}" class="card-img-top img-fluid w-25 d-block mx-auto" alt="...">
+                @else
+                <img src="{{Storage::url($editorial->image)}}" alt="" class="d-block mx-auto" width="80">
+                @endif
+              
                 <div class="card-body">
                     <h5 class="card-title">{{ $editorial->editorial_nom }}</h5>
                     <div class="row">

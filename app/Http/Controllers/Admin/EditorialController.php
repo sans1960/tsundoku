@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Editorial;
 use App\Models\User;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rules\File;
 
 class EditorialController extends Controller
 {
@@ -48,18 +50,30 @@ class EditorialController extends Controller
         'editorial_nom' => 'required|string|max:255',
         
         'descripcio'=>'required',
-        'logo'=>'required',
+        
         'active'=>'boolean',
         'url'=>'required',
-        
-         'adreça' => 'string'
-        
+        'foto'=> File::types(['jpg', 'png','webp','jpeg'])
+                    
+        ->max(1024),
+
              ]);
+             if ($request->hasFile('image')) {
+               // put image in the public storage
+              $filePath = Storage::disk('public')->put('images/editorials', request()->file('image'));
+              
+          }
              $editorial = new Editorial();
              $editorial->editorial_nom = $request->editorial_nom;
              $editorial->slug = Str::slug($request->editorial_nom);
              $editorial->descripcio = $request->descripcio;
-             $editorial->logo = $request->logo;
+             if ($request->logo) {
+               $editorial->logo = $request->logo;
+               
+               }else{
+                  $editorial->image =$filePath;
+               }
+             
                if (Auth()->user()->type == 'admin') {
              $editorial->active = $request->active;
                }
@@ -105,17 +119,34 @@ class EditorialController extends Controller
         'editorial_nom' => 'required|string|max:255',
         
         'descripcio'=>'required',
-        'logo'=>'required',
+       
         'active'=>'numeric',
         'url'=>'required|string',
-     
-       
-        
-             ]);
+        'image'=> File::types(['jpg', 'png','webp','jpeg'])
+                    
+        ->max(1024),
+         ]);
+         if ($request->hasFile('image')) {
+          if ($book->image) {
+              Storage::disk('public')->delete($book->image);
+
+        $filePath = Storage::disk('public')->put('images/editorials', request()->file('image'));
+         $editorial->image = $filePath;
+          }else{
+              $filePath = Storage::disk('public')->put('images/editorials', request()->file('image'));
+                $editorial->image = $filePath;
+          }
+      
+        }
              $editorial->editorial_nom = $request->editorial_nom;
              $editorial->slug = Str::slug($request->editorial_nom);
              $editorial->descripcio = $request->descripcio;
-             $editorial->logo = $request->logo;
+             if (empty($request->logo)) {
+               $editorial->logo = $request->logo; 
+            }else{
+               $editorial->logo = $request->logo;
+            }
+        
              $editorial->active = $request->active;
              $editorial->url = $request->url;
          

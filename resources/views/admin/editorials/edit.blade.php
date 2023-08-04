@@ -11,7 +11,7 @@
                     Editar Editorial
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admin.editorials.update', $editorial) }}" method="post">
+                    <form action="{{ route('admin.editorials.update', $editorial) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('put')
                         <div class="mb-3">
@@ -60,6 +60,21 @@
                             </div>
 
                         </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="image" class="form-label">Imatge</label>
+                                <input class="form-control" type="file" id="image" name="image"
+                                    value="{{$editorial->image}}">
+                            </div>
+                            <div class="col">
+                                <img id="preview-image-before-upload" class="img-fluid w-50 d-block mx-auto"
+                                    src="{{Storage::url($editorial->image)}}"
+                                    alt="">
+                            </div>
+                            @if ($errors->has('image'))
+                            <span class="text-danger">{{ $errors->first('image') }}</span>
+                            @endif
+                        </div>
 
                         <div class="mb-3">
                             <label for="" class="form-label">Descripció</label>
@@ -93,5 +108,16 @@
             menubar: false,
             language: 'ca',
         });
+</script>
+<script>
+    $(document).ready(function (e) {
+       $('#image').change(function(){
+        let reader = new FileReader();
+        reader.onload = (e) => {
+          $('#preview-image-before-upload').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(this.files[0]);
+       });
+    });
 </script>
 @endsection

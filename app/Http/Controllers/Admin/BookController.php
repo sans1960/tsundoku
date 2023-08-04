@@ -33,7 +33,7 @@ class BookController extends Controller
      */
     public function index()
     {
-        $books = Book::all();
+        $books = Book::paginate(5);
         return view('admin.books.index',compact('books'));
     }
 
@@ -187,6 +187,8 @@ class BookController extends Controller
              $book->idioma = $request->idioma;
              if (empty($request->imatge)) {
                 $book->imatge = $request->imatge; 
+             }else{
+                $book->imatge = $request->imatge;
              }
              
              $book->sinopsi = $request->sinopsi;

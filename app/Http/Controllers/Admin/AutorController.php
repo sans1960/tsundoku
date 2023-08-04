@@ -29,7 +29,7 @@ class AutorController extends Controller
      */
     public function index()
     {
-        $autors = Autor::all();
+        $autors = Autor::paginate(5);
         return view('admin.autors.index',compact('autors'));
     }
   
@@ -140,6 +140,8 @@ class AutorController extends Controller
         if (empty($request->url_foto)) {
             
          $autor->url_foto = $request->url_foto;
+               }else{
+                $autor->url_foto = $request->url_foto;
                }
          $autor->slug = Str::slug($request->autor_nom) ;
          $autor->biopic = $request->biopic;

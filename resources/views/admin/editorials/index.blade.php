@@ -52,7 +52,12 @@
                             <tr>
                                 <td>{{ $editorial->editorial_nom }}</td>
                                 <td>
+                                    @if ($editorial->logo  != null)
                                     <img src="{{ $editorial->logo }}" alt="" width="100">
+                                    @else
+                                    <img src="{{Storage::url($editorial->image)}}" alt="" class="d-block mx-auto" width="80">
+                                    @endif
+                                   
                                 </td>
 
                                 <td>

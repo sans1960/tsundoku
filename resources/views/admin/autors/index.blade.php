@@ -34,7 +34,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 mx-auto">
-                <table class="table table-stripped">
+                <table class="table table-stripped mb-5">
                     <thead>
                         <tr>
                             <th>Autor</th>
@@ -73,8 +73,10 @@
                     </tbody>
                 </table>
 
-
+              
+    
             </div>
+            {!! $autors->withQueryString()->links('pagination::bootstrap-5') !!}
         </div>
     </div>
 @endsection

@@ -11,8 +11,11 @@
                         <div class="card mb-3">
                             <div class="row g-0">
                                 <div class="col-md-4 d-flex">
-                                    <img src="{{ $editorial->logo }}" width="200" class="img-fluid rounded-start"
-                                        alt="...">
+                                    @if ($editorial->logo != null)
+                                    <img src="{{ $editorial->logo }}" class="card-img-top img-fluid w-25 d-block mx-auto" alt="...">
+                                    @else
+                                    <img src="{{Storage::url($editorial->image)}}" alt="" class="d-block mx-auto" width="80">
+                                    @endif
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
