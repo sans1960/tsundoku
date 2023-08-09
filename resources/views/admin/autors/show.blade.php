@@ -27,6 +27,36 @@
                             <p class="card-text">{{ $autor->active }}</p>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col">
+                            @if ($autor->twitter)
+                                <a href="{{$autor->twitter}}" target="_blank">
+                                    <i class="bi bi-twitter"></i>
+                                </a>
+                            @endif
+                        </div>
+                        <div class="col">
+                            @if ($autor->facebook)
+                            <a href="{{$autor->facebook}}" target="_blank">
+                                <i class="bi bi-facebook"></i>
+                            </a>
+                        @endif
+                        </div>
+                        <div class="col">
+                            @if ($autor->web)
+                            <a href="{{$autor->web}}" target="_blank">
+                                <i class="bi bi-globe"></i>
+                            </a>
+                        @endif
+                        </div>
+                        <div class="col">
+                            @if ($autor->instagram)
+                            <a href="{{$autor->instagram}}" target="_blank">
+                                <i class="bi bi-instagram"></i>
+                            </a>
+                        @endif
+                        </div>
+                    </div>
 
                     <div>
                         {!! $autor->biopic !!}
@@ -34,10 +64,11 @@
                     @foreach ($autor->ratings as $rating)
                     <p>{{$rating->user->nickname}} {{$rating->rating}}</p>
                     @endforeach
+                    <p>{{$autor->user->nickname}}</p>
                 </div>
             </div>
 
-            <p>{{$autor->user->nickname}}</p>
+            
 
 
         </div>

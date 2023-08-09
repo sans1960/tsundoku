@@ -78,6 +78,10 @@ class AutorController extends Controller
          }
          
          $autor->user_id = $request->user_id;
+         $autor->web = $request->web;
+         $autor->facebook = $request->facebook;
+         $autor->instagram = $request->instagram;
+         $autor->twitter = $request->twitter;
         
          $autor->save();
           
@@ -147,6 +151,10 @@ class AutorController extends Controller
          $autor->biopic = $request->biopic;
          $autor->active = $request->active;
          $autor->user_id = $request->user_id;
+         $autor->web = $request->web;
+         $autor->facebook = $request->facebook;
+         $autor->instagram = $request->instagram;
+         $autor->twitter = $request->twitter;
         
          $autor->update();
        

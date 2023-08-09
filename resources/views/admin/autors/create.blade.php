@@ -57,6 +57,42 @@
 
                         </div>
                         <div class="row mb-3">
+                             <div class="col">
+                                <label for="web" class="form-label">Web</label>
+                                <input type="text" class="form-control" value="{{old('web')}}" id="web"
+                                    placeholder="Web" name="web" >
+                                @if ($errors->has('web'))
+                                <span class="text-danger">{{ $errors->first('web') }}</span>
+                                @endif
+                             </div>
+                             <div class="col">
+                                <label for="facebook" class="form-label">Facebook</label>
+                                <input type="text" class="form-control" value="{{old('facebook')}}" id="facebook"
+                                    placeholder="Facebook" name="facebook" >
+                                @if ($errors->has('facebook'))
+                                <span class="text-danger">{{ $errors->first('facebook') }}</span>
+                                @endif
+                             </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="instagram" class="form-label">Instagram</label>
+                                <input type="text" class="form-control" value="{{old('instagram')}}" id="instagram"
+                                    placeholder="Instagram" name="instagram" >
+                                @if ($errors->has('instagram'))
+                                <span class="text-danger">{{ $errors->first('instagram') }}</span>
+                                @endif
+                            </div>
+                            <div class="col">
+                                <label for="twitter" class="form-label">Twitter</label>
+                                <input type="text" class="form-control" value="{{old('twitter')}}" id="twitter"
+                                    placeholder="Twitter" name="twitter">
+                                @if ($errors->has('twitter'))
+                                <span class="text-danger">{{ $errors->first('twitter') }}</span>
+                                @endif
+                            </div>
+                       </div>
+                        <div class="row mb-3">
                             <div class="col">
                                 <label for="image" class="form-label">Imatge</label>
                                 <input class="form-control" type="file" id="image" name="image"

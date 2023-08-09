@@ -57,6 +57,42 @@ Editar {{ $autor->nom }}
                         </div>
                         <div class="row mb-3">
                             <div class="col">
+                               <label for="web" class="form-label">Web</label>
+                               <input type="text" class="form-control" value="{{$autor->web}}" id="web"
+                                       name="web" >
+                               @if ($errors->has('web'))
+                               <span class="text-danger">{{ $errors->first('web') }}</span>
+                               @endif
+                            </div>
+                            <div class="col">
+                               <label for="facebook" class="form-label">Facebook</label>
+                               <input type="text" class="form-control" value="{{$autor->facebook}}" id="facebook"
+                                    name="facebook" >
+                               @if ($errors->has('facebook'))
+                               <span class="text-danger">{{ $errors->first('facebook') }}</span>
+                               @endif
+                            </div>
+                       </div>
+                       <div class="row mb-3">
+                           <div class="col">
+                               <label for="instagram" class="form-label">Instagram</label>
+                               <input type="text" class="form-control" value="{{$autor->instagram}}" id="instagram"
+                                    name="instagram" >
+                               @if ($errors->has('instagram'))
+                               <span class="text-danger">{{ $errors->first('instagram') }}</span>
+                               @endif
+                           </div>
+                           <div class="col">
+                               <label for="twitter" class="form-label">Twitter</label>
+                               <input type="text" class="form-control" value="{{$autor->twitter}}" id="twitter"
+                                    name="twitter">
+                               @if ($errors->has('twitter'))
+                               <span class="text-danger">{{ $errors->first('twitter') }}</span>
+                               @endif
+                           </div>
+                      </div>
+                        <div class="row mb-3">
+                            <div class="col">
                                 <label for="image" class="form-label">Imatge</label>
                                 <input class="form-control" type="file" id="image" name="image"
                                     value="{{$autor->image}}">
