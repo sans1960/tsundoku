@@ -11,7 +11,7 @@
                     Crear Llibreria
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admin.bookshops.store') }}" method="post">
+                    <form action="{{ route('admin.bookshops.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
                             <label for="nom" class="form-label">Nom</label>
@@ -37,6 +37,21 @@
                                 <span class="text-danger">{{ $errors->first('logo') }}</span>
                                 @endif
                             </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="image" class="form-label">Imatge</label>
+                                <input class="form-control" type="file" id="image" name="image"
+                                    value="{{old('image')}}">
+                            </div>
+                            <div class="col">
+                                <img id="preview-image-before-upload" class="img-fluid w-50 d-block mx-auto"
+                                    src="https://cdn.pixabay.com/photo/2022/02/22/17/25/stork-7029266_960_720.jpg"
+                                    alt="">
+                            </div>
+                            @if ($errors->has('image'))
+                            <span class="text-danger">{{ $errors->first('image') }}</span>
+                            @endif
                         </div>
                         @if (Auth()->user()->type == 'admin')
                         <div class="row mb-3">
@@ -80,7 +95,7 @@
                             </div>
                             <div class="col">
                                 <input type="number" name="zoom" class="form-control" id="" placeholder="Zoom"
-                                    value="{{old('zoom')}}">
+                                    value="16" readonly>
                                 @if ($errors->has('zoom'))
                                 <span class="text-danger">{{ $errors->first('zoom') }}</span>
                                 @endif
@@ -121,5 +136,16 @@
             menubar: false,
             language: 'ca',
         });
+</script>
+<script>
+    $(document).ready(function (e) {
+       $('#image').change(function(){
+        let reader = new FileReader();
+        reader.onload = (e) => {
+          $('#preview-image-before-upload').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(this.files[0]);
+       });
+    });
 </script>
 @endsection

@@ -53,7 +53,7 @@ class EditorialController extends Controller
         
         'active'=>'boolean',
         'url'=>'required',
-        'foto'=> File::types(['jpg', 'png','webp','jpeg'])
+        'image'=> File::types(['jpg', 'png','webp','jpeg'])
                     
         ->max(1024),
 
@@ -127,8 +127,8 @@ class EditorialController extends Controller
         ->max(1024),
          ]);
          if ($request->hasFile('image')) {
-          if ($book->image) {
-              Storage::disk('public')->delete($book->image);
+          if ($editorial->image) {
+              Storage::disk('public')->delete($editorial->image);
 
         $filePath = Storage::disk('public')->put('images/editorials', request()->file('image'));
          $editorial->image = $filePath;

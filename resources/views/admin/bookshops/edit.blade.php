@@ -11,7 +11,7 @@
                     Editar Llibreria
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admin.bookshops.update', $bookshop) }}" method="post">
+                    <form action="{{ route('admin.bookshops.update', $bookshop) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('put')
                         <div class="mb-3">
@@ -31,6 +31,21 @@
                                 <input class="form-control" type="text" id="foto" name="logo"
                                     value="{{ $bookshop->logo }}">
                             </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="image" class="form-label">Imatge</label>
+                                <input class="form-control" type="file" id="image" name="image"
+                                    value="{{$bookshop->image}}">
+                            </div>
+                            <div class="col">
+                                <img id="preview-image-before-upload" class="img-fluid w-50 d-block mx-auto"
+                                    src="{{Storage::url($bookshop->image)}}"
+                                    alt="">
+                            </div>
+                            @if ($errors->has('image'))
+                            <span class="text-danger">{{ $errors->first('image') }}</span>
+                            @endif
                         </div>
                         <div class="row mb-3">
                             <div class="col">
@@ -107,5 +122,16 @@
             menubar: false,
             language: 'ca',
         });
+</script>
+<script>
+    $(document).ready(function (e) {
+       $('#image').change(function(){
+        let reader = new FileReader();
+        reader.onload = (e) => {
+          $('#preview-image-before-upload').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(this.files[0]);
+       });
+    });
 </script>
 @endsection

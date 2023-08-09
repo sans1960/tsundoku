@@ -7,7 +7,12 @@
     <div class="row mt-5">
         <div class="col-md-8 mt-5 mx-auto">
             <div class="card p-1">
+                @if ($bookshop->logo  != null)
                 <img src="{{ $bookshop->logo }}" class="d-block mx-auto" alt="" width="150">
+                @else
+                <img src="{{Storage::url($bookshop->image)}}" alt="" class="d-block mx-auto" width="80">
+                @endif
+                
                 <div class="card-body">
                     <h5 class="card-title">{{ $bookshop->nom }}</h5>
                     <div class="row">

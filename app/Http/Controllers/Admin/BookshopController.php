@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Bookshop;
 use App\Models\User;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rules\File;
 
 class BookshopController extends Controller
 {
@@ -47,17 +49,25 @@ class BookshopController extends Controller
     {
          $request->validate([
         'nom' => 'required|string|max:255',
-        
+        'image'=> File::types(['jpg', 'png','webp','jpeg'])
+                    
+        ->max(1024),
+
         'qui_som'=>'required',
-        'logo'=>'required',
+       
         'active'=>'boolean',
         'url'=>'required|string',
         'latitud'=>'required|string',
         'longitud'=>'required|string',
-        'zoom'=> 'required|integer',
+        'zoom'=> 'integer',
         
         
              ]);
+             if ($request->hasFile('image')) {
+                // put image in the public storage
+               $filePath = Storage::disk('public')->put('images/bookshops', request()->file('image'));
+               
+           }
         $bookshop = new Bookshop;
         $bookshop->nom = $request->nom;
         $bookshop->slug = Str::slug($request->nom);
@@ -66,10 +76,19 @@ class BookshopController extends Controller
          if (Auth()->user()->type == 'admin') {
         $bookshop->active = $request->active;
          }
+         if ($request->logo) {
+            $bookshop->logo = $request->logo;
+            
+            }else{
+               $bookshop->image =$filePath;
+            }
         $bookshop->url = $request->url;
         $bookshop->latitud = $request->latitud;
         $bookshop->longitud = $request->longitud;
-        $bookshop->zoom = $request->zoom;
+        if ($request->zoom) {
+            $bookshop->zoom = $request->zoom;   
+        }
+        
       
         $bookshop->user_id = $request->user_id;
         $bookshop->save();
@@ -110,7 +129,9 @@ class BookshopController extends Controller
         'nom' => 'required|string|max:255',
         
         'qui_som'=>'required',
-        'logo'=>'required',
+        'image'=> File::types(['jpg', 'png','webp','jpeg'])
+                    
+        ->max(1024),
         'active'=>'boolean',
         'url'=>'required|string',
         'latitud'=>'required|string',
@@ -119,10 +140,26 @@ class BookshopController extends Controller
        
         
              ]);
+             if ($request->hasFile('image')) {
+                if ($bookshop->image) {
+                    Storage::disk('public')->delete($bookshop->image);
+      
+              $filePath = Storage::disk('public')->put('images/bookshops', request()->file('image'));
+               $bookshop->image = $filePath;
+                }else{
+                    $filePath = Storage::disk('public')->put('images/bookshops', request()->file('image'));
+                      $bookshop->image = $filePath;
+                }
+            
+              }
         $bookshop->nom = $request->nom;
         $bookshop->slug = Str::slug($request->nom);
         $bookshop->qui_som = $request->qui_som;
-        $bookshop->logo = $request->logo;
+        if (empty($request->logo)) {
+            $bookshop->logo = $request->logo; 
+         }else{
+            $bookshop->logo = $request->logo;
+         }
         $bookshop->active = $request->active;
         $bookshop->url = $request->url;
         $bookshop->latitud = $request->latitud;

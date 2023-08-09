@@ -53,7 +53,12 @@
                             <tr>
                                 <td>{{ $bookshop->nom }}</td>
                                 <td>
-                                    <img src="{{ $bookshop->logo }}" alt="" width="80">
+
+                                    @if ($bookshop->logo  != null)
+                                    <img src="{{ $bookshop->logo }}" class="d-block mx-auto" alt="" width="80">
+                                    @else
+                                    <img src="{{Storage::url($bookshop->image)}}" alt="" class="d-block mx-auto" width="80">
+                                    @endif
                                 </td>
                                 <td>{{ $bookshop->ciutat }}</td>
                                 <td>

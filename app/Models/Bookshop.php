@@ -16,7 +16,7 @@ class Bookshop extends Model
     use HasFactory;
     use Rateable;
     
-    protected $fillable = ['nom','slug','qui_som','url','active','logo','latitud','longitud','zoom','user_id'];
+    protected $fillable = ['nom','slug','qui_som','url','active','logo','latitud','longitud','zoom','user_id','image'];
 
     public function getRouteKeyName()
     {
