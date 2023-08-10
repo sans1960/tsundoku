@@ -13,7 +13,7 @@ class Medi extends Model
     use HasFactory;
     use Rateable;
 
-    protected $fillable = ['titol','slug','user_id','body','image','data','active','url'];
+    protected $fillable = ['titol','slug','user_id','body','image','data','active','url','tipus'];
 
 
     public function getRouteKeyName()

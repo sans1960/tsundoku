@@ -9,6 +9,8 @@ use App\Models\Post;
 use App\Models\User;
 use Illuminate\Support\Str;
 
+use Illuminate\Validation\Rules\File;
+
 class PostController extends Controller
 {
       public function __construct()
@@ -51,7 +53,9 @@ class PostController extends Controller
         'font'=>'required|string',
         'url'=>'required|string',
         'data'=>'required',
-        'image'=> 'required|image|mimes:jpg,png,jpeg,webp',
+        'image'=> ['required', File::types(['jpg', 'png','webp','jpeg'])->max(1024)],
+                    
+        
         'body' => 'required',
        
          ]);
@@ -113,7 +117,7 @@ class PostController extends Controller
         'font'=>'required|string',
         'url'=>'required|string',
         'data'=>'required',
-        'image'=> 'image|mimes:jpg,png,jpeg',
+        'image'=> File::types(['jpg', 'png','webp','jpeg'])->max(1024),
         'body' => 'required',
        
          ]);
@@ -126,8 +130,9 @@ class PostController extends Controller
             }
                    $post->titol = $request->titol;
         $post->slug = Str::slug($request->titol) ;
-       
+        if (Auth()->user()->type == 'admin') {
         $post->active = $request->active;
+        }
         $post->font = $request->font;
         $post->url = $request->url;
         $post->data = $request->data;

@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-md-10 mx-auto  d-flex flex-column">
             <h3 class="text-center">{{$acte->titol}}</h3>
-            <img src="{{$acte->image}}" alt="" class="img-fluid w-50 d-block mx-auto mt-2">
+            <img src="{{Storage::url($acte->image)}}" alt="" class="img-fluid w-50 d-block mx-auto mt-2">
             <div class="row mt-3 mb-3">
 
                 <div class="col d-flex justify-content-center">

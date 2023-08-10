@@ -24,13 +24,13 @@
 
 
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="active" id="flexRadioDefault1" value="0">
+                            <input class="form-check-input" type="radio" name="active" id="flexRadioDefault1" value="0"  {{ (old('active') == '0') ? 'checked' : ''}}>
                             <label class="form-check-label" for="flexRadioDefault1" required>
                                 No actiu
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="active" id="flexRadioDefault2" value="1">
+                            <input class="form-check-input" type="radio" name="active" id="flexRadioDefault2" value="1"  {{ (old('active') == '1') ? 'checked' : ''}}>
                             <label class="form-check-label" for="flexRadioDefault2">
                                 Actiu
                             </label>

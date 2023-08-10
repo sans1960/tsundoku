@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Acte;
 use App\Models\User;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rules\File;
+use Illuminate\Support\Facades\Storage;
 
 class ActeController extends Controller
 {
@@ -51,14 +53,19 @@ class ActeController extends Controller
         'hora' => 'required|string',
         'url'=>'required|string',
         'data'=>'required',
-        'image'=> 'required|string',
+        'image'=> ['required', File::types(['jpg', 'png','webp','jpeg'])->max(1024)],
         'body' => 'required',
        
          ]);
+         if ($request->hasFile('image')) {
+            // put image in the public storage
+           $filePath = Storage::disk('public')->put('images/actes', request()->file('image'));
+           
+       }
         $acte = new Acte;
         $acte->titol = $request->titol;
         $acte->slug = Str::slug($request->titol) ;
-        $acte->image = $request->image;
+        $acte->image = $filePath;
          if (Auth()->user()->type == 'admin') {
         $acte->active = $request->active;
          }
@@ -105,15 +112,23 @@ class ActeController extends Controller
         'hora' => 'required|string',
         'url'=>'required|string',
         'data'=>'required',
-        'image'=> 'required|string',
+        'image'=> File::types(['jpg', 'png','webp','jpeg'])->max(1024),
         'body' => 'required',
        
          ]);
-       
+         if ($request->hasFile('image')) {
+            // delete image
+            Storage::disk('public')->delete($acte->image);
+
+            $filePath = Storage::disk('public')->put('images/actes', request()->file('image'),'public');
+             $acte->image = $filePath;
+            }
         $acte->titol = $request->titol;
         $acte->slug = Str::slug($request->titol) ;
-        $acte->image = $request->image;
+        
+        if (Auth()->user()->type == 'admin') {
         $acte->active = $request->active;
+        }
         $acte->hora = $request->hora;
         $acte->url = $request->url;
         $acte->data = $request->data;
@@ -131,6 +146,7 @@ class ActeController extends Controller
      */
     public function destroy(Acte $acte)
     {
+           Storage::disk('public')->delete($acte->image);
             $acte->delete();
            session()->flash('notif.success', 'Acte eliminat amb éxit!');
             return redirect()->route('admin.actes.index');

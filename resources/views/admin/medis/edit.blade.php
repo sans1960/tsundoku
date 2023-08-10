@@ -11,7 +11,7 @@
                     Editar medi
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admin.medis.update',$medi) }}" method="post">
+                    <form action="{{ route('admin.medis.update',$medi) }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('put')
                         <div class="mb-3">
@@ -19,13 +19,28 @@
                             <input type="text" class="form-control" id="titol" name="titol" value="{{$medi->titol}}"
                                 required>
                         </div>
+                        
+                        <div class="mb-3">
+                            <label for="tipus" class="form-label">Tipus</label>
+                             <select name="tipus" id="tipus" class="form-select">
+                                <option value=""></option>
+                                <option value="Video"  {{$medi->tipus === 'Video' ? 'selected' : '' }}>Video</option>
+                                <option value="Audio" {{$medi->tipus === 'Audio' ? 'selected' : '' }} >Audio</option>
+                             </select>
+                            @if ($errors->has('tipus'))
+                            <span class="text-danger">{{ $errors->first('tipus') }}</span>
+                            @endif
+                        </div>
 
-
-                        <div class=" mb-3">
-
-                            <label for="image" class="form-label">Imatge</label>
-                            <input class="form-control" type="text" id="image" name="image" value="{{$medi->image}}">
-
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="image" class="form-label">Imatge</label>
+                                <input class="form-control" type="file" id="image" name="image">
+                            </div>
+                            <div class="col">
+                                <img id="preview-image-before-upload" class="img-fluid w-50 d-block mx-auto"
+                                    src="{{Storage::url($medi->image)}}" alt="">
+                            </div>
                         </div>
 
 
@@ -113,5 +128,15 @@
             language: 'ca',
         });
 </script>
-
+<script>
+    $(document).ready(function (e) {
+       $('#image').change(function(){
+        let reader = new FileReader();
+        reader.onload = (e) => {
+          $('#preview-image-before-upload').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(this.files[0]);
+       });
+    });
+</script>
 @endsection

@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\Medi;
 use App\Models\User;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rules\File;
+use Illuminate\Support\Facades\Storage;
+
 
 class Medicontroller extends Controller
 {
@@ -45,18 +48,24 @@ class Medicontroller extends Controller
     {
         $request->validate([
         'titol' => 'required|string|max:255',
-        
-        
+        'image'=> ['required', File::types(['jpg', 'png','webp','jpeg'])->max(1024)],
+        'tipus' => 'required',
         'url'=>'required|string',
         'data'=>'required',
-        'image'=> 'required|string',
+        
         'body' => 'required',
        
          ]);
+         if ($request->hasFile('image')) {
+            // put image in the public storage
+           $filePath = Storage::disk('public')->put('images/medis', request()->file('image'));
+           
+       }
         $medi = new Medi;
         $medi->titol = $request->titol;
+        $medi->tipus = $request->tipus;
         $medi->slug = Str::slug($request->titol) ;
-        $medi->image = $request->image;
+        $medi->image = $filePath;
         if (Auth()->user()->type == 'admin') {
         $medi->active = $request->active;
         }
@@ -103,16 +112,25 @@ class Medicontroller extends Controller
         
         'url'=>'required|string',
         'data'=>'required',
-        'image'=> 'required|string',
+        'image'=> File::types(['jpg', 'png','webp','jpeg'])->max(1024),
+
         'body' => 'required',
        
          ]);
+         if ($request->hasFile('image')) {
+            // delete image
+            Storage::disk('public')->delete($medi->image);
+
+            $filePath = Storage::disk('public')->put('images/medis', request()->file('image'),'public');
+             $medi->image = $filePath;
+            }
        
         $medi->titol = $request->titol;
         $medi->slug = Str::slug($request->titol) ;
-        $medi->image = $request->image;
+        $medi->tipus = $request->tipus;
+        if (Auth()->user()->type == 'admin') {
         $medi->active = $request->active;
-        
+        }
         $medi->url = $request->url;
         $medi->data = $request->data;
         $medi->body = $request->body;
@@ -127,6 +145,7 @@ class Medicontroller extends Controller
      */
     public function destroy(Medi $medi)
     {
+        Storage::disk('public')->delete($medi->image);
              $medi->delete();
            session()->flash('notif.success', 'Medi eliminat amb éxit!');
             return redirect()->route('admin.medis.index');

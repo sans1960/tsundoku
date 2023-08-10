@@ -11,7 +11,7 @@
                     Crear acte
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admin.actes.store') }}" method="post">
+                    <form action="{{ route('admin.actes.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
                             <label for="titol" class="form-label">Titol</label>
@@ -23,14 +23,20 @@
                         </div>
 
 
-                        <div class=" mb-3">
-
-                            <label for="image" class="form-label">Imatge</label>
-                            <input class="form-control" type="text" id="image" name="image" value="{{old('image')}}">
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="image" class="form-label">Imatge</label>
+                                <input class="form-control" type="file" id="image" name="image"
+                                    value="{{old('image')}}">
+                            </div>
+                            <div class="col">
+                                <img id="preview-image-before-upload" class="img-fluid w-50 d-block mx-auto"
+                                    src="https://cdn.pixabay.com/photo/2022/02/22/17/25/stork-7029266_960_720.jpg"
+                                    alt="">
+                            </div>
                             @if ($errors->has('image'))
                             <span class="text-danger">{{ $errors->first('image') }}</span>
                             @endif
-
                         </div>
 
 
@@ -64,15 +70,14 @@
                             <div class="col d-flex flex-column align-items-center">
                                 <div class="form-check">
                                     <input class="form-check-input me-2" type="radio" name="active"
-                                        id="flexRadioDefault1" value="0" required>
+                                        id="flexRadioDefault1" value="0"  {{ (old('active') == '0') ? 'checked' : ''}}  required>
                                     <label class="form-check-label" for="flexRadioDefault1">
                                         No actiu
                                     </label>
-
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input me-2" type="radio" name="active"
-                                        id="flexRadioDefault2" value="1">
+                                        id="flexRadioDefault2" value="1"  {{ (old('active') == '1') ? 'checked' : ''}}>
                                     <label class="form-check-label" for="flexRadioDefault2">
                                         Actiu
                                     </label>
@@ -130,5 +135,15 @@
             language: 'ca',
         });
 </script>
-
+<script>
+    $(document).ready(function (e) {
+       $('#image').change(function(){
+        let reader = new FileReader();
+        reader.onload = (e) => {
+          $('#preview-image-before-upload').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(this.files[0]);
+       });
+    });
+</script>
 @endsection

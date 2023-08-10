@@ -11,7 +11,7 @@ Medis
                 <div class="card mb-3">
                     <div class="row g-0 mb-3">
                         <div class="col-md-4">
-                            <img src="{{ $medi->image }}" class="img-fluid rounded-start" alt="...">
+                            <img src="{{ Storage::url($medi->image) }}" class="img-fluid rounded-start" alt="...">
                         </div>
                         <div class="col-md-8">
                             <div class="card-body ">

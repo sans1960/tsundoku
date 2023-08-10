@@ -7,7 +7,7 @@
     <div class="row mt-5">
         <div class="col-md-8 mt-5 mx-auto">
             <div class="card p-1">
-                <img src="{{$medi->image}}" width="150" class=" d-block mx-auto" alt="...">
+                <img src="{{Storage::url($medi->image)}}" width="150" class=" d-block mx-auto" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">{{ $medi->titol }}</h5>
                     <div class="row">
@@ -21,7 +21,9 @@
                         <div class="col">
                             <p>{{ $medi->active }}</p>
                         </div>
-
+                        <div class="col">
+                            <p>{{$medi->tipus}}</p>
+                        </div>
                         <div class="col">
                             <a href="{{ $medi->url }}" target="_blank">web</a>
                         </div>

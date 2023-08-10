@@ -7,7 +7,7 @@
     <div class="row mt-5">
         <div class="col-md-8 mt-5 mx-auto">
             <div class="card p-1">
-                <img src="{{$acte->image}}" width="450" class=" d-block mx-auto" alt="...">
+                <img src="{{Storage::url($acte->image)}}" width="450" class=" d-block mx-auto" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">{{ $acte->titol }}</h5>
                     <div class="row">
