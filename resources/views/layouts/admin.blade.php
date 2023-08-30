@@ -24,9 +24,16 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-warning shadow-sm">
             <div class="container">
+                @if (Auth()->user()->type == 'admin')
                 <a class="navbar-brand" href="{{ route('admin') }}">
                     ADMIN PANEL
                 </a>
+                @else
+                <a class="navbar-brand" href="{{ route('home') }}">
+                    Panell d'usuari
+                </a> 
+                @endif
+          
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">

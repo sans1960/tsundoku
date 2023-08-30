@@ -82,9 +82,30 @@
                                     <option value="editorial">Editorial</option>
                                     <option value="llibreria">Llibreria</option>
                                 </select>
+                                @error('condicio')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
                         </div>
-
+                        <div class="row mb-3">
+                            <label for="" class="col-md-4 col-form-label text-md-end">{{ __('Rebre Novetats') }}</label>
+                            <div class="col-md-6">
+                                <select class="form-select" aria-label="Default select example" name="novetats">
+                                    <option selected disabled hidden>Escull</option>
+                                    <option></option>
+                                    <option value="Si">Si</option>
+                                    <option value="No">No</option>
+                                    
+                                </select>
+                                @error('novetats')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
                         <div class="row mb-3">
                             <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password')
                                 }}</label>

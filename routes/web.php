@@ -16,6 +16,7 @@ use App\Http\Controllers\FrontController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\MessagesController;
+use App\Http\Controllers\ActivitatController;
 
 
 
@@ -72,8 +73,11 @@ Route::post('/replyacte', [CommentController::class,'replyacte'])->name('reply.a
 Auth::routes();
 Route::middleware(['auth', 'forbid-banned-user'])->group(function () {
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home/activitat/{id}', [ActivitatController::class, 'activitat'])->name('home.activitat');
 Route::get('/admin', [App\Http\Controllers\HomeController::class, 'admin'])->name('admin');
 Route::get('/admin/users', [AdminController::class, 'allusers'])->name('admin.users.index');
+Route::get('/admin/users/edit/{id}', [AdminController::class, 'edituser'])->name('admin.users.edit');
+Route::put('/admin/users/{user}', [AdminController::class, 'updateuser'])->name('admin.users.update');
 Route::get('/admin/users/{user}', [AdminController::class, 'oneuser'])->name('admin.users.show');
 Route::get('/admin/users/{user}/ban', [AdminController::class, 'ban'])->name('admin.users.ban');
 Route::get('/admin/users/{user}/unban', [AdminController::class, 'unban'])->name('admin.users.unban');

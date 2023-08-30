@@ -32,6 +32,7 @@ class User extends Authenticatable implements BannableInterface
         'condicio',
         'type',
         'banned_at',
+        'novetats',
         
     ];
 
@@ -77,6 +78,9 @@ class User extends Authenticatable implements BannableInterface
     }
     public function denuncia(){
         return $this->hasMany(Denuncia::class);
+    }
+    public function comments(){
+        return $this->hasMany(Comment::class);
     }
    
   

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -57,6 +58,7 @@ class RegisterController extends Controller
             'avatar' => ['image'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'novetats' => ['required','in:Si,No'],
             
         ]);
     }
@@ -79,6 +81,14 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'condicio'  =>  $data['condicio'],
             'avatar' => $filePath ?? NULL,
+            'novetats' => $data['novetats'],
+
         ]);
     }
+    protected function registered(Request $request, $user)
+    {
+        session()->flash('notif.success', 'Benvingut a Tsundoku.cat');
+        return redirect()->route('home');
+    }
+
 }

@@ -17,7 +17,7 @@
                         @else
                         <img src="{{Storage::url($book->foto)}}" alt="" class="d-block mx-auto" width="80">
                         @endif
-                       
+
                         <p>{{ $book->isbn }}</p>
 
                         <p class="mb-2">{{$book->usersRated()}} Valoracions</p>
@@ -74,18 +74,63 @@
                                 {!! $book->sinopsi !!}
                             </div>
                             @if (Auth::check())
-                            <form action="{{route('rating.book')}}" method="post">
-                                @csrf
-                                <label for="input-5" class="control-label">Valora</label>
-                                <input id="input-5" name="rating" class="rating-loading" data-show-clear="false"
-                                    data-show-caption="true">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button type="button" class="btn btn btn-outline-success mb-3"
+                                        data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        Veure valoracions
+                                    </button>
 
-                                <input type="hidden" name="id" required="" value="{{ $book->id }}">
-                                <hr>
-                                <button type="submit" class="btn btn-outline-success">
-                                    <i class="bi bi-check-square-fill"></i>
-                                </button>&nbsp;
-                            </form>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Valoracions del
+                                                        llibre {{$book->titol}}</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    @foreach ($book->ratings as $rating)
+                                                    <p>{{$rating->user->nickname}} {{$rating->rating}}</p>
+                                                    @endforeach
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Tancar</button>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <form action="{{route('rating.book')}}" method="post">
+                                        @csrf
+                                        <input type="hidden" name="id" required="" value="{{ $book->id }}">
+                                        <label for="input-5" class="control-label">Valora</label>
+                                        <div class="row">
+                                            <div class="col">
+
+                                                <input id="input-5" name="rating" class="rating-loading"
+                                                    data-show-clear="false" data-show-caption="true">
+                                            </div>
+                                            <div class="col mt-2">
+                                                <button type="submit" class="btn btn-outline-success">
+                                                    <i class="bi bi-check-square-fill"></i>
+                                                </button>&nbsp;
+                                            </div>
+                                        </div>
+
+
+
+                                        <hr>
+
+                                    </form>
+                                </div>
+                            </div>
                             @endif
 
 
@@ -105,7 +150,7 @@
         </div>
         <div class="row">
             <div class="col-md-8 mx-auto">
-              
+
                 <div class="card">
                     <h5 class="card-header">Veure Comentaris</h5>
                     <div class="card-body">
@@ -117,7 +162,7 @@
 
 
                     <h5 class="card-header">Fes un comentari</h5>
-                    
+
                     <div class="card-body">
                         <form action="{{route('comment.book')}}" method="post">
                             @csrf
