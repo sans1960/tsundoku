@@ -17,8 +17,9 @@ use willvincent\Rateable\Rating;
 class FrontController extends Controller
 {
     public function index(){
-       
-        return view('front.index');
+        $books = Book::latest()->take(5)->get();
+        $autors = Autor::latest()->take(8)->get();
+        return view('front.index',compact('books','autors'));
     }
     public function autors(){
         $autors = Autor::all();
