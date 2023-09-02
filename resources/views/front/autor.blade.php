@@ -16,13 +16,13 @@
 
 
                 <div class="card-body">
-             
+
                     <div class="row">
                         <div class="col">
                             @if ($autor->twitter)
-                                <a href="{{$autor->twitter}}" target="_blank">
-                                    <i class="bi bi-twitter"></i>
-                                </a>
+                            <a href="{{$autor->twitter}}" target="_blank">
+                                <i class="bi bi-twitter"></i>
+                            </a>
                             @endif
                         </div>
                         <div class="col">
@@ -30,21 +30,21 @@
                             <a href="{{$autor->facebook}}" target="_blank">
                                 <i class="bi bi-facebook"></i>
                             </a>
-                        @endif
+                            @endif
                         </div>
                         <div class="col">
                             @if ($autor->web)
                             <a href="{{$autor->web}}" target="_blank">
                                 <i class="bi bi-globe"></i>
                             </a>
-                        @endif
+                            @endif
                         </div>
                         <div class="col">
                             @if ($autor->instagram)
                             <a href="{{$autor->instagram}}" target="_blank">
                                 <i class="bi bi-instagram"></i>
                             </a>
-                        @endif
+                            @endif
                         </div>
                     </div>
                     <h5 class="card-title">{{ $autor->autor_nom }}</h5>
@@ -56,18 +56,80 @@
                     <input id="input-2" name="input-1" class="rating rating-loading" data-min="0" data-max="5"
                         data-step="0.1" value="{{ $autor->averageRating }}" data-size="xs" disabled="">
                     @if (Auth::check())
-                    <form action="{{route('rating.autor')}}" method="post">
-                        @csrf
-                        <label for="input-5" class="control-label">Valora</label>
-                        <input id="input-5" name="rating" class="rating-loading" data-show-clear="false"
-                            data-show-caption="true">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="button" class="btn btn btn-outline-success mb-3" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal">
+                                Veure valoracions
+                            </button>
 
-                        <input type="hidden" name="id" required="" value="{{ $autor->id }}">
-                        <hr>
-                        <button type="submit" class="btn btn-outline-success">
-                            <i class="bi bi-check-square-fill"></i>
-                        </button>&nbsp;
-                    </form>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">
+                                                {{$autor->autor_nom}}</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <h3>Valoracions</h3>
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Usuari</th>
+                                                        <th>Puntuació/5</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach ($autor->ratings as $rating)
+                                                    <tr>
+                                                        <td>{{$rating->user->nickname}} </td>
+                                                        <td>{{$rating->rating}}</td>
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Tancar</button>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <form action="{{route('rating.autor')}}" method="post">
+                                @csrf
+                                <input type="hidden" name="id" required="" value="{{ $autor->id }}">
+                                <label for="input-5" class="control-label">Valora</label>
+                                <div class="row">
+                                    <div class="col">
+
+                                        <input id="input-5" name="rating" class="rating-loading" data-show-clear="false"
+                                            data-show-caption="true">
+                                    </div>
+                                    <div class="col mt-2">
+                                        <button type="submit" class="btn btn-outline-success">
+                                            <i class="bi bi-check-square-fill"></i>
+                                        </button>&nbsp;
+                                    </div>
+                                </div>
+
+
+
+                                <hr>
+
+                            </form>
+                        </div>
+                    </div>
+
+
                     @endif
                 </div>
             </div>

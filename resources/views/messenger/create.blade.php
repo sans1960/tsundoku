@@ -9,19 +9,19 @@
             <!-- Subject Form Input -->
             <div class="form-group">
                 <label class="control-label">Objecte</label>
-                <input type="text" class="form-control" name="subject" placeholder="Objecte"
+                <input type="text" class="form-control" required name="subject" placeholder="Objecte"
                     value="{{ old('subject') }}">
             </div>
 
             <!-- Message Form Input -->
             <div class="form-group">
                 <label class="control-label">Missatge</label>
-                <textarea name="message" class="form-control">{{ old('message') }}</textarea>
+                <textarea name="message" required class="form-control">{{ old('message') }}</textarea>
             </div>
 
 
             <div class="mb-3 mt-3">
-                <select name="recipient" class="form-select" id="">
+                <select name="recipient" required class="form-select" id="">
                     <option value="">Destinatari</option>
                     <option value=""></option>
                     @foreach($users as $user)

@@ -1,98 +1,164 @@
 @extends('layouts.front')
 @section('title')
-    {{ $bookshop->nom }}
+{{ $bookshop->nom }}
 @endsection
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/leaflet.css') }}">
 @endsection
 @section('content')
-    <div class="container ">
-        <div class="row ">
-            <div class="col-md-8 mt-3">
-                <div class="card p-1">
-                    @if ($bookshop->logo != null)
-                    <img src="{{ $bookshop->logo }}" class="img-fluid rounded-start" alt="...">
-                    @else
-                    <img src="{{Storage::url($bookshop->image)}}" alt="" class="d-block mx-auto" width="80">
-                    @endif
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $bookshop->nom }}</h5>
-                        <div class="row">
-                            <div class="col">
-                                @if ($bookshop->active == 0)
-                                    <p class="card-text">No actiu</p>
-                                @else
-                                    <p class="card-text">Actiu</p>
-                                @endif
-                            </div>
-                            <div class="col">
-                                <p>{{ $bookshop->active }}</p>
-                            </div>
-                            <div class="col">
-                                <a href="{{ $bookshop->url }}" target="_blank">Lloc web</a>
-                            </div>
-                            <div class="col">
-                                <p>{{ $bookshop->ciutat }}</p>
-                            </div>
+<div class="container ">
+    <div class="row ">
+        <div class="col-md-8 mt-3">
+            <div class="card p-1">
+                @if ($bookshop->logo != null)
+                <img src="{{ $bookshop->logo }}" class="img-fluid rounded-start" alt="...">
+                @else
+                <img src="{{Storage::url($bookshop->image)}}" alt="" class="d-block mx-auto" width="80">
+                @endif
+                <div class="card-body">
+                    <h5 class="card-title">{{ $bookshop->nom }}</h5>
+                    <div class="row">
+                        <div class="col">
+                            @if ($bookshop->active == 0)
+                            <p class="card-text">No actiu</p>
+                            @else
+                            <p class="card-text">Actiu</p>
+                            @endif
                         </div>
-                        <p class="mb-2">{{$bookshop->usersRated()}} Valoracions</p>
-                        <p class="mb-2">{{$com}} Comentaris</p>
-                        <input id="input-1" name="input-1" class="rating rating-loading" data-min="0" data-max="5" data-step="0.1" value="{{ $bookshop->averageRating }}" data-size="xs" disabled="">
-                        <div>
-                            {!! $bookshop->qui_som !!}
+                        <div class="col">
+                            <p>{{ $bookshop->active }}</p>
                         </div>
-                        <!-- Button trigger modal -->
-<button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#modal">
-    Veure localització
-  </button>
-  
-  <!-- Modal -->
-  <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">{{$bookshop->nom}}</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <div id="map" style="width:100%;height:400px">
-         
-       
-            </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tanca</button>
-         
-        </div>
-      </div>
-    </div>
-  </div>
-                       
+                        <div class="col">
+                            <a href="{{ $bookshop->url }}" target="_blank">Lloc web</a>
+                        </div>
+                        <div class="col">
+                            <p>{{ $bookshop->ciutat }}</p>
+                        </div>
                     </div>
+                    <p class="mb-2">{{$bookshop->usersRated()}} Valoracions</p>
+                    <p class="mb-2">{{$com}} Comentaris</p>
+                    <input id="input-1" name="input-1" class="rating rating-loading" data-min="0" data-max="5"
+                        data-step="0.1" value="{{ $bookshop->averageRating }}" data-size="xs" disabled="">
+                    <div>
+                        {!! $bookshop->qui_som !!}
+                    </div>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
+                        data-bs-target="#modal">
+                        Veure localització
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">{{$bookshop->nom}}</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div id="map" style="width:100%;height:400px">
+
+
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Tanca</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
+        </div>
         <div class="col-md-4 mt-3">
             @if (Auth::check())
-            <form action="{{route('rating.bookshop')}}" method="post">
-             @csrf
-             <label for="input-5" class="control-label">Valora</label>
-             <input id="input-5" name="rating" class="rating-loading" data-show-clear="false" data-show-caption="true">
+            <div class="row">
+                <div class="col-md-12">
+                    <button type="button" class="btn btn btn-outline-success mb-3" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">
+                        Veure valoracions
+                    </button>
 
-             <input type="hidden" name="id" required="" value="{{ $bookshop->id }}">
-             <hr>
-             <button type="submit" class="btn btn-outline-success">
-                 <i class="bi bi-check-square-fill"></i>  
-             </button>&nbsp;
-         </form> 
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">
+                                        {{$bookshop->nom}}</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <h3>Valoracions</h3>
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Usuari</th>
+                                                <th>Puntuació/5</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($bookshop->ratings as $rating)
+                                            <tr>
+                                                <td>{{$rating->user->nickname}} </td>
+                                                <td>{{$rating->rating}}</td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Tancar</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <form action="{{route('rating.bookshop')}}" method="post">
+                        @csrf
+                        <input type="hidden" name="id" required="" value="{{ $bookshop->id }}">
+                        <label for="input-5" class="control-label">Valora</label>
+                        <div class="row">
+                            <div class="col">
+
+                                <input id="input-5" name="rating" class="rating-loading" data-show-clear="false"
+                                    data-show-caption="true">
+                            </div>
+                            <div class="col mt-2">
+                                <button type="submit" class="btn btn-outline-success">
+                                    <i class="bi bi-check-square-fill"></i>
+                                </button>&nbsp;
+                            </div>
+                        </div>
+
+
+
+                        <hr>
+
+                    </form>
+                </div>
+            </div>
             @endif
         </div>
 
-  
 
-        </div>
-      <div class="row">
+
+    </div>
+    <div class="row">
         <div class="col-md-8 mx-auto mt-5">
-           
+
             <div class="card">
                 <h5 class="card-header">Veure Comentaris</h5>
                 <div class="card-body">
@@ -122,8 +188,8 @@
             </div>
             @endif
         </div>
-      </div>
     </div>
+</div>
 @endsection
 @section('js')
 <script src="{{ asset('js/leaflet.js') }}"></script>
@@ -165,7 +231,7 @@
    
      
     });
-</script> 
+</script>
 
- 
+
 @endsection

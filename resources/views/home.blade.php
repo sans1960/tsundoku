@@ -2,9 +2,9 @@
 
 @section('content')
 <div class="container">
-    <div class="row mt-5">
+    <div class="row mt-2">
 
-        <div class="col-md-12 mt-5">
+        <div class="col-md-12 ">
             @if (session('status'))
             <div class="alert alert-success" role="alert">
                 {{ session('status') }}
@@ -19,7 +19,7 @@
 
         </div>
     </div>
-    <div class="row mt-5">
+    <div class="row mt-2">
         <div class="col-md-4">
             <div class="card">
                 @if (Auth::user()->avatar)
@@ -36,6 +36,7 @@
                     <h5 class="card-text">{{Str::title(Auth()->user()->condicio)}}</h5>
                     <h5 class="card-text">{{Auth()->user()->nickname}}</h5>
                     <h5 class="card-text">{{\Carbon\Carbon::parse(Auth()->user()->created_at)->format('d/m/Y');}}</h5>
+                    <p>{{Auth()->user()->novetats}} rebre novetats</p>
 
                 </div>
             </div>
@@ -158,265 +159,265 @@
 
     @endif
 
-</div>
-{{-- <div class="row">
-    <h4 class="mt-3">Activitat</h4>
-    @if (Auth()->user()->condicio == 'lector')
-    <div class="col-md-3">
-        <div class="card mb-2">
-            <div class="card-header">
-                Llibres
-            </div>
-            <div class="card-body">
-                @foreach (Auth()->user()->book as $item)
-                <p>{{$item->titol}}</p>
 
-                @endforeach
-            </div>
+    {{-- <div class="row">
+        <h4 class="mt-3">Activitat</h4>
+        @if (Auth()->user()->condicio == 'lector')
+        <div class="col-md-3">
+            <div class="card mb-2">
+                <div class="card-header">
+                    Llibres
+                </div>
+                <div class="card-body">
+                    @foreach (Auth()->user()->book as $item)
+                    <p>{{$item->titol}}</p>
 
-        </div>
+                    @endforeach
+                </div>
 
-    </div>
-    @elseif(Auth()->user()->condicio == 'autor')
-    <div class="col-md-3">
-        <div class="card mb-2">
-            <div class="card-header">
-                Llibres
-            </div>
-            <div class="card-body">
-                @foreach (Auth()->user()->book as $item)
-                <p>{{$item->titol}}</p>
-                @endforeach
             </div>
 
         </div>
+        @elseif(Auth()->user()->condicio == 'autor')
+        <div class="col-md-3">
+            <div class="card mb-2">
+                <div class="card-header">
+                    Llibres
+                </div>
+                <div class="card-body">
+                    @foreach (Auth()->user()->book as $item)
+                    <p>{{$item->titol}}</p>
+                    @endforeach
+                </div>
 
-    </div>
-    <div class="col-md-3">
-        <div class="card mb-2">
-            <div class="card-header">
-                Autors
-            </div>
-            <div class="card-body">
-                @foreach (Auth()->user()->autor as $item)
-                <p>{{$item->autor_nom}}</p>
-                @endforeach
-            </div>
-
-        </div>
-
-    </div>
-    <div class="col-md-3">
-        <div class="card mb-2">
-            <div class="card-header">
-                Noticies
-            </div>
-            <div class="card-body">
-                @foreach (Auth()->user()->post as $item)
-                <p>{{$item->titol}}</p>
-                @endforeach
             </div>
 
         </div>
+        <div class="col-md-3">
+            <div class="card mb-2">
+                <div class="card-header">
+                    Autors
+                </div>
+                <div class="card-body">
+                    @foreach (Auth()->user()->autor as $item)
+                    <p>{{$item->autor_nom}}</p>
+                    @endforeach
+                </div>
 
-    </div>
-    <div class="col-md-3">
-        <div class="card mb-2">
-            <div class="card-header">
-                Medis
-            </div>
-            <div class="card-body">
-                @foreach (Auth()->user()->medi as $item)
-                <p>{{$item->titol}}</p>
-                @endforeach
-            </div>
-
-        </div>
-
-    </div>
-    <div class="col-md-3">
-        <div class="card mb-2">
-            <div class="card-header">
-                Actes
-            </div>
-            <div class="card-body">
-                @foreach (Auth()->user()->acte as $item)
-                <p>{{$item->titol}}</p>
-                @endforeach
             </div>
 
         </div>
+        <div class="col-md-3">
+            <div class="card mb-2">
+                <div class="card-header">
+                    Noticies
+                </div>
+                <div class="card-body">
+                    @foreach (Auth()->user()->post as $item)
+                    <p>{{$item->titol}}</p>
+                    @endforeach
+                </div>
 
-    </div>
-    @elseif(Auth()->user()->condicio == 'editorial')
-    <div class="col-md-3">
-        <div class="card mb-2">
-            <div class="card-header">
-                Llibres
-            </div>
-            <div class="card-body">
-                @foreach (Auth()->user()->book as $item)
-                <p>{{$item->titol}}</p>
-                @endforeach
-            </div>
-
-        </div>
-
-    </div>
-    <div class="col-md-3">
-        <div class="card mb-2">
-            <div class="card-header">
-                Autors
-            </div>
-            <div class="card-body">
-                @foreach (Auth()->user()->autor as $item)
-                <p>{{$item->autor_nom}}</p>
-                @endforeach
             </div>
 
         </div>
+        <div class="col-md-3">
+            <div class="card mb-2">
+                <div class="card-header">
+                    Medis
+                </div>
+                <div class="card-body">
+                    @foreach (Auth()->user()->medi as $item)
+                    <p>{{$item->titol}}</p>
+                    @endforeach
+                </div>
 
-    </div>
-    <div class="col-md-3">
-        <div class="card mb-2">
-            <div class="card-header">
-                Editorials
-            </div>
-            <div class="card-body">
-                @foreach (Auth()->user()->editorial as $item)
-                <p>{{$item->editorial_nom}}</p>
-                @endforeach
-            </div>
-
-        </div>
-
-    </div>
-    <div class="col-md-3">
-        <div class="card mb-2">
-            <div class="card-header">
-                Noticies
-            </div>
-            <div class="card-body">
-                @foreach (Auth()->user()->post as $item)
-                <p>{{$item->titol}}</p>
-                @endforeach
             </div>
 
         </div>
+        <div class="col-md-3">
+            <div class="card mb-2">
+                <div class="card-header">
+                    Actes
+                </div>
+                <div class="card-body">
+                    @foreach (Auth()->user()->acte as $item)
+                    <p>{{$item->titol}}</p>
+                    @endforeach
+                </div>
 
-    </div>
-    <div class="col-md-3">
-        <div class="card mb-2">
-            <div class="card-header">
-                Medis
-            </div>
-            <div class="card-body">
-                @foreach (Auth()->user()->medi as $item)
-                <p>{{$item->titol}}</p>
-                @endforeach
-            </div>
-
-        </div>
-
-    </div>
-    <div class="col-md-3">
-        <div class="card mb-2">
-            <div class="card-header">
-                Actes
-            </div>
-            <div class="card-body">
-                @foreach (Auth()->user()->acte as $item)
-                <p>{{$item->titol}}</p>
-                @endforeach
             </div>
 
         </div>
+        @elseif(Auth()->user()->condicio == 'editorial')
+        <div class="col-md-3">
+            <div class="card mb-2">
+                <div class="card-header">
+                    Llibres
+                </div>
+                <div class="card-body">
+                    @foreach (Auth()->user()->book as $item)
+                    <p>{{$item->titol}}</p>
+                    @endforeach
+                </div>
 
-    </div>
-    @elseif(Auth()->user()->condicio == 'llibreria')
-    <div class="col-md-3">
-        <div class="card mb-2">
-            <div class="card-header">
-                Llibres
-            </div>
-            <div class="card-body">
-                @foreach (Auth()->user()->book as $item)
-                <p>{{$item->titol}}</p>
-                @endforeach
-            </div>
-
-        </div>
-
-    </div>
-    <div class="col-md-3">
-        <div class="card mb-2">
-            <div class="card-header">
-                Llibreries
-            </div>
-            <div class="card-body">
-                @foreach (Auth()->user()->bookshop as $item)
-                <p>{{$item->nom}}</p>
-                @endforeach
             </div>
 
         </div>
+        <div class="col-md-3">
+            <div class="card mb-2">
+                <div class="card-header">
+                    Autors
+                </div>
+                <div class="card-body">
+                    @foreach (Auth()->user()->autor as $item)
+                    <p>{{$item->autor_nom}}</p>
+                    @endforeach
+                </div>
 
-    </div>
-    <div class="col-md-3">
-        <div class="card mb-2">
-            <div class="card-header">
-                Noticies
-            </div>
-            <div class="card-body">
-                @foreach (Auth()->user()->post as $item)
-                <p>{{$item->titol}}</p>
-                @endforeach
-            </div>
-
-        </div>
-
-    </div>
-    <div class="col-md-3">
-        <div class="card mb-2">
-            <div class="card-header">
-                Medis
-            </div>
-            <div class="card-body">
-                @foreach (Auth()->user()->medi as $item)
-                <p>{{$item->titol}}</p>
-                @endforeach
             </div>
 
         </div>
+        <div class="col-md-3">
+            <div class="card mb-2">
+                <div class="card-header">
+                    Editorials
+                </div>
+                <div class="card-body">
+                    @foreach (Auth()->user()->editorial as $item)
+                    <p>{{$item->editorial_nom}}</p>
+                    @endforeach
+                </div>
 
-    </div>
-    <div class="col-md-3">
-        <div class="card mb-2">
-            <div class="card-header">
-                Actes
-            </div>
-            <div class="card-body">
-                @foreach (Auth()->user()->acte as $item)
-                <p>{{$item->titol}}</p>
-                @endforeach
             </div>
 
         </div>
+        <div class="col-md-3">
+            <div class="card mb-2">
+                <div class="card-header">
+                    Noticies
+                </div>
+                <div class="card-body">
+                    @foreach (Auth()->user()->post as $item)
+                    <p>{{$item->titol}}</p>
+                    @endforeach
+                </div>
+
+            </div>
+
+        </div>
+        <div class="col-md-3">
+            <div class="card mb-2">
+                <div class="card-header">
+                    Medis
+                </div>
+                <div class="card-body">
+                    @foreach (Auth()->user()->medi as $item)
+                    <p>{{$item->titol}}</p>
+                    @endforeach
+                </div>
+
+            </div>
+
+        </div>
+        <div class="col-md-3">
+            <div class="card mb-2">
+                <div class="card-header">
+                    Actes
+                </div>
+                <div class="card-body">
+                    @foreach (Auth()->user()->acte as $item)
+                    <p>{{$item->titol}}</p>
+                    @endforeach
+                </div>
+
+            </div>
+
+        </div>
+        @elseif(Auth()->user()->condicio == 'llibreria')
+        <div class="col-md-3">
+            <div class="card mb-2">
+                <div class="card-header">
+                    Llibres
+                </div>
+                <div class="card-body">
+                    @foreach (Auth()->user()->book as $item)
+                    <p>{{$item->titol}}</p>
+                    @endforeach
+                </div>
+
+            </div>
+
+        </div>
+        <div class="col-md-3">
+            <div class="card mb-2">
+                <div class="card-header">
+                    Llibreries
+                </div>
+                <div class="card-body">
+                    @foreach (Auth()->user()->bookshop as $item)
+                    <p>{{$item->nom}}</p>
+                    @endforeach
+                </div>
+
+            </div>
+
+        </div>
+        <div class="col-md-3">
+            <div class="card mb-2">
+                <div class="card-header">
+                    Noticies
+                </div>
+                <div class="card-body">
+                    @foreach (Auth()->user()->post as $item)
+                    <p>{{$item->titol}}</p>
+                    @endforeach
+                </div>
+
+            </div>
+
+        </div>
+        <div class="col-md-3">
+            <div class="card mb-2">
+                <div class="card-header">
+                    Medis
+                </div>
+                <div class="card-body">
+                    @foreach (Auth()->user()->medi as $item)
+                    <p>{{$item->titol}}</p>
+                    @endforeach
+                </div>
+
+            </div>
+
+        </div>
+        <div class="col-md-3">
+            <div class="card mb-2">
+                <div class="card-header">
+                    Actes
+                </div>
+                <div class="card-body">
+                    @foreach (Auth()->user()->acte as $item)
+                    <p>{{$item->titol}}</p>
+                    @endforeach
+                </div>
+
+            </div>
+
+        </div>
+        @endif
+
+
+
+
+
+    </div> --}}
+
+    <div class="row mt-2">
+        <div class="col-md-12 mt-2 ">
+            <a class="btn btn-outline-success" href="{{route('home.activitat',auth()->user()->id)}}">Activitat</a>
+        </div>
 
     </div>
-    @endif
-
-
-
-
-
-</div> --}}
-
-<div class="row mt-5">
-    <div class="col-md-12 mt-5 ">
-        <a href="{{route('home.activitat',auth()->user()->id)}}">Activitat</a>
-    </div>
-
-</div>
 </div>
 @endsection

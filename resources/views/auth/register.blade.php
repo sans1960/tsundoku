@@ -74,13 +74,18 @@
                         <div class="row mb-3">
                             <label for="" class="col-md-4 col-form-label text-md-end">{{ __('Tipus usuari') }}</label>
                             <div class="col-md-6">
-                                <select class="form-select" aria-label="Default select example" name="condicio">
+                                <select class="form-select" required aria-label="Default select example"
+                                    name="condicio">
                                     <option selected disabled hidden>Escull</option>
                                     <option></option>
-                                    <option value="lector">Lector</option>
-                                    <option value="autor">Autor</option>
-                                    <option value="editorial">Editorial</option>
-                                    <option value="llibreria">Llibreria</option>
+                                    <option value="lector" {{ old('condicio')=="lector" ? 'selected' : '' }}>Lector
+                                    </option>
+                                    <option value="autor" {{ old('condicio')=="autor" ? 'selected' : '' }}>Autor
+                                    </option>
+                                    <option value="editorial" {{ old('condicio')=="editorial" ? 'selected' : '' }}>
+                                        Editorial</option>
+                                    <option value="llibreria" {{ old('condicio')=="llibreria" ? 'selected' : '' }}>
+                                        Llibreria</option>
                                 </select>
                                 @error('condicio')
                                 <span class="invalid-feedback" role="alert">
@@ -90,15 +95,23 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="" class="col-md-4 col-form-label text-md-end">{{ __('Rebre Novetats') }}</label>
+                            <label for="" class="col-md-4 col-form-label text-md-end">{{ __('Vols rebre novetats ?')
+                                }}</label>
                             <div class="col-md-6">
-                                <select class="form-select" aria-label="Default select example" name="novetats">
-                                    <option selected disabled hidden>Escull</option>
-                                    <option></option>
-                                    <option value="Si">Si</option>
-                                    <option value="No">No</option>
-                                    
-                                </select>
+                                <div class="form-check">
+                                    <input class="form-check-input" required value="Si" {{ (old('novetats')=='Si' )
+                                        ? 'checked' : '' }} type="radio" name="novetats" id="flexRadioDefault1">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        Si
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" value="No" {{ (old('novetats')=='No' ) ? 'checked'
+                                        : '' }} type="radio" name="novetats" id="flexRadioDefault2">
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                        No
+                                    </label>
+                                </div>
                                 @error('novetats')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
