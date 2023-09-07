@@ -69,6 +69,9 @@ class BookController extends Controller
         'sinopsi' => 'required',
         'user_id' => 'required',
         'isbn' => 'required|string',
+        'novetat' => 'required',
+        'primera' => 'required',
+        'auto' => 'required',
         
              ]);
              if ($request->hasFile('foto')) {
@@ -99,6 +102,9 @@ class BookController extends Controller
              
              $book->sinopsi = $request->sinopsi;
              $book->isbn = $request->isbn;
+             $book->novetat = $request->novetat;
+             $book->primera = $request->primera;
+             $book->auto = $request->auto;
              $book->save();
 
 
@@ -159,6 +165,9 @@ class BookController extends Controller
             'sinopsi' => 'required',
             'user_id' => 'required',
             'isbn' => 'required|string',
+            'novetat' => 'required',
+            'primera' => 'required',
+            'auto' => 'required',
             
                  ]);
                  if ($request->hasFile('foto')) {
@@ -193,6 +202,9 @@ class BookController extends Controller
              
              $book->sinopsi = $request->sinopsi;
              $book->isbn = $request->isbn;
+             $book->novetat = $request->novetat;
+             $book->primera = $request->primera;
+             $book->auto = $request->auto;
              $book->update();
            
             session()->flash('notif.success', 'Llibre actualitzat amb éxit!');

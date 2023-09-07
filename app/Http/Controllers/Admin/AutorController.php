@@ -55,7 +55,8 @@ class AutorController extends Controller
         'image'=> File::types(['jpg', 'png','webp','jpeg'])
                     
                     ->max(1024),
-        'active'=>'boolean'
+        'active'=>'boolean',
+        'auto' => 'required',
         
              ]);
               if ($request->hasFile('image')) {
@@ -82,6 +83,7 @@ class AutorController extends Controller
          $autor->facebook = $request->facebook;
          $autor->instagram = $request->instagram;
          $autor->twitter = $request->twitter;
+         $autor->auto = $request->auto;
         
          $autor->save();
           
@@ -126,6 +128,7 @@ class AutorController extends Controller
           'image'=> File::types(['jpg', 'png','webp','jpeg'])
                     
                     ->max(1024),
+          'auto' => 'required',
         
              ]);
            if ($request->hasFile('image')) {
@@ -155,6 +158,7 @@ class AutorController extends Controller
          $autor->facebook = $request->facebook;
          $autor->instagram = $request->instagram;
          $autor->twitter = $request->twitter;
+         $autor->auto = $request->auto;
         
          $autor->update();
        

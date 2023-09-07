@@ -15,7 +15,7 @@ class Autor extends Model
     use HasFactory;
     use Rateable;
 
-    protected $fillable = ['autor_nom','slug','biopic','url_foto','active','user_id','image','web','facebook','instagram','twitter'];
+    protected $fillable = ['autor_nom','slug','biopic','url_foto','active','user_id','image','web','facebook','instagram','twitter','auto'];
 
 
     public function getRouteKeyName()

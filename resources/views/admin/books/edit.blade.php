@@ -25,9 +25,9 @@
                                 <select class="form-select" aria-label="Default select example" name="autor_id">
                                     <option></option>
                                     @foreach ($autors as $autor)
-                                    <option value="{{ $autor->id }}"   @if ($book->autor_id == $autor->id) selected
+                                    <option value="{{ $autor->id }}" @if ($book->autor_id == $autor->id) selected
 
-                                        @endif  >{{ $autor->autor_nom }}</option>
+                                        @endif >{{ $autor->autor_nom }}</option>
                                     @endforeach
 
                                 </select>
@@ -36,7 +36,8 @@
                                 <select class="form-select" aria-label="Default select example" name="editorial_id">
                                     <option></option>
                                     @foreach ($editorials as $editorial)
-                                    <option value="{{ $editorial->id }}"   @if ($book->editorial_id == $editorial->id) selected
+                                    <option value="{{ $editorial->id }}" @if ($book->editorial_id == $editorial->id)
+                                        selected
 
                                         @endif>{{ $editorial->editorial_nom }}</option>
                                     @endforeach
@@ -60,13 +61,11 @@
                         <div class="row mb-3">
                             <div class="col">
                                 <label for="foto" class="form-label">Foto</label>
-                                <input class="form-control" type="file" id="foto" name="foto"
-                                    value="{{$book->foto}}">
+                                <input class="form-control" type="file" id="foto" name="foto" value="{{$book->foto}}">
                             </div>
                             <div class="col">
                                 <img id="preview-image-before-upload" class="img-fluid w-50 d-block mx-auto"
-                                    src="{{Storage::url($book->foto)}}"
-                                    alt="">
+                                    src="{{Storage::url($book->foto)}}" alt="">
                             </div>
                             @if ($errors->has('foto'))
                             <span class="text-danger">{{ $errors->first('foto') }}</span>
@@ -140,6 +139,64 @@
                                         selected @endif>{{$user->nickname}}</option>
                                     @endforeach
                                 </select>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col d-flex flex-column align-items-center">
+                                <div class="form-check">
+                                    <input class="form-check-input me-2" type="radio" name="novetat"
+                                        id="flexRadioDefault1" value="0" {{$book->novetat == 0 ? 'checked' : ''}}
+                                    required>
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        No es novetat
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input me-2" type="radio" name="novetat"
+                                        id="flexRadioDefault2" value="1" {{$book->novetat == 1 ? 'checked' : ''}}>
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                        Es novetat editorial
+                                    </label>
+                                </div>
+
+                            </div>
+                            <div class="col d-flex flex-column align-items-center">
+                                <div class="form-check">
+                                    <input class="form-check-input me-2" type="radio" name="primera"
+                                        id="flexRadioDefault1" value="0" {{$book->primera == 0 ? 'checked' : ''}}
+                                    required>
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        No es la primera obra del autor
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input me-2" type="radio" name="primera"
+                                        id="flexRadioDefault2" value="1" {{$book->primera == 1 ? 'checked' : ''}}>
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                        Es la primera obra del autor
+                                    </label>
+                                </div>
+
+                            </div>
+                            <div class="col d-flex flex-column align-items-center">
+                                <div class="form-check">
+                                    <input class="form-check-input me-2" type="radio" name="auto" id="flexRadioDefault1"
+                                        value="0" {{$book->auto
+                                    == 0 ? 'checked' : ''}}
+                                    required>
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        No es autopublicat
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input me-2" type="radio" name="auto" id="flexRadioDefault2"
+                                        value="1" {{$book->auto
+                                    == 1 ? 'checked' : ''}}>
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                        Es autopublicat
+                                    </label>
+                                </div>
+
                             </div>
                         </div>
                         <div class="mb-3">

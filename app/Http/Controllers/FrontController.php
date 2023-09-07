@@ -12,14 +12,18 @@ use App\Models\Post;
 use App\Models\Medi;
 use App\Models\Acte;
 use willvincent\Rateable\Rating;
+use Illuminate\Database\Eloquent\Builder;
 
 
 class FrontController extends Controller
 {
     public function index(){
+        
+       
         $books = Book::latest()->take(5)->get();
         $autors = Autor::latest()->take(8)->get();
         return view('front.index',compact('books','autors'));
+       
     }
     public function autors(){
         $autors = Autor::all();

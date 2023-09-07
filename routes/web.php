@@ -17,6 +17,7 @@ use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\MessagesController;
 use App\Http\Controllers\ActivitatController;
+use App\Http\Controllers\MailController;
 
 
 
@@ -102,3 +103,6 @@ Route::group(['middleware' => 'auth', 'prefix' => 'messages', 'as' => 'messages'
     Route::put('{thread}', [MessagesController::class, 'update'])->name('.update');
     Route::delete('{thread}', [MessagesController::class, 'destroy'])->name('.destroy');
 });
+
+
+Route::get('send-mail', [MailController::class, 'index']);

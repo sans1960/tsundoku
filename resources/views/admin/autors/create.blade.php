@@ -35,14 +35,14 @@
                             <div class="col">
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="active" id="flexRadioDefault1"
-                                        value="0" {{ (old('active') == '0') ? 'checked' : ''}} required>
+                                        value="0" {{ (old('active')=='0' ) ? 'checked' : '' }} required>
                                     <label class="form-check-label" for="flexRadioDefault1">
                                         No actiu
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="active" id="flexRadioDefault2"
-                                        value="1"   {{ (old('active') == '1') ? 'checked' : ''}}>
+                                        value="1" {{ (old('active')=='1' ) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="flexRadioDefault2">
                                         Actiu
                                     </label>
@@ -57,28 +57,47 @@
 
                         </div>
                         <div class="row mb-3">
-                             <div class="col">
+                            <div class="col d-flex flex-column align-items-center">
+                                <div class="form-check">
+                                    <input class="form-check-input me-2" type="radio" name="auto" id="flexRadioDefault1"
+                                        value="0" {{ (old('auto')=='0' ) ? 'checked' : '' }} required>
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        No autopublica
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input me-2" type="radio" name="auto" id="flexRadioDefault2"
+                                        value="1" {{ (old('auto')=='1' ) ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                        Autopublica
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
                                 <label for="web" class="form-label">Web</label>
                                 <input type="text" class="form-control" value="{{old('web')}}" id="web"
-                                    placeholder="Web" name="web" >
+                                    placeholder="Web" name="web">
                                 @if ($errors->has('web'))
                                 <span class="text-danger">{{ $errors->first('web') }}</span>
                                 @endif
-                             </div>
-                             <div class="col">
+                            </div>
+                            <div class="col">
                                 <label for="facebook" class="form-label">Facebook</label>
                                 <input type="text" class="form-control" value="{{old('facebook')}}" id="facebook"
-                                    placeholder="Facebook" name="facebook" >
+                                    placeholder="Facebook" name="facebook">
                                 @if ($errors->has('facebook'))
                                 <span class="text-danger">{{ $errors->first('facebook') }}</span>
                                 @endif
-                             </div>
+                            </div>
                         </div>
                         <div class="row mb-3">
                             <div class="col">
                                 <label for="instagram" class="form-label">Instagram</label>
                                 <input type="text" class="form-control" value="{{old('instagram')}}" id="instagram"
-                                    placeholder="Instagram" name="instagram" >
+                                    placeholder="Instagram" name="instagram">
                                 @if ($errors->has('instagram'))
                                 <span class="text-danger">{{ $errors->first('instagram') }}</span>
                                 @endif
@@ -91,7 +110,7 @@
                                 <span class="text-danger">{{ $errors->first('twitter') }}</span>
                                 @endif
                             </div>
-                       </div>
+                        </div>
                         <div class="row mb-3">
                             <div class="col">
                                 <label for="image" class="form-label">Imatge</label>

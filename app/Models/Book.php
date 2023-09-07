@@ -16,7 +16,7 @@ class Book extends Model
     
     
     
-    protected $fillable = ['titol','slug','editorial_id', 'autor_id','autor_nom','genere_id','editorial_nom','isbn','imatge','sinopsi','editorial_web','idioma','user_id','active','foto'];
+    protected $fillable = ['titol','slug','editorial_id', 'autor_id','autor_nom','genere_id','editorial_nom','isbn','imatge','sinopsi','editorial_web','idioma','user_id','active','foto','novetat','primera','auto'];
 
     public function getRouteKeyName()
     {
