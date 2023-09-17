@@ -31,9 +31,7 @@
                 <div class="col d-flex justify-content-center">
                     <p class="mb-2">{{$medi->usersRated()}} Valoracions</p>
                 </div>
-                <div class="col d-flex justify-content-center">
-                    <p class="mb-2">{{$com}} Comentaris</p>
-                </div>
+
             </div>
 
             <div>
@@ -46,52 +44,7 @@
         <div class="col-md-4 mx-auto">
             @if (Auth::check())
             <div class="row">
-                <div class="col-md-12">
-                    <button type="button" class="btn btn btn-outline-success mb-3" data-bs-toggle="modal"
-                        data-bs-target="#exampleModal">
-                        Veure valoracions
-                    </button>
 
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5 text-center" id="exampleModalLabel">
-                                        {{$medi->titol}}</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <h3>Valoracions</h3>
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th>Usuari</th>
-                                                <th>Puntuació/5</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($medi->ratings as $rating)
-                                            <tr>
-                                                <td>{{$rating->user->nickname}} </td>
-                                                <td>{{$rating->rating}}</td>
-                                            </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Tancar</button>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div class="col-md-12">
                     <form action="{{route('rating.medi')}}" method="post">
                         @csrf
@@ -127,10 +80,7 @@
 
             <div class="card">
                 <h5 class="card-header">Veure Comentaris</h5>
-                <div class="card-body">
-                    @include('layouts.medicomment_replies', ['comments' => $medi->comments, 'medi_id' =>
-                    $medi->id])
-                </div>
+
             </div>
             @if (Auth::check())
             <div class="card">
@@ -138,20 +88,7 @@
 
                 <h5 class="card-header">Fes un comentari</h5>
 
-                <div class="card-body">
-                    <form action="{{route('comment.medi')}}" method="post">
-                        @csrf
-                        <div class="mb-3">
-                            <input type="hidden" name="medi_id" value="{{$medi->id}}">
-                            <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
-                            <textarea class="form-control" required name="comment_body" id="" rows="3"></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <button type="submit" class="btn btn-outline-warning">
-                                <i class="bi bi-plus-square-fill"></i></button>
-                        </div>
-                    </form>
-                </div>
+
             </div>
             @endif
         </div>

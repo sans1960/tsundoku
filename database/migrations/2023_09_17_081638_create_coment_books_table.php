@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('comments', function (Blueprint $table) {
+        Schema::create('coment_books', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->unsigned();
+            $table->integer('book_id')->unsigned();
             $table->integer('parent_id')->unsigned()->nullable();
             $table->text('body');
-            $table->integer('commentable_id')->unsigned();
-            $table->string('commentable_type');
             $table->timestamps();
+            
         });
     }
 
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('commments');
+        Schema::dropIfExists('coment_books');
     }
 };

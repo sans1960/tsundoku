@@ -52,7 +52,7 @@
                         {!! $autor->biopic !!}
                     </div>
                     <p class="mb-2">{{$autor->usersRated()}} Valoracions</p>
-                    <p class="mb-2">{{$com}} Comentaris</p>
+                    {{-- <p class="mb-2">{{$com}} Comentaris</p> --}}
                     <input id="input-2" name="input-1" class="rating rating-loading" data-min="0" data-max="5"
                         data-step="0.1" value="{{ $autor->averageRating }}" data-size="xs" disabled="">
                     @if (Auth::check())
@@ -172,29 +172,14 @@
 
             <div class="card">
                 <h5 class="card-header">Veure Comentaris</h5>
-                <div class="card-body">
-                    @include('layouts.autorcomment_replies', ['comments' => $autor->comments, 'autor_id' => $autor->id])
-                </div>
+
             </div>
             @if (Auth::check())
             <div class="card">
 
 
                 <h5 class="card-header">Fes un comentari</h5>
-                <div class="card-body">
-                    <form action="{{route('comment.autor')}}" method="post">
-                        @csrf
-                        <div class="mb-3">
-                            <input type="hidden" name="autor_id" value="{{$autor->id}}">
-                            <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
-                            <textarea class="form-control" required name="comment_body" id="" rows="3"></textarea>
-                        </div>
-                        <div class="mb-3">
-                            <button type="submit" class="btn btn-outline-warning">
-                                <i class="bi bi-plus-square-fill"></i></button>
-                        </div>
-                    </form>
-                </div>
+
             </div>
             @endif
         </div>

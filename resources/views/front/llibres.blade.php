@@ -26,8 +26,7 @@ TSUNDOKU
                             <h5 class="">{{ $book->autor_nom }}</h5>
                             <p class="card-title ">{{ $book->editorial_nom }}</p>
                             <p class="card-title">{{ $book->genere->nom }}</p>
-                            <input id="input-1" name="input-1" class="rating rating-loading" data-min="0" data-max="5"
-                                data-step="0.1" value="{{ $book->averageRating }}" data-size="xs" disabled="">
+
                             <a href="{{ route('book', $book) }}">
                                 <i class="bi bi-eye-fill text-success" style="font-size: 1.5rem;"></i>
                             </a>
@@ -46,11 +45,6 @@ TSUNDOKU
 @endsection
 @section('js')
 <script>
-    $(document).ready(function(){
-     
-        
-        $('#input-1').rating();
-     
-    });
+
 </script>
 @endsection

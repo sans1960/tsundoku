@@ -11,17 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('denuncias', function (Blueprint $table) {
+        Schema::create('rating_books', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('comment_id')->constrained('comments');
-            $table->string('nickname_comentari');
-            $table->string('objecte_comentari');
-            $table->text('comentari');
-            $table->date('data_comentari');
-            $table->date('data');
-            $table->text('motiu');
-
+            $table->foreignId('book_id')->constrained('books');
+            $table->decimal('rate');
             $table->timestamps();
         });
     }
@@ -31,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('denuncias');
+        Schema::dropIfExists('rating_books');
     }
 };

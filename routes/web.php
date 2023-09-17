@@ -10,14 +10,16 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\Medicontroller;
 use App\Http\Controllers\Admin\ActeController;
-use App\Http\Controllers\Admin\DenunciaController;
+
 use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\CalendarController;
-use App\Http\Controllers\CommentController;
+
 use App\Http\Controllers\MessagesController;
 use App\Http\Controllers\ActivitatController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\RatingBookController;
+use App\Http\Controllers\ComentBookController;
 
 
 
@@ -45,30 +47,18 @@ Route::get('/actes/{acte}',[Frontcontroller::class,'oneacte'])->name('acte');
 
 
 
+Route::post('/ratingbook',[RatingBookController::class,'store'])->name('rating.book');
+Route::post('/comentbook',[ComentBookController::class,'store'])->name('coment.book');
 
 
 
-Route::post('/ratingbook',[Frontcontroller::class,'ratingbook'])->name('rating.book');
 Route::post('/ratingautor',[Frontcontroller::class,'ratingautor'])->name('rating.autor');
 Route::post('/ratingeditorial',[Frontcontroller::class,'ratingeditorial'])->name('rating.editorial');
 Route::post('/ratingbookshop',[Frontcontroller::class,'ratingbookshop'])->name('rating.bookshop');
 Route::post('/ratingpost',[Frontcontroller::class,'ratingpost'])->name('rating.post');
 Route::post('/ratingmedi',[Frontcontroller::class,'ratingmedi'])->name('rating.medi');
 Route::post('/ratingacte',[Frontcontroller::class,'ratingacte'])->name('rating.acte');
-Route::post('/commentbook', [CommentController::class,'commentbook'])->name('comment.book');
-Route::post('/replybook', [CommentController::class,'replybook'])->name('reply.book');
-Route::post('/commentautor', [CommentController::class,'commentautor'])->name('comment.autor');
-Route::post('/replyautor', [CommentController::class,'replyautor'])->name('reply.autor');
-Route::post('/commenteditorial', [CommentController::class,'commenteditorial'])->name('comment.editorial');
-Route::post('/replyeditorial', [CommentController::class,'replyeditorial'])->name('reply.editorial');
-Route::post('/commentbookshop', [CommentController::class,'commentbookshop'])->name('comment.bookshop');
-Route::post('/replybookshop', [CommentController::class,'replybookshop'])->name('reply.bookshop');
-Route::post('/commentpost', [CommentController::class,'commentpost'])->name('comment.post');
-Route::post('/replypost', [CommentController::class,'replypost'])->name('reply.post');
-Route::post('/commentmedi', [CommentController::class,'commentmedi'])->name('comment.medi');
-Route::post('/replymedi', [CommentController::class,'replymedi'])->name('reply.medi');
-Route::post('/commentacte', [CommentController::class,'commentacte'])->name('comment.acte');
-Route::post('/replyacte', [CommentController::class,'replyacte'])->name('reply.acte');
+
 
 
 Auth::routes();
@@ -83,8 +73,7 @@ Route::get('/admin/users/{user}', [AdminController::class, 'oneuser'])->name('ad
 Route::get('/admin/users/{user}/ban', [AdminController::class, 'ban'])->name('admin.users.ban');
 Route::get('/admin/users/{user}/unban', [AdminController::class, 'unban'])->name('admin.users.unban');
 Route::patch('/admin/users/{user}/updateban', [AdminController::class, 'updateban'])->name('admin.users.updateban');
-Route::get('/admin/comments', [AdminController::class, 'allcomments'])->name('admin.comments.index');
-Route::delete('/admin/comments{comment}', [AdminController::class, 'deletecomment'])->name('admin.comments.destroy');
+
 Route::resource('/admin/generes', GenereController::class)->names('admin.generes');
 Route::resource('/admin/autors', AutorController::class)->names('admin.autors');
 Route::resource('/admin/posts', PostController::class)->names('admin.posts');
@@ -93,7 +82,7 @@ Route::resource('/admin/bookshops', BookshopController::class)->names('admin.boo
 Route::resource('/admin/books', BookController::class)->names('admin.books');
 Route::resource('/admin/medis', Medicontroller::class)->names('admin.medis');
 Route::resource('/admin/actes', ActeController::class)->names('admin.actes');
-Route::resource('/admin/denuncia', DenunciaController::class)->names('admin.denuncia');
+
 });
 Route::group(['middleware' => 'auth', 'prefix' => 'messages', 'as' => 'messages'], function () {
     Route::get('/', [MessagesController::class, 'index']);

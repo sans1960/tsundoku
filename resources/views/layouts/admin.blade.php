@@ -31,9 +31,9 @@
                 @else
                 <a class="navbar-brand" href="{{ route('home') }}">
                     Panell d'usuari
-                </a> 
+                </a>
                 @endif
-          
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -79,7 +79,7 @@
                             <a class="nav-link" href="{{ route('admin.users.index') }}">Usuaris</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.comments.index') }}">Comentaris</a>
+                            <a class="nav-link" href="">Comentaris</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -101,7 +101,7 @@
                                 Notificacions
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{route('admin.denuncia.index')}}">Denuncies</a></li>
+                                <li><a class="dropdown-item" href="">Denuncies</a></li>
                                 <li><a class="dropdown-item" href=""></a></li>
                                 <li>
                                     <hr class="dropdown-divider">

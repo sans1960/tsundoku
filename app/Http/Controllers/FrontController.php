@@ -11,18 +11,26 @@ use App\Models\Bookshop;
 use App\Models\Post;
 use App\Models\Medi;
 use App\Models\Acte;
+use App\Models\RatingBook;
 use willvincent\Rateable\Rating;
 use Illuminate\Database\Eloquent\Builder;
+
 
 
 class FrontController extends Controller
 {
     public function index(){
-        
+        $toprated = RatingBook::selectRaw('book_id,AVG(rate) as avg')->groupBy('book_id')->get();
+        $books = Book::all();
        
-        $books = Book::latest()->take(5)->get();
+        foreach ($toprated as $item) {
+            if($item->avg >= 4.5){
+                $topratedbook[] = Book::find($item->book_id);
+
+            }
+        }
         $autors = Autor::latest()->take(8)->get();
-        return view('front.index',compact('books','autors'));
+        return view('front.index',compact('books','autors','topratedbook'));
        
     }
     public function autors(){
@@ -30,13 +38,14 @@ class FrontController extends Controller
         return view('front.autors',compact('autors'));
     }
     public function autor(Autor $autor){
-        $com = $autor->comments->count();
-        return view('front.autor',compact('autor','com'));
+    
+        return view('front.autor',compact('autor'));
     }
      public function book(Book $book){
-      
-        $com = $book->comments->count();
-        return view('front.llibre',compact('book','com'));
+        $com = $book->comentbook->count();
+        $rating = RatingBook::where('book_id',$book->id)->avg('rate');
+     
+        return view('front.llibre',compact('book','rating','com'));
      
     }
     public function books(){
@@ -49,8 +58,8 @@ class FrontController extends Controller
         return view('front.llibreries',compact('bookshops'));
     }
     public function bookshop(Bookshop $bookshop){
-        $com = $bookshop->comments->count();
-        return view('front.llibreria',compact('bookshop','com'));
+        
+        return view('front.llibreria',compact('bookshop'));
     }
 
     public function editorials(){
@@ -58,8 +67,8 @@ class FrontController extends Controller
         return view('front.editorials',compact('editorials'));
     }
      public function editorial(Editorial $editorial){
-        $com = $editorial->comments->count();
-        return view('front.editorial',compact('editorial','com'));
+        
+        return view('front.editorial',compact('editorial'));
     }
     public function generes(){
         $generes = Genere::all();
@@ -74,24 +83,24 @@ class FrontController extends Controller
         return view('front.posts',compact('posts'));
     }
     public function onepost(Post $post){
-         $com = $post->comments->count();
-        return view('front.post',compact('post','com'));
+         
+        return view('front.post',compact('post'));
     }
      public function allMedis(){
          $medis = Medi::all();
         return view('front.medis',compact('medis'));
     }
     public function onemedi(Medi $medi){
-         $com = $medi->comments->count();
-        return view('front.medi',compact('medi','com'));
+        
+        return view('front.medi',compact('medi'));
     }
     // public function allActes(){
     //      $actes = Acte::all();
     //     return view('front.actes',compact('actes'));
     // }
     public function oneacte(Acte $acte){
-          $com = $acte->comments->count();
-         return view('front.acte',compact('acte','com'));
+          
+         return view('front.acte',compact('acte'));
      }
 
 
@@ -104,15 +113,7 @@ class FrontController extends Controller
 
 
 
-   public function ratingbook(Request $request){
-    request()->validate(['rating' => 'required']);
-    $book = Book::find($request->id);
-    $rating = new Rating();
-    $rating->rating = $request->rating;
-    $rating->user_id = auth()->user()->id;
-    $book-> rateOnce($request->rating);
-    return redirect()->back();
-   }
+
    public function ratingautor(Request $request){
      request()->validate(['rating' => 'required']);
      $autor = Autor::find($request->id);
