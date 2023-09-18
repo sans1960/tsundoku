@@ -32,7 +32,7 @@
                     <p class="mb-2">{{$acte->usersRated()}} Valoracions</p>
                 </div>
                 <div class="col d-flex justify-content-center">
-                    <p class="mb-2">{{$com}} Comentaris</p>
+                    {{-- <p class="mb-2">{{$com}} Comentaris</p> --}}
                 </div>
             </div>
 

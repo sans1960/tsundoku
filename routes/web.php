@@ -20,6 +20,7 @@ use App\Http\Controllers\ActivitatController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\RatingBookController;
 use App\Http\Controllers\ComentBookController;
+use App\Http\Controllers\DenunciaComentBookController;
 
 
 
@@ -52,6 +53,7 @@ Route::post('/comentbook',[ComentBookController::class,'store'])->name('coment.b
 
 
 
+
 Route::post('/ratingautor',[Frontcontroller::class,'ratingautor'])->name('rating.autor');
 Route::post('/ratingeditorial',[Frontcontroller::class,'ratingeditorial'])->name('rating.editorial');
 Route::post('/ratingbookshop',[Frontcontroller::class,'ratingbookshop'])->name('rating.bookshop');
@@ -79,6 +81,7 @@ Route::resource('/admin/autors', AutorController::class)->names('admin.autors');
 Route::resource('/admin/posts', PostController::class)->names('admin.posts');
 Route::resource('/admin/editorials', EditorialController::class)->names('admin.editorials');
 Route::resource('/admin/bookshops', BookshopController::class)->names('admin.bookshops');
+Route::resource('admin/denunciacomentbook',DenunciaComentBookController::class)->names('denunciacoment.book');
 Route::resource('/admin/books', BookController::class)->names('admin.books');
 Route::resource('/admin/medis', Medicontroller::class)->names('admin.medis');
 Route::resource('/admin/actes', ActeController::class)->names('admin.actes');

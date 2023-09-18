@@ -24,4 +24,8 @@ class ComentBook extends Model
     public function replies(){
         return $this->hasMany(ComentBook::class,'parent_id');
     }
+    public function denunciacomentbook(){
+        return $this->hasMany(DenunciaComentBook::class);
+    }
 }
+

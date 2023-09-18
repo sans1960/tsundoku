@@ -87,7 +87,7 @@
                             <div class="row mt-3 mb-3">
                                 <div class="col-md-12">
                                     @if ($book->ratingbook->contains('user_id',Auth::user()->id))
-                                    <p>Ja has valorat aquest llibre</p>
+                                    <p class="text-success fw-bold">Ja has valorat aquest llibre</p>
                                     @else
                                     <h4>Valora</h4>
                                     <form action="{{route('rating.book')}}" method="post">
@@ -134,7 +134,14 @@
                     @include('front.partials.comentbookDisplay', ['comentbooks' =>
                     $book->comentbook,'book_id',$book->id])
                 </div>
+
                 @if (Auth::check())
+                @if (Session::has('notif.success'))
+                <div class="alert alert-info alert-dismissible fade show" role="alert">
+                    <strong>{{ Session::get('notif.success') }}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                @endif
                 <div class="card p-3">
 
 
