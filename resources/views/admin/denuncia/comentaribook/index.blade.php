@@ -39,7 +39,8 @@ Totes les denuncies
                         <td>{{$denuncia->user->nickname}}</td>
                         <td>{{$denuncia->comentbook->user->nickname}}</td>
                         <td>{{\Carbon\Carbon::parse($denuncia->created_at)->format('d/m/Y-H:m')}}</td>
-                        <td><a href="" class="btn btn-success btn-sm">
+                        <td><a href="{{route('denunciacoment.book.show',$denuncia->id)}}"
+                                class="btn btn-success btn-sm">
                                 <i class="bi bi-eye"></i>
                             </a></td>
                         <td>

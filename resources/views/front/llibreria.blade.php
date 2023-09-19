@@ -35,10 +35,7 @@
                             <p>{{ $bookshop->ciutat }}</p>
                         </div>
                     </div>
-                    <p class="mb-2">{{$bookshop->usersRated()}} Valoracions</p>
 
-                    <input id="input-1" name="input-1" class="rating rating-loading" data-min="0" data-max="5"
-                        data-step="0.1" value="{{ $bookshop->averageRating }}" data-size="xs" disabled="">
                     <div>
                         {!! $bookshop->qui_som !!}
                     </div>
@@ -81,28 +78,7 @@
             <div class="row">
 
                 <div class="col-md-12">
-                    <form action="{{route('rating.bookshop')}}" method="post">
-                        @csrf
-                        <input type="hidden" name="id" required="" value="{{ $bookshop->id }}">
-                        <label for="input-5" class="control-label">Valora</label>
-                        <div class="row">
-                            <div class="col">
 
-                                <input id="input-5" name="rating" class="rating-loading" data-show-clear="false"
-                                    data-show-caption="true">
-                            </div>
-                            <div class="col mt-2">
-                                <button type="submit" class="btn btn-outline-success">
-                                    <i class="bi bi-check-square-fill"></i>
-                                </button>&nbsp;
-                            </div>
-                        </div>
-
-
-
-                        <hr>
-
-                    </form>
                 </div>
             </div>
             @endif
@@ -132,15 +108,7 @@
 @endsection
 @section('js')
 <script src="{{ asset('js/leaflet.js') }}"></script>
-<script>
-    $(document).ready(function(){
-     
-        $('#input-5').rating({clearCaption: 'No stars yet'});
-        $('#input-1')-rating();
-   
-     
-    });
-</script>
+
 <script>
     var map = L.map('map').setView([{{ $bookshop->latitud }}, {{ $bookshop->longitud }}], {{ $bookshop->zoom }});
 

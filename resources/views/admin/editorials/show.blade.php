@@ -7,7 +7,7 @@
     <div class="row mt-5">
         <div class="col-md-8 mt-5 mx-auto">
             <div class="card p-1">
-                @if ($editorial->logo  != null)
+                @if ($editorial->logo != null)
                 <img src="{{ $editorial->logo }}" alt="" width="100">
                 @else
                 <img src="{{Storage::url($editorial->image)}}" alt="" class="d-block mx-auto" width="80">
@@ -38,9 +38,7 @@
                     <p>{{$book->titol}} <span>{{$book->autor_nom}}</span></p>
                     @endforeach
                 </div>
-                @foreach ($editorial->ratings as $rating)
-                <p>{{$rating->user->nickname}} {{$rating->rating}}</p>
-                @endforeach
+
             </div>
             <p>{{$editorial->user->nickname}}</p>
 

@@ -27,36 +27,12 @@
                     <div>
                         {!! $editorial->descripcio !!}
                     </div>
-                    <p class="mb-2">{{$editorial->usersRated()}} Valoracions</p>
 
-                    <input id="input-2" name="input-1" class="rating rating-loading" data-min="0" data-max="5"
-                        data-step="0.1" value="{{ $editorial->averageRating }}" data-size="xs" disabled="">
                     @if (Auth::check())
                     <div class="row">
 
                         <div class="col-md-12">
-                            <form action="{{route('rating.editorial')}}" method="post">
-                                @csrf
-                                <input type="hidden" name="id" required="" value="{{ $editorial->id }}">
-                                <label for="input-5" class="control-label">Valora</label>
-                                <div class="row">
-                                    <div class="col">
 
-                                        <input id="input-5" name="rating" class="rating-loading" data-show-clear="false"
-                                            data-show-caption="true">
-                                    </div>
-                                    <div class="col mt-2">
-                                        <button type="submit" class="btn btn-outline-success">
-                                            <i class="bi bi-check-square-fill"></i>
-                                        </button>&nbsp;
-                                    </div>
-                                </div>
-
-
-
-                                <hr>
-
-                            </form>
                         </div>
                     </div>
 
@@ -84,8 +60,7 @@
                             <p class="card-text">{{ $book->genere->nom }}</p>
                             <p class="card-text">{{ $book->editorial_nom }}
                             </p>
-                            <input id="input-1" name="input-1" class="rating rating-loading" data-min="0" data-max="5"
-                                data-step="0.1" value="{{ $book->averageRating }}" data-size="xs" disabled="">
+
                             <a href="{{ route('book', $book) }}">
                                 <i class="bi bi-eye-fill text-success" style="font-size: 1.5rem;"></i>
                             </a>
@@ -119,14 +94,6 @@
 @endsection
 @section('js')
 
-<script>
-    $(document).ready(function(){
-     
-        $('#input-5').rating({clearCaption: 'No stars yet'});
-        $('#input-1').rating();
-        $('#input-2').rating();
-     
-    });
-</script>
+
 
 @endsection

@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use willvincent\Rateable\Rateable;
+
 
 
 class Autor extends Model
 {
     use HasFactory;
-    use Rateable;
+    
 
     protected $fillable = ['autor_nom','slug','biopic','url_foto','active','user_id','image','web','facebook','instagram','twitter','auto'];
 

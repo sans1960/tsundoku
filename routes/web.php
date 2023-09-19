@@ -54,12 +54,7 @@ Route::post('/comentbook',[ComentBookController::class,'store'])->name('coment.b
 
 
 
-Route::post('/ratingautor',[Frontcontroller::class,'ratingautor'])->name('rating.autor');
-Route::post('/ratingeditorial',[Frontcontroller::class,'ratingeditorial'])->name('rating.editorial');
-Route::post('/ratingbookshop',[Frontcontroller::class,'ratingbookshop'])->name('rating.bookshop');
-Route::post('/ratingpost',[Frontcontroller::class,'ratingpost'])->name('rating.post');
-Route::post('/ratingmedi',[Frontcontroller::class,'ratingmedi'])->name('rating.medi');
-Route::post('/ratingacte',[Frontcontroller::class,'ratingacte'])->name('rating.acte');
+
 
 
 

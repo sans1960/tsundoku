@@ -25,8 +25,7 @@ Autors
                             </div>
                         </div>
                     </div>
-                    <input id="input-2" name="input-1" class="rating rating-loading" data-min="0" data-max="5"
-                        data-step="0.1" value="{{ $autor->averageRating }}" data-size="xs" disabled="">
+
                 </div>
             </a>
         </div>
@@ -35,12 +34,5 @@ Autors
 </div>
 @endsection
 @section('js')
-<script>
-    $(document).ready(function(){
-     
-     
-        $('#input-2').rating();
-     
-    });
-</script>
+
 @endsection

@@ -22,4 +22,8 @@ class DenunciaComentBookController extends Controller
         session()->flash('notif.success', 'Denuncia creada amb éxit!');
         return back();
     }
+    public function show( $id){
+        $denuncia = DenunciaComentariBook::find($id);
+        return view('admin.denuncia.comentaribook.show',compact('denuncia'));
+    }
 }

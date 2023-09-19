@@ -7,12 +7,14 @@
     <div class="d-flex justify-content-start align-items-start p-2 flex-column">
         <p>{{ $comentbook->body }}</p>
         <!-- Button trigger modal -->
+        @if (Auth::check())
         <button type="button" class="btn btn-outline-danger btn-sm mt-2" data-bs-toggle="modal"
             data-bs-target="#modal.{{$comentbook->id}}">
             Denuncia
         </button>
 
         <!-- Modal -->
+
         <div class="modal fade" id="modal.{{$comentbook->id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog">
@@ -49,6 +51,7 @@
                 </div>
             </div>
         </div>
+        @endif
     </div>
     <a href="" id="reply"></a>
     @if (Auth::check())

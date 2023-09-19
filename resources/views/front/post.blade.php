@@ -24,11 +24,10 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <input id="input-1" name="input-1" class="rating rating-loading" data-min="0" data-max="5"
-                        data-step="0.1" value="{{ $post->averageRating }}" data-size="xs" disabled="">
+
                 </div>
                 <div class="col d-flex justify-content-center">
-                    <p class="mb-2">{{$post->usersRated()}} Valoracions</p>
+
                 </div>
 
             </div>
@@ -45,28 +44,7 @@
             <div class="row">
 
                 <div class="col-md-12">
-                    <form action="{{route('rating.post')}}" method="post">
-                        @csrf
-                        <input type="hidden" name="id" required="" value="{{ $post->id }}">
-                        <label for="input-5" class="control-label">Valora</label>
-                        <div class="row">
-                            <div class="col">
 
-                                <input id="input-5" name="rating" class="rating-loading" data-show-clear="false"
-                                    data-show-caption="true">
-                            </div>
-                            <div class="col mt-2">
-                                <button type="submit" class="btn btn-outline-success">
-                                    <i class="bi bi-check-square-fill"></i>
-                                </button>&nbsp;
-                            </div>
-                        </div>
-
-
-
-                        <hr>
-
-                    </form>
                 </div>
             </div>
             @endif
@@ -95,13 +73,5 @@
     @endsection
     @section('js')
 
-    <script>
-        $(document).ready(function(){
-     
-        $('#input-5').rating({clearCaption: 'No stars yet'});
-        $('#input-1').rating();
-     
-    });
-    </script>
 
     @endsection
