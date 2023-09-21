@@ -48,8 +48,8 @@ Route::get('/actes/{acte}',[Frontcontroller::class,'oneacte'])->name('acte');
 
 
 
-Route::post('/ratingbook',[RatingBookController::class,'store'])->name('rating.book');
-Route::post('/comentbook',[ComentBookController::class,'store'])->name('coment.book');
+
+
 
 
 
@@ -76,7 +76,9 @@ Route::resource('/admin/autors', AutorController::class)->names('admin.autors');
 Route::resource('/admin/posts', PostController::class)->names('admin.posts');
 Route::resource('/admin/editorials', EditorialController::class)->names('admin.editorials');
 Route::resource('/admin/bookshops', BookshopController::class)->names('admin.bookshops');
-Route::resource('admin/denunciacomentbook',DenunciaComentBookController::class)->names('denunciacoment.book');
+Route::resource('/admin/ratingbook',RatingBookController::class)->names('rating.book');
+Route::resource('/admin/comentbook',ComentBookController::class)->names('coment.book');
+Route::resource('/admin/denunciacomentbook',DenunciaComentBookController::class)->names('denunciacoment.book');
 Route::resource('/admin/books', BookController::class)->names('admin.books');
 Route::resource('/admin/medis', Medicontroller::class)->names('admin.medis');
 Route::resource('/admin/actes', ActeController::class)->names('admin.actes');

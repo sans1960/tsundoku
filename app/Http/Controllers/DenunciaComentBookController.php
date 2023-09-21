@@ -26,4 +26,10 @@ class DenunciaComentBookController extends Controller
         $denuncia = DenunciaComentariBook::find($id);
         return view('admin.denuncia.comentaribook.show',compact('denuncia'));
     }
+    public function destroy( $id){
+        $denuncia = DenunciaComentariBook::find($id);
+        $denuncia->delete();
+        session()->flash('notif.success', 'Denuncia eliminada amb éxit!');
+        return redirect()->route('denunciacoment.book.index');
+    }
 }

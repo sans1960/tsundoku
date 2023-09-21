@@ -7,6 +7,16 @@ use App\Models\RatingBook;
 
 class RatingBookController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin')->except('store');
+ 
+       
+    }
+    public function index(){
+        $ratingbooks = RatingBook::paginate(10);
+        return view('admin.valoracions.book.index',compact('ratingbooks'));
+    }
     public function store(Request $request){
          request()->validate(['rate' => 'required']);
          $ratingbook = new RatingBook();

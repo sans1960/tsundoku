@@ -90,7 +90,7 @@
                                     <p class="text-success fw-bold">Ja has valorat aquest llibre</p>
                                     @else
                                     <h4>Valora</h4>
-                                    <form action="{{route('rating.book')}}" method="post">
+                                    <form action="{{route('rating.book.store')}}" method="post">
                                         @csrf
                                         <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                                         <input type="hidden" name="book_id" value="{{$book->id}}">
@@ -146,7 +146,7 @@
 
 
                     <h5 class="card-header">Fes un comentari</h5>
-                    <form method="post" action="{{ route('coment.book'   ) }}">
+                    <form method="post" action="{{ route('coment.book.store'   ) }}">
                         @csrf
                         <div class="form-group mb-3 p-2">
                             <textarea class="form-control" name="body" required></textarea>

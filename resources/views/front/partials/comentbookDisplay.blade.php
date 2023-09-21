@@ -55,7 +55,7 @@
     </div>
     <a href="" id="reply"></a>
     @if (Auth::check())
-    <form method="post" action="{{ route('coment.book') }}">
+    <form method="post" action="{{ route('coment.book.store') }}">
         @csrf
         <div class="form-group mb-3 p-2">
             <input type="text" name="body" class="form-control" required />

@@ -7,6 +7,16 @@ use App\Models\ComentBook;
 
 class ComentBookController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin')->except('store');
+ 
+       
+    }
+    public function index(){
+        $comentbooks = ComentBook::paginate(10);
+        return view('admin.comentaris.book.index',compact('comentbooks'));
+    }
     
     public function store(Request $request)
     {
@@ -20,5 +30,11 @@ class ComentBookController extends Controller
         ComentBook::create($input);
    
         return back();
+    }
+      public function destroy( $id){
+        $comentbook = ComentBook::find($id);
+        $comentbook->delete();
+        session()->flash('notif.success', 'Comentari eliminat amb éxit!');
+        return redirect()->route('coment.book.index');
     }
 }

@@ -9,11 +9,54 @@
         <div class="col-md-3">
             <div class="card mb-2">
                 <div class="card-header">
-                    Llibres
+                    Llibres pujats
                 </div>
                 <div class="card-body">
                     @foreach ($user->book as $item)
                     <p>{{$item->titol}}</p>
+
+
+                    @endforeach
+                </div>
+
+            </div>
+
+
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card mb-2">
+                <div class="card-header">
+                    Llibres comentats
+                </div>
+                <div class="card-body">
+                    @foreach ($user->comentbook as $item)
+
+                    <div>
+                        <p>{{$item->book->titol}}</p>
+                        <p>{{$item->body}}</p>
+                    </div>
+
+                    @endforeach
+                </div>
+
+            </div>
+
+
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card mb-2">
+                <div class="card-header">
+                    Llibres valorats
+                </div>
+                <div class="card-body">
+                    @foreach ($user->ratingbook as $item)
+                    <p>{{$item->book->titol}} {{$item->rate}}</p>
 
 
                     @endforeach
@@ -30,7 +73,7 @@
         <div class="col-md-3">
             <div class="card mb-2">
                 <div class="card-header">
-                    Llibres
+                    Llibres pujats
                 </div>
                 <div class="card-body">
                     @foreach ($user->book as $item)
@@ -86,6 +129,48 @@
                     @endforeach
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card mb-2">
+                <div class="card-header">
+                    Llibres valorats
+                </div>
+                <div class="card-body">
+                    @foreach ($user->ratingbook as $item)
+                    <p>{{$item->book->titol}} {{$item->rate}}</p>
+
+
+                    @endforeach
+                </div>
+
+            </div>
+
+
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card mb-2">
+                <div class="card-header">
+                    Llibres comentats
+                </div>
+                <div class="card-body">
+                    @foreach ($user->comentbook as $item)
+                    <div>
+                        <p>{{$item->comentbook->book->titol}}</p>
+                        <p>{{$item->comentbook->body}}</p>
+                    </div>
+
+                    @endforeach
+                </div>
+
+            </div>
+
+
+
         </div>
     </div>
     @elseif($user->condicio == 'editorial')

@@ -78,9 +78,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('admin.users.index') }}">Usuaris</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="">Comentaris</a>
-                        </li>
+
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
@@ -93,6 +91,34 @@
                                     <hr class="dropdown-divider">
                                 </li>
                                 <li><a class="dropdown-item" href="{{route('admin.actes.index')}}">Agenda</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Valoracions
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{route('rating.book.index')}}">Llibres</a></li>
+                                <li><a class="dropdown-item" href=""></a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href=""></a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Comentaris
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{route('coment.book.index')}}">Llibres</a></li>
+                                <li><a class="dropdown-item" href=""></a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href=""></a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
