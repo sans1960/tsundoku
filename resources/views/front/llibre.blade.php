@@ -136,12 +136,7 @@
                 </div>
 
                 @if (Auth::check())
-                @if (Session::has('notif.success'))
-                <div class="alert alert-info alert-dismissible fade show" role="alert">
-                    <strong>{{ Session::get('notif.success') }}</strong>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-                @endif
+
                 <div class="card p-3">
 
 

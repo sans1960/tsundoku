@@ -61,6 +61,9 @@ class User extends Authenticatable implements BannableInterface
     public function ratingbook(){
         return $this->hasMany(RatingBook::class);
     }
+    public function ratingautor(){
+        return $this->hasMany(RatingAutor::class);
+    }
     public function autor(){
         return $this->hasMany(Autor::class);
     }

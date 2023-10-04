@@ -12,7 +12,8 @@ use App\Models\Post;
 use App\Models\Medi;
 use App\Models\Acte;
 use App\Models\RatingBook;
-use willvincent\Rateable\Rating;
+use App\Models\RatingAutor;
+
 use Illuminate\Database\Eloquent\Builder;
 
 
@@ -38,8 +39,9 @@ class FrontController extends Controller
         return view('front.autors',compact('autors'));
     }
     public function autor(Autor $autor){
+        $rating = RatingAutor::where('autor_id',$autor->id)->avg('rate');
     
-        return view('front.autor',compact('autor'));
+        return view('front.autor',compact('autor','rating'));
     }
      public function book(Book $book){
         $com = $book->comentbook->count();

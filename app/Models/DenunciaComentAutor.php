@@ -6,16 +6,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class DenunciaComentariBook extends Model
+class DenunciaComentAutor extends Model
 {
     use HasFactory;
-    protected $fillable = ['user_id', 'coment_book_id', 'motiu'];
+    protected $fillable = ['user_id', 'coment_autor_id', 'motiu'];
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
-    public function comentbook(): BelongsTo
+    public function comentautor(): BelongsTo
     {
-        return $this->belongsTo(ComentBook::class, 'coment_book_id');
+        return $this->belongsTo(ComentAutor::class, 'coment_autor_id');
     }
 }

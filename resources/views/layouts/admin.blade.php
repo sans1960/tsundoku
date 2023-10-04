@@ -100,7 +100,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="{{route('rating.book.index')}}">Llibres</a></li>
-                                <li><a class="dropdown-item" href=""></a></li>
+                                <li><a class="dropdown-item" href="{{route('rating.autor.index')}}">Autors</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
@@ -114,7 +114,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="{{route('coment.book.index')}}">Llibres</a></li>
-                                <li><a class="dropdown-item" href=""></a></li>
+                                <li><a class="dropdown-item" href="{{route('coment.autor.index')}}">Autors</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
@@ -129,7 +129,8 @@
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="{{route('denunciacoment.book.index')}}">Comentaris
                                         Llibres</a></li>
-                                <li><a class="dropdown-item" href=""></a></li>
+                                <li><a class="dropdown-item" href="{{route('denunciacoment.autor.index')}}">Comentaris
+                                        Autors</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
