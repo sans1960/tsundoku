@@ -11,6 +11,7 @@ use App\Models\Bookshop;
 use App\Models\Post;
 use App\Models\Medi;
 use App\Models\Acte;
+use App\Models\ComentBook;
 use App\Models\RatingBook;
 use App\Models\RatingAutor;
 
@@ -30,13 +31,16 @@ class FrontController extends Controller
                 $topratedbook[] = Book::find($item->book_id);
             }
         }
+        $topcoment = Book::withCount('comentbook')
+            ->orderBy('comentbook_count', 'desc')
+            ->get();;
         $autors = Autor::latest()->take(8)->get();
         $novetats = Book::where('novetat', 1)->get();
         $estrenes = Book::where('primera', 1)->get();
         $autos = Book::where('auto', 1)->get();
-        $medis = Medi::all();
-        $posts = Post::all();
-        return view('front.index', compact('books', 'autors', 'topratedbook', 'novetats', 'estrenes', 'autos', 'medis', 'posts'));
+        $medi = Medi::orderBy('created_at', 'desc')->first();
+        $post = Post::orderBy('created_at', 'desc')->first();
+        return view('front.index', compact('books', 'autors', 'topratedbook', 'novetats', 'estrenes', 'autos', 'medi', 'post', 'topcoment'));
     }
     public function autors()
     {

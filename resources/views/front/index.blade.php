@@ -36,6 +36,7 @@ TSUNDOKU
 @endsection
 @section('content')
 
+
 <div class="container ">
     <div class="row">
         <div class="alert alert-success alert-dismissible fade show vertical-shake" role="alert">
@@ -80,6 +81,30 @@ TSUNDOKU
         </div>
         <div class="col-md-6">
             <h4 class="mb-3 text-center">Mes comentats :</h4>
+            <div class="owl-carousel owl-theme">
+                @foreach ($topcoment as $book)
+                @if ($book->comentbook_count > 0)
+                <div class="d-flex flex-column">
+                    <a class="nav-link" href="{{route('book',$book)}}">
+                        <div class="card"
+                            style="height: 300px;background-image:url(@if ($book->imatge != null){{ $book->imatge }} @else {{Storage::url($book->foto)}} @endif);background-size:cover;background-position:center;"
+                            data-bs-toggle="tooltip" data-bs-title="{{$book->titol}}">
+
+
+                        </div>
+                    </a>
+                    <div class="d-flex flex-column justify-content-center align-items-center">
+
+                        <p>{{$book->comentbook_count}} Comentaris</p>
+
+
+                    </div>
+
+                </div>
+                @endif
+
+                @endforeach
+            </div>
         </div>
     </div>
     <div class="row mb-3">
@@ -165,42 +190,45 @@ TSUNDOKU
         </div>
 
     </div>
-    <div class="row" style="height: 400px;">
+    <div class="row">
 
         <div class="col-md-6">
             <h4 class="mb-3 text-center">Tsundoku TV</h4>
-            <div class="owl-carousel owl-theme">
-                @foreach ($medis as $medi)
+            <div class="owl-carousel2 owl-theme">
+
                 <a href="{{route('medi',$medi)}}" class="nav-link" data-bs-toggle="tooltip"
                     data-bs-title="{{$medi->titol}}">
-                    <div class="card">
-                        <img src="{{Storage::url($medi->image)}}" class="card-img-top" alt="...">
+                    <div class="card"
+                        style="height: 300px;background-image:url( {{Storage::url($medi->image)}});background-size:cover;background-position:center;">
+
 
 
                     </div>
 
                 </a>
 
-                @endforeach
+
             </div>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-6 mb-3">
             <h4 class="mb-3 text-center">Noticies</h4>
-            <div class="owl-carousel owl-theme">
-                @foreach ($posts as $post)
-                <a href="{{route('post',$post)}}" class="nav-link" data-bs-toggle="tooltip"
-                    data-bs-title="{{$post->titol}}">
-                    <div class="card">
-                        <img src="{{Storage::url($post->image)}}" class="card-img-top" alt="...">
 
 
-                    </div>
+            <a href="{{route('post',$post)}}" class="nav-link" data-bs-toggle="tooltip"
+                data-bs-title="{{$post->titol}}">
+                <div class="card"
+                    style="height: 300px;background-image:url( {{Storage::url($post->image)}});background-size:cover;background-position:center;">
+                    >
 
-                </a>
 
-                @endforeach
-            </div>
+
+                </div>
+
+            </a>
+
+
+
         </div>
 
     </div>
@@ -243,6 +271,7 @@ TSUNDOKU
                           }
                         }
                       })
+           
                     })
 </script>
 <script>
