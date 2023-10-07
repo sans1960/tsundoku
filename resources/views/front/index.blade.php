@@ -5,59 +5,86 @@ TSUNDOKU
 @section('css')
 <link rel="stylesheet" href="{{asset('css/owl.carousel.min.css')}}">
 <link rel="stylesheet" href="{{asset('css/owl.theme.default.min.css')}}">
+<style>
+    .vertical-shake {
+        animation: vertical-shaking 0.35s infinite;
+    }
+
+    @keyframes vertical-shaking {
+        0% {
+            transform: translateY(0)
+        }
+
+        25% {
+            transform: translateY(5px)
+        }
+
+        50% {
+            transform: translateY(-5px)
+        }
+
+        75% {
+            transform: translateY(5px)
+        }
+
+        100% {
+            transform: translateY(0)
+        }
+    }
+</style>
 
 @endsection
 @section('content')
-<div class="alert alert-warning alert-dismissible fade show" role="alert">
-    <strong>Holy guacamole!</strong> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat dicta nobis at
-    dolor maxime error dignissimos magni sunt optio expedita, obcaecati quaerat praesentium qui itaque incidunt.
-    Voluptatem, obcaecati at natus dolores ullam labore quas laudantium totam earum, voluptas sed rerum quisquam fuga
-    nemo ut alias in molestiae libero saepe aliquam quae culpa enim quo? Eos non autem sequi quisquam obcaecati
-    temporibus eum voluptatem cupiditate, commodi dolor tempora quibusdam dicta dolorem, provident quaerat saepe aliquam
-    officia consequuntur molestiae voluptates. Sunt alias sequi autem ab ipsam fugit non quae sapiente explicabo! Nulla
-    ut recusandae at, aspernatur, delectus laudantium vero voluptates consequatur in dicta quam minus. Natus ex,
-    repellat veritatis iure saepe sapiente cumque nulla dolores libero quos alias magni harum itaque sequi ratione ad
-    quod corrupti autem enim quo. Fuga aliquam blanditiis, qui hic consequatur soluta quis officiis facilis modi et
-    accusantium dolorum cumque neque architecto vitae! Aspernatur fugiat quis quia recusandae a voluptatem quam ducimus,
-    quas commodi at repudiandae soluta architecto similique est cum aut. Eveniet sed temporibus ut, eum molestiae
-    doloribus sequi voluptas unde libero veritatis cum nam doloremque id ducimus tempore commodi exercitationem,
-    corrupti porro quia reprehenderit! Debitis architecto sed earum hic perspiciatis. Ad impedit esse consequuntur
-    molestiae at!
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
-<div class="container ">
 
+<div class="container ">
     <div class="row">
-        <div class="col-md-4">
-            <h4 class="mb-3">Mes valorats :</h4>
+        <div class="alert alert-success alert-dismissible fade show vertical-shake" role="alert">
+            <h4 class="alert-heading">Benvingut/da a Tsundoku.cat</h4>
+            <p>El punt de trobada dels acaparadors de llibres compulsius! Tria, remena i xafardeja sense por, aquí en
+                tenim per donar i
+                per vendre!</p>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-6 ">
+            <h4 class="mb-3 text-center">Mes valorats :</h4>
             <div class="owl-carousel owl-theme">
                 @foreach ($topratedbook as $book)
+                <div class="d-flex flex-column">
+                    <a class="nav-link" href="{{route('book',$book)}}">
+                        <div class="card"
+                            style="height: 300px;background-image:url(@if ($book->imatge != null){{ $book->imatge }} @else {{Storage::url($book->foto)}} @endif);background-size:cover;background-position:center;"
+                            data-bs-toggle="tooltip" data-bs-title="{{$book->titol}}">
 
-                <div class="card d-flex flex-column justify-content-end align-items-center"
-                    style="height: 300px;background-image:url(@if ($book->imatge != null){{ $book->imatge }} @else {{Storage::url($book->foto)}} @endif);background-size:cover;background-position:center;"
-                    data-bs-toggle="tooltip" data-bs-title="{{$book->titol}}">
-                    <a class="" data-bs-toggle="popover"
-                        data-bs-title="Rating:{{number_format(\App\Models\RatingBook::where('book_id',$book->id)->avg('rate'),2)}}"
-                        data-bs-content="{{$book->ratingbook->count()}} Valoracions"><i class="bi bi-eye-fill"></i>
 
+                        </div>
                     </a>
-                    <a href="{{route('book',$book)}}">
-                        <i class="bi bi-link"></i></a>
+                    <div class="d-flex flex-column justify-content-center align-items-center">
+
+                        <input id="input-1" name="input-1" class="rating " data-min="0" data-max="5" data-step="0.1"
+                            value="{{number_format(\App\Models\RatingBook::where('book_id',$book->id)->avg('rate'),2)}}"
+                            data-size="xs" disabled="">
+                        <p>{{$book->ratingbook->count()}} Valoracions</p>
+
+
+                    </div>
 
                 </div>
-
-
 
                 @endforeach
 
             </div>
         </div>
-        <div class="col-md-4">
-            <h4 class="mb-3">Mes comentats :</h4>
+        <div class="col-md-6">
+            <h4 class="mb-3 text-center">Mes comentats :</h4>
         </div>
-
-        <div class="col-md-4">
-            <h4 class="mb-3">Ultims llibres pujats :</h4>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <h4 class="mb-3 text-center">Ultims llibres pujats :</h4>
             <div class="owl-carousel owl-theme">
                 @foreach ($books as $book)
                 <a href="{{route('book',$book)}}" class="nav-link" data-bs-toggle="tooltip"
@@ -73,36 +100,121 @@ TSUNDOKU
 
             </div>
         </div>
-
-    </div>
-    <div class="row">
-        <h4 class="mb-3">Ultims autors :</h4>
-        <div class="col-md-4">
+        <div class="col-md-6">
+            <h4 class="mb-3 text-center">Acabats de sortir d'impremta</h4>
             <div class="owl-carousel owl-theme">
-                @foreach ($autors as $autor)
-                <a href="{{route('autor',$autor)}}" class="nav-link" data-bs-toggle="tooltip"
-                    data-bs-title="{{$autor->autor_nom}}">
+                @foreach ($novetats as $book)
+                <a href="{{route('book',$book)}}" class="nav-link" data-bs-toggle="tooltip"
+                    data-bs-title="{{$book->titol}}">
                     <div class="card"
-                        style="height: 150px;background-image:url(@if ($autor->url_foto != null){{ $autor->url_foto }} @else {{Storage::url($autor->image)}} @endif);background-size:cover;background-position:center;">
-
+                        style="height: 300px;background-image:url(@if ($book->imatge != null){{ $book->imatge }} @else {{Storage::url($book->foto)}} @endif);background-size:cover;background-position:center;">
 
 
                     </div>
-                </a>
-                @endforeach
 
+                </a>
+
+                @endforeach
             </div>
         </div>
 
     </div>
     <div class="row">
-        @foreach ($topratedbook as $book)
-        {{$book->titol}}
+        <div class="col-md-12 bg-success d-flex flex-column justify-content-center align-items-center text-white p-3 mb-3 rounded"
+            style="height: 300px;">
+            <h1>Banner</h1>
 
-        @endforeach
+        </div>
+    </div>
+    <div class="row" style="height: 400px;">
+
+        <div class="col-md-6">
+            <h4 class="mb-3 text-center">S'estrenen</h4>
+            <div class="owl-carousel owl-theme">
+                @foreach ($estrenes as $book)
+                <a href="{{route('book',$book)}}" class="nav-link" data-bs-toggle="tooltip"
+                    data-bs-title="{{$book->titol}}">
+                    <div class="card"
+                        style="height: 300px;background-image:url(@if ($book->imatge != null){{ $book->imatge }} @else {{Storage::url($book->foto)}} @endif);background-size:cover;background-position:center;">
 
 
+                    </div>
 
+                </a>
+
+                @endforeach
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <h4 class="mb-3 text-center">Autopublicats</h4>
+            <div class="owl-carousel owl-theme">
+                @foreach ($autos as $book)
+                <a href="{{route('book',$book)}}" class="nav-link" data-bs-toggle="tooltip"
+                    data-bs-title="{{$book->titol}}">
+                    <div class="card"
+                        style="height: 300px;background-image:url(@if ($book->imatge != null){{ $book->imatge }} @else {{Storage::url($book->foto)}} @endif);background-size:cover;background-position:center;">
+
+
+                    </div>
+
+                </a>
+
+                @endforeach
+            </div>
+        </div>
+
+    </div>
+    <div class="row" style="height: 400px;">
+
+        <div class="col-md-6">
+            <h4 class="mb-3 text-center">Tsundoku TV</h4>
+            <div class="owl-carousel owl-theme">
+                @foreach ($medis as $medi)
+                <a href="{{route('medi',$medi)}}" class="nav-link" data-bs-toggle="tooltip"
+                    data-bs-title="{{$medi->titol}}">
+                    <div class="card">
+                        <img src="{{Storage::url($medi->image)}}" class="card-img-top" alt="...">
+
+
+                    </div>
+
+                </a>
+
+                @endforeach
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <h4 class="mb-3 text-center">Noticies</h4>
+            <div class="owl-carousel owl-theme">
+                @foreach ($posts as $post)
+                <a href="{{route('post',$post)}}" class="nav-link" data-bs-toggle="tooltip"
+                    data-bs-title="{{$post->titol}}">
+                    <div class="card">
+                        <img src="{{Storage::url($post->image)}}" class="card-img-top" alt="...">
+
+
+                    </div>
+
+                </a>
+
+                @endforeach
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-12 bg-success d-flex flex-column justify-content-center align-items-center text-white p-3 mb-3 rounded"
+            style="height: 300px;">
+            <h1>Banner</h1>
+
+        </div>
+    </div>
+    <div class="row" style="height: 400px;">
+        <div class="col-md-6 mx-auto">
+            <h4 class="mb-3 text-center">Agenda</h4>
+        </div>
     </div>
 </div>
 @endsection
@@ -124,7 +236,7 @@ TSUNDOKU
                             nav: false
                           },
                           1000: {
-                            items: 2,
+                            items: 3,
                             nav: true,
                             loop: false,
                             margin: 20
@@ -139,8 +251,13 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
   return new bootstrap.Tooltip(tooltipTriggerEl)
 })
 </script>
+
 <script>
-    const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
-    const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+    $(document).ready(function(){
+     
+     
+        $('#input-1').rating({displayOnly: true});
+     
+    });
 </script>
 @endsection

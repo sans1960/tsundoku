@@ -37,6 +37,7 @@
                     <h5 class="card-text">{{Auth()->user()->nickname}}</h5>
                     <h5 class="card-text">{{\Carbon\Carbon::parse(Auth()->user()->created_at)->format('d/m/Y');}}</h5>
                     <p>{{Auth()->user()->novetats}} rebre novetats</p>
+                    <p>{{Auth()->user()->biopic}}</p>
 
                 </div>
             </div>
@@ -53,6 +54,16 @@
                     Editar perfil
 
                 </a>
+                @if (\App\Models\Autor::where('autor_nom',Auth::user()->name)->exists())
+                <p class="mt-5 text-center">Ja ets a la base de dades dels Autors</p>
+                @else
+                <div class="alert alert-success alert-dismissible fade show mt-5" role="alert">
+
+                    <p>Vols formar part de la base de dades d'Autors ?</p>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <a href="{{route('admin.autors.create')}}" class="btn btn-outline-success">Afegir Autor</a>
+                </div>
+                @endif
             </div>
         </div>
 
@@ -80,9 +91,9 @@
             </div>
 
 
-            <div class="card p-2">
+            {{-- <div class="card p-2">
                 <a href="{{route('admin.autors.create')}}" class="btn btn-outline-success">Afegir Autor</a>
-            </div>
+            </div> --}}
 
 
             <div class="card p-2">

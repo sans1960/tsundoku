@@ -33,7 +33,8 @@ class User extends Authenticatable implements BannableInterface
         'type',
         'banned_at',
         'novetats',
-        
+        'biopic',
+
     ];
 
     /**
@@ -55,41 +56,48 @@ class User extends Authenticatable implements BannableInterface
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-    public function book(){
+    public function book()
+    {
         return $this->hasMany(Book::class);
     }
-    public function ratingbook(){
+    public function ratingbook()
+    {
         return $this->hasMany(RatingBook::class);
     }
-    public function ratingautor(){
+    public function ratingautor()
+    {
         return $this->hasMany(RatingAutor::class);
     }
-    public function autor(){
+    public function autor()
+    {
         return $this->hasMany(Autor::class);
     }
-    public function editorial(){
+    public function editorial()
+    {
         return $this->hasMany(Editorial::class);
     }
-    public function bookshop(){
+    public function bookshop()
+    {
         return $this->hasMany(Bookshop::class);
     }
-    public function post(){
+    public function post()
+    {
         return $this->hasMany(Post::class);
     }
-    public function medi(){
+    public function medi()
+    {
         return $this->hasMany(Medi::class);
     }
-    public function acte(){
+    public function acte()
+    {
         return $this->hasMany(Acte::class);
     }
     public function comentbook()
     {
         return $this->hasMany(ComentBook::class)->whereNull('parent_id');
     }
-    public function denunciacomentbook(){
+    public function denunciacomentbook()
+    {
         return $this->hasMany(DenunciaComentBook::class);
     }
- 
-   
-  
 }

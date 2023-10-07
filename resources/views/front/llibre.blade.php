@@ -20,11 +20,22 @@
 
                         <p>{{ $book->isbn }}</p>
                         <p>{{$book->ratingbook->count()}} Valoracions</p>
-                        <input id="input-2" name="input-1" class="rating rating-loading" data-min="0" data-max="5"
+                        <input id="input-1" name="input-1" class="rating rating-loading" data-min="0" data-max="5"
                             data-step="0.1" value="{{ $rating }}" data-size="xs" disabled="">
 
 
                         <p class="mb-2">{{$com}} Comentaris</p>
+                        <p>Pujat per </p>
+                        @if ($book->user->avatar)
+                        <img src="{{Storage::url($book->user->avatar)}}" alt="" class="img-fluid d-block mx-auto p-3"
+                            width="100">
+
+                        @else
+                        <img src="https://ui-avatars.com/api/?name={{$book->user->name}}&background=0D8ABC&color=fff&rounded=true"
+                            class="img-fluid d-block mx-auto p-3" alt="..." width="100">
+
+                        @endif
+                        <p>{{$book->user->name}} </p>
 
 
 
@@ -72,8 +83,17 @@
                                     {{ $book->idioma }}
                                 </div>
                             </div>
+                            <h4>Sinopsi</h4>
                             <div class="mt-3">
                                 {!! $book->sinopsi !!}
+                            </div>
+                            <h4>Cita impactant</h4>
+                            <div class="mt-3">
+                                {!! $book->cita !!}
+                            </div>
+                            <h4>Comentari personal</h4>
+                            <div class="mt-3">
+                                {!! $book->comentari !!}
                             </div>
                             @if (Auth::check())
 

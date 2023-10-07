@@ -21,6 +21,24 @@
                             <span class="text-danger">{{ $errors->first('titol') }}</span>
                             @endif
                         </div>
+                        @if (Auth()->user()->condicio == 'autor')
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label for="" class="form-label">Autor</label>
+                                <select class="form-select" aria-label="Default select example" name="autor_id">
+                                    <option></option>
+                                    @foreach ($autors as $autor)
+                                    <option value="{{ $autor->id }}">{{ $autor->autor_nom }}</option>
+                                    @endforeach
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+
+                        @endif
 
 
                         @if (Auth()->user()->type == 'admin')
@@ -49,7 +67,7 @@
 
                         <div class=" mb-3">
                             <div class="col">
-                                <label for="autor_nom" class="form-label">Autor</label>
+                                <label for="autor_nom" class="form-label">Nom del autor</label>
                                 <input class="form-control" type="text" id="autor_nom" name="autor_nom"
                                     value="{{old('autor_nom')}}">
                                 @if ($errors->has('autor_nom'))
@@ -151,8 +169,8 @@
                         <select name="idioma" class="form-select" id="">
                             <option selected disabled hidden>Escull idioma</option>
                             <option></option>
-                            <option value="Català" {{ "Català"===old('idioma') ? 'selected' : '' }}>Català</option>
-                            <option value="Occità" {{ "Occità"===old('idioma') ? 'selected' : '' }}>Occità</option>
+                            <option value="Català" {{ ("Català"===old('idioma')) ? 'selected' : '' }}>Català</option>
+                            <option value="Occità" {{("Occità"===old('idioma')) ? 'selected' : '' }}>Occità</option>
 
                         </select>
                         @if ($errors->has('idioma'))
@@ -231,6 +249,24 @@
                     <span class="text-danger">{{ $errors->first('sinopsi') }}</span>
                     @endif
                 </div>
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Cita</label>
+                <textarea class="form-control " name="cita" id="" rows="3">
+                                        {!! old('cita')!!}
+                                    </textarea>
+                @if ($errors->has('cita'))
+                <span class="text-danger">{{ $errors->first('cita') }}</span>
+                @endif
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Comentari personal</label>
+                <textarea class="form-control " name="comentari" id="" rows="3">
+                                                        {!! old('comentari')!!}
+                                                    </textarea>
+                @if ($errors->has('comentari'))
+                <span class="text-danger">{{ $errors->first('comentari') }}</span>
+                @endif
             </div>
             <div class="mb-3 d-flex justify-content-center">
                 <button type="submit" class="btn btn-success">

@@ -57,6 +57,20 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="row mb-3">
+                            <label for="" class="col-md-4 col-form-label text-md-end">{{ __('Digues 4 coses sobre tú')
+                                }}</label>
+                            <div class="col-md-6">
+                                <textarea name="biopic" id="" cols="30" rows="10" class="form-control">
+                                                                    {{$user->biopic}}
+                                                                </textarea>
+                                @error('biopic')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
                         <div class="mb-3 mt-5 d-flex justify-content-center">
                             <button type="submit" class="btn btn-success">
                                 <i class="bi bi-check-circle"></i>

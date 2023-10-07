@@ -15,11 +15,9 @@ use Illuminate\Validation\Rules\File;
 
 class BookController extends Controller
 {
-     public function __construct()
+    public function __construct()
     {
-        $this->middleware('admin')->except('create','store');
- 
-       
+        $this->middleware('admin')->except('create', 'store');
     }
 
 
@@ -34,7 +32,7 @@ class BookController extends Controller
     public function index()
     {
         $books = Book::paginate(5);
-        return view('admin.books.index',compact('books'));
+        return view('admin.books.index', compact('books'));
     }
 
     /**
@@ -42,11 +40,11 @@ class BookController extends Controller
      */
     public function create()
     {
-      
+
         $generes = Genere::all();
         $autors = Autor::all();
-        $editorials= Editorial::all();
-        return view('admin.books.create',compact('generes','autors','editorials'));
+        $editorials = Editorial::all();
+        return view('admin.books.create', compact('generes', 'autors', 'editorials'));
     }
 
     /**
@@ -55,57 +53,60 @@ class BookController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-        'titol' => 'required|string|max:255',
-       
-        'autor_nom'=>'required',
-        'genere_id'=>'required',
-        'active'=>'boolean',
-        'editorial_nom'=>'required|string',
-        'editorial_web'=>'required|string',
-        'idioma'=>'required|string',
-        'foto'=> File::types(['jpg', 'png','webp','jpeg'])
-                    
-        ->max(1024),
-        'sinopsi' => 'required',
-        'user_id' => 'required',
-        'isbn' => 'required|string',
-        'novetat' => 'required',
-        'primera' => 'required',
-        'auto' => 'required',
-        
-             ]);
-             if ($request->hasFile('foto')) {
-                // put image in the public storage
-               $filePath = Storage::disk('public')->put('images/books', request()->file('foto'));
-               
-           }
-             $book = new Book;
-             $book->titol = $request->titol;
-             $book->slug = Str::slug($request->titol);
-             $book->autor_nom = $request->autor_nom;
-             $book->genere_id = $request->genere_id;
-             $book->autor_id = $request->autor_id;
-             if (Auth()->user()->type == 'admin') {
-             $book->active = $request->active;
-             }
-             $book->editorial_nom = $request->editorial_nom;
-             $book->editorial_web = $request->editorial_web;
-             $book->editorial_id = $request->editorial_id;
-             $book->user_id = $request->user_id;
-             $book->idioma = $request->idioma;
-             if ($request->imatge) {
-            
-                $book->imatge = $request->imatge;
-                }else{
-                   $book->foto =$filePath;
-                }
-             
-             $book->sinopsi = $request->sinopsi;
-             $book->isbn = $request->isbn;
-             $book->novetat = $request->novetat;
-             $book->primera = $request->primera;
-             $book->auto = $request->auto;
-             $book->save();
+            'titol' => 'required|string|max:255',
+
+            'autor_nom' => 'string',
+            'genere_id' => 'required',
+            'active' => 'boolean',
+            'editorial_nom' => 'required|string',
+            'editorial_web' => 'required|string',
+            'idioma' => 'required|string',
+            'foto' => File::types(['jpg', 'png', 'webp', 'jpeg'])
+
+                ->max(1024),
+            'sinopsi' => 'required',
+            'user_id' => 'required',
+            'isbn' => 'required|string',
+            'novetat' => 'required',
+            'primera' => 'required',
+            'auto' => 'required',
+            'cita' => 'string',
+            'comentari' => 'string',
+
+        ]);
+        if ($request->hasFile('foto')) {
+            // put image in the public storage
+            $filePath = Storage::disk('public')->put('images/books', request()->file('foto'));
+        }
+        $book = new Book;
+        $book->titol = $request->titol;
+        $book->slug = Str::slug($request->titol);
+        $book->autor_nom = $request->autor_nom;
+        $book->genere_id = $request->genere_id;
+        $book->autor_id = $request->autor_id;
+        if (Auth()->user()->type == 'admin') {
+            $book->active = $request->active;
+        }
+        $book->editorial_nom = $request->editorial_nom;
+        $book->editorial_web = $request->editorial_web;
+        $book->editorial_id = $request->editorial_id;
+        $book->user_id = $request->user_id;
+        $book->idioma = $request->idioma;
+        if ($request->imatge) {
+
+            $book->imatge = $request->imatge;
+        } else {
+            $book->foto = $filePath;
+        }
+
+        $book->sinopsi = $request->sinopsi;
+        $book->isbn = $request->isbn;
+        $book->novetat = $request->novetat;
+        $book->primera = $request->primera;
+        $book->auto = $request->auto;
+        $book->cita = $request->cita;
+        $book->comentari = $request->comentari;
+        $book->save();
 
 
 
@@ -113,14 +114,13 @@ class BookController extends Controller
 
 
 
-             if (Auth()->user()->type == 'admin') {
-                session()->flash('notif.success', 'Llibre creat amb éxit!');
-                return redirect()->route('admin.books.index');
-             }else {
-                session()->flash('notif.success', 'Llibre creat amb éxit!');
-                return redirect()->route('home');
-             }
-        
+        if (Auth()->user()->type == 'admin') {
+            session()->flash('notif.success', 'Llibre creat amb éxit!');
+            return redirect()->route('admin.books.index');
+        } else {
+            session()->flash('notif.success', 'Llibre creat amb éxit!');
+            return redirect()->route('home');
+        }
     }
 
     /**
@@ -128,7 +128,7 @@ class BookController extends Controller
      */
     public function show(Book $book)
     {
-        return view('admin.books.show',compact('book'));
+        return view('admin.books.show', compact('book'));
     }
 
     /**
@@ -139,8 +139,8 @@ class BookController extends Controller
         $users = User::All();
         $generes = Genere::all();
         $autors = Autor::all();
-        $editorials= Editorial::all();
-        return view('admin.books.edit',compact('generes','book','autors','editorials','users'));
+        $editorials = Editorial::all();
+        return view('admin.books.edit', compact('generes', 'book', 'autors', 'editorials', 'users'));
     }
 
     /**
@@ -150,65 +150,68 @@ class BookController extends Controller
     {
         $request->validate([
             'titol' => 'required|string|max:255',
-           
-            'autor_nom'=>'required',
-            'genere_id'=>'required',
-            'active'=>'numeric',
-            'editorial_nom'=>'required|string',
-            'editorial_web'=>'required|string',
-            'idioma'=>'required|string',
-            'foto'=> File::types(['jpg', 'png','webp','jpeg'])
-                    
-            ->max(1024),
 
-    
+            'autor_nom' => 'required',
+            'genere_id' => 'required',
+            'active' => 'numeric',
+            'editorial_nom' => 'required|string',
+            'editorial_web' => 'required|string',
+            'idioma' => 'required|string',
+            'foto' => File::types(['jpg', 'png', 'webp', 'jpeg'])
+
+                ->max(1024),
+
+
             'sinopsi' => 'required',
             'user_id' => 'required',
             'isbn' => 'required|string',
             'novetat' => 'required',
             'primera' => 'required',
             'auto' => 'required',
-            
-                 ]);
-                 if ($request->hasFile('foto')) {
-                    if ($book->foto) {
-                        Storage::disk('public')->delete($book->foto);
-      
-                  $filePath = Storage::disk('public')->put('images/books', request()->file('foto'));
-                   $book->foto = $filePath;
-                    }else{
-                        $filePath = Storage::disk('public')->put('images/books', request()->file('foto'));
-                          $book->foto = $filePath;
-                    }
-                
-                  }
-                   
-             $book->titol = $request->titol;
-             $book->slug = Str::slug($request->titol);
-             $book->autor_nom = $request->autor_nom;
-             $book->genere_id = $request->genere_id;
-             $book->autor_id = $request->autor_id;
-             $book->active = $request->active;
-             $book->editorial_nom = $request->editorial_nom;
-             $book->editorial_web = $request->editorial_web;
-             $book->editorial_id = $request->editorial_id;
-             $book->user_id = $request->user_id;
-             $book->idioma = $request->idioma;
-             if (empty($request->imatge)) {
-                $book->imatge = $request->imatge; 
-             }else{
-                $book->imatge = $request->imatge;
-             }
-             
-             $book->sinopsi = $request->sinopsi;
-             $book->isbn = $request->isbn;
-             $book->novetat = $request->novetat;
-             $book->primera = $request->primera;
-             $book->auto = $request->auto;
-             $book->update();
-           
-            session()->flash('notif.success', 'Llibre actualitzat amb éxit!');
-            return redirect()->route('admin.books.index');
+            'cita' => 'string',
+            'comentari' => 'string',
+
+        ]);
+        if ($request->hasFile('foto')) {
+            if ($book->foto) {
+                Storage::disk('public')->delete($book->foto);
+
+                $filePath = Storage::disk('public')->put('images/books', request()->file('foto'));
+                $book->foto = $filePath;
+            } else {
+                $filePath = Storage::disk('public')->put('images/books', request()->file('foto'));
+                $book->foto = $filePath;
+            }
+        }
+
+        $book->titol = $request->titol;
+        $book->slug = Str::slug($request->titol);
+        $book->autor_nom = $request->autor_nom;
+        $book->genere_id = $request->genere_id;
+        $book->autor_id = $request->autor_id;
+        $book->active = $request->active;
+        $book->editorial_nom = $request->editorial_nom;
+        $book->editorial_web = $request->editorial_web;
+        $book->editorial_id = $request->editorial_id;
+        $book->user_id = $request->user_id;
+        $book->idioma = $request->idioma;
+        if (empty($request->imatge)) {
+            $book->imatge = $request->imatge;
+        } else {
+            $book->imatge = $request->imatge;
+        }
+
+        $book->sinopsi = $request->sinopsi;
+        $book->isbn = $request->isbn;
+        $book->novetat = $request->novetat;
+        $book->primera = $request->primera;
+        $book->auto = $request->auto;
+        $book->cita = $request->cita;
+        $book->comentari = $request->comentari;
+        $book->update();
+
+        session()->flash('notif.success', 'Llibre actualitzat amb éxit!');
+        return redirect()->route('admin.books.index');
     }
 
     /**
@@ -217,7 +220,7 @@ class BookController extends Controller
     public function destroy(Book $book)
     {
         $book->delete();
-           session()->flash('notif.success', 'Llibre eliminat amb éxit!');
-            return redirect()->route('admin.llibres.index');
+        session()->flash('notif.success', 'Llibre eliminat amb éxit!');
+        return redirect()->route('admin.llibres.index');
     }
 }

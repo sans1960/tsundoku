@@ -54,12 +54,13 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'nickname' => ['required', 'string', 'max:8'],
-            'condicio' => ['required','string'],
+            'condicio' => ['required', 'string'],
             'avatar' => ['image'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'novetats' => ['required','in:Si,No'],
-            
+            'novetats' => ['required', 'in:Si,No'],
+            'biopic'   => ['string'],
+
         ]);
     }
 
@@ -71,8 +72,8 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        if(request()->hasFile('avatar')){
-           $filePath = Storage::disk('public')->put('images/avatars', request()->file('avatar'));
+        if (request()->hasFile('avatar')) {
+            $filePath = Storage::disk('public')->put('images/avatars', request()->file('avatar'));
         }
         return User::create([
             'name' => $data['name'],
@@ -82,6 +83,7 @@ class RegisterController extends Controller
             'condicio'  =>  $data['condicio'],
             'avatar' => $filePath ?? NULL,
             'novetats' => $data['novetats'],
+            'biopic' => $data['biopic'],
 
         ]);
     }
@@ -90,5 +92,4 @@ class RegisterController extends Controller
         session()->flash('notif.success', 'Benvingut a Tsundoku.cat');
         return redirect()->route('home');
     }
-
 }

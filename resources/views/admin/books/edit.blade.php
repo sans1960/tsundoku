@@ -125,9 +125,9 @@
                                 <select name="idioma" class="form-select" id="">
                                     <option selected disabled hidden>Escull idioma</option>
                                     <option></option>
-                                    <option value="Català" {{$book->idioma === 'Català' ? 'selected' : '' }} >Català
+                                    <option value="Català" {{($book->idioma === 'Català') ? 'selected' : '' }} >Català
                                     </option>
-                                    <option value="Occità" {{$book->idioma === 'Occità' ? 'selected' : '' }}>Occità
+                                    <option value="Occità" {{($book->idioma === 'Occità') ? 'selected' : '' }}>Occità
                                     </option>
 
                                 </select>
@@ -204,6 +204,24 @@
                             <textarea class="form-control " name="sinopsi" id="" rows="3">
                                     {!!$book->sinopsi!!}
                                 </textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Cita</label>
+                            <textarea class="form-control " name="cita" id="" rows="3">
+                                                                        {!! $book->cita!!}
+                                                                    </textarea>
+                            @if ($errors->has('cita'))
+                            <span class="text-danger">{{ $errors->first('cita') }}</span>
+                            @endif
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">Comentari personal</label>
+                            <textarea class="form-control " name="comentari" id="" rows="3">
+                                                                                        {!! $book->comentari!!}
+                                                                                    </textarea>
+                            @if ($errors->has('comentari'))
+                            <span class="text-danger">{{ $errors->first('comentari') }}</span>
+                            @endif
                         </div>
                         <div class="mb-3 d-flex justify-content-center">
                             <button type="submit" class="btn btn-success">
