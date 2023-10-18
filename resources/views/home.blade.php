@@ -54,6 +54,9 @@
                     Editar perfil
 
                 </a>
+                @if (Auth()->user()->condicio == 'autor')
+
+
                 @if (\App\Models\Autor::where('autor_nom',Auth::user()->name)->exists())
                 <p class="mt-5 text-center">Ja ets a la base de dades dels Autors</p>
                 @else
@@ -63,6 +66,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     <a href="{{route('admin.autors.create')}}" class="btn btn-outline-success">Afegir Autor</a>
                 </div>
+                @endif
                 @endif
             </div>
         </div>

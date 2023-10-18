@@ -160,8 +160,8 @@
                 <div class="card-body">
                     @foreach ($user->comentbook as $item)
                     <div>
-                        <p>{{$item->comentbook->book->titol}}</p>
-                        <p>{{$item->comentbook->body}}</p>
+                        <p>{{$item->book->titol}}</p>
+                        <p>{{$item->body}}</p>
                     </div>
 
                     @endforeach

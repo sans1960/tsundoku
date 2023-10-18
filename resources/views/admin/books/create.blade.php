@@ -99,13 +99,19 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col">
-                                <select class="form-select" aria-label="Default select example" name="genere_id">
-                                    <option>Escull génere</option>
-                                    @foreach ($generes as $genere)
-                                    <option value="{{ $genere->id }}" {{ $genere->id === old('genere_id') ? 'selected' :
-                                        '' }} >{{ $genere->nom }}</option>
-                                    @endforeach
-
+                                <label class="form-class" for="genere">Escull genere:</label>
+                                <select class="form-select" aria-label="Default select example" name="genere_id"
+                                    id="genere">
+                                    {{-- <option hidden>Escull génere</option> --}}
+                                    <optgroup label="Escull génere">
+                                        <option value=""></option>
+                                        @foreach ($generes as $genere)
+                                        <option value="{{ $genere->id }}" {{ ($genere->id === old('genere_id')) ?
+                                            'selected'
+                                            :
+                                            '' }} >{{ $genere->nom }}</option>
+                                        @endforeach
+                                    </optgroup>
                                 </select>
                                 @if ($errors->has('genere_id'))
                                 <span class="text-danger">{{ $errors->first('genere_id') }}</span>

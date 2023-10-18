@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="ca">
 
 <head>
     <meta charset="utf-8">
@@ -65,7 +65,7 @@
                         <a class="nav-link" href="{{route('posts')}}">Noticies</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('medis')}}">Medis</a>
+                        <a class="nav-link" href="{{route('medis')}}">Multimedia</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('calendari')}}">Agenda</a>

@@ -5,53 +5,24 @@ TSUNDOKU
 @section('css')
 <link rel="stylesheet" href="{{asset('css/owl.carousel.min.css')}}">
 <link rel="stylesheet" href="{{asset('css/owl.theme.default.min.css')}}">
-<style>
-    .vertical-shake {
-        animation: vertical-shaking 0.35s infinite;
-    }
 
-    @keyframes vertical-shaking {
-        0% {
-            transform: translateY(0)
-        }
 
-        25% {
-            transform: translateY(5px)
-        }
-
-        50% {
-            transform: translateY(-5px)
-        }
-
-        75% {
-            transform: translateY(5px)
-        }
-
-        100% {
-            transform: translateY(0)
-        }
-    }
-</style>
 
 @endsection
 @section('content')
 
 
 <div class="container ">
-    <div class="row">
-        <div class="alert alert-success alert-dismissible fade show vertical-shake" role="alert">
-            <h4 class="alert-heading">Benvingut/da a Tsundoku.cat</h4>
-            <p>El punt de trobada dels acaparadors de llibres compulsius! Tria, remena i xafardeja sense por, aquí en
-                tenim per donar i
-                per vendre!</p>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
 
-    </div>
+
+
+
+
 
     <div class="row mb-3">
-        <div class="col-md-6 ">
-            <h4 class="mb-3 text-center">Mes valorats :</h4>
+        <div class="col-md-6 p-3 border-end border-warning border-3">
+
+            <h4 class="mb-3 text-center">Més valorats :</h4>
             <div class="owl-carousel owl-theme">
                 @foreach ($topratedbook as $book)
                 <div class="d-flex flex-column">
@@ -79,8 +50,8 @@ TSUNDOKU
 
             </div>
         </div>
-        <div class="col-md-6">
-            <h4 class="mb-3 text-center">Mes comentats :</h4>
+        <div class="col-md-6 p-3">
+            <h4 class="mb-3 text-center">Més comentats :</h4>
             <div class="owl-carousel owl-theme">
                 @foreach ($topcoment as $book)
                 @if ($book->comentbook_count > 0)
@@ -108,7 +79,7 @@ TSUNDOKU
         </div>
     </div>
     <div class="row mb-3">
-        <div class="col-md-6">
+        <div class="col-md-6 p-3 border-end border-warning border-3">
             <h4 class="mb-3 text-center">Ultims llibres pujats :</h4>
             <div class="owl-carousel owl-theme">
                 @foreach ($books as $book)
@@ -125,7 +96,7 @@ TSUNDOKU
 
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 p-3">
             <h4 class="mb-3 text-center">Acabats de sortir d'impremta</h4>
             <div class="owl-carousel owl-theme">
                 @foreach ($novetats as $book)
@@ -144,16 +115,18 @@ TSUNDOKU
         </div>
 
     </div>
-    <div class="row">
-        <div class="col-md-12 bg-success d-flex flex-column justify-content-center align-items-center text-white p-3 mb-3 rounded"
-            style="height: 300px;">
-            <h1>Banner</h1>
+    <div class="row mb-3">
+        <a href="https://www.plataforma-llengua.cat/" target="_blank" rel="noopener noreferrer">
+            <div class="col-md-12  rounded p-3"
+                style="height: 300px; background-image:url({{asset('img/pl_no_texcusis_slide_web_desktop_1646932781_1400.png')}});background-position:center;background-size:cover;">
 
-        </div>
+
+            </div>
+        </a>
     </div>
-    <div class="row" style="height: 400px;">
+    <div class="row mb-3" style="">
 
-        <div class="col-md-6">
+        <div class="col-md-6 p-3 border-end border-warning border-3">
             <h4 class="mb-3 text-center">S'estrenen</h4>
             <div class="owl-carousel owl-theme">
                 @foreach ($estrenes as $book)
@@ -171,7 +144,7 @@ TSUNDOKU
             </div>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-6 p-3">
             <h4 class="mb-3 text-center">Autopublicats</h4>
             <div class="owl-carousel owl-theme">
                 @foreach ($autos as $book)
@@ -190,9 +163,9 @@ TSUNDOKU
         </div>
 
     </div>
-    <div class="row">
+    <div class="row mb-3">
 
-        <div class="col-md-6">
+        <div class="col-md-6 p-3">
             <h4 class="mb-3 text-center">Tsundoku TV</h4>
             <div class="owl-carousel2 owl-theme">
 
@@ -200,6 +173,8 @@ TSUNDOKU
                     data-bs-title="{{$medi->titol}}">
                     <div class="card"
                         style="height: 300px;background-image:url( {{Storage::url($medi->image)}});background-size:cover;background-position:center;">
+
+
 
 
 
@@ -211,7 +186,7 @@ TSUNDOKU
             </div>
         </div>
 
-        <div class="col-md-6 mb-3">
+        <div class="col-md-6 mb-3 p-3">
             <h4 class="mb-3 text-center">Noticies</h4>
 
 
@@ -232,16 +207,19 @@ TSUNDOKU
         </div>
 
     </div>
-    <div class="row">
-        <div class="col-md-12 bg-success d-flex flex-column justify-content-center align-items-center text-white p-3 mb-3 rounded"
-            style="height: 300px;">
-            <h1>Banner</h1>
+    <div class="row mb-3">
+        <a href="https://www.escriptors.cat/" target="_blank" rel="noopener noreferrer">
+            <div class="col-md-12  rounded"
+                style="height: 250px; background-image:url({{asset('img/banner.jpg')}});background-position:center;background-size:cover;">
 
-        </div>
+
+            </div>
+        </a>
     </div>
-    <div class="row" style="height: 400px;">
-        <div class="col-md-6 mx-auto">
+    <div class="row mb-3" style="">
+        <div class="col-md-6 mx-auto mt-5 mb-5">
             <h4 class="mb-3 text-center">Agenda</h4>
+
         </div>
     </div>
 </div>
@@ -289,4 +267,6 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
      
     });
 </script>
+
+
 @endsection
