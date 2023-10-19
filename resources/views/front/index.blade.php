@@ -22,7 +22,7 @@ TSUNDOKU
     <div class="row mb-3">
         <div class="col-md-6 p-3 border-end border-warning border-3">
 
-            <h4 class="mb-3 text-center">Més valorats :</h4>
+            <h4 class="mb-3 text-center">Els més valorats :</h4>
             <div class="owl-carousel owl-theme">
                 @foreach ($topratedbook as $book)
                 <div class="d-flex flex-column">
@@ -51,7 +51,7 @@ TSUNDOKU
             </div>
         </div>
         <div class="col-md-6 p-3">
-            <h4 class="mb-3 text-center">Més comentats :</h4>
+            <h4 class="mb-3 text-center">Els més comentats :</h4>
             <div class="owl-carousel owl-theme">
                 @foreach ($topcoment as $book)
                 @if ($book->comentbook_count > 0)
@@ -80,7 +80,7 @@ TSUNDOKU
     </div>
     <div class="row mb-3">
         <div class="col-md-6 p-3 border-end border-warning border-3">
-            <h4 class="mb-3 text-center">Ultims llibres pujats :</h4>
+            <h4 class="mb-3 text-center">Últims llibres afegits :</h4>
             <div class="owl-carousel owl-theme">
                 @foreach ($books as $book)
                 <a href="{{route('book',$book)}}" class="nav-link" data-bs-toggle="tooltip"

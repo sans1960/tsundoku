@@ -64,7 +64,20 @@
 
                     <p>Vols formar part de la base de dades d'Autors ?</p>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    <a href="{{route('admin.autors.create')}}" class="btn btn-outline-success">Afegir Autor</a>
+                    <a href="{{route('admin.autors.create')}}" class="btn btn-outline-success">Afegir Autor
+                    </a>
+                </div>
+                @endif
+                @elseif (Auth()->user()->condicio == 'editorial')
+                @if (\App\Models\Editorial::where('editorial_nom',Auth::user()->name)->exists())
+                <p class="mt-5 text-center">Ja ets a la base de dades de les Editorials</p>
+                @else
+                <div class="alert alert-success alert-dismissible fade show mt-5" role="alert">
+
+                    <p>Vols formar part de la base de dades d'Editorials ?</p>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <a href="{{route('admin.editorials.create')}}" class="btn btn-outline-success">Afegir Editorial
+                    </a>
                 </div>
                 @endif
                 @endif
@@ -125,9 +138,9 @@
                 <a href="{{route('admin.autors.create')}}" class="btn btn-outline-success">Afegir Autor</a>
             </div>
 
-            <div class="card p-2">
+            {{-- <div class="card p-2">
                 <a href="{{route('admin.editorials.create')}}" class="btn btn-outline-success">Afegir Editorial</a>
-            </div>
+            </div> --}}
 
             <div class="card p-2">
                 <a href="{{route('admin.posts.create')}}" class="btn btn-outline-success">Afegir Noticia</a>

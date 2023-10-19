@@ -21,6 +21,7 @@
                             <p>{{$autor->ratingautor->count()}} Valoracions</p>
                             <input id="input-2" name="input-1" class="rating rating-loading" data-min="0" data-max="5"
                                 data-step="0.1" value="{{ $rating }}" data-size="xs" disabled="">
+                            <p class="mb-2">{{$com}} Comentaris</p>
                         </div>
                     </div>
 

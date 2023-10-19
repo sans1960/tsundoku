@@ -47,6 +47,27 @@
 
 
         </div>
+        <div class="col-md-6">
+            <div class="card mb-2">
+                <div class="card-header">
+                    Autors comentats
+                </div>
+                <div class="card-body">
+                    @foreach ($user->comentautor as $item)
+
+                    <div>
+                        <p>{{$item->autor->autor_nom}}</p>
+                        <p>{{$item->body}}</p>
+                    </div>
+
+                    @endforeach
+                </div>
+
+            </div>
+
+
+
+        </div>
     </div>
     <div class="row">
         <div class="col-md-4">
@@ -57,6 +78,24 @@
                 <div class="card-body">
                     @foreach ($user->ratingbook as $item)
                     <p>{{$item->book->titol}} {{$item->rate}}</p>
+
+
+                    @endforeach
+                </div>
+
+            </div>
+
+
+
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-2">
+                <div class="card-header">
+                    Autors valorats
+                </div>
+                <div class="card-body">
+                    @foreach ($user->ratingautor as $item)
+                    <p>{{$item->autor->autor_nom}} {{$item->rate}}</p>
 
 
                     @endforeach

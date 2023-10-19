@@ -50,8 +50,9 @@ class FrontController extends Controller
     public function autor(Autor $autor)
     {
         $rating = RatingAutor::where('autor_id', $autor->id)->avg('rate');
+        $com = $autor->comentautor->count();
 
-        return view('front.autor', compact('autor', 'rating'));
+        return view('front.autor', compact('autor', 'rating', 'com'));
     }
     public function book(Book $book)
     {

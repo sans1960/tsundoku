@@ -96,8 +96,16 @@ class User extends Authenticatable implements BannableInterface
     {
         return $this->hasMany(ComentBook::class)->whereNull('parent_id');
     }
+    public function comentautor()
+    {
+        return $this->hasMany(ComentAutor::class)->whereNull('parent_id');
+    }
     public function denunciacomentbook()
     {
         return $this->hasMany(DenunciaComentBook::class);
+    }
+    public function denunciacomentautor()
+    {
+        return $this->hasMany(DenunciaComentAutor::class);
     }
 }
