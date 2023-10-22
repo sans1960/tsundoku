@@ -21,14 +21,17 @@
                             <span class="text-danger">{{ $errors->first('titol') }}</span>
                             @endif
                         </div>
-                        @if (Auth()->user()->condicio == 'autor')
+                        @if (Auth()->user()->condicio == 'autor' )
                         <div class="row mb-3">
                             <div class="col">
                                 <label for="" class="form-label">Autor</label>
                                 <select class="form-select" aria-label="Default select example" name="autor_id">
                                     <option></option>
                                     @foreach ($autors as $autor)
-                                    <option value="{{ $autor->id }}">{{ $autor->autor_nom }}</option>
+                                    <option value="{{ $autor->id }}" {{ ($autor->id === old('autor_id')) ?
+                                        'selected'
+                                        :
+                                        '' }}>{{ $autor->autor_nom }}</option>
                                     @endforeach
 
                                 </select>
@@ -41,24 +44,37 @@
                         @endif
 
 
-                        @if (Auth()->user()->type == 'admin')
+                        @if (Auth()->user()->type == 'admin' or Auth()->user()->condicio == 'editorial')
                         <div class="row mb-3">
                             <div class="col">
+                                <label class="form-class" for="genere">Autor:</label>
                                 <select class="form-select" aria-label="Default select example" name="autor_id">
-                                    <option></option>
-                                    @foreach ($autors as $autor)
-                                    <option value="{{ $autor->id }}">{{ $autor->autor_nom }}</option>
-                                    @endforeach
+                                    <optgroup label="Escull autor">
+                                        <option></option>
+                                        @foreach ($autors as $autor)
+                                        <option value="{{ $autor->id }}" {{ ($autor->id === old('autor_id')) ?
+                                            'selected'
+                                            :
+                                            '' }}>{{ $autor->autor_nom }}</option>
+                                        @endforeach
+                                    </optgroup>
 
                                 </select>
 
                             </div>
                             <div class="col">
+                                <label class="form-class" for="genere">Editorial:</label>
                                 <select class="form-select" aria-label="Default select example" name="editorial_id">
-                                    <option></option>
-                                    @foreach ($editorials as $editorial)
-                                    <option value="{{ $editorial->id }}">{{ $editorial->editorial_nom }}</option>
-                                    @endforeach
+                                    <optgroup label="Escull editorial">
+                                        <option></option>
+                                        @foreach ($editorials as $editorial)
+                                        <option value="{{ $editorial->id }}" {{ ($editorial->id === old('editorial_id'))
+                                            ?
+                                            'selected'
+                                            :
+                                            '' }}>{{ $editorial->editorial_nom }}</option>
+                                        @endforeach
+                                    </optgroup>
 
                                 </select>
                             </div>

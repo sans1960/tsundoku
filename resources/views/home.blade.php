@@ -119,7 +119,7 @@
 
 
             <div class="card p-2">
-                <a href="{{route('admin.medis.create')}}" class="btn btn-outline-success">Afegir Medi</a>
+                <a href="{{route('admin.medis.create')}}" class="btn btn-outline-success">Afegir Multimedia</a>
             </div>
 
 
@@ -147,7 +147,7 @@
             </div>
 
             <div class="card p-2">
-                <a href="{{route('admin.medis.create')}}" class="btn btn-outline-success">Afegir Medi</a>
+                <a href="{{route('admin.medis.create')}}" class="btn btn-outline-success">Afegir Multimedia</a>
             </div>
 
             <div class="card p-2">
@@ -169,7 +169,7 @@
             </div>
 
             <div class="card p-2">
-                <a href="{{route('admin.medis.create')}}" class="btn btn-outline-success">Afegir Medi</a>
+                <a href="{{route('admin.medis.create')}}" class="btn btn-outline-success">Afegir Multimedia</a>
             </div>
 
             <div class="card p-2">

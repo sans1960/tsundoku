@@ -14,20 +14,24 @@ class Editorial extends Model
 {
     use HasFactory;
 
-    
-    protected $fillable = ['editorial_nom','slug','descripcio','url','active','logo','adreça','user_id','image'];
-  
+
+    protected $fillable = ['editorial_nom', 'slug', 'descripcio', 'url', 'active', 'logo', 'adreça', 'user_id', 'image'];
+
 
     public function getRouteKeyName()
     {
         return 'slug';
     }
-    public function book(){
+    public function book(): HasMany
+    {
         return $this->hasMany(Book::class);
     }
-    public function user(){
+    public function user(): BelongsTo
+    {
         return $this->belongsTo(User::class);
     }
-  
-
+    public function ratingeditorial(): HasMany
+    {
+        return $this->hasMany(RatingEdiorial::class);
+    }
 }

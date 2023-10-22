@@ -11,11 +11,14 @@ use App\Models\Bookshop;
 use App\Models\Post;
 use App\Models\Medi;
 use App\Models\Acte;
-use App\Models\ComentBook;
+
 use App\Models\RatingBook;
 use App\Models\RatingAutor;
+use App\Models\RatingEdiorial;
 
-use Illuminate\Database\Eloquent\Builder;
+
+
+
 
 
 
@@ -85,8 +88,8 @@ class FrontController extends Controller
     }
     public function editorial(Editorial $editorial)
     {
-
-        return view('front.editorial', compact('editorial'));
+        $rating = RatingEdiorial::where('editorial_id', $editorial->id)->avg('rate');
+        return view('front.editorial', compact('editorial', 'rating'));
     }
     public function generes()
     {

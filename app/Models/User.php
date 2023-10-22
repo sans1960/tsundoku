@@ -56,55 +56,59 @@ class User extends Authenticatable implements BannableInterface
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-    public function book()
+    public function book(): HasMany
     {
         return $this->hasMany(Book::class);
     }
-    public function ratingbook()
+    public function ratingbook(): HasMany
     {
         return $this->hasMany(RatingBook::class);
     }
-    public function ratingautor()
+    public function ratingautor(): HasMany
     {
         return $this->hasMany(RatingAutor::class);
     }
-    public function autor()
+    public function ratingeditorial(): HasMany
+    {
+        return $this->hasMany(RatingEdiorial::class);
+    }
+    public function autor(): HasMany
     {
         return $this->hasMany(Autor::class);
     }
-    public function editorial()
+    public function editorial(): HasMany
     {
         return $this->hasMany(Editorial::class);
     }
-    public function bookshop()
+    public function bookshop(): HasMany
     {
         return $this->hasMany(Bookshop::class);
     }
-    public function post()
+    public function post(): HasMany
     {
         return $this->hasMany(Post::class);
     }
-    public function medi()
+    public function medi(): HasMany
     {
         return $this->hasMany(Medi::class);
     }
-    public function acte()
+    public function acte(): HasMany
     {
         return $this->hasMany(Acte::class);
     }
-    public function comentbook()
+    public function comentbook(): HasMany
     {
         return $this->hasMany(ComentBook::class)->whereNull('parent_id');
     }
-    public function comentautor()
+    public function comentautor(): HasMany
     {
         return $this->hasMany(ComentAutor::class)->whereNull('parent_id');
     }
-    public function denunciacomentbook()
+    public function denunciacomentbook(): HasMany
     {
         return $this->hasMany(DenunciaComentBook::class);
     }
-    public function denunciacomentautor()
+    public function denunciacomentautor(): HasMany
     {
         return $this->hasMany(DenunciaComentAutor::class);
     }

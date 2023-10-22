@@ -101,10 +101,9 @@
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="{{route('rating.book.index')}}">Llibres</a></li>
                                 <li><a class="dropdown-item" href="{{route('rating.autor.index')}}">Autors</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
+
+                                <li><a class="dropdown-item" href="{{route('rating.editorial.index')}}">Editorials</a>
                                 </li>
-                                <li><a class="dropdown-item" href=""></a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
