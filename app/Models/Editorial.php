@@ -34,4 +34,8 @@ class Editorial extends Model
     {
         return $this->hasMany(RatingEdiorial::class);
     }
+    public function comenteditorial(): HasMany
+    {
+        return $this->hasMany(ComentEditorial::class)->whereNull('parent_id');
+    }
 }

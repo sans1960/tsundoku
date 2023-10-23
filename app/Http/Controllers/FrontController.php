@@ -88,8 +88,9 @@ class FrontController extends Controller
     }
     public function editorial(Editorial $editorial)
     {
+        $com = $editorial->comenteditorial->count();
         $rating = RatingEdiorial::where('editorial_id', $editorial->id)->avg('rate');
-        return view('front.editorial', compact('editorial', 'rating'));
+        return view('front.editorial', compact('editorial', 'rating', 'com'));
     }
     public function generes()
     {

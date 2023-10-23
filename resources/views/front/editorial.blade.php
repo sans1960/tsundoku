@@ -17,7 +17,7 @@
                         <p>{{$editorial->ratingeditorial->count()}} Valoracions</p>
                         <input id="input-2" name="input-1" class="rating rating-loading" data-min="0" data-max="5"
                             data-step="0.1" value="{{ $rating }}" data-size="xs" disabled="">
-                        {{-- <p class="mb-2">{{$com}} Comentaris</p> --}}
+                        <p class="mb-2">{{$com}} Comentaris</p>
                     </div>
                 </div>
                 <div class="card-body">
@@ -108,19 +108,37 @@
     </div>
     <div class="row">
         <div class="col-md-8 mx-auto mt-5">
-
-            <div class="card">
+            <div class="card p-3">
                 <h5 class="card-header">Veure Comentaris</h5>
+                @include('front.partials.comenteditorialDisplay', ['comenteditorials' =>
+                $editorial->comenteditorial,'editorial_id',$editorial->id])
 
             </div>
             @if (Auth::check())
-            <div class="card">
+
+            <div class="card p-3">
 
 
                 <h5 class="card-header">Fes un comentari</h5>
+                <form method="post" action="{{route('coment.editorial.store')}}">
+                    @csrf
+                    <div class="form-group mb-3 p-2">
+                        <textarea class="form-control" name="body" required></textarea>
+                        <input type="hidden" name="editorial_id" value="{{ $editorial->id }}" />
+                    </div>
+                    <div class="form-group mt-3 mb-3">
+                        <button type="submit" class="btn btn-outline-success">
+                            Crea
+                        </button>
+                    </div>
+                </form>
+
 
             </div>
             @endif
+
+
+
         </div>
     </div>
 </div>

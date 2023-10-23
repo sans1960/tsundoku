@@ -114,10 +114,9 @@
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="{{route('coment.book.index')}}">Llibres</a></li>
                                 <li><a class="dropdown-item" href="{{route('coment.autor.index')}}">Autors</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
+
+                                <li><a class="dropdown-item" href="{{route('coment.editorial.index')}}">Editorials</a>
                                 </li>
-                                <li><a class="dropdown-item" href=""></a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -130,10 +129,9 @@
                                         Llibres</a></li>
                                 <li><a class="dropdown-item" href="{{route('denunciacoment.autor.index')}}">Comentaris
                                         Autors</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href=""></a></li>
+
+                                <li><a class="dropdown-item"
+                                        href="{{route('denunciacoment.editorial.index')}}">Editorials</a></li>
                             </ul>
                         </li>
 
