@@ -68,6 +68,27 @@
 
 
         </div>
+        <div class="col-md-6">
+            <div class="card mb-2">
+                <div class="card-header">
+                    Editorials comentades
+                </div>
+                <div class="card-body">
+                    @foreach ($user->comenteditorial as $item)
+
+                    <div>
+                        <p>{{$item->editorial->editorial_nom}}</p>
+                        <p>{{$item->body}}</p>
+                    </div>
+
+                    @endforeach
+                </div>
+
+            </div>
+
+
+
+        </div>
     </div>
     <div class="row">
         <div class="col-md-4">
@@ -106,6 +127,24 @@
 
 
         </div>
+        <div class="col-md-4">
+            <div class="card mb-2">
+                <div class="card-header">
+                    Editorials valorades
+                </div>
+                <div class="card-body">
+                    @foreach ($user->ratingeditorial as $item)
+                    <p>{{$item->editorial->editorial_nom}} {{$item->rate}}</p>
+
+
+                    @endforeach
+                </div>
+
+            </div>
+
+
+
+        </div>
     </div>
     @elseif ($user->condicio == 'autor')
     <div class="row">
@@ -124,7 +163,7 @@
         <div class="col-md-3">
             <div class="card mb-2">
                 <div class="card-header">
-                    Autors
+                    Autors Pujats
                 </div>
                 <div class="card-body">
                     @foreach ($user->autor as $item)
@@ -148,7 +187,7 @@
         <div class="col-md-3">
             <div class="card mb-2">
                 <div class="card-header">
-                    Medis
+                    Multimedia
                 </div>
                 <div class="card-body">
                     @foreach ($user->medi as $item)
@@ -189,6 +228,42 @@
 
 
         </div>
+        <div class="col-md-4">
+            <div class="card mb-2">
+                <div class="card-header">
+                    Autors valorats
+                </div>
+                <div class="card-body">
+                    @foreach ($user->ratingautor as $item)
+                    <p>{{$item->autor->autor_nom}} {{$item->rate}}</p>
+
+
+                    @endforeach
+                </div>
+
+            </div>
+
+
+
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-2">
+                <div class="card-header">
+                    Editorials valorades
+                </div>
+                <div class="card-body">
+                    @foreach ($user->ratingeditorial as $item)
+                    <p>{{$item->editorial->editorial_nom}} {{$item->rate}}</p>
+
+
+                    @endforeach
+                </div>
+
+            </div>
+
+
+
+        </div>
     </div>
     <div class="row">
         <div class="col-md-6">
@@ -200,6 +275,48 @@
                     @foreach ($user->comentbook as $item)
                     <div>
                         <p>{{$item->book->titol}}</p>
+                        <p>{{$item->body}}</p>
+                    </div>
+
+                    @endforeach
+                </div>
+
+            </div>
+
+
+
+        </div>
+        <div class="col-md-6">
+            <div class="card mb-2">
+                <div class="card-header">
+                    Autors comentats
+                </div>
+                <div class="card-body">
+                    @foreach ($user->comentautor as $item)
+
+                    <div>
+                        <p>{{$item->autor->autor_nom}}</p>
+                        <p>{{$item->body}}</p>
+                    </div>
+
+                    @endforeach
+                </div>
+
+            </div>
+
+
+
+        </div>
+        <div class="col-md-6">
+            <div class="card mb-2">
+                <div class="card-header">
+                    Editorials comentades
+                </div>
+                <div class="card-body">
+                    @foreach ($user->comenteditorial as $item)
+
+                    <div>
+                        <p>{{$item->editorial->editorial_nom}}</p>
                         <p>{{$item->body}}</p>
                     </div>
 
@@ -287,6 +404,7 @@
             </div>
         </div>
     </div>
+
     @elseif($user->condicio == 'llibreria')
     <div class="row">
         <div class="col-md-3">

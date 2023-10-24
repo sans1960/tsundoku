@@ -80,6 +80,18 @@
                     </a>
                 </div>
                 @endif
+                @elseif (Auth()->user()->condicio == 'llibreria')
+                @if (\App\Models\Bookshop::where('nom',Auth::user()->name)->exists())
+                <p class="mt-5 text-center">Ja ets a la base de dades de les Llibreries</p>
+                @else
+                <div class="alert alert-success alert-dismissible fade show mt-5" role="alert">
+
+                    <p>Vols formar part de la base de dades de Llibreries ?</p>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <a href="{{route('admin.bookshops.create')}}" class="btn btn-outline-success">Afegir Llibreria
+                    </a>
+                </div>
+                @endif
                 @endif
             </div>
         </div>
@@ -160,9 +172,9 @@
                 <a href="{{route('admin.books.create')}}" class="btn btn-outline-success">Afegir Llibre</a>
             </div>
 
-            <div class="card p-2">
+            {{-- <div class="card p-2">
                 <a href="{{route('admin.bookshops.create')}}" class="btn btn-outline-success">Afegir Llibreria</a>
-            </div>
+            </div> --}}
 
             <div class="card p-2">
                 <a href="{{route('admin.posts.create')}}" class="btn btn-outline-success">Afegir Noticia</a>

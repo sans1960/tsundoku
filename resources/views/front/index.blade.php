@@ -20,9 +20,9 @@ TSUNDOKU
 
 
     <div class="row mb-3">
-        <div class="col-md-6 p-3 border-end border-warning border-3">
+        <div class="col-md-12">
 
-            <h4 class="mb-3 text-center">Els més valorats :</h4>
+            <h3 class="mb-3">Els més valorats :</h3>
             <div class="owl-carousel owl-theme">
                 @foreach ($topratedbook as $book)
                 <div class="d-flex flex-column">
@@ -50,8 +50,10 @@ TSUNDOKU
 
             </div>
         </div>
-        <div class="col-md-6 p-3">
-            <h4 class="mb-3 text-center">Els més comentats :</h4>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md.12 p-3">
+            <h3 class="mb-3">Els més comentats :</h3>
             <div class="owl-carousel owl-theme">
                 @foreach ($topcoment as $book)
                 @if ($book->comentbook_count > 0)
@@ -79,8 +81,8 @@ TSUNDOKU
         </div>
     </div>
     <div class="row mb-3">
-        <div class="col-md-6 p-3 border-end border-warning border-3">
-            <h4 class="mb-3 text-center">Últims llibres afegits :</h4>
+        <div class="col-md-12 p-3 ">
+            <h3 class="mb-3">Últims llibres afegits :</h3>
             <div class="owl-carousel owl-theme">
                 @foreach ($books as $book)
                 <a href="{{route('book',$book)}}" class="nav-link" data-bs-toggle="tooltip"
@@ -96,8 +98,10 @@ TSUNDOKU
 
             </div>
         </div>
-        <div class="col-md-6 p-3">
-            <h4 class="mb-3 text-center">Acabats de sortir d'impremta</h4>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-12 p-3">
+            <h3 class="mb-3">Acabats de sortir d'impremta</h3>
             <div class="owl-carousel owl-theme">
                 @foreach ($novetats as $book)
                 <a href="{{route('book',$book)}}" class="nav-link" data-bs-toggle="tooltip"
@@ -117,8 +121,8 @@ TSUNDOKU
     </div>
     <div class="row mb-3">
         <a href="https://www.plataforma-llengua.cat/" target="_blank" rel="noopener noreferrer">
-            <div class="col-md-12  rounded p-3"
-                style="height: 300px; background-image:url({{asset('img/pl_no_texcusis_slide_web_desktop_1646932781_1400.png')}});background-position:center;background-size:cover;">
+            <div class="col-md-10 mx-auto  rounded p-3"
+                style="height: 250px; background-image:url({{asset('img/pl_no_texcusis_slide_web_desktop_1646932781_1400.png')}});background-position:center;background-size:cover;">
 
 
             </div>
@@ -126,8 +130,8 @@ TSUNDOKU
     </div>
     <div class="row mb-3" style="">
 
-        <div class="col-md-6 p-3 border-end border-warning border-3">
-            <h4 class="mb-3 text-center">S'estrenen</h4>
+        <div class="col-md-12 p-3 ">
+            <h3 class="mb-3">S'estrenen</h3>
             <div class="owl-carousel owl-theme">
                 @foreach ($estrenes as $book)
                 <a href="{{route('book',$book)}}" class="nav-link" data-bs-toggle="tooltip"
@@ -143,9 +147,10 @@ TSUNDOKU
                 @endforeach
             </div>
         </div>
-
-        <div class="col-md-6 p-3">
-            <h4 class="mb-3 text-center">Autopublicats</h4>
+    </div>
+    <div class="row mb-3">
+        <div class="col-md-12 p-3">
+            <h3 class="mb-3">Autopublicats</h3>
             <div class="owl-carousel owl-theme">
                 @foreach ($autos as $book)
                 <a href="{{route('book',$book)}}" class="nav-link" data-bs-toggle="tooltip"
@@ -217,10 +222,20 @@ TSUNDOKU
         </a>
     </div>
     <div class="row mb-3" style="">
-        <div class="col-md-6 mx-auto mt-5 mb-5">
-            <h4 class="mb-3 text-center">Agenda</h4>
+        <h3 class="mb-3">Agenda</h3>
+        @foreach ($actes as $acte)
+        <div class="col-md-4 mb-3">
+            <a class="nav-link" href="{{route('acte',$acte)}}">
+                <div class="card"
+                    style="height: 300px;background-image:url({{Storage::url($acte->image)}});background-size:cover;background-position:center;"
+                    data-bs-toggle="tooltip" data-bs-title="{{$acte->titol}}">
 
+
+                </div>
+            </a>
+            <p>{{\Carbon\Carbon::parse($acte->data)->format('d/m/Y')}}</p>
         </div>
+        @endforeach
     </div>
 </div>
 @endsection
@@ -238,11 +253,11 @@ TSUNDOKU
                             nav: true
                           },
                           600: {
-                            items: 2,
+                            items: 4,
                             nav: false
                           },
                           1000: {
-                            items: 3,
+                            items: 6,
                             nav: true,
                             loop: false,
                             margin: 20
