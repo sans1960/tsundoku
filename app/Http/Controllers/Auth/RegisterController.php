@@ -60,6 +60,7 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'novetats' => ['required', 'in:Si,No'],
             'biopic'   => ['string'],
+            'legal'     => ['accepted'],
 
         ]);
     }

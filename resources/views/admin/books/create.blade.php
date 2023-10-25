@@ -14,14 +14,14 @@
                     <form action="{{ route('admin.books.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
-                            <label for="titol" class="form-label">Titol</label>
+                            <label for="titol" class="form-label">Títol del llibre</label>
                             <input type="text" class="form-control" id="titol" placeholder="Títol" name="titol"
                                 value="{{old('titol')}}" autofocus required>
                             @if ($errors->has('titol'))
                             <span class="text-danger">{{ $errors->first('titol') }}</span>
                             @endif
                         </div>
-                        @if (Auth()->user()->condicio == 'autor' )
+                        {{-- @if (Auth()->user()->condicio == 'autor' )
                         <div class="row mb-3">
                             <div class="col">
                                 <label for="" class="form-label">Autor</label>
@@ -41,10 +41,10 @@
                         </div>
 
 
-                        @endif
+                        @endif --}}
 
 
-                        @if (Auth()->user()->type == 'admin' or Auth()->user()->condicio == 'editorial')
+                        @if (Auth()->user()->type == 'admin')
                         <div class="row mb-3">
                             <div class="col">
                                 <label class="form-class" for="genere">Autor:</label>
@@ -92,16 +92,17 @@
                             </div>
                         </div>
                         <div class="mb-3">
-                            <label for="imatge" class="form-label">Imatge</label>
+                            <label for="imatge" class="form-label">Imatge de portada (copia i enganxa l'adreça web a la
+                                imatge)</label>
                             <input class="form-control" type="text" id="imatge" name="imatge" value="{{old('imatge')}}">
                             @if ($errors->has('imatge'))
                             <span class="text-danger">{{ $errors->first('imatge') }}</span>
                             @endif
                         </div>
-
+                        <p>O si prefereixes</p>
                         <div class="row mb-3">
                             <div class="col">
-                                <label for="foto" class="form-label">Foto</label>
+                                <label for="foto" class="form-label">Puja un fitxer amb la imatge de la portada</label>
                                 <input class="form-control" type="file" id="foto" name="foto" value="{{old('foto')}}">
                             </div>
                             <div class="col">
@@ -156,149 +157,155 @@
                         @endif
 
 
-                </div>
-                <div class="row mb-3">
-                    <div class="col">
 
-                        <input type="text" class="form-control" id="" value="{{old('editorial_nom')}}"
-                            placeholder="Editorial" name="editorial_nom" required>
-                        @if ($errors->has('editorial_nom'))
-                        <span class="text-danger">{{ $errors->first('editorial_nom') }}</span>
-                        @endif
-                    </div>
+                        <div class="row mb-3">
+                            <div class="col">
 
-                    <div class="col">
-                        <input type="text" class="form-control" id="" value="{{old('editorial_web')}}"
-                            placeholder="Editorial web" name="editorial_web" required>
-                        @if ($errors->has('editorial_web'))
-                        <span class="text-danger">{{ $errors->first('editorial_web') }}</span>
-                        @endif
-                    </div>
-                </div>
+                                <input type="text" class="form-control" id="" value="{{old('editorial_nom')}}"
+                                    placeholder="Editorial" name="editorial_nom" required>
+                                @if ($errors->has('editorial_nom'))
+                                <span class="text-danger">{{ $errors->first('editorial_nom') }}</span>
+                                @endif
+                            </div>
 
-
-
-                <div class="row mb-3">
-                    <div class="col">
-                        <input type="text" class="form-control" id="" value="{{old('isbn')}}" placeholder="ISBN"
-                            name="isbn" required>
-                        @if ($errors->has('isbn'))
-                        <span class="text-danger">{{ $errors->first('isbn') }}</span>
-                        @endif
-                    </div>
-
-                    <div class="col">
-                        <select name="idioma" class="form-select" id="">
-                            <option selected disabled hidden>Escull idioma</option>
-                            <option></option>
-                            <option value="Català" {{ ("Català"===old('idioma')) ? 'selected' : '' }}>Català</option>
-                            <option value="Occità" {{("Occità"===old('idioma')) ? 'selected' : '' }}>Occità</option>
-
-                        </select>
-                        @if ($errors->has('idioma'))
-                        <span class="text-danger">{{ $errors->first('idioma') }}</span>
-                        @endif
-
-
-                    </div>
-                </div>
-
-
-
-                <input type="hidden" name="user_id" value="{{Auth()->user()->id}}" id="">
-
-
-                <div class="row mb-3">
-                    <div class="col d-flex flex-column align-items-center">
-                        <div class="form-check">
-                            <input class="form-check-input me-2" type="radio" name="novetat" id="flexRadioDefault1"
-                                value="0" {{ (old('novetat')=='0' ) ? 'checked' : '' }} required>
-                            <label class="form-check-label" for="flexRadioDefault1">
-                                No es novetat
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input me-2" type="radio" name="novetat" id="flexRadioDefault2"
-                                value="1" {{ (old('novetat')=='1' ) ? 'checked' : '' }}>
-                            <label class="form-check-label" for="flexRadioDefault2">
-                                Es novetat editorial
-                            </label>
+                            <div class="col">
+                                <input type="text" class="form-control" id="" value="{{old('editorial_web')}}"
+                                    placeholder="Editorial web" name="editorial_web" required>
+                                @if ($errors->has('editorial_web'))
+                                <span class="text-danger">{{ $errors->first('editorial_web') }}</span>
+                                @endif
+                            </div>
                         </div>
 
-                    </div>
-                    <div class="col d-flex flex-column align-items-center">
-                        <div class="form-check">
-                            <input class="form-check-input me-2" type="radio" name="primera" id="flexRadioDefault1"
-                                value="0" {{ (old('primera')=='0' ) ? 'checked' : '' }} required>
-                            <label class="form-check-label" for="flexRadioDefault1">
-                                No es la primera obra del autor
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input me-2" type="radio" name="primera" id="flexRadioDefault2"
-                                value="1" {{ (old('primera')=='1' ) ? 'checked' : '' }}>
-                            <label class="form-check-label" for="flexRadioDefault2">
-                                Es la primera obra del autor
-                            </label>
+
+
+                        <div class="row mb-3">
+                            <div class="col">
+                                <input type="text" class="form-control" id="" value="{{old('isbn')}}" placeholder="ISBN"
+                                    name="isbn" required>
+                                @if ($errors->has('isbn'))
+                                <span class="text-danger">{{ $errors->first('isbn') }}</span>
+                                @endif
+                            </div>
+
+                            <div class="col">
+                                <select name="idioma" class="form-select" id="">
+                                    <option selected disabled hidden>Escull idioma</option>
+                                    <option></option>
+                                    <option value="Català" {{ ("Català"===old('idioma')) ? 'selected' : '' }}>Català
+                                    </option>
+                                    <option value="Occità" {{("Occità"===old('idioma')) ? 'selected' : '' }}>Occità
+                                    </option>
+
+                                </select>
+                                @if ($errors->has('idioma'))
+                                <span class="text-danger">{{ $errors->first('idioma') }}</span>
+                                @endif
+
+
+                            </div>
                         </div>
 
-                    </div>
-                    <div class="col d-flex flex-column align-items-center">
-                        <div class="form-check">
-                            <input class="form-check-input me-2" type="radio" name="auto" id="flexRadioDefault1"
-                                value="0" {{ (old('auto')=='0' ) ? 'checked' : '' }} required>
-                            <label class="form-check-label" for="flexRadioDefault1">
-                                No es autopublicat
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input me-2" type="radio" name="auto" id="flexRadioDefault2"
-                                value="1" {{ (old('auto')=='1' ) ? 'checked' : '' }}>
-                            <label class="form-check-label" for="flexRadioDefault2">
-                                Es autopublicat
-                            </label>
+
+
+                        <input type="hidden" name="user_id" value="{{Auth()->user()->id}}" id="">
+
+
+                        <div class="row mb-3">
+                            <div class="col d-flex flex-column align-items-center">
+                                <div class="form-check">
+                                    <input class="form-check-input me-2" type="radio" name="novetat"
+                                        id="flexRadioDefault1" value="0" {{ (old('novetat')=='0' ) ? 'checked' : '' }}
+                                        required>
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        No es novetat
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input me-2" type="radio" name="novetat"
+                                        id="flexRadioDefault2" value="1" {{ (old('novetat')=='1' ) ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                        Es novetat editorial
+                                    </label>
+                                </div>
+
+                            </div>
+                            <div class="col d-flex flex-column align-items-center">
+                                <div class="form-check">
+                                    <input class="form-check-input me-2" type="radio" name="primera"
+                                        id="flexRadioDefault1" value="0" {{ (old('primera')=='0' ) ? 'checked' : '' }}
+                                        required>
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        No es la primera obra publicada del autor
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input me-2" type="radio" name="primera"
+                                        id="flexRadioDefault2" value="1" {{ (old('primera')=='1' ) ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                        Es la primera obra publicada del autor
+                                    </label>
+                                </div>
+
+                            </div>
+                            <div class="col d-flex flex-column align-items-center">
+                                <div class="form-check">
+                                    <input class="form-check-input me-2" type="radio" name="auto" id="flexRadioDefault1"
+                                        value="0" {{ (old('auto')=='0' ) ? 'checked' : '' }} required>
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        No es autopublicat
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input me-2" type="radio" name="auto" id="flexRadioDefault2"
+                                        value="1" {{ (old('auto')=='1' ) ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                        Es autopublicat
+                                    </label>
+                                </div>
+
+                            </div>
                         </div>
 
-                    </div>
-                </div>
-
-                <div class="mb-3">
-                    <label for="" class="form-label">Sinopsi</label>
-                    <textarea class="form-control " name="sinopsi" id="" rows="3">
+                        <div class="mb-4">
+                            <label for="" class="form-label">Sinopsi</label>
+                            <textarea class="form-control " name="sinopsi" id="" rows="3">
         {!! old('sinopsi')!!}
     </textarea>
-                    @if ($errors->has('sinopsi'))
-                    <span class="text-danger">{{ $errors->first('sinopsi') }}</span>
-                    @endif
-                </div>
-            </div>
-            <div class="mb-3">
-                <label for="" class="form-label">Cita</label>
-                <textarea class="form-control " name="cita" id="" rows="3">
+                            @if ($errors->has('sinopsi'))
+                            <span class="text-danger">{{ $errors->first('sinopsi') }}</span>
+                            @endif
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="" class="form-label">Escriu una cita del llibre que t&#39;hagi agradat
+                                (opcional)</label>
+                            <textarea class="form-control " name="cita" id="" rows="3">
                                         {!! old('cita')!!}
                                     </textarea>
-                @if ($errors->has('cita'))
-                <span class="text-danger">{{ $errors->first('cita') }}</span>
-                @endif
-            </div>
-            <div class="mb-3">
-                <label for="" class="form-label">Comentari personal</label>
-                <textarea class="form-control " name="comentari" id="" rows="3">
+                            @if ($errors->has('cita'))
+                            <span class="text-danger">{{ $errors->first('cita') }}</span>
+                            @endif
+                        </div>
+                        <div class="mb-4">
+                            <label for="" class="form-label">Escriu la teva ressenya (opcional)</label>
+                            <textarea class="form-control " name="comentari" id="" rows="3">
                                                         {!! old('comentari')!!}
                                                     </textarea>
-                @if ($errors->has('comentari'))
-                <span class="text-danger">{{ $errors->first('comentari') }}</span>
-                @endif
+                            @if ($errors->has('comentari'))
+                            <span class="text-danger">{{ $errors->first('comentari') }}</span>
+                            @endif
+                        </div>
+                        <div class="mb-3 d-flex justify-content-center">
+                            <button type="submit" class="btn btn-success">
+                                <i class="bi bi-check-circle"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="mb-3 d-flex justify-content-center">
-                <button type="submit" class="btn btn-success">
-                    <i class="bi bi-check-circle"></i>
-                </button>
-            </div>
-            </form>
         </div>
     </div>
-</div>
 
 </div>
 </div>
