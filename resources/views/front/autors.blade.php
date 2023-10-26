@@ -12,22 +12,7 @@ Autors
                 <div class="card mb-3"
                     style="background-image:url(@if ($autor->url_foto != null){{ $autor->url_foto }} @else {{Storage::url($autor->image)}} @endif);background-size:cover;background-position:center;height:250px;">
 
-                    {{-- <div class=" row g-0">
-                        <div class="col-md-4">
-                            @if ($autor->url_foto != null)
-                            <img src="{{ $autor->url_foto }}" alt="" class="d-block mx-auto" width="80">
-                            @else
-                            <img src="{{Storage::url($autor->image)}}" alt="" class="d-block mx-auto" width="80">
-                            @endif
 
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $autor->autor_nom }}</h5>
-
-                            </div>
-                        </div>
-                    </div> --}}
 
                 </div>
             </a>

@@ -6,28 +6,24 @@ Editorials
 <div class="container">
     <div class="row">
         @foreach ($editorials as $editorial)
-        <div class="col-md-4">
-            <a href="{{ route('editorial', $editorial) }}" class="nav-link">
-                <div class="card mb-3">
-                    <div class="row g-0">
-                        <div class="col-md-4 d-flex">
-                            @if ($editorial->logo != null)
-                            <img src="{{ $editorial->logo }}" class="card-img-top img-fluid w-25 d-block mx-auto"
-                                alt="...">
-                            @else
-                            <img src="{{Storage::url($editorial->image)}}" alt="" class="d-block mx-auto" width="80">
-                            @endif
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $editorial->editorial_nom }}</h5>
+        <div class="col-md-3 d-flex justify-content-center align-items-center">
+            <a href="{{ route('editorial', $editorial) }}" class="nav-link" data-bs-toggle="tooltip"
+                data-bs-title="{{$editorial->editorial_nom}}">
+                <div class="card mb-3 p-3">
 
-                            </div>
 
-                        </div>
-                    </div>
+                    @if ($editorial->logo != null)
+                    <img src="{{ $editorial->logo }}" class=" img-fluid " alt="..."
+                        style="object-fit:cover;width:100%;height:100%;">
+                    @else
+                    <img src="{{Storage::url($editorial->image)}}" alt="" class="img-fluid"
+                        style="object-fit:cover;width:100%;height:100%;">
+                    @endif
+
 
                 </div>
+
+
             </a>
         </div>
         @endforeach
@@ -35,5 +31,10 @@ Editorials
 </div>
 @endsection
 @section('js')
-
+<script>
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl)
+})
+</script>
 @endsection
