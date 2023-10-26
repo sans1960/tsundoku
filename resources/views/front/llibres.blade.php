@@ -6,21 +6,22 @@ TSUNDOKU
 <div class="container">
     <div class="row">
         @foreach ($books as $book)
+
         <div class="col-md-4 mb-2">
 
             <div class="card mb-3">
                 <div class="row g-0">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         @if ($book->imatge != null)
                         <img src="{{ $book->imatge }}" class="img-fluid rounded-start" alt="..."
-                            style="width: 100%;height:100%;object-fit:cover;">
+                            style="object-fit:cover;width:100%;height:100%;">
                         @else
                         <img src="{{Storage::url($book->foto)}}" alt="" class="img-fluid rounded-start"
-                            style="width: 100%;height:100%;object-fit:cover;">
+                            style="object-fit:cover;width:100%;height:100%;">
                         @endif
 
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-8">
                         <div class="card-body">
                             <h5 class="card-title">{{ $book->titol }}</h5>
                             <h5 class="">{{ $book->autor_nom }}</h5>

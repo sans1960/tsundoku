@@ -9,9 +9,9 @@
             <div class="card p-3">
 
                 @if ($autor->url_foto != null)
-                <img src="{{ $autor->url_foto }}" alt="" class="d-block mx-auto" width="80">
+                <img src="{{ $autor->url_foto }}" alt="" class="d-block mx-auto img-fluid w-25">
                 @else
-                <img src="{{Storage::url($autor->image)}}" alt="" class="d-block mx-auto" width="80">
+                <img src="{{Storage::url($autor->image)}}" alt="" class="d-block mx-auto img-fluid w-25">
                 @endif
 
 
@@ -29,28 +29,28 @@
                         <div class="col">
                             @if ($autor->twitter)
                             <a href="{{$autor->twitter}}" target="_blank">
-                                <i class="bi bi-twitter"></i>
+                                <i style="font-size: 1.5rem;" class="bi bi-twitter"></i>
                             </a>
                             @endif
                         </div>
                         <div class="col">
                             @if ($autor->facebook)
                             <a href="{{$autor->facebook}}" target="_blank">
-                                <i class="bi bi-facebook"></i>
+                                <i style="font-size: 1.5rem;" class="bi bi-facebook"></i>
                             </a>
                             @endif
                         </div>
                         <div class="col">
                             @if ($autor->web)
                             <a href="{{$autor->web}}" target="_blank">
-                                <i class="bi bi-globe"></i>
+                                <i style="font-size: 1.5rem;" class="bi bi-globe"></i>
                             </a>
                             @endif
                         </div>
                         <div class="col">
                             @if ($autor->instagram)
                             <a href="{{$autor->instagram}}" target="_blank">
-                                <i class="bi bi-instagram"></i>
+                                <i style="font-size: 1.5rem;" class="bi bi-instagram"></i>
                             </a>
                             @endif
                         </div>
@@ -100,71 +100,70 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12 d-flex flex-column">
-            <h3>Llibres</h3>
-            @foreach ($autor->book as $book)
-            <div class="card mb-3">
-                <div class="row g-0">
-                    <div class="col-md-4">
-                        @if ($book->imatge != null)
-                        <img src="{{ $book->imatge }}" class="img-fluid rounded-start" alt="...">
-                        @else
-                        <img src="{{Storage::url($book->foto)}}" alt="" class="d-block mx-auto" width="80">
-                        @endif
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $book->titol }}</h5>
-                            <p class="card-text">{{ $book->genere->nom }}</p>
-                            <p class="card-text">{{ $book->editorial_nom }}
-                            </p>
 
-                            <a href="{{ route('book', $book) }}">
-                                <i class="bi bi-eye-fill text-success" style="font-size: 1.5rem;"></i>
-                            </a>
-                        </div>
-                    </div>
+        <h3>Llibres</h3>
+        @foreach ($autor->book as $book)
+        <div class="col-md-3 ">
+            <a href="{{route('book',$book)}}">
+                <div class="card mb-3">
+
+
+                    @if ($book->imatge != null)
+                    <img src="{{ $book->imatge }}" class="img-fluid d-block mx-auto " alt="..."
+                        style="object-fit:cover;width:100%;height:100%;">
+                    @else
+                    <img src="{{Storage::url($book->foto)}}" alt="" class=" img-fluid d-block mx-auto"
+                        style="object-fit:cover;width:100%;height:100%;">
+                    @endif
+
+
+
+
                 </div>
-            </div>
-            @endforeach
-
+            </a>
         </div>
+        @endforeach
 
     </div>
-    <div class="row">
-        <div class="col-md-8 mx-auto mt-5">
+
+</div>
+<div class="row">
+    <div class="col-md-8 mx-auto mt-5">
 
 
-            <div class="card p-3">
-                <h5 class="card-header">Veure Comentaris</h5>
-                @include('front.partials.comentautorDisplay', ['comentautors' =>
-                $autor->comentautor,'autor_id',$autor->id])
-
-            </div>
-            @if (Auth::check())
-
-            <div class="card p-3">
-
-
-                <h5 class="card-header">Fes un comentari</h5>
-                <form method="post" action="{{route('coment.autor.store')}}">
-                    @csrf
-                    <div class="form-group mb-3 p-2">
-                        <textarea class="form-control" name="body" required></textarea>
-                        <input type="hidden" name="autor_id" value="{{ $autor->id }}" />
-                    </div>
-                    <div class="form-group mt-3 mb-3">
-                        <button type="submit" class="btn btn-outline-success">
-                            Crea
-                        </button>
-                    </div>
-                </form>
-
-
-            </div>
+        <div class="card p-3">
+            @if ($autor->comentautor->count())
+            <h5 class="card-header">Comentaris</h5>
+            @include('front.partials.comentautorDisplay', ['comentautors' =>
+            $autor->comentautor,'autor_id',$autor->id])
             @endif
+
+
         </div>
+        @if (Auth::check())
+
+        <div class="card p-3">
+
+
+            <h5 class="card-header">Fes un comentari</h5>
+            <form method="post" action="{{route('coment.autor.store')}}">
+                @csrf
+                <div class="form-group mb-3 p-2">
+                    <textarea class="form-control" name="body" required></textarea>
+                    <input type="hidden" name="autor_id" value="{{ $autor->id }}" />
+                </div>
+                <div class="form-group mt-3 mb-3">
+                    <button type="submit" class="btn btn-outline-success">
+                        Crea
+                    </button>
+                </div>
+            </form>
+
+
+        </div>
+        @endif
     </div>
+</div>
 </div>
 @endsection
 @section('js')

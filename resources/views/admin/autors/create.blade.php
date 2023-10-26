@@ -23,16 +23,35 @@
                             @endif
                         </div>
 
+                        <div class="mb-3">
+
+                            <label for="foto" class="form-label">Imatge de l&#39;autor/a (copia i enganxa
+                                l&#39;adreça web a la imatge)</label>
+                            <input class="form-control" type="text" id="foto" name="url_foto">
+                            @if ($errors->has('url_foto'))
+                            <span class="text-danger">{{ $errors->first('url_foto') }}</span>
+                            @endif
+                        </div>
+                        <p>O si prefereixes</p>
                         <div class="row mb-3">
                             <div class="col">
-                                <label for="foto" class="form-label">Foto</label>
-                                <input class="form-control" type="text" id="foto" name="url_foto">
-                                @if ($errors->has('url_foto'))
-                                <span class="text-danger">{{ $errors->first('url_foto') }}</span>
-                                @endif
+                                <label for="image" class="form-label">Puja un fitxer amb la imatge de
+                                    l&#39;autor/a</label>
+                                <input class="form-control" type="file" id="image" name="image"
+                                    value="{{old('image')}}">
                             </div>
-                            @if (Auth()->user()->type == 'admin')
                             <div class="col">
+                                <img id="preview-image-before-upload" class="img-fluid w-50 d-block mx-auto"
+                                    src="https://cdn.pixabay.com/photo/2022/02/22/17/25/stork-7029266_960_720.jpg"
+                                    alt="">
+                            </div>
+                            @if ($errors->has('image'))
+                            <span class="text-danger">{{ $errors->first('image') }}</span>
+                            @endif
+                        </div>
+                        <div class="row mb-3">
+                            @if (Auth()->user()->type == 'admin')
+                            <div class="col p-4">
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="active" id="flexRadioDefault1"
                                         value="0" {{ (old('active')=='0' ) ? 'checked' : '' }} required>
@@ -53,31 +72,32 @@
 
                             </div>
                             @endif
-
-
-                        </div>
-                        <div class="row mb-3">
                             <div class="col d-flex flex-column align-items-center">
+                                <p>És un autor autopublicat/da?</p>
                                 <div class="form-check">
                                     <input class="form-check-input me-2" type="radio" name="auto" id="flexRadioDefault1"
                                         value="0" {{ (old('auto')=='0' ) ? 'checked' : '' }} required>
                                     <label class="form-check-label" for="flexRadioDefault1">
-                                        No autopublica
+                                        No
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input me-2" type="radio" name="auto" id="flexRadioDefault2"
                                         value="1" {{ (old('auto')=='1' ) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="flexRadioDefault2">
-                                        Autopublica
+                                        Si
                                     </label>
                                 </div>
 
                             </div>
                         </div>
+
+
+
+
                         <div class="row mb-3">
                             <div class="col">
-                                <label for="web" class="form-label">Web</label>
+                                <label for="web" class="form-label">Web de l&#39;autor/a (opcional)</label>
                                 <input type="text" class="form-control" value="{{old('web')}}" id="web"
                                     placeholder="Web" name="web">
                                 @if ($errors->has('web'))
@@ -85,7 +105,7 @@
                                 @endif
                             </div>
                             <div class="col">
-                                <label for="facebook" class="form-label">Facebook</label>
+                                <label for="facebook" class="form-label">Facebook de l&#39;autor/a (opcional)</label>
                                 <input type="text" class="form-control" value="{{old('facebook')}}" id="facebook"
                                     placeholder="Facebook" name="facebook">
                                 @if ($errors->has('facebook'))
@@ -95,7 +115,7 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col">
-                                <label for="instagram" class="form-label">Instagram</label>
+                                <label for="instagram" class="form-label">Instagram de l&#39;autor/a (opcional)</label>
                                 <input type="text" class="form-control" value="{{old('instagram')}}" id="instagram"
                                     placeholder="Instagram" name="instagram">
                                 @if ($errors->has('instagram'))
@@ -103,7 +123,7 @@
                                 @endif
                             </div>
                             <div class="col">
-                                <label for="twitter" class="form-label">Twitter</label>
+                                <label for="twitter" class="form-label">Twiter de l&#39;autor/a (opcional)</label>
                                 <input type="text" class="form-control" value="{{old('twitter')}}" id="twitter"
                                     placeholder="Twitter" name="twitter">
                                 @if ($errors->has('twitter'))
@@ -111,21 +131,7 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="row mb-3">
-                            <div class="col">
-                                <label for="image" class="form-label">Imatge</label>
-                                <input class="form-control" type="file" id="image" name="image"
-                                    value="{{old('image')}}">
-                            </div>
-                            <div class="col">
-                                <img id="preview-image-before-upload" class="img-fluid w-50 d-block mx-auto"
-                                    src="https://cdn.pixabay.com/photo/2022/02/22/17/25/stork-7029266_960_720.jpg"
-                                    alt="">
-                            </div>
-                            @if ($errors->has('image'))
-                            <span class="text-danger">{{ $errors->first('image') }}</span>
-                            @endif
-                        </div>
+
                         <div class="mb-3">
                             <label for="" class="form-label">Biopic</label>
                             <textarea class="form-control " name="biopic" id="" rows="3">

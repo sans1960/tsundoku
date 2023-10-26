@@ -28,7 +28,7 @@ TSUNDOKU
                 <div class="d-flex flex-column">
                     <a class="nav-link" href="{{route('book',$book)}}">
                         <div class="card"
-                            style="height: 300px;background-image:url(@if ($book->imatge != null){{ $book->imatge }} @else {{Storage::url($book->foto)}} @endif);background-size:cover;background-position:center;"
+                            style="height: 300px;background-image:url(@if ($book->imatge != null){{ $book->imatge }} @else {{Storage::url($book->foto)}} @endif);background-size:cover;background-position:center;object-fit:fill;"
                             data-bs-toggle="tooltip" data-bs-title="{{$book->titol}}">
 
 
@@ -88,7 +88,7 @@ TSUNDOKU
                 <a href="{{route('book',$book)}}" class="nav-link" data-bs-toggle="tooltip"
                     data-bs-title="{{$book->titol}}">
                     <div class="card"
-                        style="height: 300px;background-image:url(@if ($book->imatge != null){{ $book->imatge }} @else {{Storage::url($book->foto)}} @endif);background-size:cover;background-position:center;">
+                        style="height: 300px;background-image:url(@if ($book->imatge != null){{ $book->imatge }} @else {{Storage::url($book->foto)}} @endif);background-size:cover;background-position:center;object-fit:fill;">
 
 
                     </div>
@@ -122,7 +122,7 @@ TSUNDOKU
     <div class="row mb-3">
         <a href="https://www.plataforma-llengua.cat/" target="_blank" rel="noopener noreferrer">
             <div class="col-md-10 mx-auto  rounded p-3"
-                style="height: 250px; background-image:url({{asset('img/pl_no_texcusis_slide_web_desktop_1646932781_1400.png')}});background-position:center;background-size:cover;">
+                style="height: 250px; background-image:url({{asset('img/pl_no_texcusis_slide_web_desktop_1646932781_1400.png')}});background-position:center;background-size:cover;object-fit:fill;">
 
 
             </div>
@@ -137,7 +137,7 @@ TSUNDOKU
                 <a href="{{route('book',$book)}}" class="nav-link" data-bs-toggle="tooltip"
                     data-bs-title="{{$book->titol}}">
                     <div class="card"
-                        style="height: 300px;background-image:url(@if ($book->imatge != null){{ $book->imatge }} @else {{Storage::url($book->foto)}} @endif);background-size:cover;background-position:center;">
+                        style="height: 300px;background-image:url(@if ($book->imatge != null){{ $book->imatge }} @else {{Storage::url($book->foto)}} @endif);background-size:cover;background-position:center;object-fit:fill;">
 
 
                     </div>
@@ -156,7 +156,7 @@ TSUNDOKU
                 <a href="{{route('book',$book)}}" class="nav-link" data-bs-toggle="tooltip"
                     data-bs-title="{{$book->titol}}">
                     <div class="card"
-                        style="height: 300px;background-image:url(@if ($book->imatge != null){{ $book->imatge }} @else {{Storage::url($book->foto)}} @endif);background-size:cover;background-position:center;">
+                        style="height: 300px;background-image:url(@if ($book->imatge != null){{ $book->imatge }} @else {{Storage::url($book->foto)}} @endif);background-size:cover;background-position:center;object-fit:fill;">
 
 
                     </div>
@@ -177,7 +177,7 @@ TSUNDOKU
                 <a href="{{route('medi',$medi)}}" class="nav-link" data-bs-toggle="tooltip"
                     data-bs-title="{{$medi->titol}}">
                     <div class="card"
-                        style="height: 300px;background-image:url( {{Storage::url($medi->image)}});background-size:cover;background-position:center;">
+                        style="height: 300px;background-image:url( {{Storage::url($medi->image)}});background-size:cover;background-position:center;object-fit:fill;">
 
 
 
@@ -198,7 +198,7 @@ TSUNDOKU
             <a href="{{route('post',$post)}}" class="nav-link" data-bs-toggle="tooltip"
                 data-bs-title="{{$post->titol}}">
                 <div class="card"
-                    style="height: 300px;background-image:url( {{Storage::url($post->image)}});background-size:cover;background-position:center;">
+                    style="height: 300px;background-image:url( {{Storage::url($post->image)}});background-size:cover;background-position:center;object-fit:fill;">
                     >
 
 
@@ -215,7 +215,7 @@ TSUNDOKU
     <div class="row mb-3">
         <a href="https://www.escriptors.cat/" target="_blank" rel="noopener noreferrer">
             <div class="col-md-12  rounded"
-                style="height: 250px; background-image:url({{asset('img/banner.jpg')}});background-position:center;background-size:cover;">
+                style="height: 250px; background-image:url({{asset('img/banner.jpg')}});background-position:center;background-size:cover; object-fit:fill;">
 
 
             </div>
@@ -227,7 +227,7 @@ TSUNDOKU
         <div class="col-md-4 mb-3">
             <a class="nav-link" href="{{route('acte',$acte)}}">
                 <div class="card"
-                    style="height: 300px;background-image:url({{Storage::url($acte->image)}});background-size:cover;background-position:center;"
+                    style="height: 300px;background-image:url({{Storage::url($acte->image)}});background-size:cover;background-position:center;object-fit:fill;"
                     data-bs-toggle="tooltip" data-bs-title="{{$acte->titol}}">
 
 

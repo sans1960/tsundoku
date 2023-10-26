@@ -13,9 +13,11 @@
                 <div class="row g-0">
                     <div class="col-md-3 d-flex flex-column p-2">
                         @if ($book->imatge != null)
-                        <img src="{{ $book->imatge }}" class="img-fluid rounded-start" alt="...">
+                        <img src="{{ $book->imatge }}" class="img-fluid rounded-start" alt="..."
+                            style="object-fit:cover;width:100%;height:100%;">
                         @else
-                        <img src="{{Storage::url($book->foto)}}" alt="" class="d-block mx-auto" width="200">
+                        <img src="{{Storage::url($book->foto)}}" alt="" class="d-block mx-auto"
+                            style="object-fit:cover;width:100%;height:100%;">
                         @endif
 
                         <p>{{ $book->isbn }}</p>
