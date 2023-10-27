@@ -9,15 +9,15 @@ Editorials
         <div class="col-md-3 d-flex justify-content-center align-items-center">
             <a href="{{ route('editorial', $editorial) }}" class="nav-link" data-bs-toggle="tooltip"
                 data-bs-title="{{$editorial->editorial_nom}}">
-                <div class="card mb-3 p-3">
+                <div class="card mb-3 p-4">
 
 
                     @if ($editorial->logo != null)
                     <img src="{{ $editorial->logo }}" class=" img-fluid " alt="..."
-                        style="object-fit:cover;width:100%;height:100%;">
+                        style="object-fit:cover;width:80%;height:80%;">
                     @else
                     <img src="{{Storage::url($editorial->image)}}" alt="" class="img-fluid"
-                        style="object-fit:cover;width:100%;height:100%;">
+                        style="object-fit:cover;width:80%;height:80%;">
                     @endif
 
 

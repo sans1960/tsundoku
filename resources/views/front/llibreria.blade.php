@@ -8,12 +8,12 @@
 @section('content')
 <div class="container ">
     <div class="row ">
-        <div class="col-md-8 mt-3">
+        <div class="col-md-12 mt-3">
             <div class="card p-1">
                 @if ($bookshop->logo != null)
-                <img src="{{ $bookshop->logo }}" class="img-fluid rounded-start" alt="...">
+                <img src="{{ $bookshop->logo }}" class="img-fluid d-block mx-auto w-25" alt="...">
                 @else
-                <img src="{{Storage::url($bookshop->image)}}" alt="" class="d-block mx-auto" width="80">
+                <img src="{{Storage::url($bookshop->image)}}" alt="" class="img-fluid d-block mx-auto w-25">
                 @endif
                 <div class="card-body">
                     <h5 class="card-title">{{ $bookshop->nom }}</h5>
@@ -73,16 +73,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4 mt-3">
-            @if (Auth::check())
-            <div class="row">
 
-                <div class="col-md-12">
-
-                </div>
-            </div>
-            @endif
-        </div>
 
 
 

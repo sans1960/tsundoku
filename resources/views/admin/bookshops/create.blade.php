@@ -22,25 +22,27 @@
                             @endif
                         </div>
                         <input type="hidden" name="user_id" value="{{Auth()->user()->id}}">
-                        <div class="row mb-3">
-                            <div class="col">
-                                <label for="url" class="form-label">Url</label>
-                                <input class="form-control" value="{{old('url')}}" type="text" id="url" name="url">
-                                @if ($errors->has('url'))
-                                <span class="text-danger">{{ $errors->first('url') }}</span>
-                                @endif
-                            </div>
-                            <div class="col">
-                                <label for="foto" class="form-label">Logo</label>
-                                <input class="form-control" type="text" id="foto" value="{{old('logo')}}" name="logo">
-                                @if ($errors->has('logo'))
-                                <span class="text-danger">{{ $errors->first('logo') }}</span>
-                                @endif
-                            </div>
+                        <div class="mb-3">
+
+                            <label for="url" class="form-label">Adreça web</label>
+                            <input class="form-control" value="{{old('url')}}" type="text" id="url" name="url">
+                            @if ($errors->has('url'))
+                            <span class="text-danger">{{ $errors->first('url') }}</span>
+                            @endif
                         </div>
+
+                        <div class="mb-3">
+                            <label for="foto" class="form-label">Logo de la libreria (copia i enganxa l&#39;adreça
+                                web del logo)</label>
+                            <input class="form-control" type="text" id="foto" value="{{old('logo')}}" name="logo">
+                            @if ($errors->has('logo'))
+                            <span class="text-danger">{{ $errors->first('logo') }}</span>
+                            @endif
+                        </div>
+                        <p>O si prefereixes</p>
                         <div class="row mb-3">
                             <div class="col">
-                                <label for="image" class="form-label">Imatge</label>
+                                <label for="image" class="form-label">Puja un fitxer amb el logo de la llibreria</label>
                                 <input class="form-control" type="file" id="image" name="image"
                                     value="{{old('image')}}">
                             </div>
@@ -79,6 +81,7 @@
                         </div>
                         @endif
                         <div class="row mb-3">
+                            <p>Intrudueix les coordenades per generar un mapa amb la localització</p>
                             <div class="col">
                                 <input type="text" value="{{old('latitud')}}" class="form-control" id="latitud"
                                     placeholder="Latitud" name="latitud" required>
@@ -93,13 +96,16 @@
                                 <span class="text-danger">{{ $errors->first('longitud') }}</span>
                                 @endif
                             </div>
+                            @if (Auth()->user()->type == 'admin')
                             <div class="col">
                                 <input type="number" name="zoom" class="form-control" id="" placeholder="Zoom"
-                                    value="16" readonly>
+                                    value="16">
                                 @if ($errors->has('zoom'))
                                 <span class="text-danger">{{ $errors->first('zoom') }}</span>
                                 @endif
                             </div>
+                            @endif
+
                         </div>
                         <div class="mb-3">
                             <label for="" class="form-label">Qui Som</label>

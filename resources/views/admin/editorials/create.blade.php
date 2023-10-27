@@ -32,40 +32,19 @@
                             </div>
 
                         </div>
-                        <div class="row mb-3">
-                            <div class="col">
-                                <label for="foto" class="form-label">Logo</label>
-                                <input class="form-control" type="text" id="foto" value="{{old('logo')}}" name="logo">
-                                @if ($errors->has('logo'))
-                                <span class="text-danger">{{ $errors->first('logo') }}</span>
-                                @endif
-                            </div>
-                            @if (Auth()->user()->type == 'admin')
-                            <div class="col d-flex flex-column align-items-center">
-                                <div class="form-check">
-                                    <input class="form-check-input me-2" type="radio" name="active"
-                                        id="flexRadioDefault1" value="0"  {{ (old('active') == '0') ? 'checked' : ''}}  required>
-                                    <label class="form-check-label" for="flexRadioDefault1">
-                                        No actiu
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input me-2" type="radio" name="active"
-                                        id="flexRadioDefault2" value="1"  {{ (old('active') == '1') ? 'checked' : ''}}>
-                                    <label class="form-check-label" for="flexRadioDefault2">
-                                        Actiu
-                                    </label>
-                                </div>
-                                @if ($errors->has('active'))
-                                <span class="text-danger">{{ $errors->first('active') }}</span>
-                                @endif
-                            </div>
+                        <div class="mb-3">
+
+                            <label for="foto" class="form-label">Logo de l'editorial (copia i enganxa l&#39;adreça
+                                web del logo)</label>
+                            <input class="form-control" type="text" id="foto" value="{{old('logo')}}" name="logo">
+                            @if ($errors->has('logo'))
+                            <span class="text-danger">{{ $errors->first('logo') }}</span>
                             @endif
                         </div>
-                        
+                        <p>O si prefereixes</p>
                         <div class="row mb-3">
                             <div class="col">
-                                <label for="image" class="form-label">Imatge</label>
+                                <label for="image" class="form-label">Puja un fitxer amb el logo de l'editorial</label>
                                 <input class="form-control" type="file" id="image" name="image"
                                     value="{{old('image')}}">
                             </div>
@@ -78,6 +57,32 @@
                             <span class="text-danger">{{ $errors->first('image') }}</span>
                             @endif
                         </div>
+                        @if (Auth()->user()->type == 'admin')
+                        <div class="row">
+                            <div class="col d-flex flex-column align-items-center">
+                                <div class="form-check">
+                                    <input class="form-check-input me-2" type="radio" name="active"
+                                        id="flexRadioDefault1" value="0" {{ (old('active')=='0' ) ? 'checked' : '' }}
+                                        required>
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        No actiu
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input me-2" type="radio" name="active"
+                                        id="flexRadioDefault2" value="1" {{ (old('active')=='1' ) ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                        Actiu
+                                    </label>
+                                </div>
+                                @if ($errors->has('active'))
+                                <span class="text-danger">{{ $errors->first('active') }}</span>
+                                @endif
+                            </div>
+                            @endif
+                        </div>
+
+
 
                         <div class="mb-3">
                             <label for="" class="form-label">Descripció</label>
