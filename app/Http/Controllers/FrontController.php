@@ -110,8 +110,9 @@ class FrontController extends Controller
     }
     public function onepost(Post $post)
     {
+        $posts = Post::where('id', '!=', $post->id)->orderBy('created_at', 'DESC')->get();
 
-        return view('front.post', compact('post'));
+        return view('front.post', compact('post', 'posts'));
     }
     public function allMedis()
     {

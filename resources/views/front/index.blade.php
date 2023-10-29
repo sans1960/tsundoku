@@ -171,32 +171,30 @@ TSUNDOKU
     <div class="row mb-3">
 
         <div class="col-md-6 p-3">
-            <h4 class="mb-3 text-center">Tsundoku TV</h4>
-            <div class="owl-carousel2 owl-theme">
+            <h4 class="mb-3">Tsundoku TV</h4>
 
-                <a href="{{route('medi',$medi)}}" class="nav-link" data-bs-toggle="tooltip"
-                    data-bs-title="{{$medi->titol}}">
-                    <div class="card"
-                        style="height: 300px;background-image:url( {{Storage::url($medi->image)}});background-size:cover;background-position:center;object-fit:fill;">
-
+            <h5 class="mb-3">{{$medi->titol}}</h5>
+            <a href="{{route('medi',$medi)}}" class="nav-link">
+                <div class="card"
+                    style="height: 300px;background-image:url( {{Storage::url($medi->image)}});background-size:cover;background-position:center;object-fit:fill;">
 
 
 
 
-                    </div>
 
-                </a>
+                </div>
+
+            </a>
 
 
-            </div>
+
         </div>
 
         <div class="col-md-6 mb-3 p-3">
-            <h4 class="mb-3 text-center">Noticies</h4>
+            <h4 class="mb-3">Noticies</h4>
 
-
-            <a href="{{route('post',$post)}}" class="nav-link" data-bs-toggle="tooltip"
-                data-bs-title="{{$post->titol}}">
+            <h5 class="mb-3">{{$post->titol}}</h5>
+            <a href="{{route('post',$post)}}" class="nav-link">
                 <div class="card"
                     style="height: 300px;background-image:url( {{Storage::url($post->image)}});background-size:cover;background-position:center;object-fit:fill;">
                     >
@@ -225,10 +223,10 @@ TSUNDOKU
         <h3 class="mb-3">Agenda</h3>
         @foreach ($actes as $acte)
         <div class="col-md-4 mb-3">
+            <h5 class="mb-3">{{$acte->titol}}</h5>
             <a class="nav-link" href="{{route('acte',$acte)}}">
                 <div class="card"
-                    style="height: 300px;background-image:url({{Storage::url($acte->image)}});background-size:cover;background-position:center;object-fit:fill;"
-                    data-bs-toggle="tooltip" data-bs-title="{{$acte->titol}}">
+                    style="height: 300px;background-image:url({{Storage::url($acte->image)}});background-size:cover;background-position:center;object-fit:fill;">
 
 
                 </div>
