@@ -6,17 +6,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class RatingBook extends Model
+class RatingPost extends Model
 {
     use HasFactory;
-    protected $fillable = ['user_id', 'book_id', 'rate'];
-
+    protected $fillable = ['user_id', 'post_id', 'rate'];
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
-    public function book(): BelongsTo
+    public function post(): BelongsTo
     {
-        return $this->belongsTo(Book::class);
+        return $this->belongsTo(Post::class);
     }
 }

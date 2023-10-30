@@ -16,12 +16,7 @@ use App\Models\RatingBook;
 use App\Models\RatingAutor;
 use App\Models\RatingBookshop;
 use App\Models\RatingEdiorial;
-
-
-
-
-
-
+use App\Models\RatingPost;
 
 class FrontController extends Controller
 {
@@ -107,14 +102,17 @@ class FrontController extends Controller
     }
     public function allPosts()
     {
-        $posts = Post::all();
+        $posts = Post::orderBy('created_at', 'DESC')->get();
         return view('front.posts', compact('posts'));
     }
     public function onepost(Post $post)
     {
-        $posts = Post::where('id', '!=', $post->id)->orderBy('created_at', 'DESC')->get();
 
-        return view('front.post', compact('post', 'posts'));
+        $posts = Post::where('id', '!=', $post->id)->orderBy('created_at', 'DESC')->get();
+        $rating = RatingPost::where('post_id', $post->id)->avg('rate');
+
+
+        return view('front.post', compact('post', 'posts', 'rating'));
     }
     public function allMedis()
     {

@@ -175,10 +175,10 @@ TSUNDOKU
 
 
             <a href="{{route('medi',$medi)}}" class="nav-link">
-                <div class="card d-flex justify-content-center align-items-center p-3"
+                <div class="card d-flex justify-content-end align-items-start p-3"
                     style="height: 300px;background-image:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),url( {{Storage::url($medi->image)}});background-size:cover;background-position:center;object-fit:fill;">
 
-                    <h5 class="text-white">{{$medi->titol}}</h5>
+                    <h5 class="text-white text-uppercase">{{$medi->titol}}</h5>
 
 
 
@@ -191,15 +191,15 @@ TSUNDOKU
         </div>
 
         <div class="col-md-6 mb-3 p-3">
-            <h4 class="mb-3">Noticies</h4>
+            <h4 class="mb-3">Notícies</h4>
 
 
             <a href="{{route('post',$post)}}" class="nav-link">
-                <div class="card d-flex justify-content-center align-items-center p-3"
+                <div class="card d-flex justify-content-end align-items-start p-3"
                     style="height: 300px;background-image:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),url( {{Storage::url($post->image)}});background-size:cover;background-position:center;object-fit:fill;">
                     >
 
-                    <h5 class="text-white">{{$post->titol}}</h5>
+                    <h5 class="text-white text-uppercase">{{$post->titol}}</h5>
 
                 </div>
 
@@ -225,9 +225,9 @@ TSUNDOKU
         <div class="col-md-4 mb-3">
 
             <a class="nav-link" href="{{route('acte',$acte)}}">
-                <div class="card d-flex justify-content-center align-items-center p-3"
+                <div class="card d-flex justify-content-end align-items-start p-3"
                     style="height: 300px;background-image:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),url({{Storage::url($acte->image)}});background-size:cover;background-position:center;object-fit:fill;">
-                    <h5 class="text-white">{{$acte->titol}}</h5>
+                    <h5 class="text-white text-uppercase">{{$acte->titol}}</h5>
 
                 </div>
             </a>

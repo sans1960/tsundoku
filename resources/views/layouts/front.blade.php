@@ -62,7 +62,7 @@
                         <a class="nav-link" href="{{route('bookshops')}}">Llibreries</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('posts')}}">Noticies</a>
+                        <a class="nav-link" href="{{route('posts')}}">Notícies</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('medis')}}">Multimedia</a>
