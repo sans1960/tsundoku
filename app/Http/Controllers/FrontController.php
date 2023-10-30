@@ -14,6 +14,7 @@ use App\Models\Acte;
 
 use App\Models\RatingBook;
 use App\Models\RatingAutor;
+use App\Models\RatingBookshop;
 use App\Models\RatingEdiorial;
 
 
@@ -78,8 +79,9 @@ class FrontController extends Controller
     }
     public function bookshop(Bookshop $bookshop)
     {
-
-        return view('front.llibreria', compact('bookshop'));
+        $rating = RatingBookshop::where('bookshop_id', $bookshop->id)->avg('rate');
+        $com = $bookshop->comentbookshop->count();
+        return view('front.llibreria', compact('bookshop', 'rating', 'com'));
     }
 
     public function editorials()

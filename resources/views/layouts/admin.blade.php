@@ -104,6 +104,8 @@
 
                                 <li><a class="dropdown-item" href="{{route('rating.editorial.index')}}">Editorials</a>
                                 </li>
+                                <li><a class="dropdown-item" href="{{route('rating.bookshop.index')}}">Llibreries</a>
+                                </li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -116,6 +118,8 @@
                                 <li><a class="dropdown-item" href="{{route('coment.autor.index')}}">Autors</a></li>
 
                                 <li><a class="dropdown-item" href="{{route('coment.editorial.index')}}">Editorials</a>
+                                </li>
+                                <li><a class="dropdown-item" href="{{route('coment.bookshop.index')}}">Llibreries</a>
                                 </li>
                             </ul>
                         </li>
@@ -131,7 +135,10 @@
                                         Autors</a></li>
 
                                 <li><a class="dropdown-item"
-                                        href="{{route('denunciacoment.editorial.index')}}">Editorials</a></li>
+                                        href="{{route('denunciacoment.editorial.index')}}">Comentaris Editorials</a>
+                                </li>
+                                <li><a class="dropdown-item"
+                                        href="{{route('denunciacoment.bookshop.index')}}">Comentaris Llibreries</a></li>
                             </ul>
                         </li>
 

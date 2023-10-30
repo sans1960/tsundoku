@@ -15,6 +15,14 @@
                 @else
                 <img src="{{Storage::url($bookshop->image)}}" alt="" class="img-fluid d-block mx-auto w-25">
                 @endif
+                <div class="row">
+                    <div class="col-md-6 p-3">
+                        <p>{{$bookshop->ratingbookshop->count()}} Valoracions</p>
+                        <input id="input-2" name="input-1" class="rating rating-loading" data-min="0" data-max="5"
+                            data-step="0.1" value="{{$rating}}" data-size="xs" disabled="">
+                        <p class="mb-2">{{$com}} Comentaris</p>
+                    </div>
+                </div>
                 <div class="card-body">
                     <h5 class="card-title">{{ $bookshop->nom }}</h5>
                     <div class="row">
@@ -70,6 +78,41 @@
                         </div>
                     </div>
 
+                    @if (Auth::check())
+                    @if (Session::has('notif.success'))
+                    <div class="alert alert-info alert-dismissible fade show mt-4" role="alert">
+                        <strong>{{ Session::get('notif.success') }}</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    @endif
+                    <div class="row mt-3 mb-3">
+                        <div class="col">
+                            @if ($bookshop->ratingbookshop->contains('user_id',Auth::user()->id))
+                            <p class="text-success fw-bold">Ja has valorat aquesta llibreria</p>
+                            @else
+                            <h4>Valora</h4>
+                            <form action="{{route('rating.bookshop.store')}}" method="post">
+                                @csrf
+                                <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                                <input type="hidden" name="bookshop_id" value="{{$bookshop->id}}">
+                                <div class="row">
+                                    <div class="col">
+                                        <input id="input-5" name="rate" class="rating-loading" data-show-clear="false"
+                                            data-show-caption="true">
+                                    </div>
+                                    <div class="col mt-2">
+                                        <button type="submit" class="btn btn-outline-success">
+                                            <i class="bi bi-check-square-fill"></i>
+                                        </button>&nbsp;
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    @endif
+                    @endif
+
                 </div>
             </div>
         </div>
@@ -79,17 +122,36 @@
 
     </div>
     <div class="row">
-        <div class="col-md-8 mx-auto mt-5">
-
-            <div class="card">
-                <h5 class="card-header">Veure Comentaris</h5>
+        <div class="col-md-12 mt-5">
+            @if ($bookshop->comentbookshop->count())
+            <div class="card p-3">
+                <h5 class="card-header">Comentaris</h5>
+                @include('front.partials.comentbookshopDisplay', ['comentbookshops' =>
+                $bookshop->comentbookshop,'bookshop_id',$bookshop->id])
 
             </div>
+            @endif
+
+
+
             @if (Auth::check())
-            <div class="card">
+            <div class="card p-3">
 
 
                 <h5 class="card-header">Fes un comentari</h5>
+                <form method="post" action="{{route('coment.bookshop.store')}}">
+                    @csrf
+                    <div class="form-group mb-3 p-2">
+                        <textarea class="form-control" name="body" required></textarea>
+                        <input type="hidden" name="bookshop_id" value="{{ $bookshop->id }}" />
+                    </div>
+                    <div class="form-group mt-3 mb-3">
+                        <button type="submit" class="btn btn-outline-success">
+                            Crea
+                        </button>
+                    </div>
+                </form>
+
 
             </div>
             @endif
@@ -130,6 +192,13 @@
      
     });
 </script>
-
+<script>
+    $(document).ready(function(){
+         
+            $('#input-5').rating({clearCaption: 'No stars yet'});
+            $('#input-1').rating();
+         
+        });
+</script>
 
 @endsection

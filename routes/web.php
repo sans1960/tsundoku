@@ -25,9 +25,12 @@ use App\Http\Controllers\DenunciaComentBookController;
 use App\Http\Controllers\RatingAutorController;
 use App\Http\Controllers\ComentAutorController;
 use App\Http\Controllers\ComentEditorialController;
+use App\Http\Controllers\ComentBookshopController;
 use App\Http\Controllers\DenunciaComentAutorController;
 use App\Http\Controllers\DenunciaComentEditorialController;
+use App\Http\Controllers\DenunciaComentBookshopController;
 use App\Http\Controllers\RatingEdiorialController;
+use App\Http\Controllers\RatingBookshopController;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -93,6 +96,9 @@ Route::middleware(['auth', 'forbid-banned-user'])->group(function () {
     Route::resource('/admin/ratingeditorial', RatingEdiorialController::class)->names('rating.editorial');
     Route::resource('/admin/comenteditorial', ComentEditorialController::class)->names('coment.editorial');
     Route::resource('/admin/denunciacomenteditorial', DenunciaComentEditorialController::class)->names('denunciacoment.editorial');
+    Route::resource('/admin/ratingbookshop', RatingBookshopController::class)->names('rating.bookshop');
+    Route::resource('/admin/comentbookshop', ComentBookshopController::class)->names('coment.bookshop');
+    Route::resource('/admin/denunciacomentbookshop', DenunciaComentBookshopController::class)->names('denunciacoment.bookshop');
     Route::resource('/admin/books', BookController::class)->names('admin.books');
     Route::resource('/admin/medis', Medicontroller::class)->names('admin.medis');
     Route::resource('/admin/actes', ActeController::class)->names('admin.actes');
@@ -108,3 +114,15 @@ Route::group(['middleware' => 'auth', 'prefix' => 'messages', 'as' => 'messages'
 
 
 Route::get('send-mail', [MailController::class, 'index']);
+
+
+
+
+
+
+
+
+// Route::get('/migrate', function () {
+//     \Artisan::call('migrate');
+//     dd('migrated!');
+// });
