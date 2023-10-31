@@ -17,6 +17,7 @@ use App\Models\RatingAutor;
 use App\Models\RatingBookshop;
 use App\Models\RatingEdiorial;
 use App\Models\RatingPost;
+use App\Models\RatingMedi;
 
 class FrontController extends Controller
 {
@@ -121,8 +122,9 @@ class FrontController extends Controller
     }
     public function onemedi(Medi $medi)
     {
-
-        return view('front.medi', compact('medi'));
+        $medis = Medi::where('id', '!=', $medi->id)->orderBy('created_at', 'DESC')->get();
+        $rating = RatingMedi::where('medi_id', $medi->id)->avg('rate');
+        return view('front.medi', compact('medi', 'rating', 'medis'));
     }
     // public function allActes(){
     //      $actes = Acte::all();

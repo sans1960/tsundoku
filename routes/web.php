@@ -27,13 +27,16 @@ use App\Http\Controllers\ComentAutorController;
 use App\Http\Controllers\ComentEditorialController;
 use App\Http\Controllers\ComentBookshopController;
 use App\Http\Controllers\ComentPostController;
+use App\Http\Controllers\ComentMediController;
 use App\Http\Controllers\DenunciaComentAutorController;
 use App\Http\Controllers\DenunciaComentEditorialController;
 use App\Http\Controllers\DenunciaComentBookshopController;
 use App\Http\Controllers\DenunciaComentPostController;
+use App\Http\Controllers\DenunciaComentMediController;
 use App\Http\Controllers\RatingEdiorialController;
 use App\Http\Controllers\RatingBookshopController;
 use App\Http\Controllers\RatingPostController;
+use App\Http\Controllers\RatingMediController;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -105,6 +108,9 @@ Route::middleware(['auth', 'forbid-banned-user'])->group(function () {
     Route::resource('/admin/ratingpost', RatingPostController::class)->names('rating.post');
     Route::resource('/admin/comentpost', ComentPostController::class)->names('coment.post');
     Route::resource('/admin/denunciacomentpost', DenunciaComentPostController::class)->names('denunciacoment.post');
+    Route::resource('/admin/ratingmedi', RatingMediController::class)->names('rating.medi');
+    Route::resource('/admin/comentmedi', ComentMediController::class)->names('coment.medi');
+    Route::resource('/admin/denunciacomentmedi', DenunciaComentMediController::class)->names('denunciacoment.medi');
 
     Route::resource('/admin/books', BookController::class)->names('admin.books');
     Route::resource('/admin/medis', Medicontroller::class)->names('admin.medis');

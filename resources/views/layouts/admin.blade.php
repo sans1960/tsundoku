@@ -108,6 +108,8 @@
                                 </li>
                                 <li><a class="dropdown-item" href="{{route('rating.post.index')}}">Noticies</a>
                                 </li>
+                                <li><a class="dropdown-item" href="{{route('rating.medi.index')}}">Multimedia</a>
+                                </li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -124,6 +126,8 @@
                                 <li><a class="dropdown-item" href="{{route('coment.bookshop.index')}}">Llibreries</a>
                                 </li>
                                 <li><a class="dropdown-item" href="{{route('coment.post.index')}}">Noticies</a>
+                                </li>
+                                <li><a class="dropdown-item" href="{{route('coment.medi.index')}}">Multimedia</a>
                                 </li>
                             </ul>
                         </li>
@@ -145,6 +149,8 @@
                                         href="{{route('denunciacoment.bookshop.index')}}">Comentaris Llibreries</a></li>
                                 <li><a class="dropdown-item" href="{{route('denunciacoment.post.index')}}">Comentaris
                                         Noticies</a></li>
+                                <li><a class="dropdown-item" href="{{route('denunciacoment.medi.index')}}">Comentaris
+                                        Multimedia</a></li>
                             </ul>
                         </li>
 

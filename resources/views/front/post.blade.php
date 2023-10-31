@@ -142,11 +142,12 @@
             </div>
         </div>
     </div>
-    @endsection
-    @section('js')
-    <script src="{{asset('js/owl.carousel.min.js')}}"></script>
-    <script>
-        $(document).ready(function() {
+</div>
+@endsection
+@section('js')
+<script src="{{asset('js/owl.carousel.min.js')}}"></script>
+<script>
+    $(document).ready(function() {
                       $('.owl-carousel').owlCarousel({
                         loop: true,
                         margin: 10,
@@ -170,14 +171,14 @@
                       })
            
                     })
-    </script>
-    <script>
-        $(document).ready(function(){
+</script>
+<script>
+    $(document).ready(function(){
      
         $('#input-5').rating({clearCaption: 'No stars yet'});
         $('#input-1').rating();
      
     });
-    </script>
+</script>
 
-    @endsection
+@endsection
