@@ -110,6 +110,8 @@
                                 </li>
                                 <li><a class="dropdown-item" href="{{route('rating.medi.index')}}">Multimedia</a>
                                 </li>
+                                <li><a class="dropdown-item" href="{{route('rating.acte.index')}}">Actes</a>
+                                </li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -128,6 +130,8 @@
                                 <li><a class="dropdown-item" href="{{route('coment.post.index')}}">Noticies</a>
                                 </li>
                                 <li><a class="dropdown-item" href="{{route('coment.medi.index')}}">Multimedia</a>
+                                </li>
+                                <li><a class="dropdown-item" href="{{route('coment.acte.index')}}">Actes</a>
                                 </li>
                             </ul>
                         </li>
@@ -151,6 +155,8 @@
                                         Noticies</a></li>
                                 <li><a class="dropdown-item" href="{{route('denunciacoment.medi.index')}}">Comentaris
                                         Multimedia</a></li>
+                                <li><a class="dropdown-item" href="{{route('denunciacoment.acte.index')}}">Comentaris
+                                        Actes</a></li>
                             </ul>
                         </li>
 

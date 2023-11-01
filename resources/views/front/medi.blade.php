@@ -15,7 +15,8 @@
             <div class="row mt-3 mb-3">
 
                 <div class="col d-flex justify-content-center">
-                    <a href="{{$medi->url}}" target="_blank" class="nav-link text-success fw-bold">{{$medi->tipus}}</a>
+                    <a href="{{$medi->url}}" target="_blank" class="nav-link text-success fw-bold">Veure
+                        {{$medi->tipus}}</a>
                 </div>
 
                 <div class="col d-flex justify-content-center">

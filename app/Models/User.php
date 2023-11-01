@@ -84,6 +84,10 @@ class User extends Authenticatable implements BannableInterface
     {
         return $this->hasMany(RatingMedi::class);
     }
+    public function ratingacte(): HasMany
+    {
+        return $this->hasMany(RatingActe::class);
+    }
     public function autor(): HasMany
     {
         return $this->hasMany(Autor::class);
@@ -132,6 +136,10 @@ class User extends Authenticatable implements BannableInterface
     {
         return $this->hasMany(ComentMedi::class)->whereNull('parent_id');
     }
+    public function comentacte(): HasMany
+    {
+        return $this->hasMany(ComentActe::class)->whereNull('parent_id');
+    }
     public function denunciacomentbook(): HasMany
     {
         return $this->hasMany(DenunciaComentBook::class);
@@ -155,5 +163,9 @@ class User extends Authenticatable implements BannableInterface
     public function denunciacomentmedi(): HasMany
     {
         return $this->hasMany(DenunciaComentMedi::class);
+    }
+    public function denunciacomentacte(): HasMany
+    {
+        return $this->hasMany(DenunciaComentActe::class);
     }
 }

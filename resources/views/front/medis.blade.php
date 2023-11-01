@@ -8,12 +8,11 @@ Medis
         @foreach ($medis as $medi)
         <div class="col-md-4">
             <a href="{{route('medi',$medi)}}" class="nav-link">
-                <div class="card mb-3">
-                    <img src="{{ Storage::url($medi->image) }}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $medi->titol }}</h5>
+                <div class="card mb-3 d-flex justify-content-end align-items-start p-3"
+                    style="height: 300px;background-image:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),url({{Storage::url($medi->image)}});background-size:cover;background-position:center;object-fit:fill;">
+                    <h5 class="text-white text-uppercase">{{$medi->titol}}</h5>
 
-                    </div>
+
                 </div>
 
             </a>

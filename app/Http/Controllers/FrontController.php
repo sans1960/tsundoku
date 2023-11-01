@@ -18,6 +18,7 @@ use App\Models\RatingBookshop;
 use App\Models\RatingEdiorial;
 use App\Models\RatingPost;
 use App\Models\RatingMedi;
+use App\Models\RatingActe;
 
 class FrontController extends Controller
 {
@@ -132,7 +133,8 @@ class FrontController extends Controller
     // }
     public function oneacte(Acte $acte)
     {
-
-        return view('front.acte', compact('acte'));
+        $actes = Acte::where('id', '!=', $acte->id)->orderBy('created_at', 'DESC')->get();
+        $rating = RatingActe::where('acte_id', $acte->id)->avg('rate');
+        return view('front.acte', compact('acte', 'rating', 'actes'));
     }
 }
