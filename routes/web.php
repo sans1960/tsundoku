@@ -87,6 +87,7 @@ Route::middleware(['auth', 'forbid-banned-user'])->group(function () {
     Route::get('/admin/users/edit/{id}', [AdminController::class, 'edituser'])->name('admin.users.edit');
     Route::put('/admin/users/{user}', [AdminController::class, 'updateuser'])->name('admin.users.update');
     Route::get('/admin/users/{user}', [AdminController::class, 'oneuser'])->name('admin.users.show');
+    Route::delete('/admin/users/{id}', [AdminController::class, 'deleteuser'])->name('admin.users.delete');
     Route::get('/admin/users/{user}/ban', [AdminController::class, 'ban'])->name('admin.users.ban');
     Route::get('/admin/users/{user}/unban', [AdminController::class, 'unban'])->name('admin.users.unban');
     Route::patch('/admin/users/{user}/updateban', [AdminController::class, 'updateban'])->name('admin.users.updateban');

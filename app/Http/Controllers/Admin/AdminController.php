@@ -81,4 +81,18 @@ class AdminController extends Controller
         session()->flash('notif.success', 'Usuari bloquejat amb éxit!');
         return redirect()->route('admin.users.index');
     }
+    public function deleteuser($id)
+    {
+        $user = User::find($id);
+        if (Storage::url($user->avatar)) {
+            Storage::disk('public')->delete($user->avatar);
+        }
+
+        $delete = $user->delete();
+
+        if ($delete) {
+            session()->flash('notif.success', 'User deleted successfully!');
+            return redirect()->route('admin.users.index');
+        }
+    }
 }

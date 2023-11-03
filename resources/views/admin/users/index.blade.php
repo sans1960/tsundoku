@@ -73,15 +73,15 @@ Tots els usuaris
                                 <i class="bi bi-balloon"></i>
                             </a>
                         </td>
-                        {{-- <td>
-                            <form action="" method="post">
+                        <td>
+                            <form action="{{route('admin.users.delete',$user->id)}}" method="post">
                                 @csrf
                                 @method('delete')
                                 <button type="submit" class="btn btn-danger btn-sm show_confirm">
                                     <i class="bi bi-trash3"></i>
                                 </button>
                             </form>
-                        </td> --}}
+                        </td>
 
                     </tr>
 
@@ -91,6 +91,7 @@ Tots els usuaris
 
 
         </div>
+        {{$users->links()}}
     </div>
 </div>
 @endsection

@@ -94,7 +94,7 @@
         <div class="col-md-8 p-2">
             <div class="card-body">
                 <h5 class="card-title">{{ $book->titol }}</h5>
-                <div class="row">
+                <div class="row mb-3">
                     <div class="col">
                         @if ($book->autor != null)
                         <a href="{{route('autor',$book->autor)}}">
@@ -122,7 +122,24 @@
                     </div>
 
                 </div>
-                <div class="row">
+                <div class="row mb-3">
+                    <div class="col">
+                        @if ($book->auto == 1)
+                        <p class="bg-success text-white p-1 rounded w-75 text-center">Autopublicat</p>
+                        @endif
+                    </div>
+                    <div class="col">
+                        @if ($book->novetat == 1)
+                        <p class="bg-primary text-white p-1 rounded w-75 text-center">Novetat</p>
+                        @endif
+                    </div>
+                    <div class="col">
+                        @if ($book->primera == 1)
+                        <p class="bg-danger text-white p-1 rounded w-75 text-center">Primera</p>
+                        @endif
+                    </div>
+                </div>
+                <div class="row mb-3">
                     <div class="col">
                         {{ $book->genere->nom }}
                     </div>

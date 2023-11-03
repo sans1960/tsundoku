@@ -16,16 +16,21 @@
 
 
                 <div class="card-body">
-                    <div class="row">
+                    <div class="row mb-3">
                         <div class="col-md-6">
                             <p>{{$autor->ratingautor->count()}} Valoracions</p>
                             <input id="input-2" name="input-1" class="rating rating-loading" data-min="0" data-max="5"
                                 data-step="0.1" value="{{ $rating }}" data-size="xs" disabled="">
                             <p class="mb-2">{{$com}} Comentaris</p>
                         </div>
+                        <div class="col-md-6">
+                            @if ($autor->auto == 1)
+                            <p class="bg-success text-white p-1 rounded w-25 text-center">Autopublica</p>
+                            @endif
+                        </div>
                     </div>
 
-                    <div class="row">
+                    <div class="row mb-3">
                         <div class="col">
                             @if ($autor->twitter)
                             <a href="{{$autor->twitter}}" target="_blank">

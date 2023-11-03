@@ -87,9 +87,11 @@ TSUNDOKU
                 @foreach ($books as $book)
                 <a href="{{route('book',$book)}}" class="nav-link" data-bs-toggle="tooltip"
                     data-bs-title="{{$book->titol}}">
-                    <div class="card"
+                    <div class="card d-flex justify-content-center align-items-center"
                         style="height: 300px;background-image:url(@if ($book->imatge != null){{ $book->imatge }} @else {{Storage::url($book->foto)}} @endif);background-size:cover;background-position:center;object-fit:fill;">
-
+                        @if ($book->auto == 1)
+                        <p class="bg-success text-white p-1 rounded">Autopublicat</p>
+                        @endif
 
                     </div>
 
