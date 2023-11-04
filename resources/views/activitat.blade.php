@@ -1046,18 +1046,7 @@
 
 
         </div>
-        {{-- <div class="col-md-3">
-            <div class="card mb-2">
-                <div class="card-header bg-warning text-uppercase fw-bold">
-                    Autors Pujats
-                </div>
-                <div class="card-body">
-                    @foreach ($user->autor as $item)
-                    <p>{{$item->autor_nom}}</p>
-                    @endforeach
-                </div>
-            </div>
-        </div> --}}
+
         <div class="col-md-3">
             <div class="card mb-2">
                 <div class="card-header bg-warning text-uppercase fw-bold">
