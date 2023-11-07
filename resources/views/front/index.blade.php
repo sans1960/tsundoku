@@ -13,6 +13,24 @@ TSUNDOKU
 
 
 <div class="container ">
+    <div class="row mt-3 mb-3">
+        <div class="col-md-6 ms-auto">
+            <form action="{{route('search')}}" method="post">
+                @csrf
+                <div class="mb-3 d-flex text-secondary">
+
+                    <input type="text" class="form-control " placeholder="Intrudueix la búsqueda" name="query" required>
+                    <button type="submit" class="btn btn-outline-success ms-2 btn-sm">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </div>
+
+
+
+            </form>
+
+        </div>
+    </div>
 
 
 

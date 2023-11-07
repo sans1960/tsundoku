@@ -6,9 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
 
 
-class Acte extends Model
+class Acte extends Model implements Searchable
 {
     use HasFactory;
 
@@ -32,4 +34,15 @@ class Acte extends Model
     {
         return $this->hasMany(ComentActe::class)->whereNull('parent_id');
     }
+    public function getSearchResult(): SearchResult
+    {
+        $url = route('acte', $this->slug);
+
+        return new SearchResult(
+            $this,
+            $this->titol,
+            $url
+        );
+    }
+    public $searchableType = 'Actes';
 }

@@ -40,6 +40,7 @@ use App\Http\Controllers\RatingBookshopController;
 use App\Http\Controllers\RatingPostController;
 use App\Http\Controllers\RatingMediController;
 use App\Http\Controllers\RatingActeController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -64,6 +65,7 @@ Route::get('/calendari', [Calendarcontroller::class, 'index'])->name('calendari'
 Route::get('/calendari/{mes}', [Calendarcontroller::class, 'index_month'])->name('calendari.mes');
 
 Route::get('/actes/{acte}', [Frontcontroller::class, 'oneacte'])->name('acte');
+Route::post('search', [SearchController::class, 'search'])->name('search');
 
 
 

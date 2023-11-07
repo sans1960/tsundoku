@@ -7,12 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
 
 
 
 
 
-class Bookshop extends Model
+class Bookshop extends Model implements Searchable
 {
     use HasFactory;
 
@@ -35,4 +37,15 @@ class Bookshop extends Model
     {
         return $this->hasMany(ComentBookshop::class)->whereNull('parent_id');
     }
+    public function getSearchResult(): SearchResult
+    {
+        $url = route('bookshop', $this->slug);
+
+        return new SearchResult(
+            $this,
+            $this->nom,
+            $url
+        );
+    }
+    public $searchableType = 'Llibreries';
 }

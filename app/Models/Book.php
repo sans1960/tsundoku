@@ -4,12 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 
-class Book extends Model
+class Book extends Model implements Searchable
 {
     use HasFactory;
 
@@ -51,4 +53,15 @@ class Book extends Model
     {
         return $this->hasMany(ComentBook::class)->whereNull('parent_id');
     }
+    public function getSearchResult(): SearchResult
+    {
+        $url = route('book', $this->slug);
+
+        return new SearchResult(
+            $this,
+            $this->titol,
+            $url
+        );
+    }
+    public $searchableType = 'Llibres';
 }

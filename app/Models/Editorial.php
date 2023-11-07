@@ -4,13 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 
 
-class Editorial extends Model
+class Editorial extends Model implements Searchable
 {
     use HasFactory;
 
@@ -38,4 +40,15 @@ class Editorial extends Model
     {
         return $this->hasMany(ComentEditorial::class)->whereNull('parent_id');
     }
+    public function getSearchResult(): SearchResult
+    {
+        $url = route('editorial', $this->slug);
+
+        return new SearchResult(
+            $this,
+            $this->editorial_nom,
+            $url
+        );
+    }
+    public $searchableType = 'Editorials';
 }

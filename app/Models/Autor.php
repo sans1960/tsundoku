@@ -5,12 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 
 
-class Autor extends Model
+class Autor extends Model implements Searchable
 {
     use HasFactory;
 
@@ -38,4 +40,15 @@ class Autor extends Model
     {
         return $this->hasMany(ComentAutor::class)->whereNull('parent_id');
     }
+    public function getSearchResult(): SearchResult
+    {
+        $url = route('autor', $this->slug);
+
+        return new SearchResult(
+            $this,
+            $this->autor_nom,
+            $url
+        );
+    }
+    public $searchableType = 'Autors';
 }

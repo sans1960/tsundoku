@@ -4,11 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Searchable\Searchable;
+use Spatie\Searchable\SearchResult;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Post extends Model
+class Post extends Model implements Searchable
 {
     use HasFactory;
 
@@ -32,4 +34,15 @@ class Post extends Model
     {
         return $this->hasMany(ComentPost::class)->whereNull('parent_id');
     }
+    public function getSearchResult(): SearchResult
+    {
+        $url = route('post', $this->slug);
+
+        return new SearchResult(
+            $this,
+            $this->titol,
+            $url
+        );
+    }
+    public $searchableType = 'Notícies';
 }
