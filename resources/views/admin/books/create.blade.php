@@ -18,7 +18,9 @@
                             <input type="text" class="form-control" id="titol" placeholder="Títol" name="titol"
                                 value="{{old('titol')}}" autofocus required>
                             @if ($errors->has('titol'))
-                            <span class="text-danger">{{ $errors->first('titol') }}</span>
+                            @foreach ($errors as $error)
+                            <span class="text-danger">{{ $error }}</span>
+                            @endforeach
                             @endif
                         </div>
                         {{-- @if (Auth()->user()->condicio == 'autor' )
@@ -153,7 +155,8 @@
                             </div>
 
                         </div>
-
+                        @else
+                        <input type="hidden" name="active" value="0">
                         @endif
 
 

@@ -53,7 +53,7 @@ class BookController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'titol' => 'required|string|max:255',
+            'titol' => 'required|string|max:255|unique:books',
 
             'autor_nom' => 'string',
             'genere_id' => 'required',
@@ -83,9 +83,9 @@ class BookController extends Controller
         $book->autor_nom = $request->autor_nom;
         $book->genere_id = $request->genere_id;
         $book->autor_id = $request->autor_id;
-        if (Auth()->user()->type == 'admin') {
-            $book->active = $request->active;
-        }
+
+        $book->active = $request->active;
+
         $book->editorial_nom = $request->editorial_nom;
         $book->editorial_web = $request->editorial_web;
         $book->editorial_id = $request->editorial_id;
@@ -117,7 +117,7 @@ class BookController extends Controller
             session()->flash('notif.success', 'Llibre creat amb éxit!');
             return redirect()->route('admin.books.index');
         } else {
-            session()->flash('notif.success', 'Llibre creat amb éxit!');
+            session()->flash('notif.success', 'Llibre pendent de validació per tsundoku.cat en breu rebrás un correu de confirmació , grácies');
             return redirect()->route('home');
         }
     }

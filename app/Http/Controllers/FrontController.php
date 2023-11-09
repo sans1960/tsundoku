@@ -25,7 +25,7 @@ class FrontController extends Controller
     public function index()
     {
         $toprated = RatingBook::selectRaw('book_id,AVG(rate) as avg')->groupBy('book_id')->orderBy('avg', 'DESC')->get();
-        $books = Book::orderBy('created_at', 'DESC')->get();
+        $books = Book::orderBy('created_at', 'DESC')->where('active', 1)->get();
 
         foreach ($toprated as $item) {
             if ($item->avg >= 3.5) {
@@ -65,7 +65,7 @@ class FrontController extends Controller
     }
     public function books()
     {
-        $books = Book::all();
+        $books = Book::orderBy('created_at', 'DESC')->where('active', 1)->get();
         return view('front.llibres', compact('books'));
     }
 

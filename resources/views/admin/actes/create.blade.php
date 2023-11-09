@@ -13,12 +13,16 @@
                 <div class="card-body">
                     <form action="{{ route('admin.actes.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
+
                         <div class="mb-3">
                             <label for="titol" class="form-label">Titol</label>
                             <input type="text" class="form-control" id="titol" placeholder="Títol" name="titol"
                                 autofocus required value="{{old('titol')}}">
                             @if ($errors->has('titol'))
-                            <span class="text-danger">{{ $errors->first('titol') }}</span>
+                            @foreach ($errors as $error)
+                            <span class="text-danger">{{ $error }}</span>
+                            @endforeach
+
                             @endif
                         </div>
 
@@ -70,14 +74,15 @@
                             <div class="col d-flex flex-column align-items-center">
                                 <div class="form-check">
                                     <input class="form-check-input me-2" type="radio" name="active"
-                                        id="flexRadioDefault1" value="0"  {{ (old('active') == '0') ? 'checked' : ''}}  required>
+                                        id="flexRadioDefault1" value="0" {{ (old('active')=='0' ) ? 'checked' : '' }}
+                                        required>
                                     <label class="form-check-label" for="flexRadioDefault1">
                                         No actiu
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input me-2" type="radio" name="active"
-                                        id="flexRadioDefault2" value="1"  {{ (old('active') == '1') ? 'checked' : ''}}>
+                                        id="flexRadioDefault2" value="1" {{ (old('active')=='1' ) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="flexRadioDefault2">
                                         Actiu
                                     </label>

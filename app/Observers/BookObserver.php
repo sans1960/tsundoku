@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Mail\BookMail;
+use App\Mail\ConfirmBookMail;
 use App\Models\Book;
 use Illuminate\Support\Facades\Mail;
 
@@ -21,7 +22,7 @@ class BookObserver
      */
     public function updated(Book $book): void
     {
-        //
+        Mail::to($book->user->email)->send(new ConfirmBookMail($book));
     }
 
     /**
