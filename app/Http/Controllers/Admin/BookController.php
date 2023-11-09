@@ -70,8 +70,7 @@ class BookController extends Controller
             'novetat' => 'required',
             'primera' => 'required',
             'auto' => 'required',
-            'cita' => 'string',
-            'comentari' => 'string',
+
 
         ]);
         if ($request->hasFile('foto')) {
@@ -168,8 +167,7 @@ class BookController extends Controller
             'novetat' => 'required',
             'primera' => 'required',
             'auto' => 'required',
-            'cita' => 'string',
-            'comentari' => 'string',
+
 
         ]);
         if ($request->hasFile('foto')) {
@@ -221,6 +219,6 @@ class BookController extends Controller
     {
         $book->delete();
         session()->flash('notif.success', 'Llibre eliminat amb éxit!');
-        return redirect()->route('admin.llibres.index');
+        return redirect()->route('admin.books.index');
     }
 }
