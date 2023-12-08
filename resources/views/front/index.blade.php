@@ -5,6 +5,7 @@ TSUNDOKU
 @section('css')
 <link rel="stylesheet" href="{{asset('css/owl.carousel.min.css')}}">
 <link rel="stylesheet" href="{{asset('css/owl.theme.default.min.css')}}">
+<link rel="stylesheet" href="{{asset('css/accept-cookies.css')}}">
 
 
 
@@ -300,6 +301,15 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
      
     });
 </script>
-
-
+<script src="{{asset('js/cookiepopup.js')}}"></script>
+<script>
+    var options = {
+    "title": "Aquest lloc web utilitza cookies",
+    "text": "Per utilitzar aquest lloc, aproves el nostre ús de galetes.",
+    "theme": "green",
+    "learnMore": false,
+    "position": "bottom"
+    };
+    $.acceptCookies(options);
+</script>
 @endsection

@@ -123,7 +123,27 @@
     </main>
 
 
-    <div class="container-fluid bg-danger p-3">
+    <div class="container-fluid bg-danger p-3 text-white">
+        <div class="row">
+            <div class="col-md-3 d-flex justify-content-center">
+                <p>tsundoku.cat</p>
+                <i class="bi bi-c-circle ms-2"></i>
+                <p class="ms-2">2023</p>
+            </div>
+            <div class="col-md-3 d-flex justify-content-center">
+                <a class="nav-link" href="{{asset('documents/avis-legal-i-condicions-generals.pdf')}}" target="_blank"
+                    rel="noopener noreferrer">Avis legal</a>
+            </div>
+            <div class="col-md-3 d-flex justify-content-center">
+                <a class="nav-link" href="{{asset('documents/politica-de-privacitat.pdf')}}" target="_blank"
+                    rel="noopener noreferrer">Política de privacitat</a>
+            </div>
+            <div class="col-md-3 d-flex justify-content-center">
+                <i class="bi bi-facebook"></i>
+                <i class="bi bi-instagram ms-2"></i>
+                <i class="bi bi-twitter ms-2"></i>
+            </div>
+        </div>
 
     </div>
 

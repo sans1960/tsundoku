@@ -171,10 +171,12 @@
                                 <input class="form-check-input" type="radio" required name="legal" value="true"
                                     id="flexRadioDefault1">
                                 <label class="form-check-label" for="flexRadioDefault1">
-                                    He llegit i acepto la <span><a href="" target="_blank"
+                                    He llegit i acepto la <span><a
+                                            href="{{asset('documents/politica-de-privacitat.pdf')}}" target="_blank"
                                             style="text-decoration: underline;"><b>Politica de
                                                 privacitat</b></a></span>,
-                                    i els <span><a href="" target="_blank" style="text-decoration: underline;"><b>Termes
+                                    i els <span><a href="{{asset('documents/avis-legal-i-condicions-generals.pdf')}}"
+                                            target="_blank" style="text-decoration: underline;"><b>Termes
                                                 i
                                                 Condicions</b></a></span>
                                 </label>
