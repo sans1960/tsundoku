@@ -9,7 +9,7 @@ Editorials
         <div class="col-md-3 d-flex justify-content-center align-items-center">
             <a href="{{ route('editorial', $editorial) }}" class="nav-link" data-bs-toggle="tooltip"
                 data-bs-title="{{$editorial->editorial_nom}}">
-                <div class="card mb-3 p-4">
+                <div class="card mb-3 p-4 border-0">
 
 
                     @if ($editorial->logo != null)

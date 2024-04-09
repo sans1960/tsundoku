@@ -44,44 +44,37 @@
             </button>
             <div class="collapse navbar-collapse " id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 menu">
-                    <li class="nav-item">
-                        <a class="nav-link " href="{{route('index')}}">Inici</a>
-                    </li>
-
                     <li class="nav-item ">
                         <a class="nav-link " href="{{route('generes')}}">
                             Gèneres
                         </a>
 
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('books')}}">Llibres</a>
-                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link " href="{{route('autors')}}">Autors</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('bookshops')}}">Llibreries</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link " href="{{route('editorials')}}">Editorials</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('medis')}}">Tsundoku TV</a>
+                        <a class="nav-link" href="{{route('bookshops')}}">Llibreries</a>
                     </li>
 
+
+
                     <li class="nav-item">
-                        <a class="nav-link " href="{{route('calendari')}}">Agenda</a>
+                        <a class="nav-link" href="{{route('medis')}}">Tsundoku TV</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link " href="{{route('posts')}}">Ens ha agradat</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="">Últims llibres afegits</a>
+                        <a class="nav-link " href="{{route('calendari')}}">Agenda</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="">Galeria gràfica</a>
-                    </li>
+
+
+
                 </ul>
 
             </div>
