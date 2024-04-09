@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Playball&display=swap') ;
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Condensed&display=swap');
+
+
+
+.playball-regular {
+    font-family: "Playball", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+.menu{
+    font-size: 1.2rem;
+    color: black !important;
+    
+}
+.ubuntu {
+    font-family: "Ubuntu Condensed", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}

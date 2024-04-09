@@ -39,10 +39,11 @@ class FrontController extends Controller
         $novetats = Book::where('novetat', 1)->get();
         $estrenes = Book::where('primera', 1)->get();
         $autos = Book::where('auto', 1)->get();
-        $medi = Medi::orderBy('created_at', 'desc')->first();
-        $post = Post::orderBy('created_at', 'desc')->first();
-        $actes = Acte::orderBy('created_at', 'asc')->take(4)->get();
-        return view('front.index', compact('books', 'autors', 'topratedbook', 'novetats', 'estrenes', 'autos', 'medi', 'post', 'topcoment', 'actes'));
+        $medis = Medi::orderBy('created_at', 'desc')->get();
+        $posts = Post::orderBy('created_at', 'desc')->get();
+        $actes = Acte::orderBy('created_at', 'asc')->get();
+
+        return view('front.index', compact('books', 'autors', 'topratedbook', 'novetats', 'estrenes', 'autos', 'medis', 'posts', 'topcoment', 'actes'));
     }
     public function autors()
     {
