@@ -8,7 +8,7 @@ Géneres
         @foreach ($generes as $genere)
         <div class="col-md-4">
             <a href="{{route('genere',$genere)}}" class="nav-link">
-                <div class="card mb-4 p-3">
+                <div class="card mb-4 p-3 border-0">
                     <div class="row g-0">
                         <div class="col-md-4">
                             <img src="https://ui-avatars.com/api/?name={{$genere->nom}}&background=0D8ABC&color=fff&rounded=true"

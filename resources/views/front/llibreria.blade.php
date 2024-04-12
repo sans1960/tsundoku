@@ -9,7 +9,7 @@
 <div class="container ">
     <div class="row ">
         <div class="col-md-12 mt-3">
-            <div class="card p-1">
+            <div class="card p-1 border-0">
                 @if ($bookshop->logo != null)
                 <img src="{{ $bookshop->logo }}" class="img-fluid d-block mx-auto w-25" alt="...">
                 @else
@@ -25,24 +25,22 @@
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">{{ $bookshop->nom }}</h5>
-                    <div class="row">
-                        <div class="col">
-                            @if ($bookshop->active == 0)
-                            <p class="card-text">No actiu</p>
-                            @else
-                            <p class="card-text">Actiu</p>
-                            @endif
-                        </div>
-                        <div class="col">
-                            <p>{{ $bookshop->active }}</p>
-                        </div>
-                        <div class="col">
-                            <a href="{{ $bookshop->url }}" target="_blank">Lloc web</a>
-                        </div>
-                        <div class="col">
-                            <p>{{ $bookshop->ciutat }}</p>
-                        </div>
-                    </div>
+
+
+                    {{-- @if ($bookshop->active == 0)
+                    <p class="card-text">No actiu</p>
+                    @else
+                    <p class="card-text">Actiu</p>
+                    @endif --}}
+
+
+                    {{-- <p>{{ $bookshop->active }}</p> --}}
+
+                    <a href="{{ $bookshop->url }}" target="_blank">Lloc web</a>
+
+                    <p>{{ $bookshop->ciutat }}</p>
+
+
 
                     <div>
                         {!! $bookshop->qui_som !!}

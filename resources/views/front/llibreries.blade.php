@@ -9,7 +9,7 @@ Llibreries
         <div class="col-md-3 d-flex justify-content-center align-items-center">
             <a href="{{route('bookshop',$bookshop)}}" class="nav-link" data-bs-toggle="tooltip"
                 data-bs-title="{{$bookshop->nom}}">
-                <div class="card mb-3 p-4">
+                <div class="card mb-3 p-4 border-0">
 
                     @if ($bookshop->logo != null)
                     <img src="{{ $bookshop->logo }}" class="img-fluid " alt="..."

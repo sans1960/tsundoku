@@ -8,16 +8,20 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+        <div class="col-md-12">
+            <div class="card border-0">
+                <div class="card-header bg-white ubuntu fw-bold">
+                    <h3>
+                        {{ __('Register') }}</h3>
+                </div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Nom i cognoms')
+                                }}</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
@@ -116,17 +120,18 @@
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="" class="col-md-4 col-form-label text-md-end">{{ __('Vols rebre novetats ?')
+                            <label for="" class="col-md-4 col-form-label text-md-end">{{ __('Vols rebre les novetats i
+                                promocions de tsundoku.cat ?')
                                 }}</label>
                             <div class="col-md-6">
-                                <div class="form-check">
+                                <div class="form-check form-check-inline mt-3">
                                     <input class="form-check-input" required value="Si" {{ (old('novetats')=='Si' )
                                         ? 'checked' : '' }} type="radio" name="novetats" id="flexRadioDefault1">
                                     <label class="form-check-label" for="flexRadioDefault1">
                                         Si
                                     </label>
                                 </div>
-                                <div class="form-check">
+                                <div class="form-check form-check-inline mt-3">
                                     <input class="form-check-input" value="No" {{ (old('novetats')=='No' ) ? 'checked'
                                         : '' }} type="radio" name="novetats" id="flexRadioDefault2">
                                     <label class="form-check-label" for="flexRadioDefault2">

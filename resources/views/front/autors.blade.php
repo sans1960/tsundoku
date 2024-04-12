@@ -9,8 +9,9 @@ Autors
         <div class="col-md-3">
             <a href="{{ route('autor', $autor) }}" class="nav-link" data-bs-toggle="tooltip"
                 data-bs-title="{{$autor->autor_nom}}">
-                <div class="card mb-3 border-0"
+                <div class="card mb-3 border-0 d-flex justify-content-end align-items-start p-3"
                     style="background-image:url(@if ($autor->url_foto != null){{ $autor->url_foto }} @else {{Storage::url($autor->image)}} @endif);background-size:cover;background-position:center;height:250px;">
+                    <h5 class="text-uppercase text-white">{{ $autor->autor_nom }}</h5>
 
 
 

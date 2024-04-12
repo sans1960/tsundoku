@@ -15,7 +15,7 @@
             <div class="row mt-3 mb-3">
 
                 <div class="col d-flex justify-content-center">
-                    <a href="{{$medi->url}}" target="_blank" class="nav-link text-success fw-bold">Veure
+                    <a href="{{$medi->url}}" target="_blank" class="nav-link text-success fw-bold">Reproduir
                         {{$medi->tipus}}</a>
                 </div>
 
@@ -77,7 +77,7 @@
     <div class="row mt-4">
         <div class="col-md-12">
             @if ($medi->comentarimedi->count())
-            <div class="card p-3">
+            <div class="card p-3 border-0">
                 <h5 class="card-header">Comentaris</h5>
                 @include('front.partials.comentmediDisplay', ['comentmedis' =>
                 $medi->comentarimedi,'medi_id',$medi->id])
@@ -114,7 +114,7 @@
     </div>
     <div class="row mb-3">
         <div class="col-md-12 p-3 ">
-            <h3 class="mb-3">Darreres emissions</h3>
+            <h3 class="mb-3">Darreres entrades</h3>
             <div class="owl-carousel owl-theme">
                 @foreach ($medis as $medi)
                 <a href="{{route('medi',$medi)}}" class="nav-link">
@@ -152,7 +152,7 @@
                             nav: false
                           },
                           1000: {
-                            items: 2,
+                            items: 4,
                             nav: true,
                             loop: false,
                             margin: 20

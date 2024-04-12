@@ -8,7 +8,7 @@ Actes
         @foreach ($actes as $acte)
         <div class="col-md-4">
             <a href="{{route('acte',$acte)}}" class="nav-link">
-                <div class="card mb-3">
+                <div class="card mb-3 border-0">
                     <div class="row g-0 mb-3">
                         <div class="col-md-4">
                             <img src="{{ $acte->image }}" class="img-fluid rounded-start" alt="...">

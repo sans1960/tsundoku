@@ -79,18 +79,18 @@
     <div class="row mt-4">
         <div class="col-md-12">
             @if ($acte->comentacte->count())
-            <div class="card p-3">
-                <h5 class="card-header">Comentaris</h5>
+            <div class="card p-3 border-0">
+                <h5 class="card-header bg-white">Comentaris</h5>
                 @include('front.partials.comentacteDisplay', ['comentactes' =>
                 $acte->comentacte,'acte_id',$acte->id])
 
             </div>
             @endif
             @if (Auth::check())
-            <div class="card p-3">
+            <div class="card p-3 border-0">
 
 
-                <h5 class="card-header">Fes un comentari</h5>
+                <h5 class="card-header bg-white">Fes un comentari</h5>
                 <form method="post" action="{{route('coment.acte.store')}}">
                     @csrf
                     <div class="form-group mb-3 p-2">

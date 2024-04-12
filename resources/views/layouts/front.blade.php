@@ -81,11 +81,11 @@
         </div>
     </nav>
 
-    <main class="py-4 ">
+    <main class="py-4 mb-5">
         @yield('content')
     </main>
 
-    <div class="container-fluid  p-3" style="background-color: 	#E80080;">
+    <div class="container-fluid  p-3 mt-5" style="background-color: 	#E80080;">
 
         <div class="row">
             <p class="mt-3 fs-5 text-center mb-5">Tsundoku.cat és un projecte d'agitació i propaganda literàries en

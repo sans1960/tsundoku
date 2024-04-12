@@ -4,7 +4,7 @@
         <div class=" col-md-4 d-flex justify-content-start align-items-center ">
 
             <a href="{{route('index')}}">
-                <img src="{{asset('img/logo.jpg')}}" class="img-fluid  " width="100" alt="">
+                <img src="{{asset('img/logo.png')}}" class="img-fluid  " width="100" alt="">
             </a>
 
         </div>

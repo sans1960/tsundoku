@@ -22,15 +22,15 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-warning shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light  shadow-sm">
             <div class="container">
                 @if (Auth()->user()->type == 'admin')
                 <a class="navbar-brand" href="{{ route('admin') }}">
-                    ADMIN PANEL
+                    <img src="{{asset('img/logo.png')}}" class="img-fluid  " width="100" alt="">
                 </a>
                 @else
                 <a class="navbar-brand" href="{{ route('home') }}">
-                    Panell d'usuari
+                    <img src="{{asset('img/logo.png')}}" class="img-fluid  " width="100" alt="">
                 </a>
                 @endif
 

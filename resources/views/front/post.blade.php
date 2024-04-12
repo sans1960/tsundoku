@@ -10,7 +10,7 @@
 <div class="container">
     <div class="row mb-3">
         <div class="col-md-10 mx-auto">
-            <h3 class="">{{$post->titol}}</h3>
+            <h3 class=" mb-4">{{$post->titol}}</h3>
             <img src="{{Storage::url($post->image)}}" alt="" class="img-fluid w-50 d-block mx-auto mt-2">
             <div class="row mt-3 mb-3">
 
@@ -90,7 +90,7 @@
     <div class="row mt-4">
         <div class="col-md-12">
             @if ($post->comentaripost->count())
-            <div class="card p-3">
+            <div class="card p-3 border-0">
                 <h5 class="card-header">Comentaris</h5>
                 @include('front.partials.comentpostDisplay', ['comentposts' =>
                 $post->comentaripost,'post_id',$post->id])

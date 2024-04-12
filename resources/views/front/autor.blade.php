@@ -2,11 +2,15 @@
 @section('title')
 {{ $autor->autor_nom }}
 @endsection
+@section('css')
+<link rel="stylesheet" href="{{asset('css/owl.carousel.min.css')}}">
+<link rel="stylesheet" href="{{asset('css/owl.theme.default.min.css')}}">
+@endsection
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-12 ">
-            <div class="card p-3">
+            <div class="card p-3 border-0">
 
                 @if ($autor->url_foto != null)
                 <img src="{{ $autor->url_foto }}" alt="" class="d-block mx-auto img-fluid w-25">
@@ -105,29 +109,37 @@
         </div>
     </div>
     <div class="row">
-
-        <h3>Llibres</h3>
-        @foreach ($autor->book as $book)
-        <div class="col-md-3 ">
-            <a href="{{route('book',$book)}}">
-                <div class="card mb-3">
+        @if (count($autor->book))
+        <div class="col-md-12">
+            <h3>Llibres</h3>
 
 
-                    @if ($book->imatge != null)
-                    <img src="{{ $book->imatge }}" class="img-fluid d-block mx-auto " alt="..."
-                        style="object-fit:cover;width:100%;height:100%;">
-                    @else
-                    <img src="{{Storage::url($book->foto)}}" alt="" class=" img-fluid d-block mx-auto"
-                        style="object-fit:cover;width:100%;height:100%;">
-                    @endif
+            <div class="owl-carousel owl-theme ">
+                @foreach ($autor->book as $book)
+
+                <a href="{{route('book',$book)}}">
+                    <div class="card mb-3 border-0" data-bs-toggle="tooltip" data-bs-title="{{$book->titol}}">
+
+
+                        @if ($book->imatge != null)
+                        <img src="{{ $book->imatge }}" class="img-fluid d-block mx-auto " alt="..."
+                            style="object-fit:cover;width:100%;height:100%;">
+                        @else
+                        <img src="{{Storage::url($book->foto)}}" alt="" class=" img-fluid d-block mx-auto"
+                            style="object-fit:cover;width:100%;height:100%;">
+                        @endif
 
 
 
 
-                </div>
-            </a>
+                    </div>
+                </a>
+
+                @endforeach
+            </div>
         </div>
-        @endforeach
+        @endif
+
 
     </div>
 
@@ -136,9 +148,9 @@
     <div class="col-md-8 mx-auto mt-5">
 
 
-        <div class="card p-3">
+        <div class="card p-3 border-0">
             @if ($autor->comentautor->count())
-            <h5 class="card-header">Comentaris</h5>
+            <h5 class="card-header bg-white">Comentaris</h5>
             @include('front.partials.comentautorDisplay', ['comentautors' =>
             $autor->comentautor,'autor_id',$autor->id])
             @endif
@@ -147,10 +159,10 @@
         </div>
         @if (Auth::check())
 
-        <div class="card p-3">
+        <div class="card p-3 border-0">
 
 
-            <h5 class="card-header">Fes un comentari</h5>
+            <h5 class="card-header bg-white">Fes un comentari</h5>
             <form method="post" action="{{route('coment.autor.store')}}">
                 @csrf
                 <div class="form-group mb-3 p-2">
@@ -179,5 +191,38 @@
             $('#input-1').rating();
          
         });
+</script>
+<script src="{{asset('js/owl.carousel.min.js')}}"></script>
+<script>
+    $(document).ready(function () {
+    
+    $('.owl-carousel').owlCarousel({
+    loop: true,
+    margin: 10,
+    responsiveClass: true,
+    responsive: {
+    0: {
+    items: 2,
+    nav: true
+    },
+    600: {
+    items: 4,
+    nav: false
+    },
+    1000: {
+    items: 6,
+    nav: true,
+    loop: false,
+    margin: 20
+    }
+    }
+    });
+});
+</script>
+<script>
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl)
+})
 </script>
 @endsection

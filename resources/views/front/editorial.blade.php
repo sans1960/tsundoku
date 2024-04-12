@@ -2,11 +2,15 @@
 @section('title')
 {{ $editorial->editorial_nom }}
 @endsection
+@section('css')
+<link rel="stylesheet" href="{{asset('css/owl.carousel.min.css')}}">
+<link rel="stylesheet" href="{{asset('css/owl.theme.default.min.css')}}">
+@endsection
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-12 ">
-            <div class="card p-3">
+            <div class="card p-3 border-0">
                 @if ($editorial->logo != null)
                 <img src="{{ $editorial->logo }}" class="card-img-top img-fluid w-25 d-block mx-auto" alt="...">
                 @else
@@ -76,29 +80,35 @@
         </div>
     </div>
     <div class="row">
-        @if ($editorial->book->count())
-        <h3>Llibres</h3>
-        @foreach ($editorial->book as $book)
-        <div class="col-md-3 ">
-            <a href="{{route('book',$book)}}">
-                <div class="card mb-3">
+        @if (count($editorial->book))
+        <div class="col-md-12">
+            <h3>Llibres</h3>
 
 
-                    @if ($book->imatge != null)
-                    <img src="{{ $book->imatge }}" class="img-fluid d-block mx-auto " alt="..."
-                        style="object-fit:cover;width:100%;height:100%;">
-                    @else
-                    <img src="{{Storage::url($book->foto)}}" alt="" class=" img-fluid d-block mx-auto"
-                        style="object-fit:cover;width:100%;height:100%;">
-                    @endif
+            <div class="owl-carousel owl-theme ">
+                @foreach ($editorial->book as $book)
+
+                <a href="{{route('book',$book)}}">
+                    <div class="card mb-3 border-0" data-bs-toggle="tooltip" data-bs-title="{{$book->titol}}">
+
+
+                        @if ($book->imatge != null)
+                        <img src="{{ $book->imatge }}" class="img-fluid d-block mx-auto " alt="..."
+                            style="object-fit:cover;width:100%;height:100%;">
+                        @else
+                        <img src="{{Storage::url($book->foto)}}" alt="" class=" img-fluid d-block mx-auto"
+                            style="object-fit:cover;width:100%;height:100%;">
+                        @endif
 
 
 
 
-                </div>
-            </a>
+                    </div>
+                </a>
+
+                @endforeach
+            </div>
         </div>
-        @endforeach
         @endif
 
 
@@ -106,7 +116,7 @@
     <div class="row">
         <div class="col-md-12 mt-5">
             @if ($editorial->comenteditorial->count())
-            <div class="card p-3">
+            <div class="card p-3 border-0">
                 <h5 class="card-header">Comentaris</h5>
                 @include('front.partials.comenteditorialDisplay', ['comenteditorials' =>
                 $editorial->comenteditorial,'editorial_id',$editorial->id])
@@ -152,6 +162,38 @@
          
         });
 </script>
-
+<script src="{{asset('js/owl.carousel.min.js')}}"></script>
+<script>
+    $(document).ready(function () {
+    
+    $('.owl-carousel').owlCarousel({
+    loop: true,
+    margin: 10,
+    responsiveClass: true,
+    responsive: {
+    0: {
+    items: 2,
+    nav: true
+    },
+    600: {
+    items: 4,
+    nav: false
+    },
+    1000: {
+    items: 6,
+    nav: true,
+    loop: false,
+    margin: 20
+    }
+    }
+    });
+});
+</script>
+<script>
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl)
+})
+</script>
 
 @endsection

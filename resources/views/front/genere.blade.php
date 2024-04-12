@@ -8,7 +8,7 @@
         @foreach ($books as $book)
         <div class="col-md-4 mb-2">
 
-            <div class="card mb-3">
+            <div class="card mb-3 border-0">
                 <div class="row g-0">
                     <div class="col-md-4">
                         @if ($book->imatge != null)
@@ -21,8 +21,11 @@
 
                     </div>
                     <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $book->titol }}</h5>
+                        <div class="card-body ">
+                            <a href="{{route('book',$book)}}" class="nav-link">
+                                <h5 class="card-title">{{ $book->titol }}</h5>
+                            </a>
+
                             <h5 class="">{{ $book->autor_nom }}</h5>
                             <p class="card-title ">{{ $book->editorial_nom }}</p>
                             <p class="card-title">{{ $book->genere->nom }}</p>
