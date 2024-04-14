@@ -33,18 +33,21 @@ class FrontController extends Controller
                 $topratedbook[] = Book::find($item->book_id);
             }
         }
+
+
         $topcoment = Book::withCount('comentbook')
             ->orderBy('comentbook_count', 'desc')
             ->get();;
         $autors = Autor::latest()->take(8)->get();
-        $novetats = Book::where('novetat', 1)->get();
-        $estrenes = Book::where('primera', 1)->get();
+        $allbooks = Book::orderBy('created_at', 'DESC')->take(7)->get();
+        $novetats = Book::where('novetat', 1)->orderBy('created_at', 'DESC')->get();
+        $estrenes = Book::where('primera', 1)->orderBy('created_at', 'DESC')->get();
         $autos = Book::where('auto', 1)->get();
         $medis = Medi::orderBy('created_at', 'desc')->get();
         $posts = Post::orderBy('created_at', 'desc')->get();
         $actes = Acte::orderBy('created_at', 'asc')->get();
 
-        return view('front.index', compact('books', 'autors', 'topratedbook', 'novetats', 'estrenes', 'autos', 'medis', 'posts', 'topcoment', 'actes'));
+        return view('front.index', compact('books', 'allbooks', 'autors', 'topratedbook', 'novetats', 'estrenes', 'autos', 'medis', 'posts', 'topcoment', 'actes'));
     }
     public function autors()
     {
@@ -67,7 +70,7 @@ class FrontController extends Controller
     }
     public function books()
     {
-        $books = Book::orderBy('created_at', 'DESC')->where('active', 1)->get();
+        $books = Book::orderBy('created_at', 'DESC')->paginate(12);
         return view('front.llibres', compact('books'));
     }
 
@@ -101,6 +104,7 @@ class FrontController extends Controller
     }
     public function genere(Genere $genere)
     {
+
         $books = Book::where('genere_id', $genere->id)->get();
         return view('front.genere', compact('books', 'genere'));
     }

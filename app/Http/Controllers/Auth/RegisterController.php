@@ -90,7 +90,7 @@ class RegisterController extends Controller
     }
     protected function registered(Request $request, $user)
     {
-        session()->flash('notif.success', 'Benvingut a Tsundoku.cat');
+        session()->flash('notif.success', 'Benvingut a Tsundoku.cat . Revisa el teu correu i fes click a confirmar');
         return redirect()->route('home');
     }
 }

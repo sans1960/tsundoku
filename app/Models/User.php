@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Cog\Contracts\Ban\Bannable as BannableInterface;
 use Cog\Laravel\Ban\Traits\Bannable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -12,7 +12,7 @@ use Cmgmyr\Messenger\Traits\Messagable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class User extends Authenticatable implements BannableInterface
+class User extends Authenticatable implements BannableInterface, MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
     use Bannable;
@@ -142,7 +142,7 @@ class User extends Authenticatable implements BannableInterface
     }
     public function denunciacomentbook(): HasMany
     {
-        return $this->hasMany(DenunciaComentBook::class);
+        return $this->hasMany(DenunciaComentariBook::class);
     }
     public function denunciacomentautor(): HasMany
     {

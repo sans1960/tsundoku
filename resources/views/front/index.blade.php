@@ -42,7 +42,30 @@ TSUNDOKU
 
 
 
+    <div class="row mb-3">
+        <div class="col-md-12 p-3 ">
+            <h2 class="mt-2 ubuntu">Últims llibres afegits:</h3>
+                <div class="owl-carousel owl-theme dos">
+                    @foreach ($allbooks as $book)
+                    <a href="{{route('book',$book)}}" class="nav-link" data-bs-toggle="tooltip"
+                        data-bs-title="{{$book->titol}}">
+                        <div class="card d-flex justify-content-center align-items-center border-0"
+                            style="height: 300px;background-image:url(@if ($book->imatge != null){{ $book->imatge }} @else {{Storage::url($book->foto)}} @endif);background-size:cover;background-position:center;object-fit:fill;">
+                            @if ($book->auto == 1)
+                            <p class="bg-success text-white p-1 rounded">Autopublicat</p>
+                            @endif
+                            @if ($book->novetat == 1)
+                            <p class="bg-primary text-white p-1 rounded">Novetat</p>
+                            @endif
 
+                        </div>
+
+                    </a>
+                    @endforeach
+
+                </div>
+        </div>
+    </div>
     <div class="row mb-3">
         <div class="col-md-12">
 
@@ -167,9 +190,9 @@ TSUNDOKU
 
                 <a href="{{route('autor',$autor)}}" class="nav-link" data-bs-toggle="tooltip"
                     data-bs-title="{{$autor->autor_nom}}">
-                    <div class="card d-flex justify-content-center align-items-center border-0"
-                        style="height: 300px;background-image:url( @if ($autor->url_foto != null){{ $autor->url_foto }} @else {{Storage::url($autor->image)}} @endif);background-size:cover;background-position:center;object-fit:fill;">
-
+                    <div class="card d-flex justify-content-end align-items-start border-0 p-3"
+                        style="height: 300px;background-image:linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),url( @if ($autor->url_foto != null){{ $autor->url_foto }} @else {{Storage::url($autor->image)}} @endif);background-size:cover;background-position:center;object-fit:fill;">
+                        <h5 class="text-uppercase text-white">{{ $autor->autor_nom }}</h5>
                     </div>
 
 
@@ -197,27 +220,7 @@ TSUNDOKU
             </div>
         </div>
     </div>
-    <div class="row mb-3">
-        <div class="col-md-12 p-3 ">
-            <h2 class="mt-2 ubuntu">Últims llibres afegits:</h3>
-                <div class="owl-carousel owl-theme dos">
-                    @foreach ($books as $book)
-                    <a href="{{route('book',$book)}}" class="nav-link" data-bs-toggle="tooltip"
-                        data-bs-title="{{$book->titol}}">
-                        <div class="card d-flex justify-content-center align-items-center border-0"
-                            style="height: 300px;background-image:url(@if ($book->imatge != null){{ $book->imatge }} @else {{Storage::url($book->foto)}} @endif);background-size:cover;background-position:center;object-fit:fill;">
-                            @if ($book->auto == 1)
-                            <p class="bg-success text-white p-1 rounded">Autopublicat</p>
-                            @endif
 
-                        </div>
-
-                    </a>
-                    @endforeach
-
-                </div>
-        </div>
-    </div>
 
 
     <div class="row mb-3">

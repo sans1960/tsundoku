@@ -1,57 +1,49 @@
 @extends('layouts.admin')
 @section('title')
-Tots els llibres
+Buscador llibres
 @endsection
 @section('content')
 <div class="container">
-    <div class="col-md-8 mx-auto">
-        <div class="card">
-            <div class="card-header">{{ __('Tots els llibres') }}</div>
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <form action="{{route('admin.searckbooks')}}" method="post">
+                @csrf
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">
+                        <i class="bi bi-search"></i>
+                    </span>
+                    <input type="text" class="form-control" placeholder="Escriu paraula a cercar" name="search"
+                        aria-describedby="basic-addon1">
 
-            @if (Session::has('notif.success'))
-            <div class="alert alert-info alert-dismissible fade show" role="alert">
-                <strong>{{ Session::get('notif.success') }}</strong>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-            @endif
+                    <button type="submit" class="btn btn-success">
+                        <i class="bi bi-search"></i>
+                    </button>
 
 
-
+                </div>
+            </form>
         </div>
     </div>
 </div>
 <div class="container">
-    <div class="row">
-        <div class="col-md-12 d-flex justify-content-around">
-            <a href="{{ route('admin.books.create') }}" class="btn btn-success mt-5">
-                <i class="bi bi-plus-square"></i>
-            </a>
-            <a href="{{route('admin.findbooks')}}" class="btn btn-success mt-5">
-                <i class="bi bi-search"></i>
-            </a>
-
-        </div>
-    </div>
-</div>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 mx-auto">
+    <div class="row mt-4">
+        <div class="col-md-12">
             <table class="table table-stripped">
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Títol</th>
                         <th>Autor</th>
-
-
-                        <th colspan="3" class="text-center">Accions</th>
+                        <th>Accions</th>
 
 
                     </tr>
                 </thead>
                 <tbody>
+                    @if (isset($books))
                     @foreach ($books as $book)
                     <tr>
+                        <td>{{$book->id}}</td>
                         <td>{{$book->titol}}</td>
                         <td>{{$book->autor_nom}}</td>
                         <td>
@@ -66,7 +58,7 @@ Tots els llibres
                                 <i class="bi bi-pencil-square"></i>
                             </a>
                         </td>
-                        <td>
+                        {{-- <td>
                             <form action="{{ route('admin.books.destroy', $book) }}" method="post">
                                 @csrf
                                 @method('delete')
@@ -74,17 +66,21 @@ Tots els llibres
                                     <i class="bi bi-trash3"></i>
                                 </button>
                             </form>
-                        </td>
+                        </td> --}}
                     </tr>
+
                     @endforeach
+
+                    @endif
                 </tbody>
             </table>
 
 
         </div>
-        {!! $books->withQueryString()->links('pagination::bootstrap-5') !!}
     </div>
 </div>
+</div>
+
 @endsection
 @section('js')
 <script type="text/javascript">

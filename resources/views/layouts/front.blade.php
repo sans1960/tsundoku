@@ -50,6 +50,12 @@
                         </a>
 
                     </li>
+                    <li class="nav-item ">
+                        <a class="nav-link " href="{{route('books')}}">
+                            Llibres
+                        </a>
+
+                    </li>
 
                     <li class="nav-item">
                         <a class="nav-link " href="{{route('autors')}}">Autors</a>

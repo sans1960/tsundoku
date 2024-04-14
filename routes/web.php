@@ -81,6 +81,7 @@ Route::post('search', [SearchController::class, 'search'])->name('search');
 
 
 Auth::routes();
+Auth::routes(['verify' => true]);
 Route::middleware(['auth', 'forbid-banned-user'])->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/home/activitat/{id}', [ActivitatController::class, 'activitat'])->name('home.activitat');
@@ -122,6 +123,8 @@ Route::middleware(['auth', 'forbid-banned-user'])->group(function () {
     Route::resource('/admin/denunciacomentacte', DenunciaComentActeController::class)->names('denunciacoment.acte');
 
     Route::resource('/admin/books', BookController::class)->names('admin.books');
+    Route::get('/admin/findbooks', [BookController::class, 'findbook'])->name('admin.findbooks');
+    Route::post('/admin/findbooks', [BookController::class, 'searchbook'])->name('admin.searckbooks');
     Route::resource('/admin/medis', Medicontroller::class)->names('admin.medis');
     Route::resource('/admin/actes', ActeController::class)->names('admin.actes');
 });

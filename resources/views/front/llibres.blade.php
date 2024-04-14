@@ -4,12 +4,12 @@ TSUNDOKU
 @endsection
 @section('content')
 <div class="container">
+    <h1 class="ubuntu mb-3">Tots els llibres</h1>
     <div class="row">
         @foreach ($books as $book)
-
         <div class="col-md-4 mb-2">
 
-            <div class="card mb-3">
+            <div class="card mb-3 border-0">
                 <div class="row g-0">
                     <div class="col-md-4">
                         @if ($book->imatge != null)
@@ -22,8 +22,11 @@ TSUNDOKU
 
                     </div>
                     <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ $book->titol }}</h5>
+                        <div class="card-body ">
+                            <a href="{{route('book',$book)}}" class="nav-link">
+                                <h5 class="card-title">{{ $book->titol }}</h5>
+                            </a>
+
                             <h5 class="">{{ $book->autor_nom }}</h5>
                             <p class="card-title ">{{ $book->editorial_nom }}</p>
                             <p class="card-title">{{ $book->genere->nom }}</p>
@@ -37,15 +40,26 @@ TSUNDOKU
                         </div>
                     </div>
                 </div>
+                <p>{{$book->ratingbook->count()}} Valoracions</p>
+                <input id="input-1" name="input-1" class="rating rating-loading" data-min="0" data-max="5"
+                    data-step="0.1" value="{{ \App\Models\RatingBook::where('book_id',$book->id)->avg('rate')}}"
+                    data-size="xs" disabled="">
+                <p>{{ \App\Models\ComentBook::where('book_id',$book->id)->count()}} Comentaris</p>
 
             </div>
         </div>
         @endforeach
     </div>
 </div>
+{!! $books->withQueryString()->links('pagination::bootstrap-5') !!}
 @endsection
 @section('js')
 <script>
+    $(document).ready(function(){
 
+
+$('#input-1').rating();
+
+});
 </script>
 @endsection

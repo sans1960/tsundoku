@@ -221,4 +221,14 @@ class BookController extends Controller
         session()->flash('notif.success', 'Llibre eliminat amb éxit!');
         return redirect()->route('admin.books.index');
     }
+    public function findbook()
+    {
+        return view('admin.books.find');
+    }
+    public function searchbook(Request $request)
+    {
+        $search = $request->input('search');
+        $books = Book::where('titol', 'LIKE', "%{$search}%")->get();
+        return view('admin.books.find', compact('books'));
+    }
 }
