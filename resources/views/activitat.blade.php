@@ -1380,14 +1380,7 @@
         </div>
     </div>
     @endif
-    <div class="row mt-5">
-        <div class="col-md-4">
-            <a href="{{route('home')}}" class="btn btn-outline-success">
-                <i class="bi bi-arrow-left-square-fill"></i>
-            </a>
-        </div>
 
-    </div>
 
 </div>
 @endsection

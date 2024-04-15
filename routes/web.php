@@ -84,6 +84,10 @@ Auth::routes();
 Auth::routes(['verify' => true]);
 Route::middleware(['auth', 'forbid-banned-user'])->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/home/lector', [App\Http\Controllers\HomeController::class, 'lector'])->name('home.lector');
+    Route::get('/home/autor', [App\Http\Controllers\HomeController::class, 'autor'])->name('home.autor');
+    Route::get('/home/editorial', [App\Http\Controllers\HomeController::class, 'editorial'])->name('home.editorial');
+    Route::get('/home/llibreria', [App\Http\Controllers\HomeController::class, 'llibreria'])->name('home.llibreria');
     Route::get('/home/activitat/{id}', [ActivitatController::class, 'activitat'])->name('home.activitat');
     Route::get('/admin', [App\Http\Controllers\HomeController::class, 'admin'])->name('admin');
     Route::get('/admin/users', [AdminController::class, 'allusers'])->name('admin.users.index');
@@ -97,6 +101,8 @@ Route::middleware(['auth', 'forbid-banned-user'])->group(function () {
 
     Route::resource('/admin/generes', GenereController::class)->names('admin.generes');
     Route::resource('/admin/autors', AutorController::class)->names('admin.autors');
+    Route::get('/admin/findautors', [AutorController::class, 'findautor'])->name('admin.findautors');
+    Route::post('/admin/findautors', [AutorController::class, 'searchautor'])->name('admin.searchautors');
     Route::resource('/admin/posts', PostController::class)->names('admin.posts');
     Route::resource('/admin/editorials', EditorialController::class)->names('admin.editorials');
     Route::resource('/admin/bookshops', BookshopController::class)->names('admin.bookshops');

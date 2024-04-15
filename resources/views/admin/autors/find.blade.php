@@ -1,87 +1,86 @@
 @extends('layouts.admin')
 @section('title')
-Tots els autors
+Buscador autors
 @endsection
 @section('content')
 <div class="container">
-    <div class="col-md-8 mx-auto">
-        <div class="card">
-            <div class="card-header">{{ __('Tots els autors') }}</div>
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <form action="{{route('admin.searchautors')}}" method="post">
+                @csrf
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">
+                        <i class="bi bi-search"></i>
+                    </span>
+                    <input type="text" class="form-control" placeholder="Escriu paraula a cercar" name="search"
+                        aria-describedby="basic-addon1">
 
-            @if (Session::has('notif.success'))
-            <div class="alert alert-info alert-dismissible fade show" role="alert">
-                <strong>{{ Session::get('notif.success') }}</strong>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-            @endif
+                    <button type="submit" class="btn btn-success">
+                        <i class="bi bi-search"></i>
+                    </button>
 
 
-
+                </div>
+            </form>
         </div>
     </div>
 </div>
 <div class="container">
-    <div class="row">
-        <div class="col-md-12 d-flex justify-content-around">
-            <a href="{{ route('admin.autors.create') }}" class="btn btn-success mt-5">
-                <i class="bi bi-plus-square"></i>
-            </a>
-            <a href="{{route('admin.findautors')}}" class="btn btn-success mt-5">
-                <i class="bi bi-search"></i>
-            </a>
-
-        </div>
-    </div>
-</div>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 mx-auto">
-            <table class="table table-stripped mb-5">
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <table class="table table-stripped">
                 <thead>
                     <tr>
-                        <th>Autor</th>
+                        <th>ID</th>
 
-
-                        <th colspan="3" class="text-center">Accions</th>
+                        <th>Nom</th>
+                        <th>Accions</th>
 
 
                     </tr>
                 </thead>
                 <tbody>
+                    @if (isset($autors))
                     @foreach ($autors as $autor)
                     <tr>
-                        <td>{{ $autor->autor_nom }}</td>
+                        <td>{{$autor->id}}</td>
+
+                        <td>{{$autor->autor_nom}}</td>
                         <td>
+
                             <a href="{{ route('admin.autors.show', $autor) }}" class="btn btn-success btn-sm">
                                 <i class="bi bi-eye"></i>
                             </a>
+
                         </td>
                         <td>
                             <a href="{{ route('admin.autors.edit', $autor) }}" class="btn btn-warning btn-sm">
                                 <i class="bi bi-pencil-square"></i>
                             </a>
                         </td>
-                        <td>
-                            <form action="{{ route('admin.autors.destroy', $autor) }}" method="post">
+                        {{-- <td>
+                            <form action="{{ route('admin.books.destroy', $book) }}" method="post">
                                 @csrf
                                 @method('delete')
                                 <button type="submit" class="btn btn-danger btn-sm show_confirm">
                                     <i class="bi bi-trash3"></i>
                                 </button>
                             </form>
-                        </td>
+                        </td> --}}
                     </tr>
+
                     @endforeach
+
+                    @endif
                 </tbody>
             </table>
 
 
-
         </div>
-        {!! $autors->withQueryString()->links('pagination::bootstrap-5') !!}
     </div>
 </div>
+</div>
+
 @endsection
 @section('js')
 <script type="text/javascript">

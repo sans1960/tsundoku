@@ -48,7 +48,11 @@ Tots els usuaris
 
                         <td>{{$user->name}}</td>
                         <td>{{$user->email}}</td>
-                        <td>No</td>
+                        <td>@if ($user->email_verified_at !=null)
+                            Si
+                            @else
+                            No
+                            @endif</td>
                         <td>{{Str::title($user->type)}}</td>
                         <td>{{$user->condicio}}</td>
                         <td>{{\Carbon\Carbon::parse($user->created_at)->format('d/m/Y');}}</td>

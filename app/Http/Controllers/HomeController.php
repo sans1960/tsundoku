@@ -30,4 +30,20 @@ class HomeController extends Controller
     {
         return view('admin.index');
     }
+    public function lector()
+    {
+        return view('lector');
+    }
+    public function autor()
+    {
+        return view('autor');
+    }
+    public function editorial()
+    {
+        return view('editorial');
+    }
+    public function llibreria()
+    {
+        return view('llibreria');
+    }
 }

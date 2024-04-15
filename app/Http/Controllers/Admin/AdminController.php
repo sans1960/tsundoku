@@ -84,9 +84,9 @@ class AdminController extends Controller
     public function deleteuser($id)
     {
         $user = User::find($id);
-        if (Storage::url($user->avatar)) {
-            Storage::disk('public')->delete($user->avatar);
-        }
+        // if (Storage::url($user->avatar)) {
+        //     Storage::disk('public')->delete($user->avatar);
+        // }
 
         $delete = $user->delete();
 
