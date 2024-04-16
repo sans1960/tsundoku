@@ -63,6 +63,13 @@
                                 @endif
                             </div>
                             <div class="col">
+                                <label for="lloc" class="form-label">Lloc</label>
+                                <input class="form-control" type="text" id="lloc" name="lloc" value="{{old('lloc')}}">
+                                @if ($errors->has('lloc'))
+                                <span class="text-danger">{{ $errors->first('lloc') }}</span>
+                                @endif
+                            </div>
+                            <div class="col">
                                 <label for="hora" class="form-label">Hora</label>
                                 <input class="form-control" type="text" id="hora" name="hora" value="{{old('hora')}}"
                                     placeholder="Hora ex 13:00">

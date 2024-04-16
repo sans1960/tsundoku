@@ -12,11 +12,14 @@
         <div class="col-md-10 mx-auto  d-flex flex-column">
             <h3 class="text-center">{{$acte->titol}}</h3>
             <img src="{{Storage::url($acte->image)}}" alt="" class="img-fluid w-50 d-block mx-auto mt-2">
+            <div class=" d-flex justify-content-center">
+                <a href="{{$acte->url}}" target="_blank" class="nav-link text-success fw-bold">Acte</a>
+            </div>
             <div class="row mt-3 mb-3">
-
                 <div class="col d-flex justify-content-center">
-                    <a href="{{$acte->url}}" target="_blank" class="nav-link text-success fw-bold">Acte</a>
+                    <p>{{$acte->lloc}}</p>
                 </div>
+
                 <div class="col d-flex justify-content-center">
                     <p>{{\Carbon\Carbon::parse($acte->data)->format('d/m/Y');}}</p>
                 </div>

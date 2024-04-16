@@ -30,7 +30,7 @@
                             </div>
                         </div>
 
-                       
+
                         <div class="mb-3">
                             <select name="user_id" id="" class="form-select">
                                 @foreach ($users as $user)
@@ -51,6 +51,10 @@
                             <div class="col">
                                 <label for="data" class="form-label">Data</label>
                                 <input class="form-control" type="date" id="data" name="data" value="{{$acte->data}}">
+                            </div>
+                            <div class="col">
+                                <label for="lloc" class="form-label">Lloc</label>
+                                <input class="form-control" type="text" id="data" name="lloc" value="{{$acte->lloc}}">
                             </div>
                             <div class="col">
                                 <label for="hora" class="form-label">Hora</label>
@@ -83,7 +87,7 @@
 
 
 
-                       
+
 
 
 

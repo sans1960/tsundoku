@@ -15,7 +15,7 @@ class Acte extends Model implements Searchable
     use HasFactory;
 
 
-    protected $fillable = ['titol', 'slug', 'user_id', 'body', 'image', 'hora', 'data', 'active', 'url'];
+    protected $fillable = ['titol', 'slug', 'user_id', 'body', 'image', 'hora', 'data', 'active', 'url', 'lloc'];
 
 
     public function getRouteKeyName()

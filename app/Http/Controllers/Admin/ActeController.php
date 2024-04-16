@@ -12,11 +12,9 @@ use Illuminate\Support\Facades\Storage;
 
 class ActeController extends Controller
 {
-       public function __construct()
+    public function __construct()
     {
-        $this->middleware('admin')->except('create','store');
- 
-       
+        $this->middleware('admin')->except('create', 'store');
     }
 
 
@@ -31,7 +29,7 @@ class ActeController extends Controller
     public function index()
     {
         $actes = Acte::all();
-        return view('admin.actes.index',compact('actes'));
+        return view('admin.actes.index', compact('actes'));
     }
 
     /**
@@ -47,41 +45,41 @@ class ActeController extends Controller
      */
     public function store(Request $request)
     {
-         $request->validate([
-        'titol' => 'required|string|max:255',
-      
-        'hora' => 'required|string',
-        'url'=>'required|string',
-        'data'=>'required',
-        'image'=> ['required', File::types(['jpg', 'png','webp','jpeg'])->max(1024)],
-        'body' => 'required',
-       
-         ]);
-         if ($request->hasFile('image')) {
+        $request->validate([
+            'titol' => 'required|string|max:255',
+
+            'hora' => 'required|string',
+            'url' => 'required|string',
+            'data' => 'required',
+            'image' => ['required', File::types(['jpg', 'png', 'webp', 'jpeg'])->max(1024)],
+            'body' => 'required',
+
+        ]);
+        if ($request->hasFile('image')) {
             // put image in the public storage
-           $filePath = Storage::disk('public')->put('images/actes', request()->file('image'));
-           
-       }
+            $filePath = Storage::disk('public')->put('images/actes', request()->file('image'));
+        }
         $acte = new Acte;
         $acte->titol = $request->titol;
-        $acte->slug = Str::slug($request->titol) ;
+        $acte->slug = Str::slug($request->titol);
         $acte->image = $filePath;
-         if (Auth()->user()->type == 'admin') {
-        $acte->active = $request->active;
-         }
+        if (Auth()->user()->type == 'admin') {
+            $acte->active = $request->active;
+        }
         $acte->hora = $request->hora;
+        $acte->lloc = $request->lloc;
         $acte->url = $request->url;
         $acte->data = $request->data;
         $acte->body = $request->body;
         $acte->user_id = $request->user_id;
         $acte->save();
-              if (Auth()->user()->type == 'admin') {
-                session()->flash('notif.success', 'Acte creat amb éxit!');
-                return redirect()->route('admin.actes.index');
-             }else {
-                session()->flash('notif.success', 'Acte creat amb éxit!');
-                return redirect()->route('home');
-             }
+        if (Auth()->user()->type == 'admin') {
+            session()->flash('notif.success', 'Acte creat amb éxit!');
+            return redirect()->route('admin.actes.index');
+        } else {
+            session()->flash('notif.success', 'Acte creat amb éxit!');
+            return redirect()->route('home');
+        }
     }
 
     /**
@@ -89,7 +87,7 @@ class ActeController extends Controller
      */
     public function show(Acte $acte)
     {
-        return view('admin.actes.show',compact('acte'));
+        return view('admin.actes.show', compact('acte'));
     }
 
     /**
@@ -97,8 +95,8 @@ class ActeController extends Controller
      */
     public function edit(Acte $acte)
     {
-         $users = User::all();
-        return view('admin.actes.edit',compact('acte','users'));
+        $users = User::all();
+        return view('admin.actes.edit', compact('acte', 'users'));
     }
 
     /**
@@ -106,39 +104,39 @@ class ActeController extends Controller
      */
     public function update(Request $request, Acte $acte)
     {
-           $request->validate([
-        'titol' => 'required|string|max:255',
-       
-        'hora' => 'required|string',
-        'url'=>'required|string',
-        'data'=>'required',
-        'image'=> File::types(['jpg', 'png','webp','jpeg'])->max(1024),
-        'body' => 'required',
-       
-         ]);
-         if ($request->hasFile('image')) {
+        $request->validate([
+            'titol' => 'required|string|max:255',
+
+            'hora' => 'required|string',
+            'url' => 'required|string',
+            'data' => 'required',
+            'image' => File::types(['jpg', 'png', 'webp', 'jpeg'])->max(1024),
+            'body' => 'required',
+
+        ]);
+        if ($request->hasFile('image')) {
             // delete image
             Storage::disk('public')->delete($acte->image);
 
-            $filePath = Storage::disk('public')->put('images/actes', request()->file('image'),'public');
-             $acte->image = $filePath;
-            }
+            $filePath = Storage::disk('public')->put('images/actes', request()->file('image'), 'public');
+            $acte->image = $filePath;
+        }
         $acte->titol = $request->titol;
-        $acte->slug = Str::slug($request->titol) ;
-        
+        $acte->slug = Str::slug($request->titol);
+
         if (Auth()->user()->type == 'admin') {
-        $acte->active = $request->active;
+            $acte->active = $request->active;
         }
         $acte->hora = $request->hora;
+        $acte->lloc = $request->lloc;
         $acte->url = $request->url;
         $acte->data = $request->data;
         $acte->body = $request->body;
         $acte->user_id = $request->user_id;
         $acte->update();
-            
-                session()->flash('notif.success', 'Acte actualitzat amb éxit!');
-                return redirect()->route('admin.actes.index');
-             
+
+        session()->flash('notif.success', 'Acte actualitzat amb éxit!');
+        return redirect()->route('admin.actes.index');
     }
 
     /**
@@ -146,9 +144,9 @@ class ActeController extends Controller
      */
     public function destroy(Acte $acte)
     {
-           Storage::disk('public')->delete($acte->image);
-            $acte->delete();
-           session()->flash('notif.success', 'Acte eliminat amb éxit!');
-            return redirect()->route('admin.actes.index');
+        Storage::disk('public')->delete($acte->image);
+        $acte->delete();
+        session()->flash('notif.success', 'Acte eliminat amb éxit!');
+        return redirect()->route('admin.actes.index');
     }
 }
