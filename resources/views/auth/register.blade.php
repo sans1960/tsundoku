@@ -88,13 +88,14 @@
                                     name="condicio">
                                     <option selected disabled hidden>Escull</option>
                                     <option></option>
-                                    <option value="lector" {{ old('condicio')=="lector" ? 'selected' : '' }}>Lector
+                                    <option value="lector" {{ "Lector"===old('condicio') ? 'selected' : '' }}>Lector
                                     </option>
-                                    <option value="autor" {{ old('condicio')=="autor" ? 'selected' : '' }}>Autor
+
+                                    <option value="autor" {{"Autor"===old('condicio') ? 'selected' : '' }}>Autor
                                     </option>
-                                    <option value="editorial" {{ old('condicio')=="editorial" ? 'selected' : '' }}>
+                                    <option value="editorial" {{"Editorial"===old('condicio') ? 'selected' : '' }}>
                                         Editorial</option>
-                                    <option value="llibreria" {{ old('condicio')=="llibreria" ? 'selected' : '' }}>
+                                    <option value="llibreria" {{"Llibreria"===old('condicio') ? 'selected' : '' }}>
                                         Llibreria</option>
                                 </select>
                                 @error('condicio')
@@ -152,7 +153,8 @@
                             <div class="col-md-6">
                                 <input id="password" type="password"
                                     class="form-control @error('password') is-invalid @enderror" name="password"
-                                    required autocomplete="new-password">
+                                    required autocomplete="new-password" placeholder="Minim 8 caracters">
+
 
                                 @error('password')
                                 <span class="invalid-feedback" role="alert">
@@ -173,7 +175,7 @@
                         </div>
                         <div class="row mb-3 ">
                             <div class="form-check d-flex justify-content-center align-items-center">
-                                <input class="form-check-input" type="radio" required name="legal" value="true"
+                                <input class="form-check-input me-3" type="radio" required name="legal" value="true"
                                     id="flexRadioDefault1">
                                 <label class="form-check-label" for="flexRadioDefault1">
                                     He llegit i acepto la <span><a
@@ -202,4 +204,13 @@
         </div>
     </div>
 </div>
+@endsection
+@section('js')
+<script>
+    $(() => {
+
+$('[type="password"]').togglepassword('btn');
+
+});
+</script>
 @endsection

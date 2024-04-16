@@ -70,6 +70,7 @@ class BookController extends Controller
             'novetat' => 'required',
             'primera' => 'required',
             'auto' => 'required',
+            'estrena' => 'required',
 
 
         ]);
@@ -102,6 +103,7 @@ class BookController extends Controller
         $book->isbn = $request->isbn;
         $book->novetat = $request->novetat;
         $book->primera = $request->primera;
+        $book->estrena = $request->estrena;
         $book->auto = $request->auto;
         $book->cita = $request->cita;
         $book->comentari = $request->comentari;
@@ -167,6 +169,7 @@ class BookController extends Controller
             'novetat' => 'required',
             'primera' => 'required',
             'auto' => 'required',
+            'estrena' => 'required',
 
 
         ]);
@@ -203,6 +206,7 @@ class BookController extends Controller
         $book->isbn = $request->isbn;
         $book->novetat = $request->novetat;
         $book->primera = $request->primera;
+        $book->estrena = $request->estrena;
         $book->auto = $request->auto;
         $book->cita = $request->cita;
         $book->comentari = $request->comentari;

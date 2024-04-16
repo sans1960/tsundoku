@@ -18,7 +18,7 @@ class Book extends Model implements Searchable
 
 
 
-    protected $fillable = ['titol', 'slug', 'editorial_id', 'autor_id', 'autor_nom', 'genere_id', 'editorial_nom', 'isbn', 'imatge', 'sinopsi', 'editorial_web', 'idioma', 'user_id', 'active', 'foto', 'novetat', 'primera', 'auto', 'cita', 'comentari'];
+    protected $fillable = ['titol', 'slug', 'editorial_id', 'autor_id', 'autor_nom', 'genere_id', 'editorial_nom', 'isbn', 'imatge', 'sinopsi', 'editorial_web', 'idioma', 'user_id', 'active', 'foto', 'novetat', 'primera', 'auto', 'cita', 'comentari', 'estrena'];
 
     public function getRouteKeyName()
     {

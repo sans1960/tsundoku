@@ -198,6 +198,26 @@
                                 </div>
 
                             </div>
+                            <div class="col d-flex flex-column align-items-center">
+                                <div class="form-check">
+                                    <input class="form-check-input me-2" type="radio" name="estrena"
+                                        id="flexRadioDefault1" value="0" {{$book->estrena
+                                    == 0 ? 'checked' : ''}}
+                                    required>
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        No estrena
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input me-2" type="radio" name="estrena"
+                                        id="flexRadioDefault2" value="1" {{$book->estrena
+                                    == 1 ? 'checked' : ''}}>
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                        Estrena
+                                    </label>
+                                </div>
+
+                            </div>
                         </div>
                         <div class="mb-3">
                             <label for="" class="form-label">Sinopsi</label>

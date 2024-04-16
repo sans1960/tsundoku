@@ -23,27 +23,7 @@
                             @endforeach
                             @endif
                         </div>
-                        {{-- @if (Auth()->user()->condicio == 'autor' )
-                        <div class="row mb-3">
-                            <div class="col">
-                                <label for="" class="form-label">Autor</label>
-                                <select class="form-select" aria-label="Default select example" name="autor_id">
-                                    <option></option>
-                                    @foreach ($autors as $autor)
-                                    <option value="{{ $autor->id }}" {{ ($autor->id === old('autor_id')) ?
-                                        'selected'
-                                        :
-                                        '' }}>{{ $autor->autor_nom }}</option>
-                                    @endforeach
 
-                                </select>
-
-                            </div>
-
-                        </div>
-
-
-                        @endif --}}
 
 
                         @if (Auth()->user()->type == 'admin')
@@ -264,6 +244,24 @@
                                         value="1" {{ (old('auto')=='1' ) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="flexRadioDefault2">
                                         Es autopublicat
+                                    </label>
+                                </div>
+
+                            </div>
+                            <div class="col d-flex flex-column align-items-center">
+                                <div class="form-check">
+                                    <input class="form-check-input me-2" type="radio" name="estrena"
+                                        id="flexRadioDefault1" value="0" {{ (old('estrena')=='0' ) ? 'checked' : '' }}
+                                        required>
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        No estrena
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input me-2" type="radio" name="estrena"
+                                        id="flexRadioDefault2" value="1" {{ (old('estrena')=='1' ) ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                        Estrena
                                     </label>
                                 </div>
 

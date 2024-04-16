@@ -82,3 +82,12 @@
     </div>
 </div>
 @endsection
+@section('js')
+<script>
+    $(() => {
+    
+    $('[type="password"]').togglepassword('btn');
+    
+    });
+</script>
+@endsection
