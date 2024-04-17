@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\Medicontroller;
 use App\Http\Controllers\Admin\ActeController;
+use App\Http\Controllers\Admin\BannerController;
 
 use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\FrontController;
@@ -104,6 +105,7 @@ Route::middleware(['auth', 'forbid-banned-user'])->group(function () {
     Route::get('/admin/findautors', [AutorController::class, 'findautor'])->name('admin.findautors');
     Route::post('/admin/findautors', [AutorController::class, 'searchautor'])->name('admin.searchautors');
     Route::resource('/admin/posts', PostController::class)->names('admin.posts');
+    Route::resource('/admin/banners', BannerController::class)->names('admin.banners');
     Route::resource('/admin/editorials', EditorialController::class)->names('admin.editorials');
     Route::resource('/admin/bookshops', BookshopController::class)->names('admin.bookshops');
     Route::resource('/admin/ratingbook', RatingBookController::class)->names('rating.book');

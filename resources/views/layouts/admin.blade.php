@@ -78,6 +78,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('admin.users.index') }}">Usuaris</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.banners.index') }}">Banners</a>
+                        </li>
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"

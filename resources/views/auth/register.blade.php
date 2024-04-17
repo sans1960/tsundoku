@@ -129,7 +129,7 @@
                                     <input class="form-check-input" required value="Si" {{ (old('novetats')=='Si' )
                                         ? 'checked' : '' }} type="radio" name="novetats" id="flexRadioDefault1">
                                     <label class="form-check-label" for="flexRadioDefault1">
-                                        Si
+                                        Sí
                                     </label>
                                 </div>
                                 <div class="form-check form-check-inline mt-3">

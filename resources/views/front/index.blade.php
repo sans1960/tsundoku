@@ -150,14 +150,16 @@ TSUNDOKU
 
     </div>
     <div class="row mb-3">
-        <a href="https://www.plataforma-llengua.cat/" target="_blank" rel="noopener noreferrer" data-bs-toggle="tooltip"
-            data-bs-title="Plataforma per la llengua">
-            <div class="col-md-12   rounded p-3"
-                style="height: 250px; background-image:url({{asset('img/plataforma.jpg')}});background-position:center;background-size:cover;object-fit:fill;">
+        @foreach ($dalt as $item)
+        <a href="{{$item->url}}" target="_blank" rel="noopener noreferrer" data-bs-toggle="tooltip"
+            data-bs-title="{{$item->nom}}">
+            <div class="col-md-12  rounded "
+                style="height: 250px; background-image:url({{Storage::url($item->image)}});background-position:center;background-size:cover; object-fit:fill;">
 
 
             </div>
         </a>
+        @endforeach
     </div>
     <div class="row mb-3" style="">
 
@@ -201,7 +203,7 @@ TSUNDOKU
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row mb-3">
         <div class="col-md-12">
             <h3 class="mt-2 ubuntu">Ens ha agradat:</h3>
             <div class="owl-carousel owl-theme tres">
@@ -224,14 +226,17 @@ TSUNDOKU
 
 
     <div class="row mb-3">
-        <a href="https://www.escriptors.cat/" target="_blank" rel="noopener noreferrer" data-bs-toggle="tooltip"
-            data-bs-title="Associació d'Escriptors en Llengua Catalana (AELC)">
-            <div class="col-md-12  rounded"
-                style="height: 250px; background-image:url({{asset('img/banner.jpg')}});background-position:center;background-size:cover; object-fit:fill;">
+        @foreach ($baix as $item)
+        <a href="{{$item->url}}" target="_blank" rel="noopener noreferrer" data-bs-toggle="tooltip"
+            data-bs-title="{{$item->nom}}">
+            <div class="col-md-12  rounded "
+                style="height: 250px; background-image:url({{Storage::url($item->image)}});background-position:center;background-size:cover; object-fit:fill;">
 
 
             </div>
         </a>
+        @endforeach
+
     </div>
 
     <div class="row mb-3">

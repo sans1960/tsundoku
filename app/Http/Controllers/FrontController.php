@@ -11,6 +11,7 @@ use App\Models\Bookshop;
 use App\Models\Post;
 use App\Models\Medi;
 use App\Models\Acte;
+use App\Models\Banner;
 
 use App\Models\RatingBook;
 use App\Models\RatingAutor;
@@ -46,8 +47,10 @@ class FrontController extends Controller
         $medis = Medi::orderBy('created_at', 'desc')->get();
         $posts = Post::orderBy('created_at', 'desc')->get();
         $actes = Acte::orderBy('created_at', 'desc')->get();
+        $dalt = Banner::where('posicio', 'Dalt')->where('actiu', 1)->get();
+        $baix = Banner::where('posicio', 'Baix')->where('actiu', 1)->get();
 
-        return view('front.index', compact('books', 'allbooks', 'autors', 'topratedbook', 'novetats', 'estrenes', 'autos', 'medis', 'posts', 'topcoment', 'actes'));
+        return view('front.index', compact('books', 'allbooks', 'autors', 'topratedbook', 'novetats', 'estrenes', 'autos', 'medis', 'posts', 'topcoment', 'actes', 'dalt', 'baix'));
     }
     public function autors()
     {

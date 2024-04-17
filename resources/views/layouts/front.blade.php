@@ -32,7 +32,105 @@
 </head>
 
 <body>
-    @include('front.partials.superior')
+    <nav class="navbar navbar-expand-lg bg-white">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{route('index')}}">
+                <img src="{{asset('img/logo.png')}}" class="img-fluid  " width="100" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 menu">
+                    <li class="nav-item ">
+                        <a class="nav-link " href="{{route('generes')}}">
+                            Gèneres
+                        </a>
+
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link " href="{{route('books')}}">
+                            Llibres
+                        </a>
+
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link " href="{{route('autors')}}">Autors</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="{{route('editorials')}}">Editorials</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('bookshops')}}">Llibreries</a>
+                    </li>
+
+
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('medis')}}">Tsundoku TV</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="{{route('posts')}}">Ens ha agradat</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="{{route('calendari')}}">Agenda</a>
+                    </li>
+
+
+
+                </ul>
+                @guest
+                @if (Route::has('login'))
+
+                <a class="nav-link ms-3" href="{{ route('login') }}">
+                    <i class="bi bi-lock-fill" style="font-size: 2rem;color:red;"></i>
+                </a>
+
+                @endif
+
+                @if (Route::has('register'))
+
+                <a class=" nav-link ms-3" href="{{ route('register') }}">
+                    <i class="bi bi-person-add" style="font-size: 2rem;color:green;"></i>
+                </a>
+
+                @endif
+                @else
+
+                <a id="navbarDropdown" class="nav-link dropdown-toggle ms-3" href="#" role="button"
+                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                    {{ Auth::user()->nickname }}
+                </a>
+
+                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                                                                                     document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </div>
+
+                @endguest
+                @if (Auth::check())
+
+                <a class="nav-link ms-3" href="{{route('home')}}">
+                    <i class="bi bi-speedometer" style="font-size: 2rem; color:green;"></i>
+                </a>
+
+                @endif
+
+            </div>
+        </div>
+    </nav>
+
+    {{-- @include('front.partials.superior')
 
     <nav class="navbar navbar-expand-lg ">
         <div class="container-fluid">
@@ -85,9 +183,9 @@
 
             </div>
         </div>
-    </nav>
+    </nav> --}}
 
-    <main class="py-4 mb-5">
+    <main class=" mb-5">
         @yield('content')
     </main>
 

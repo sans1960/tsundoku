@@ -195,73 +195,77 @@
 
 
                         <div class="row mb-3">
-                            <div class="col d-flex flex-column align-items-center">
+                            <div class="col-md-3 d-flex flex-column justify-content-start align-items-start">
+                                <p>És novetat editorial?</p>
                                 <div class="form-check">
                                     <input class="form-check-input me-2" type="radio" name="novetat"
                                         id="flexRadioDefault1" value="0" {{ (old('novetat')=='0' ) ? 'checked' : '' }}
                                         required>
                                     <label class="form-check-label" for="flexRadioDefault1">
-                                        No es novetat
+                                        No
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input me-2" type="radio" name="novetat"
                                         id="flexRadioDefault2" value="1" {{ (old('novetat')=='1' ) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="flexRadioDefault2">
-                                        Es novetat editorial
+                                        Sí
                                     </label>
                                 </div>
 
                             </div>
-                            <div class="col d-flex flex-column align-items-center">
+                            <div class="col-md-3 d-flex flex-column justify-content-start align-items-start">
+                                <p>És la primera obra publicada de l'autor?</p>
                                 <div class="form-check">
                                     <input class="form-check-input me-2" type="radio" name="primera"
                                         id="flexRadioDefault1" value="0" {{ (old('primera')=='0' ) ? 'checked' : '' }}
                                         required>
                                     <label class="form-check-label" for="flexRadioDefault1">
-                                        No es la primera obra publicada del autor
+                                        No
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input me-2" type="radio" name="primera"
                                         id="flexRadioDefault2" value="1" {{ (old('primera')=='1' ) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="flexRadioDefault2">
-                                        Es la primera obra publicada del autor
+                                        Sí
                                     </label>
                                 </div>
 
                             </div>
-                            <div class="col d-flex flex-column align-items-center">
+                            <div class="col-md-3 d-flex flex-column justify-content-start align-items-start">
+                                <p>És autopublicat?</p>
                                 <div class="form-check">
                                     <input class="form-check-input me-2" type="radio" name="auto" id="flexRadioDefault1"
                                         value="0" {{ (old('auto')=='0' ) ? 'checked' : '' }} required>
                                     <label class="form-check-label" for="flexRadioDefault1">
-                                        No es autopublicat
+                                        No
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input me-2" type="radio" name="auto" id="flexRadioDefault2"
                                         value="1" {{ (old('auto')=='1' ) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="flexRadioDefault2">
-                                        Es autopublicat
+                                        Sí
                                     </label>
                                 </div>
 
                             </div>
-                            <div class="col d-flex flex-column align-items-center">
+                            <div class="col-md-3 d-flex flex-column justify-content-start align-items-start">
+                                <p>És la primera vegada que publiques?</p>
                                 <div class="form-check">
                                     <input class="form-check-input me-2" type="radio" name="estrena"
                                         id="flexRadioDefault1" value="0" {{ (old('estrena')=='0' ) ? 'checked' : '' }}
                                         required>
                                     <label class="form-check-label" for="flexRadioDefault1">
-                                        No estrena
+                                        No
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input me-2" type="radio" name="estrena"
                                         id="flexRadioDefault2" value="1" {{ (old('estrena')=='1' ) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="flexRadioDefault2">
-                                        Estrena
+                                        Sí
                                     </label>
                                 </div>
 

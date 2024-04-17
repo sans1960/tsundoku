@@ -8,7 +8,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-2">
             <div class="card mb-3 p-2 border-0">
 
                 @if ($book->imatge != null)
@@ -20,12 +20,7 @@
                 @endif
 
                 <p>{{ $book->isbn }}</p>
-                <p>{{$book->ratingbook->count()}} Valoracions</p>
-                <input id="input-1" name="input-1" class="rating rating-loading" data-min="0" data-max="5"
-                    data-step="0.1" value="{{ $rating }}" data-size="xs" disabled="">
 
-
-                <p class="mb-2">{{$com}} Comentaris</p>
                 <p class="fw-bold">Pujat X </p>
 
                 @if ($book->user->avatar)
@@ -95,18 +90,31 @@
 
             </div>
         </div>
-        <div class="col-md-8 ">
+        <div class="col-md-4 ">
 
-            <h5 class="card-title mb-3">{{ $book->titol }}</h5>
+            <h4 class="card-title mb-3 ubuntu">{{ $book->titol }}</h4>
+            <div class="d-flex justify-content-start align-items-center">
 
+                <p class="fs-5 fw-bold text-success-emphasis">{{round($rating,2)}}/5</p>
+                <p class="ms-4 fs-5">{{$book->ratingbook->count()}} <i class="bi bi-person"
+                        style="font-size: 1.5em;"></i>
+                </p>
+            </div>
 
             @if ($book->autor != null)
-            <a href="{{route('autor',$book->autor)}}" class="nav-link fw-bold">
+            <a href="{{route('autor',$book->autor)}}" class="nav-link ubuntu fw-bold">
                 {{ $book->autor->autor_nom }}
             </a>
             @else
             <p>{{$book->autor_nom}}</p>
             @endif
+
+
+            {{-- <input id="input-1" name="input-1" class="rating rating-loading" data-min="0" data-max="5"
+                data-step="0.1" value="{{ $rating }}" data-size="xs" disabled=""> --}}
+
+
+            {{-- <p class="mb-2">{{$com}} Comentaris</p> --}}
 
 
 
@@ -115,7 +123,7 @@
 
 
             @if ($book->editorial != null)
-            <a href="{{route('editorial',$book->editorial)}}" class="nav-link mt-3">
+            <a href="{{route('editorial',$book->editorial)}}" class="nav-link mt-3 ubuntu">
                 {{ $book->editorial->editorial_nom }}
             </a>
             @else
@@ -143,105 +151,108 @@
 
             <p>{{ $book->genere->nom }}</p>
             <p>{{ $book->idioma }}</p>
-            <h4>Sinopsi</h4>
+        </div>
+        <div class="col-md-6">
+            <h4 class="ubuntu">Sinopsi</h4>
             <div class="mt-3">
                 {!! $book->sinopsi !!}
             </div>
             @if ($book->cita)
-            <h4>Cita destacada</h4>
+            <h4 class="ubuntu">Cita destacada</h4>
             <div class="mt-3">
                 {!! $book->cita !!}
             </div>
             @endif
             @if ($book->comentari)
-            <h4>Ressenya</h4>
+            <h4 class="ubuntu">Ressenya</h4>
             <div class="mt-3">
                 {!! $book->comentari !!}
             </div>
             @endif
+            @if (Auth::check())
 
-        </div>
-
-
-
-        @if (Auth::check())
-
-        @if (Session::has('notif.success'))
-        <div class="alert alert-info alert-dismissible fade show" role="alert">
-            <strong>{{ Session::get('notif.success') }}</strong>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        @endif
-        <div class="row mt-3 mb-3">
-            <div class="col-md-12">
-                @if ($book->ratingbook->contains('user_id',Auth::user()->id))
-                <p class="text-success fw-bold">Ja has valorat aquest llibre</p>
-                @else
-                <h4>Valora</h4>
-                <form action="{{route('rating.book.store')}}" method="post">
-                    @csrf
-                    <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
-                    <input type="hidden" name="book_id" value="{{$book->id}}">
-                    <div class="row">
-                        <div class="col">
-                            <input id="input-5" name="rate" class="rating-loading" data-show-clear="false"
-                                data-show-caption="true">
-                        </div>
-                        <div class="col mt-2">
-                            <button type="submit" class="btn btn-outline-success">
-                                <i class="bi bi-check-square-fill"></i>
-                            </button>&nbsp;
-                        </div>
-                    </div>
-                </form>
+            @if (Session::has('notif.success'))
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                <strong>{{ Session::get('notif.success') }}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-        </div>
-        @endif
-        @endif
-
-        @if ($book->comentbook->count())
-        <div class="card p-3 border-0">
-            <h5 class="card-header bg-white ">Comentaris</h5>
-            @include('front.partials.comentbookDisplay', ['comentbooks' =>
-            $book->comentbook,'book_id',$book->id])
-        </div>
-        @endif
-        @if (Auth::check())
-
-        <div class="card p-3 border-0">
-
-
-            <h5 class="card-header bg-white">Fes un comentari</h5>
-            <form method="post" action="{{ route('coment.book.store'   ) }}">
-                @csrf
-                <div class="form-group mb-3 p-2">
-                    <textarea class="form-control" name="body" required></textarea>
-                    <input type="hidden" name="book_id" value="{{ $book->id }}" />
+            @endif
+            <div class="row mt-3 mb-3">
+                <div class="col-md-10">
+                    @if ($book->ratingbook->contains('user_id',Auth::user()->id))
+                    <p class="text-success fw-bold">Ja has valorat aquest llibre</p>
+                    @else
+                    <h4 class="ubuntu">Valora</h4>
+                    <form action="{{route('rating.book.store')}}" method="post">
+                        @csrf
+                        <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                        <input type="hidden" name="book_id" value="{{$book->id}}">
+                        <div class="row ">
+                            <div class="">
+                                <input id="input-5" name="rate" class="rating-loading" data-show-clear="false"
+                                    data-show-caption="true">
+                            </div>
+                            <div class="">
+                                <button type="submit" class="btn btn-outline-success ">
+                                    <i class="bi bi-check-square-fill"></i>
+                                </button>&nbsp;
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <div class="form-group mt-3 mb-3">
-                    <button type="submit" class="btn btn-outline-success">
-                        Crea
-                    </button>
-                </div>
-            </form>
-
-
+            </div>
+            @endif
+            @endif
         </div>
-        @endif
-
-
-
-
-
-
-
-
     </div>
 </div>
-</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            @if ($book->comentbook->count())
+            <div class="card p-3 border-0">
+                <h4 class="card-header bg-white ubuntu ">Comentaris</h4>
+                @include('front.partials.comentbookDisplay', ['comentbooks' =>
+                $book->comentbook,'book_id',$book->id])
+            </div>
+            @endif
+            @if (Auth::check())
 
-</div>
-</div>
+            <div class="card p-3 border-0">
+
+
+                <h4 class="card-header bg-white ubuntu">Fes un comentari</h4>
+                <form method="post" action="{{ route('coment.book.store'   ) }}">
+                    @csrf
+                    <div class="form-group mb-3 p-2">
+                        <textarea class="form-control" name="body" required></textarea>
+                        <input type="hidden" name="book_id" value="{{ $book->id }}" />
+                    </div>
+                    <div class="form-group mt-3 mb-3">
+                        <button type="submit" class="btn btn-outline-success">
+                            Crea
+                        </button>
+                    </div>
+                </form>
+
+
+            </div>
+            @endif
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </div>
 @endsection
