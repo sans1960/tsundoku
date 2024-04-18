@@ -28,7 +28,7 @@
             @if (Auth()->user()->condicio == 'autor')
 
 
-            @if (\App\Models\Autor::where('autor_nom',Auth::user()->name)->exists())
+            @if (\App\Models\Autor::where('autor_nom',Auth::user()->name))
             <p class="mt-5 text-center">Ja ets a la base de dades dels Autors</p>
             @else
             <div class="alert alert-success alert-dismissible fade show mt-5" role="alert">

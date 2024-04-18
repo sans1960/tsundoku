@@ -9,80 +9,84 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-12 ">
-            <div class="card p-3 border-0">
+        <div class="col-md-4">
+            <div class="card border-0">
                 @if ($editorial->logo != null)
-                <img src="{{ $editorial->logo }}" class="card-img-top img-fluid w-25 d-block mx-auto" alt="...">
+                <img src="{{ $editorial->logo }}" class=" img-fluid w-50 " alt="...">
                 @else
-                <img src="{{Storage::url($editorial->image)}}" alt=""
-                    class="card-img-top img-fluid w-25 d-block mx-auto">
+                <img src="{{Storage::url($editorial->image)}}" alt="" class=" img-fluid w-50">
+
                 @endif
+                <div class="d-flex justify-content-start align-items-center ms-2">
+
+                    <p class="fs-5 fw-bold text-success-emphasis mt-2">{{round($rating,2)}}</p>
+                    <p class="ms-4 fs-5">{{$editorial->ratingeditorial->count()}} <i class="bi bi-person"
+                            style="font-size: 1.5em;"></i>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card border-0">
+                <h4 class="card-title ubuntu">{{ $editorial->editorial_nom }}</h4>
                 <div class="row">
-                    <div class="col-md-6">
-                        <p>{{$editorial->ratingeditorial->count()}} Valoracions</p>
-                        <input id="input-2" name="input-1" class="rating rating-loading" data-min="0" data-max="5"
-                            data-step="0.1" value="{{ $rating }}" data-size="xs" disabled="">
-                        <p class="mb-2">{{$com}} Comentaris</p>
+                    <div class="col">
+                        <a href="{{ $editorial->url }}" target="_blank">
+                            <i style="font-size: 1.5rem;" class="bi bi-globe"></i>
+                        </a>
+                    </div>
+
+                    <div class="col">
+                        <p>{{ $editorial->adreça }}</p>
                     </div>
                 </div>
-                <div class="card-body">
-                    <h5 class="card-title">{{ $editorial->editorial_nom }}</h5>
-                    <div class="row">
-                        <div class="col">
-                            <a href="{{ $editorial->url }}" target="_blank">Lloc web</a>
-                        </div>
-
-                        <div class="col">
-                            <p>{{ $editorial->adreça }}</p>
-                        </div>
-                    </div>
-                    <div>
-                        {!! $editorial->descripcio !!}
-                    </div>
-                    @if (Auth::check())
-                    @if (Session::has('notif.success'))
-                    <div class="alert alert-info alert-dismissible fade show" role="alert">
-                        <strong>{{ Session::get('notif.success') }}</strong>
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-                    @endif
-                    <div class="row mt-3 mb-3">
-                        <div class="col">
-                            @if ($editorial->ratingeditorial->contains('user_id',Auth::user()->id))
-                            <p class="text-success fw-bold">Ja has valorat aquesta editorial</p>
-                            @else
-                            <h4>Valora</h4>
-                            <form action="{{route('rating.editorial.store')}}" method="post">
-                                @csrf
-                                <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
-                                <input type="hidden" name="editorial_id" value="{{$editorial->id}}">
-                                <div class="row">
-                                    <div class="col">
-                                        <input id="input-5" name="rate" class="rating-loading" data-show-clear="false"
-                                            data-show-caption="true">
-                                    </div>
-                                    <div class="col mt-2">
-                                        <button type="submit" class="btn btn-outline-success">
-                                            <i class="bi bi-check-square-fill"></i>
-                                        </button>&nbsp;
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-
-                    @endif
-                    @endif
-
-
+                <div>
+                    {!! $editorial->descripcio !!}
                 </div>
+                @if (Auth::check())
+                @if (Session::has('notif.success'))
+                <div class="alert alert-info alert-dismissible fade show" role="alert">
+                    <strong>{{ Session::get('notif.success') }}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                @endif
+
+
+                <div class="">
+                    @if ($editorial->ratingeditorial->contains('user_id',Auth::user()->id))
+                    <p class="text-success fw-bold">Ja has valorat aquesta editorial</p>
+                    @else
+                    <h4>Valora</h4>
+                    <form action="{{route('rating.editorial.store')}}" method="post">
+                        @csrf
+                        <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                        <input type="hidden" name="editorial_id" value="{{$editorial->id}}">
+                        <div class="row">
+                            <div class="">
+                                <input id="input-5" name="rate" class="rating-loading" data-show-clear="false"
+                                    data-show-caption="true">
+                            </div>
+                            <div class="">
+                                <button type="submit" class="btn btn-outline-success">
+                                    <i class="bi bi-check-square-fill"></i>
+                                </button>&nbsp;
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+
+                @endif
+                @endif
+
+
             </div>
         </div>
     </div>
     <div class="row">
         @if (count($editorial->book))
         <div class="col-md-12">
-            <h3>Llibres</h3>
+            <h3 class="ubuntu">Llibres</h3>
 
 
             <div class="owl-carousel owl-theme ">
@@ -117,7 +121,7 @@
         <div class="col-md-12 mt-5">
             @if ($editorial->comenteditorial->count())
             <div class="card p-3 border-0">
-                <h5 class="card-header">Comentaris</h5>
+                <h4 class="card-header ubuntu">Comentaris</h4>
                 @include('front.partials.comenteditorialDisplay', ['comenteditorials' =>
                 $editorial->comenteditorial,'editorial_id',$editorial->id])
 
@@ -125,10 +129,10 @@
             @endif
             @if (Auth::check())
 
-            <div class="card p-3">
+            <div class="card p-3 border-0">
 
 
-                <h5 class="card-header">Fes un comentari</h5>
+                <h4 class="card-header bg-white ubuntu">Fes un comentari</h4>
                 <form method="post" action="{{route('coment.editorial.store')}}">
                     @csrf
                     <div class="form-group mb-3 p-2">
@@ -150,7 +154,9 @@
 
         </div>
     </div>
+
 </div>
+
 
 @endsection
 @section('js')

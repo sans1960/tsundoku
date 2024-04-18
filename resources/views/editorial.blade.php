@@ -27,7 +27,7 @@
 
             <h4 class="mt-3 text-center">Accions</h4>
             @if (Auth()->user()->condicio == 'editorial')
-            @if (\App\Models\Editorial::where('editorial_nom',Auth::user()->name)->exists())
+            @if (\App\Models\Editorial::where('editorial_nom',Auth::user()->name))
             <p class="mt-2 text-center">Ja ets a la base de dades de les Editorials</p>
             @else
             <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">

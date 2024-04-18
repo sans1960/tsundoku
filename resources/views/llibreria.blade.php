@@ -26,7 +26,7 @@
         <div class="col-md-6">
             <h4 class="mt-3 text-center">Accions</h4>
             @if (Auth()->user()->condicio == 'llibreria')
-            @if (\App\Models\Bookshop::where('nom',Auth::user()->name)->exists())
+            @if (\App\Models\Bookshop::where('nom',Auth::user()->name))
             <p class="mt-2 text-center">Ja ets a la base de dades de les Llibreries</p>
             @else
             <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
