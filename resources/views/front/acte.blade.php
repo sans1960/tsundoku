@@ -9,15 +9,24 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-10 mx-auto  d-flex flex-column">
-            <h3 class="text-center">{{$acte->titol}}</h3>
-            <img src="{{Storage::url($acte->image)}}" alt="" class="img-fluid w-50 d-block mx-auto mt-2">
-            <div class=" d-flex justify-content-center">
+        <div class="col-md-4">
+            <img src="{{Storage::url($acte->image)}}" alt="" class="img-fluid  mt-2">
+            <div class="d-flex justify-content-start align-items-center ms-2">
+
+                <p class="fs-5 fw-bold text-success-emphasis mt-1">{{round($rating,2)}}</p>
+                <p class="ms-4 fs-5">{{$acte->ratingacte->count()}} <i class="bi bi-person"
+                        style="font-size: 1.5em;"></i>
+                </p>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <h3 class="ubuntu">{{$acte->titol}}</h3>
+            <div class=" d-flex justify-content-center ">
                 <a href="{{$acte->url}}" target="_blank" class="nav-link text-success fw-bold">Acte</a>
             </div>
             <div class="row mt-3 mb-3">
                 <div class="col d-flex justify-content-center">
-                    <p>{{$acte->lloc}}</p>
+                    <p> {{$acte->lloc}}</p>
                 </div>
 
                 <div class="col d-flex justify-content-center">
@@ -27,32 +36,18 @@
                     <p>{{$acte->hora}}</p>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-6 p-3">
-                    <p>{{$acte->ratingacte->count()}} Valoracions</p>
-                    <input id="input-2" name="input-1" class="rating rating-loading" data-min="0" data-max="5"
-                        data-step="0.1" value="{{$rating}}" data-size="xs" disabled="">
-                    <p>{{$acte->comentacte->count()}} Comentaris</p>
-
-
-                </div>
-            </div>
-
             <div>
                 {!! $acte->body!!}
             </div>
-        </div>
-    </div>
-    @if (Auth::check())
+            @if (Auth::check())
 
-    @if (Session::has('notif.success'))
-    <div class="alert alert-info alert-dismissible fade show" role="alert">
-        <strong>{{ Session::get('notif.success') }}</strong>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    @endif
-    <div class="row mt-3 mb-3">
-        <div class="col-md-12">
+            @if (Session::has('notif.success'))
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                <strong>{{ Session::get('notif.success') }}</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @endif
+
             @if ($acte->ratingacte->contains('user_id',Auth::user()->id))
             <p class="text-success fw-bold">Ja has valorat aquest acte</p>
             @else
@@ -61,29 +56,29 @@
                 @csrf
                 <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
                 <input type="hidden" name="acte_id" value="{{$acte->id}}">
-                <div class="row">
-                    <div class="col">
-                        <input id="input-5" name="rate" class="rating-loading" data-show-clear="false"
-                            data-show-caption="true">
-                    </div>
-                    <div class="col mt-2">
-                        <button type="submit" class="btn btn-outline-success">
-                            <i class="bi bi-check-square-fill"></i>
-                        </button>&nbsp;
-                    </div>
+
+                <div class="">
+                    <input id="input-5" name="rate" class="rating-loading" data-show-clear="false"
+                        data-show-caption="true">
                 </div>
+                <div class="">
+                    <button type="submit" class="btn btn-outline-success">
+                        <i class="bi bi-check-square-fill"></i>
+                    </button>&nbsp;
+                </div>
+
             </form>
+
+            @endif
+            @endif
+
         </div>
     </div>
-    @endif
-    @endif
-
-
     <div class="row mt-4">
         <div class="col-md-12">
             @if ($acte->comentacte->count())
             <div class="card p-3 border-0">
-                <h5 class="card-header bg-white">Comentaris</h5>
+                <h4 class="card-header bg-white ubuntu">Comentaris</h4>
                 @include('front.partials.comentacteDisplay', ['comentactes' =>
                 $acte->comentacte,'acte_id',$acte->id])
 
@@ -93,7 +88,7 @@
             <div class="card p-3 border-0">
 
 
-                <h5 class="card-header bg-white">Fes un comentari</h5>
+                <h4 class="card-header bg-white ubuntu">Fes un comentari</h4>
                 <form method="post" action="{{route('coment.acte.store')}}">
                     @csrf
                     <div class="form-group mb-3 p-2">
@@ -119,7 +114,7 @@
     </div>
     <div class="row mb-3">
         <div class="col-md-12 p-3 ">
-            <h3 class="mb-3">Darrers actes</h3>
+            <h3 class="mb-3 ubuntu">Darrers actes</h3>
             <div class="owl-carousel owl-theme">
                 @foreach ($actes as $acte)
                 <a href="{{route('acte',$acte)}}" class="nav-link">
@@ -136,6 +131,12 @@
         </div>
     </div>
 </div>
+
+
+
+
+
+
 @endsection
 @section('js')
 <script src="{{asset('js/owl.carousel.min.js')}}"></script>

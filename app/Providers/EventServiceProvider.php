@@ -9,6 +9,7 @@ use App\Models\Bookshop;
 use App\Models\Editorial;
 use App\Models\Medi;
 use App\Models\Post;
+use App\Models\User;
 use App\Observers\ActeObserver;
 use App\Observers\AutorObserver;
 use App\Observers\BookObserver;
@@ -16,6 +17,7 @@ use App\Observers\BookshopObserver;
 use App\Observers\EditorialObserver;
 use App\Observers\MediObserver;
 use App\Observers\PostObserver;
+use App\Observers\UserObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -46,6 +48,7 @@ class EventServiceProvider extends ServiceProvider
         Editorial::observe(EditorialObserver::class);
         Medi::observe(MediObserver::class);
         Post::observe(PostObserver::class);
+        User::observe(UserObserver::class);
     }
 
     /**

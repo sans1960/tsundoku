@@ -8,10 +8,19 @@
 @endsection
 @section('content')
 <div class="container">
-    <div class="row mb-3">
-        <div class="col-md-10 mx-auto">
-            <h3 class=" mb-4">{{$post->titol}}</h3>
-            <img src="{{Storage::url($post->image)}}" alt="" class="img-fluid w-50 d-block mx-auto mt-2">
+    <div class="row">
+        <div class="col-md-4">
+            <img src="{{Storage::url($post->image)}}" alt="" class="img-fluid  mt-2">
+            <div class="d-flex justify-content-start align-items-center ms-2">
+
+                <p class="fs-5 fw-bold text-success-emphasis mt-1">{{round($rating,2)}}</p>
+                <p class="ms-4 fs-5">{{$post->ratingpost->count()}} <i class="bi bi-person"
+                        style="font-size: 1.5em;"></i>
+                </p>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <h3 class=" mb-4 ubuntu">{{$post->titol}}</h3>
             <div class="row mt-3 mb-3">
 
                 <div class="col d-flex">
@@ -23,27 +32,12 @@
                     <p>{{\Carbon\Carbon::parse($post->data)->format('d/m/Y');}}</p>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-6 p-3">
-                    <p>{{$post->ratingpost->count()}} Valoracions</p>
-                    <input id="input-2" name="input-1" class="rating rating-loading" data-min="0" data-max="5"
-                        data-step="0.1" value="{{$rating}}" data-size="xs" disabled="">
-                    <p>{{$post->comentaripost->count()}} Comentaris</p>
-
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-
-                </div>
-                <div class="col d-flex justify-content-center">
-
-                </div>
-
-            </div>
-
             <div>
                 {!! $post->body!!}
+            </div>
+            <div class="d-flex justify-content-end mb-3">
+                <a href="{{$post->url}}" target="_blank" class="nav-link text-success fw-bold">
+                    Enllaç a notícia sencera</a>
             </div>
             @if (Auth::check())
 
@@ -53,55 +47,49 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
             @endif
-            <div class="row mt-3 mb-3">
-                <div class="col-md-12">
-                    @if ($post->ratingpost->contains('user_id',Auth::user()->id))
-                    <p class="text-success fw-bold">Ja has valorat aquesta noticia</p>
-                    @else
-                    <h4>Valora</h4>
-                    <form action="{{route('rating.post.store')}}" method="post">
-                        @csrf
-                        <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
-                        <input type="hidden" name="post_id" value="{{$post->id}}">
-                        <div class="row">
-                            <div class="col">
-                                <input id="input-5" name="rate" class="rating-loading" data-show-clear="false"
-                                    data-show-caption="true">
-                            </div>
-                            <div class="col mt-2">
-                                <button type="submit" class="btn btn-outline-success">
-                                    <i class="bi bi-check-square-fill"></i>
-                                </button>&nbsp;
-                            </div>
-                        </div>
-                    </form>
+
+            @if ($post->ratingpost->contains('user_id',Auth::user()->id))
+            <p class="text-success fw-bold">Ja has valorat aquesta noticia</p>
+            @else
+            <h4 class="ubuntu">Valora</h4>
+            <form action="{{route('rating.post.store')}}" method="post">
+                @csrf
+                <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                <input type="hidden" name="post_id" value="{{$post->id}}">
+
+                <div class="">
+                    <input id="input-5" name="rate" class="rating-loading" data-show-clear="false"
+                        data-show-caption="true">
                 </div>
-            </div>
+                <div class="">
+                    <button type="submit" class="btn btn-outline-success">
+                        <i class="bi bi-check-square-fill"></i>
+                    </button>&nbsp;
+                </div>
+
+            </form>
+
             @endif
             @endif
 
 
         </div>
     </div>
-
-
-
-
     <div class="row mt-4">
         <div class="col-md-12">
             @if ($post->comentaripost->count())
             <div class="card p-3 border-0">
-                <h5 class="card-header">Comentaris</h5>
+                <h4 class="card-header bg-white ubuntu">Comentaris</h4>
                 @include('front.partials.comentpostDisplay', ['comentposts' =>
                 $post->comentaripost,'post_id',$post->id])
 
             </div>
             @endif
             @if (Auth::check())
-            <div class="card p-3">
+            <div class="card p-3 border-0">
 
 
-                <h5 class="card-header">Fes un comentari</h5>
+                <h4 class="card-header bg-white ubuntu">Fes un comentari</h4>
                 <form method="post" action="{{route('coment.post.store')}}">
                     @csrf
                     <div class="form-group mb-3 p-2">
@@ -126,7 +114,7 @@
     </div>
     <div class="row mb-3">
         <div class="col-md-12 p-3 ">
-            <h3 class="mb-3">Darreres notícies</h3>
+            <h3 class="mb-3 ubuntu">Darreres notícies</h3>
             <div class="owl-carousel owl-theme">
                 @foreach ($posts as $post)
                 <a href="{{route('post',$post)}}" class="nav-link">
@@ -143,6 +131,14 @@
         </div>
     </div>
 </div>
+
+
+
+
+
+
+
+
 @endsection
 @section('js')
 <script src="{{asset('js/owl.carousel.min.js')}}"></script>

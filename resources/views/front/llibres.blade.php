@@ -44,7 +44,7 @@ TSUNDOKU
                 <input id="input-1" name="input-1" class="rating rating-loading" data-min="0" data-max="5"
                     data-step="0.1" value="{{ \App\Models\RatingBook::where('book_id',$book->id)->avg('rate')}}"
                     data-size="xs" disabled="">
-                <p>{{ \App\Models\ComentBook::where('book_id',$book->id)->count()}} Comentaris</p>
+                <p>{{ \App\Models\ComentBook::where('book_id',$book->id)->count()}} Ressenyes</p>
 
             </div>
         </div>
