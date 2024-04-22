@@ -15,7 +15,12 @@
                         {{ __('Register') }}</h3>
                 </div>
 
-                <div class="card-body">
+                <div class="card-body bg-dark text-white">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
                     <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
 

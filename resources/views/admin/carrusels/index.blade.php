@@ -1,12 +1,12 @@
 @extends('layouts.admin')
 @section('title')
-Banners
+Carrusels
 @endsection
 @section('content')
 <div class="container">
     <div class="col-md-8 mx-auto">
         <div class="card">
-            <div class="card-header">{{ __('Tots els banners') }}</div>
+            <div class="card-header">{{ __('Tots els carrusels') }}</div>
 
             @if (Session::has('notif.success'))
             <div class="alert alert-info alert-dismissible fade show" role="alert">
@@ -23,7 +23,7 @@ Banners
 <div class="container">
     <div class="row">
         <div class="col-md-12 d-flex justify-content-end">
-            <a href="{{ route('admin.banners.create') }}" class="btn btn-success mt-5">
+            <a href="{{ route('admin.carrusels.create') }}" class="btn btn-success mt-5">
                 <i class="bi bi-plus-square"></i>
             </a>
 
@@ -31,16 +31,15 @@ Banners
         </div>
     </div>
 </div>
-</div>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
             <table class="table table-stripped">
                 <thead>
                     <tr>
-                        <th>Nom</th>
-                        <th>Url</th>
-                        <th>Posició</th>
+                        <th>Titol</th>
+                        <th>Subtitol</th>
+                        <th>Tema</th>
                         <th>Actiu</th>
 
 
@@ -50,28 +49,28 @@ Banners
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($banners as $banner)
+                    @foreach ($carrusels as $carrusel)
                     <tr>
-                        <td>{{$banner->nom}}</td>
-                        <td>{{$banner->url}}</td>
-                        <td>{{$banner->posicio}}</td>
-                        @if ($banner->actiu == 0)
+                        <td>{{$carrusel->titol}}</td>
+                        <td>{{$carrusel->subtitol}}</td>
+                        <td>{{$carrusel->tema}}</td>
+                        @if ($carrusel->actiu == 0)
                         <td>No Actiu</td>
                         @else
                         <td>Actiu</td>
                         @endif
                         <td>
-                            <a href="{{ route('admin.banners.show', $banner) }}" class="btn btn-success btn-sm">
+                            <a href="{{route('admin.carrusels.show',$carrusel)}}" class="btn btn-success btn-sm">
                                 <i class="bi bi-eye"></i>
                             </a>
                         </td>
                         <td>
-                            <a href="{{ route('admin.banners.edit', $banner) }}" class="btn btn-warning btn-sm">
+                            <a href="{{route('admin.carrusels.edit',$carrusel)}}" class="btn btn-warning btn-sm">
                                 <i class="bi bi-pencil-square"></i>
                             </a>
                         </td>
                         <td>
-                            <form action="{{ route('admin.banners.destroy', $banner) }}" method="post">
+                            <form action="{{route('admin.carrusels.destroy',$carrusel)}}" method="post">
                                 @csrf
                                 @method('delete')
                                 <button type="submit" class="btn btn-danger btn-sm show_confirm">
@@ -87,7 +86,6 @@ Banners
         </div>
     </div>
 </div>
-
 @endsection
 @section('js')
 <script type="text/javascript">
@@ -109,4 +107,5 @@ Banners
                 });
         });
 </script>
+
 @endsection

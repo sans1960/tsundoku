@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\Medicontroller;
 use App\Http\Controllers\Admin\ActeController;
 use App\Http\Controllers\Admin\BannerController;
+use App\Http\Controllers\Admin\CarruselController;
 
 use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\FrontController;
@@ -62,9 +63,9 @@ Route::get('/posts', [Frontcontroller::class, 'allPosts'])->name('posts');
 Route::get('/posts/{post}', [Frontcontroller::class, 'onepost'])->name('post');
 Route::get('/medis', [Frontcontroller::class, 'allMedis'])->name('medis');
 Route::get('/medis/{medi}', [Frontcontroller::class, 'onemedi'])->name('medi');
-Route::get('/calendari', [Calendarcontroller::class, 'index'])->name('calendari');
-Route::get('/calendari/{mes}', [Calendarcontroller::class, 'index_month'])->name('calendari.mes');
-
+// Route::get('/calendari', [Calendarcontroller::class, 'index'])->name('calendari');
+// Route::get('/calendari/{mes}', [Calendarcontroller::class, 'index_month'])->name('calendari.mes');
+Route::get('/actes', [Frontcontroller::class, 'allActes'])->name('actes');
 Route::get('/actes/{acte}', [Frontcontroller::class, 'oneacte'])->name('acte');
 Route::post('search', [SearchController::class, 'search'])->name('search');
 
@@ -106,6 +107,7 @@ Route::middleware(['auth', 'forbid-banned-user'])->group(function () {
     Route::post('/admin/findautors', [AutorController::class, 'searchautor'])->name('admin.searchautors');
     Route::resource('/admin/posts', PostController::class)->names('admin.posts');
     Route::resource('/admin/banners', BannerController::class)->names('admin.banners');
+    Route::resource('/admin/carrusels', CarruselController::class)->names('admin.carrusels');
     Route::resource('/admin/editorials', EditorialController::class)->names('admin.editorials');
     Route::resource('/admin/bookshops', BookshopController::class)->names('admin.bookshops');
     Route::resource('/admin/ratingbook', RatingBookController::class)->names('rating.book');

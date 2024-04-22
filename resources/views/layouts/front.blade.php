@@ -76,7 +76,7 @@
                         <a class="nav-link " href="{{route('posts')}}">Ens ha agradat</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="{{route('calendari')}}">Agenda</a>
+                        <a class="nav-link " href="{{route('actes')}}">Agenda</a>
                     </li>
 
 

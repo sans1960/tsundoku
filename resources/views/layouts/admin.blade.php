@@ -18,6 +18,7 @@
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('css/leaflet.css') }}">
+    @yield('css')
 </head>
 
 <body>
@@ -78,9 +79,19 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('admin.users.index') }}">Usuaris</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.banners.index') }}">Banners</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Imatges
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{route('admin.banners.index')}}">Banners</a></li>
+                                <li><a class="dropdown-item" href="{{route('admin.carrusels.index')}}">Carrusels</a>
+                                </li>
+
+                            </ul>
                         </li>
+
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"

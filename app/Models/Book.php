@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Searchable\Searchable;
 use Spatie\Searchable\SearchResult;
-
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -38,7 +38,10 @@ class Book extends Model implements Searchable
     }
 
 
-
+    public function carrusels(): BelongsToMany
+    {
+        return $this->belongsToMany(Carrusel::class);
+    }
 
 
     public function autor()

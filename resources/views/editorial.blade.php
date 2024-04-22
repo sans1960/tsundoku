@@ -27,10 +27,16 @@
 
             <h4 class="mt-3 text-center">Accions</h4>
             @if (Auth()->user()->condicio == 'editorial')
-            @if (\App\Models\Editorial::where('editorial_nom',Auth::user()->name))
+
+            @php
+            $editorial = \App\Models\Editorial::where('editorial_nom',Auth()->user()->name);
+            @endphp
+
+            @if ($editorial->exists())
             <p class="mt-2 text-center">Ja ets a la base de dades de les Editorials</p>
             @else
             <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
+
 
                 <p>Vols formar part de la base de dades d'Editorials ?</p>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>

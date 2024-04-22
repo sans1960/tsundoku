@@ -146,4 +146,9 @@ class FrontController extends Controller
         $rating = RatingActe::where('acte_id', $acte->id)->avg('rate');
         return view('front.acte', compact('acte', 'rating', 'actes'));
     }
+    public function allActes()
+    {
+        $actes = Acte::all();
+        return view('front.actes', compact('actes'));
+    }
 }

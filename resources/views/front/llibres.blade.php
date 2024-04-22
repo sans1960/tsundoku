@@ -50,8 +50,9 @@ TSUNDOKU
         </div>
         @endforeach
     </div>
+    {!! $books->withQueryString()->links('pagination::bootstrap-5') !!}
 </div>
-{!! $books->withQueryString()->links('pagination::bootstrap-5') !!}
+
 @endsection
 @section('js')
 <script>

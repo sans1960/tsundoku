@@ -26,9 +26,11 @@
         <div class="col-md-6">
             <h4 class="mt-3 text-center">Accions</h4>
             @if (Auth()->user()->condicio == 'autor')
+            @php
+            $autor = \App\Models\Autor::where('autor_nom',Auth()->user()->name);
+            @endphp
 
-
-            @if (\App\Models\Autor::where('autor_nom',Auth::user()->name))
+            @if ($autor->exists())
             <p class="mt-5 text-center">Ja ets a la base de dades dels Autors</p>
             @else
             <div class="alert alert-success alert-dismissible fade show mt-5" role="alert">
