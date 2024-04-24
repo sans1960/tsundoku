@@ -37,21 +37,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
-                            @if (Auth::check())
-                            @if (Auth()->user()->type == 'Admin')
-                            <a class="nav-link" href="{{route('admin')}}">
-                                <i class="bi bi-speedometer"></i></a>
-                            @endif
-                            @endif
 
-
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('index') }}">
-                                <i class="bi bi-house-door-fill "></i>
-                            </a>
-                        </li>
                         @if (Auth::check())
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('messages') }}">
@@ -105,6 +91,43 @@
         <main class="py-4">
             @yield('content')
         </main>
+    </div>
+    <div class="container-fluid  p-3 mt-5" style="background-color: 	#E80080;">
+
+        <div class="row">
+            <p class="mt-3 fs-5 text-center mb-5">Tsundoku.cat és un projecte d'agitació i propaganda literàries en
+                favor de
+                la cultura
+                catalana. Participa-hi!</p>
+            <div class="col-md-3 d-flex justify-content-center">
+                <i class="bi bi-c-circle"></i>
+                <p class="ms-2">TSUNDOKU.CAT 2024</p>
+            </div>
+            <div class="col-md-3 d-flex justify-content-center">
+                <a href="{{asset('documents/avis-legal-i-condicions-generals.pdf')}}" target="_blank"
+                    rel="noopener noreferrer" class="nav-link">Avis legal</a>
+            </div>
+            <div class="col-md-3 d-flex justify-content-center">
+                <a href="{{asset('documents/politica-de-privacitat.pdf')}}" target="_blank" rel="noopener noreferrer"
+                    class="nav-link">Política de privacitat</a>
+            </div>
+            <div class="col-md-3 d-flex justify-content-center">
+
+                <a href="" class="nav-link ms-2">
+                    <i class="bi bi-envelope-at"></i>
+                </a>
+                <a href="https://www.facebook.com/profile.php?id=61551435838696" target="_blank" class="nav-link ms-3">
+                    <i class="bi bi-facebook"></i>
+                </a>
+                <a href="" class="nav-link ms-3">
+                    <i class="bi bi-instagram"></i>
+
+                </a>
+                <a href="" class="nav-link ms-3">
+                    <i class="bi bi-twitter-x"></i>
+                </a>
+            </div>
+        </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.7.0.js"
         integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>

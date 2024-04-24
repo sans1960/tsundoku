@@ -25,15 +25,15 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light  shadow-sm">
             <div class="container">
-                @if (Auth()->user()->type == 'admin')
+                {{-- @if (Auth()->user()->type == 'admin')
                 <a class="navbar-brand" href="{{ route('admin') }}">
                     <img src="{{asset('img/logo.png')}}" class="img-fluid  " width="100" alt="">
                 </a>
-                @else
-                <a class="navbar-brand" href="{{ route('home') }}">
+                @else --}}
+                <a class="navbar-brand" href="{{ route('index') }}">
                     <img src="{{asset('img/logo.png')}}" class="img-fluid  " width="100" alt="">
                 </a>
-                @endif
+                {{-- @endif --}}
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -44,11 +44,11 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link" href="{{ route('index') }}">
                                 <i class="bi bi-house-door-fill "></i>
                             </a>
-                        </li>
+                        </li> --}}
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('messages') }}">
                                 <i class="bi bi-chat"></i>
@@ -180,6 +180,14 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
+                        @if (Auth::check())
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('home') }}">
+                                <i class="bi bi-speedometer" style="font-size: 2rem; color:green;"></i>
+                            </a>
+                        </li>
+                        @endif
+
                         <!-- Authentication Links -->
                         @guest
                         @if (Route::has('login'))
