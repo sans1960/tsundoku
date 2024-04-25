@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('titol');
             $table->string('subtitol')->nullable();
             $table->string('tema');
+            $table->string('posicio');
             $table->timestamps();
         });
     }

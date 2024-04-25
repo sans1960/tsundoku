@@ -40,6 +40,7 @@ Carrusels
                         <th>Titol</th>
                         <th>Subtitol</th>
                         <th>Tema</th>
+                        <th>Posició</th>
                         <th>Actiu</th>
 
 
@@ -54,6 +55,7 @@ Carrusels
                         <td>{{$carrusel->titol}}</td>
                         <td>{{$carrusel->subtitol}}</td>
                         <td>{{$carrusel->tema}}</td>
+                        <td>{{$carrusel->posicio}}</td>
                         @if ($carrusel->actiu == 0)
                         <td>No Actiu</td>
                         @else

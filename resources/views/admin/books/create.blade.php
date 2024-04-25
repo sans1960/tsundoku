@@ -6,7 +6,7 @@
 <div class="container">
     <div class="row ">
         <div class="col-md-12">
-            <div class="card">
+            <div class="card border-0 ubuntu">
                 <div class="card-header bg-dark text-center text-white">
                     Crear Llibre
                 </div>
@@ -65,7 +65,7 @@
 
                         <div class=" mb-3">
                             <div class="col">
-                                <label for="autor_nom" class="form-label">Nom del autor</label>
+                                <label for="autor_nom" class="form-label">Nom de l'autor/a</label>
                                 <input class="form-control" type="text" id="autor_nom" name="autor_nom"
                                     value="{{old('autor_nom')}}">
                                 @if ($errors->has('autor_nom'))
@@ -81,7 +81,7 @@
                             <span class="text-danger">{{ $errors->first('imatge') }}</span>
                             @endif
                         </div>
-                        <p>O si prefereixes</p>
+                        <p class="fw-bold">O si prefereixes</p>
                         <div class="row mb-3">
                             <div class="col">
                                 <label for="foto" class="form-label">Puja un fitxer amb la imatge de la portada</label>
@@ -89,7 +89,7 @@
                             </div>
                             <div class="col">
                                 <img id="preview-image-before-upload" class="img-fluid w-50 d-block mx-auto"
-                                    src="https://cdn.pixabay.com/photo/2022/02/22/17/25/stork-7029266_960_720.jpg"
+                                    src="https://bibliotecavirtual.diba.cat/documents/346477/222119188/Fa%C3%A7ana+3.jpeg/9baedb6e-e203-ceba-d7d6-ca106fff5c31?t=1708770713249"
                                     alt="">
                             </div>
                             @if ($errors->has('foto'))
@@ -98,7 +98,7 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col">
-                                <label class="form-class" for="genere">Escull genere:</label>
+                                <label class="form-class" for="genere">Escull gènere:</label>
                                 <select class="form-select" aria-label="Default select example" name="genere_id"
                                     id="genere">
                                     {{-- <option hidden>Escull génere</option> --}}
@@ -175,7 +175,8 @@
                                 <select name="idioma" class="form-select" id="">
                                     <option selected disabled hidden>Escull idioma</option>
                                     <option></option>
-                                    <option value="Català" {{ ("Català"===old('idioma')) ? 'selected' : '' }}>Català
+                                    <option value="Català" selected="selected" {{ ("Català"===old('idioma'))
+                                        ? 'selected' : '' }}>Català
                                     </option>
                                     <option value="Occità" {{("Occità"===old('idioma')) ? 'selected' : '' }}>Occità
                                     </option>
@@ -214,6 +215,7 @@
                                 </div>
 
                             </div>
+                            @if (Auth()->user()->type == 'admin' or Auth()->user()->type == 'autor')
                             <div class="col-md-3 d-flex flex-column justify-content-start align-items-start">
                                 <p>És la primera obra publicada de l'autor?</p>
                                 <div class="form-check">
@@ -233,6 +235,7 @@
                                 </div>
 
                             </div>
+                            @endif
                             <div class="col-md-3 d-flex flex-column justify-content-start align-items-start">
                                 <p>És autopublicat?</p>
                                 <div class="form-check">
@@ -251,6 +254,7 @@
                                 </div>
 
                             </div>
+                            @if (Auth()->user()->type == 'admin' or Auth()->user()->type == 'autor')
                             <div class="col-md-3 d-flex flex-column justify-content-start align-items-start">
                                 <p>És la primera vegada que publiques?</p>
                                 <div class="form-check">
@@ -270,6 +274,7 @@
                                 </div>
 
                             </div>
+                            @endif
                         </div>
 
                         <div class="mb-4">
@@ -285,9 +290,9 @@
                         <div class="mb-4">
                             <label for="" class="form-label">Escriu una cita del llibre que t&#39;hagi agradat
                                 (opcional)</label>
-                            <textarea class="form-control " name="cita" id="" rows="3">
-                                        {!! old('cita')!!}
-                                    </textarea>
+                            <input type="text" name="cita" placeholder="Máxim 250 caracters" class="form-control"
+                                value="{{old('cita')}}" id="">
+
                             @if ($errors->has('cita'))
                             <span class="text-danger">{{ $errors->first('cita') }}</span>
                             @endif

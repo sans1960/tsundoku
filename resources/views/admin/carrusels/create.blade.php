@@ -31,6 +31,14 @@
                                 name="tema" required>
 
                         </div>
+                        <div class="mb-3">
+                            <label for="posicio" class="form-label">Posició
+
+                            </label>
+                            <input type="text" class="form-control" value="{{old('posicio')}}" id="posicio"
+                                placeholder="Posició" name="posicio" required>
+
+                        </div>
                         <div class="row mb-3  ">
                             <h6>Llibres</h6>
                             <div class="col-md-12 d-flex flex-wrap mt-2">

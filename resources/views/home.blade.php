@@ -21,7 +21,7 @@
     </div>
     <div class="row mt-2">
         <div class="col-md-8 mx-auto">
-            <div class="card">
+            <div class="card border-0">
                 @if (Auth::user()->avatar)
                 <img src="{{Storage::url(Auth::user()->avatar)}}" alt="" class="img-fluid d-block mx-auto p-3"
                     width="150">
@@ -62,7 +62,7 @@
 
                     @else
                     <div class="alert alert-success" role="alert">
-                        <p class="text-center text-uppercase">Recorda confirmar el teu email per poguer interactuar</p>
+                        <p class="text-center text-uppercase">Recorda confirmar el teu correu</p>
 
                     </div>
                     @endif

@@ -32,6 +32,12 @@
                                 required>
 
                         </div>
+                        <div class="mb-3">
+                            <label for="posicio" class="form-label">Posició</label>
+                            <input type="text" class="form-control" value="{{$carrusel->posicio}}" id="posicio"
+                                name="posicio" required>
+
+                        </div>
                         <div class="row mb-3  ">
                             <h6>Llibres</h6>
                             <div class="col-md-12 mt-2 d-flex flex-wrap">

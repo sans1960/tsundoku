@@ -35,12 +35,14 @@ class CarruselController extends Controller
         $request->validate([
             'titol' => 'required',
             'tema' => 'required',
+            'posicio' => 'required',
 
         ]);
         $carrusel = new Carrusel();
         $carrusel->titol = $request->titol;
         $carrusel->subtitol = $request->subtitol;
         $carrusel->tema = $request->tema;
+        $carrusel->posicio = $request->posicio;
         $carrusel->actiu = $request->actiu;
 
         $carrusel->save();
@@ -78,12 +80,14 @@ class CarruselController extends Controller
         $request->validate([
             'titol' => 'required',
             'tema' => 'required',
+            'posicio' => 'required',
 
         ]);
 
         $carrusel->titol = $request->titol;
         $carrusel->subtitol = $request->subtitol;
         $carrusel->tema = $request->tema;
+        $carrusel->posicio = $request->posicio;
         $carrusel->actiu = $request->actiu;
         $carrusel->update();
         if ($request->books) {
