@@ -34,6 +34,7 @@ Tots les valoracions
                         <th>Puntuació</th>
 
                         <th>Data</th>
+                        <th colspan="2">Accions</th>
 
                     </tr>
                 </thead>
@@ -46,6 +47,15 @@ Tots les valoracions
                         <td>{{$ratingacte->rate}}</td>
 
                         <td>{{\Carbon\Carbon::parse($ratingacte->created_at)->format('d/m/Y')}}</td>
+                        <td>
+                            <form action="{{route('rating.acte.destroy',$ratingacte)}}" method="post">
+                                @csrf
+                                @method('delete')
+                                <button type="submit" class="btn btn-danger btn-sm show_confirm">
+                                    <i class="bi bi-trash3"></i>
+                                </button>
+                            </form>
+                        </td>
 
                     </tr>
 
@@ -61,5 +71,23 @@ Tots les valoracions
 </div>
 @endsection
 @section('js')
-
+<script type="text/javascript">
+    $('.show_confirm').click(function(event) {
+            var form = $(this).closest("form");
+            var name = $(this).data("nom");
+            event.preventDefault();
+            swal({
+                    title: `Estás segur de borrar aquesta entrada?`,
+                    text: "Si el borras es perdrá per sempre.",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        form.submit();
+                    }
+                });
+        });
+</script>
 @endsection

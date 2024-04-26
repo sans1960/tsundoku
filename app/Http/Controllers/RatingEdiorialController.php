@@ -78,8 +78,10 @@ class RatingEdiorialController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(RatingEdiorial $ratingEdiorial)
+    public function destroy(RatingEdiorial $ratingeditorial)
     {
-        //
+        $ratingeditorial->delete();
+        session()->flash('notif.success', 'Valoracio eliminada amb éxit!');
+        return redirect()->route('rating.editorial.index');
     }
 }

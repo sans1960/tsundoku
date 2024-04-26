@@ -73,8 +73,10 @@ class RatingPostController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(RatingPost $ratingPost)
+    public function destroy(RatingPost $ratingpost)
     {
-        //
+        $ratingpost->delete();
+        session()->flash('notif.success', 'Valoracio eliminada amb éxit!');
+        return redirect()->route('rating.post.index');
     }
 }

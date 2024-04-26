@@ -7,7 +7,7 @@
     <div class="d-flex justify-content-start align-items-start p-2 flex-column">
         <p>{{ $comentbookshop->body }}</p>
         <!-- Button trigger modal -->
-        @if (Auth::check())
+        @if (Auth::check() and Auth::user()->email_verified_at !=null)
         <button type="button" class="btn btn-outline-danger btn-sm mt-2" data-bs-toggle="modal"
             data-bs-target="#modal.{{$comentbookshop->id}}">
             Denuncia
@@ -54,7 +54,7 @@
         @endif
     </div>
     <a href="" id="reply"></a>
-    @if (Auth::check())
+    @if (Auth::check() and Auth::user()->email_verified_at !=null)
     <form method="post" action="{{route('coment.bookshop.store')}}">
         @csrf
         <div class="form-group mb-3 p-2">

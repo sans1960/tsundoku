@@ -72,8 +72,10 @@ class RatingActeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(RatingActe $ratingActe)
+    public function destroy(RatingActe $ratingacte)
     {
-        //
+        $ratingacte->delete();
+        session()->flash('notif.success', 'Valoracio eliminada amb éxit!');
+        return redirect()->route('rating.acte.index');
     }
 }

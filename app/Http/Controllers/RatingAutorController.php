@@ -12,8 +12,6 @@ class RatingAutorController extends Controller
     public function __construct()
     {
         $this->middleware('admin')->except('store');
- 
-       
     }
     /**
      * Display a listing of the resource.
@@ -21,7 +19,7 @@ class RatingAutorController extends Controller
     public function index()
     {
         $ratingautors = RatingAutor::paginate(10);
-        return view('admin.valoracions.autor.index',compact('ratingautors'));
+        return view('admin.valoracions.autor.index', compact('ratingautors'));
     }
 
     /**
@@ -37,16 +35,16 @@ class RatingAutorController extends Controller
      */
     public function store(Request $request)
     {
-         request()->validate(['rate' => 'required']);
-         $ratingautor = new RatingAutor();
-         $ratingautor->user_id = $request->user_id;
-         $ratingautor->autor_id = $request->autor_id;
-         $ratingautor->rate = $request->rate;
-         $ratingautor->save();
-         session()->flash('notif.success', 'Gracies per la teva votació!');
-         return redirect()->back();
+        request()->validate(['rate' => 'required']);
+        $ratingautor = new RatingAutor();
+        $ratingautor->user_id = $request->user_id;
+        $ratingautor->autor_id = $request->autor_id;
+        $ratingautor->rate = $request->rate;
+        $ratingautor->save();
+        session()->flash('notif.success', 'Gracies per la teva votació!');
+        return redirect()->back();
     }
-    
+
 
     /**
      * Display the specified resource.
@@ -75,8 +73,10 @@ class RatingAutorController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(RatingAutor $ratingAutor)
+    public function destroy(RatingAutor $ratingautor)
     {
-        //
+        $ratingautor->delete();
+        session()->flash('notif.success', 'Valoracio eliminada amb éxit!');
+        return redirect()->route('rating.autor.index');
     }
 }

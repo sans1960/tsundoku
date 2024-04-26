@@ -39,7 +39,7 @@
             <div>
                 {!! $acte->body!!}
             </div>
-            @if (Auth::check())
+            @if (Auth::check() and Auth::user()->email_verified_at !=null)
 
             @if (Session::has('notif.success'))
             <div class="alert alert-info alert-dismissible fade show" role="alert">
@@ -84,7 +84,7 @@
 
             </div>
             @endif
-            @if (Auth::check())
+            @if (Auth::check() and Auth::user()->email_verified_at !=null)
             <div class="card p-3 border-0">
 
 

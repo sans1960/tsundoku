@@ -35,7 +35,7 @@
                 @endif
 
                 <p>{{ \Carbon\Carbon::parse($book->created_at)->format('d/m/Y');}}</p>
-                @if (Auth::check())
+                @if (Auth::check() and Auth::user()->email_verified_at !=null)
                 <p>{{$book->user->nickname}} </p>
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
@@ -169,7 +169,7 @@
                 {!! $book->comentari !!}
             </div>
             @endif
-            @if (Auth::check())
+            @if (Auth::check() and Auth::user()->email_verified_at !=null)
 
             @if (Session::has('notif.success'))
             <div class="alert alert-info alert-dismissible fade show" role="alert">
@@ -216,7 +216,7 @@
                 $book->comentbook,'book_id',$book->id])
             </div>
             @endif
-            @if (Auth::check())
+            @if (Auth::check() and Auth::user()->email_verified_at !=null)
 
             <div class="card p-3 border-0">
 

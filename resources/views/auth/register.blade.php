@@ -13,6 +13,7 @@
                 <div class="card-header bg-white ubuntu fw-bold">
                     <h3>
                         {{ __('Register') }}</h3>
+                    <p>Els camps marcats amb * son obligatoris</p>
                 </div>
 
                 <div class="card-body ">
@@ -28,7 +29,7 @@
                             <label for="name" class="form-label fs-4 ubuntu text-success">Nom i cognoms / Nom de
                                 l'editorial / Nom de
                                 la
-                                llibrería
+                                llibrería *
                             </label>
 
 
@@ -40,7 +41,7 @@
                         </div>
                         <div class="row mb-3">
                             <label for="nickname" class="form-label fs-4 ubuntu text-success">Nom
-                                d'usuari/a
+                                d'usuari/a *
                             </label>
 
 
@@ -60,7 +61,7 @@
 
                         </div>
                         <div class="row mb-3">
-                            <label for="email" class="form-label fs-4 ubuntu text-success">Adreça de correu</label>
+                            <label for="email" class="form-label fs-4 ubuntu text-success">Adreça de correu *</label>
 
 
                             <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}"
@@ -69,27 +70,27 @@
 
                         </div>
                         <div class="row mb-3">
-                            <label for="" class="form-label fs-4 ubuntu text-success">{{ __('A què et dediques?')
+                            <label for="" class="form-label fs-4 ubuntu text-success">{{ __('A què et dediques? *')
                                 }}</label>
 
                             <select class="form-select" required aria-label="Default select example" name="condicio">
                                 <option selected disabled hidden>Escull</option>
                                 <option></option>
-                                <option value="lector" {{ "Lector"===old('condicio') ? 'selected' : '' }}>Lector
+                                <option value="lector" @selected(old('condicio')=='lector' )>Lector
                                 </option>
 
-                                <option value="autor" {{"Autor"===old('condicio') ? 'selected' : '' }}>Autor
+                                <option value="autor" @selected(old('condicio')=='autor' )>Autor
                                 </option>
-                                <option value="editorial" {{"Editorial"===old('condicio') ? 'selected' : '' }}>
+                                <option value="editorial" @selected(old('condicio')=='editorial' )>
                                     Editorial</option>
-                                <option value="llibreria" {{"Llibreria"===old('condicio') ? 'selected' : '' }}>
+                                <option value="llibreria" @selected(old('condicio')=='llibreria' )>
                                     Llibreria</option>
                             </select>
 
                         </div>
                         <div class="row mb-3">
                             <label for="" class="form-label fs-4 ubuntu text-success">{{ __('Quatre mots sobre tu
-                                mateix/a')
+                                mateix/a ')
                                 }}</label>
 
                             <textarea name="biopic" id="" cols="30" rows="10" class="form-control">
@@ -99,7 +100,7 @@
                         </div>
                         <div class="row mb-3">
                             <label for="" class="form-label fs-4 ubuntu text-success">{{ __('Vols rebre les novetats i
-                                promocions de tsundoku.cat ?')
+                                promocions de tsundoku.cat ? *')
                                 }}</label>
 
                             <div class="form-check form-check-inline mt-3">
@@ -121,8 +122,8 @@
                         </div>
                         <div class="row mb-3">
                             <label for="password" class="form-label fs-4 ubuntu text-success">Contrasenya <span
-                                    class="fs-6">(Minim 8
-                                    caracters)
+                                    class="fs-6">(Mínim 8
+                                    caracters) *
                                 </span></label>
 
 
@@ -135,7 +136,7 @@
 
                         <div class="row mb-3">
                             <label for="password-confirm" class="form-label fs-4 ubuntu text-success">Confirma
-                                Contrasenya</label>
+                                Contrasenya *</label>
 
 
                             <input id="password-confirm" type="password" class="form-control"
@@ -145,7 +146,7 @@
                         <div class="row mb-3 ">
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input me-3 border border-black" type="radio" required
-                                    name="legal" value="true" id="flexRadioDefault1">
+                                    name="legal" value="true" @checked(old('legal')) id="flexRadioDefault1">
                                 <label class="form-check-label ubuntu" for="flexRadioDefault1">
                                     He llegit i acepto la <span><a
                                             href="{{asset('documents/politica-de-privacitat.pdf')}}" target="_blank"
@@ -154,7 +155,7 @@
                                     i els <span><a href="{{asset('documents/avis-legal-i-condicions-generals.pdf')}}"
                                             target="_blank" style="text-decoration: none;"><b>Termes
                                                 i
-                                                Condicions</b></a></span>
+                                                Condicions</b></a> *</span>
                                 </label>
 
                             </div>

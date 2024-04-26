@@ -72,8 +72,10 @@ class RatingMediController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(RatingMedi $ratingMedi)
+    public function destroy(RatingMedi $ratingmedi)
     {
-        //
+        $ratingmedi->delete();
+        session()->flash('notif.success', 'Valoracio eliminada amb éxit!');
+        return redirect()->route('rating.medi.index');
     }
 }

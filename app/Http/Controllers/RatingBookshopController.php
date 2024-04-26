@@ -72,8 +72,10 @@ class RatingBookshopController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(RatingBookshop $ratingBookshop)
+    public function destroy(RatingBookshop $ratingbookshop)
     {
-        //
+        $ratingbookshop->delete();
+        session()->flash('notif.success', 'Valoracio eliminada amb éxit!');
+        return redirect()->route('rating.bookshop.index');
     }
 }

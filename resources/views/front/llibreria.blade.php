@@ -59,7 +59,7 @@
                 <div>
                     {!! $bookshop->qui_som !!}
                 </div>
-                @if (Auth::check())
+                @if (Auth::check() and Auth::user()->email_verified_at !=null)
                 @if (Session::has('notif.success'))
                 <div class="alert alert-info alert-dismissible fade show mt-4" role="alert">
                     <strong>{{ Session::get('notif.success') }}</strong>
@@ -107,7 +107,7 @@
 
 
 
-            @if (Auth::check())
+            @if (Auth::check() and Auth::user()->email_verified_at !=null)
             <div class="card p-3 border-0">
 
 
