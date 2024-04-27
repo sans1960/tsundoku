@@ -11,9 +11,9 @@
         <div class="col-md-8">
             <div class="card border-0">
                 <div class="card-header bg-white ubuntu fw-bold">
-                    <h3>
+                    <h3 class="text-success">
                         {{ __('Register') }}</h3>
-                    <p>Els camps marcats amb * son obligatoris</p>
+                    <p class="text-danger">Els camps marcats amb * son obligatoris</p>
                 </div>
 
                 <div class="card-body ">
@@ -29,7 +29,7 @@
                             <label for="name" class="form-label fs-4 ubuntu text-success">Nom i cognoms / Nom de
                                 l'editorial / Nom de
                                 la
-                                llibrería *
+                                llibrería <span class="text-danger fs-4"> * </span>
                             </label>
 
 
@@ -41,7 +41,7 @@
                         </div>
                         <div class="row mb-3">
                             <label for="nickname" class="form-label fs-4 ubuntu text-success">Nom
-                                d'usuari/a *
+                                d'usuari/a <span class="text-danger fs-4"> * </span>
                             </label>
 
 
@@ -52,7 +52,8 @@
 
                         </div>
                         <div class="row mb-3">
-                            <label for="avatar" class="form-label fs-4 ubuntu text-success">{{ __('Avatar') }}</label>
+                            <label for="avatar" class="form-label fs-4 ubuntu text-success">Avatar
+                            </label>
 
 
                             <input id="avatar" type="file" class="form-control " name="avatar">
@@ -61,7 +62,8 @@
 
                         </div>
                         <div class="row mb-3">
-                            <label for="email" class="form-label fs-4 ubuntu text-success">Adreça de correu *</label>
+                            <label for="email" class="form-label fs-4 ubuntu text-success">Adreça de correu <span
+                                    class="text-danger fs-4"> * </span></label>
 
 
                             <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}"
@@ -70,8 +72,8 @@
 
                         </div>
                         <div class="row mb-3">
-                            <label for="" class="form-label fs-4 ubuntu text-success">{{ __('A què et dediques? *')
-                                }}</label>
+                            <label for="" class="form-label fs-4 ubuntu text-success">A què et dediques ? <span
+                                    class="text-danger fs-4"> * </span></label>
 
                             <select class="form-select" required aria-label="Default select example" name="condicio">
                                 <option selected disabled hidden>Escull</option>
@@ -89,9 +91,10 @@
 
                         </div>
                         <div class="row mb-3">
-                            <label for="" class="form-label fs-4 ubuntu text-success">{{ __('Quatre mots sobre tu
-                                mateix/a ')
-                                }}</label>
+                            <label for="" class="form-label fs-4 ubuntu text-success">Quatre mots sobre tu
+                                mateix/a <span class="text-danger">
+                                </span>
+                            </label>
 
                             <textarea name="biopic" id="" cols="30" rows="10" class="form-control">
                                     {{old('biopic')}}
@@ -99,9 +102,10 @@
 
                         </div>
                         <div class="row mb-3">
-                            <label for="" class="form-label fs-4 ubuntu text-success">{{ __('Vols rebre les novetats i
-                                promocions de tsundoku.cat ? *')
-                                }}</label>
+                            <label for="" class="form-label fs-4 ubuntu text-success">Vols rebre les novetats i
+                                promocions de tsundoku.cat ? <span class="text-danger fs-4"> *
+                                </span>
+                            </label>
 
                             <div class="form-check form-check-inline mt-3">
                                 <input class="form-check-input border border-black" required value="Si" {{
@@ -123,8 +127,8 @@
                         <div class="row mb-3">
                             <label for="password" class="form-label fs-4 ubuntu text-success">Contrasenya <span
                                     class="fs-6">(Mínim 8
-                                    caracters) *
-                                </span></label>
+                                    caracters)
+                                </span><span class="text-danger fs-4"> *</span></label>
 
 
 
@@ -136,7 +140,7 @@
 
                         <div class="row mb-3">
                             <label for="password-confirm" class="form-label fs-4 ubuntu text-success">Confirma
-                                Contrasenya *</label>
+                                Contrasenya <span class="text-danger fs-4"> * </span></label>
 
 
                             <input id="password-confirm" type="password" class="form-control"
@@ -145,7 +149,7 @@
                         </div>
                         <div class="row mb-3 ">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input me-3 border border-black" type="radio" required
+                                <input class="form-check-input me-3  border border-black" type="radio" required
                                     name="legal" value="true" @checked(old('legal')) id="flexRadioDefault1">
                                 <label class="form-check-label ubuntu" for="flexRadioDefault1">
                                     He llegit i acepto la <span><a
@@ -155,7 +159,9 @@
                                     i els <span><a href="{{asset('documents/avis-legal-i-condicions-generals.pdf')}}"
                                             target="_blank" style="text-decoration: none;"><b>Termes
                                                 i
-                                                Condicions</b></a> *</span>
+                                                Condicions</b></a>
+                                    </span>
+                                    <span class="text-danger "> * </span>
                                 </label>
 
                             </div>
