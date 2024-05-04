@@ -12,6 +12,7 @@ use App\Models\Post;
 use App\Models\Medi;
 use App\Models\Acte;
 use App\Models\Banner;
+use App\Models\Carrusel;
 
 use App\Models\RatingBook;
 use App\Models\RatingAutor;
@@ -48,9 +49,13 @@ class FrontController extends Controller
         $posts = Post::orderBy('created_at', 'desc')->get();
         $actes = Acte::orderBy('created_at', 'desc')->get();
         $dalt = Banner::where('posicio', 'Dalt')->where('actiu', 1)->get();
+        $mitg = Banner::where('posicio', 'Mitg')->where('actiu', 1)->get();
         $baix = Banner::where('posicio', 'Baix')->where('actiu', 1)->get();
+        $primer = Carrusel::where('posicio', 'Primer')->where('actiu', 1)->get();
+        $segon = Carrusel::where('posicio', 'Segon')->where('actiu', 1)->get();
+        $tercer = Carrusel::where('posicio', 'Tercer')->where('actiu', 1)->get();
 
-        return view('front.index', compact('books', 'allbooks', 'autors', 'topratedbook', 'novetats', 'estrenes', 'autos', 'medis', 'posts', 'topcoment', 'actes', 'dalt', 'baix'));
+        return view('front.index', compact('books', 'allbooks', 'autors', 'topratedbook', 'novetats', 'estrenes', 'autos', 'medis', 'posts', 'topcoment', 'actes', 'dalt', 'baix', 'mitg', 'primer', 'segon', 'tercer'));
     }
     public function autors()
     {

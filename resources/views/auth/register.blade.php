@@ -29,7 +29,7 @@
                             <label for="name" class="form-label fs-4 ubuntu text-success">Nom i cognoms / Nom de
                                 l'editorial / Nom de
                                 la
-                                llibrería <span class="text-danger fs-4"> * </span>
+                                llibreria <span class="text-danger fs-4"> * </span>
                             </label>
 
 

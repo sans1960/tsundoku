@@ -8,8 +8,8 @@
         <div class="col-md-10 mx-auto">
             <!-- Subject Form Input -->
             <div class="form-group">
-                <label class="control-label">Objecte</label>
-                <input type="text" class="form-control" required name="subject" placeholder="Objecte"
+                <label class="control-label">Assumpte</label>
+                <input type="text" class="form-control" required name="subject" placeholder="Assumpte"
                     value="{{ old('subject') }}">
             </div>
 

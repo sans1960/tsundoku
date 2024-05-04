@@ -39,7 +39,39 @@ TSUNDOKU
         </div>
     </div>
 
+    @if (count($primer))
+    <div class="row mb-3">
+        <div class="col-md-12 p-3">
+            @foreach ($primer as $item)
+            <h2 class="mt-2 ubuntu">{{$item->titol}}</h3>
+                <h5 class="mt-2 ubuntu">{{$item->subtitol}}</h5>
+                <div class="owl-carousel owl-theme dos">
+                    @foreach ($item->books as $book)
+                    <a href="{{route('book',$book)}}" class="nav-link" data-bs-toggle="tooltip"
+                        data-bs-title="{{$book->titol}}">
+                        <div class="card d-flex justify-content-center align-items-center border-0"
+                            style="height: 300px;background-image:url(@if ($book->imatge != null){{ $book->imatge }} @else {{Storage::url($book->foto)}} @endif);background-size:cover;background-position:center;object-fit:fill;">
+                            @if ($book->auto == 1)
+                            <p class="bg-success text-white p-1 rounded">Autopublicat</p>
+                            @endif
+                            @if ($book->novetat == 1)
+                            <p class="bg-primary text-white p-1 rounded">Novetat</p>
+                            @endif
 
+                        </div>
+
+                    </a>
+                    @endforeach
+
+                </div>
+
+                @endforeach
+
+        </div>
+
+    </div>
+
+    @endif
 
 
 
@@ -67,6 +99,39 @@ TSUNDOKU
                 </div>
         </div>
     </div>
+    @if (count($segon))
+    <div class="row mb-3">
+        <div class="col-md-12 p-3">
+            @foreach ($segon as $item)
+            <h2 class="mt-2 ubuntu">{{$item->titol}}</h3>
+                <h5 class="mt-2 ubuntu">{{$item->subtitol}}</h5>
+                <div class="owl-carousel owl-theme dos">
+                    @foreach ($item->books as $book)
+                    <a href="{{route('book',$book)}}" class="nav-link" data-bs-toggle="tooltip"
+                        data-bs-title="{{$book->titol}}">
+                        <div class="card d-flex justify-content-center align-items-center border-0"
+                            style="height: 300px;background-image:url(@if ($book->imatge != null){{ $book->imatge }} @else {{Storage::url($book->foto)}} @endif);background-size:cover;background-position:center;object-fit:fill;">
+                            @if ($book->auto == 1)
+                            <p class="bg-success text-white p-1 rounded">Autopublicat</p>
+                            @endif
+                            @if ($book->novetat == 1)
+                            <p class="bg-primary text-white p-1 rounded">Novetat</p>
+                            @endif
+
+                        </div>
+
+                    </a>
+                    @endforeach
+
+                </div>
+
+                @endforeach
+
+        </div>
+
+    </div>
+
+    @endif
     <div class="row mb-3">
         <div class="col-md-12">
 
@@ -128,6 +193,29 @@ TSUNDOKU
             </div>
         </div>
     </div>
+    @if (count($dalt))
+    <div class="row mb-3">
+        @foreach ($dalt as $item)
+        <a href="{{$item->url}}" target="_blank" rel="noopener noreferrer" data-bs-toggle="tooltip"
+            data-bs-title="{{$item->nom}}">
+            <div class="col-md-12  rounded "
+                style="height: 250px; background-image:url({{Storage::url($item->image)}});background-position:center;background-size:cover; object-fit:fill;">
+
+
+            </div>
+        </a>
+        @endforeach
+    </div>
+    @else
+    <div class=" d-flex justify-content-center align-items-center">
+        <a href="https://www.plataforma-llengua.cat/" target="_blank" rel="noopener noreferrer" data-bs-toggle="tooltip"
+            data-bs-title="Plataforma per la Llengua">
+            <img src="{{asset('img/plataforma.jpg')}}" class="img-fluid w-100" alt="">
+        </a>
+
+
+    </div>
+    @endif
     <div class="row mb-3">
         <div class="col-md-12 p-3">
             <h2 class="mt-2 ubuntu">Acabats de sortir d'impremta:</h2>
@@ -150,18 +238,40 @@ TSUNDOKU
         </div>
 
     </div>
+    @if (count($tercer))
     <div class="row mb-3">
-        @foreach ($dalt as $item)
-        <a href="{{$item->url}}" target="_blank" rel="noopener noreferrer" data-bs-toggle="tooltip"
-            data-bs-title="{{$item->nom}}">
-            <div class="col-md-12  rounded "
-                style="height: 250px; background-image:url({{Storage::url($item->image)}});background-position:center;background-size:cover; object-fit:fill;">
+        <div class="col-md-12 p-3">
+            @foreach ($tercer as $item)
+            <h2 class="mt-2 ubuntu">{{$item->titol}}</h3>
+                <h5 class="mt-2 ubuntu">{{$item->subtitol}}</h5>
+                <div class="owl-carousel owl-theme dos">
+                    @foreach ($item->books as $book)
+                    <a href="{{route('book',$book)}}" class="nav-link" data-bs-toggle="tooltip"
+                        data-bs-title="{{$book->titol}}">
+                        <div class="card d-flex justify-content-center align-items-center border-0"
+                            style="height: 300px;background-image:url(@if ($book->imatge != null){{ $book->imatge }} @else {{Storage::url($book->foto)}} @endif);background-size:cover;background-position:center;object-fit:fill;">
+                            @if ($book->auto == 1)
+                            <p class="bg-success text-white p-1 rounded">Autopublicat</p>
+                            @endif
+                            @if ($book->novetat == 1)
+                            <p class="bg-primary text-white p-1 rounded">Novetat</p>
+                            @endif
 
+                        </div>
 
-            </div>
-        </a>
-        @endforeach
+                    </a>
+                    @endforeach
+
+                </div>
+
+                @endforeach
+
+        </div>
+
     </div>
+
+    @endif
+
     <div class="row mb-3" style="">
 
         <div class="col-md-12 p-3 ">
@@ -184,6 +294,33 @@ TSUNDOKU
             </div>
         </div>
     </div>
+    @if (count($mitg))
+    <div class="row mb-3">
+        @foreach ($mitg as $item)
+        <a href="{{$item->url}}" target="_blank" rel="noopener noreferrer" data-bs-toggle="tooltip"
+            data-bs-title="{{$item->nom}}">
+            <div class="col-md-12  rounded "
+                style="height: 250px; background-image:url({{Storage::url($item->image)}});background-position:center;background-size:cover; object-fit:fill;">
+
+
+            </div>
+        </a>
+        @endforeach
+
+    </div>
+    @else
+    <div class=" d-flex justify-content-center align-items-center">
+        <a href="https://www.plataforma-llengua.cat/" target="_blank" rel="noopener noreferrer" data-bs-toggle="tooltip"
+            data-bs-title="Plataforma per la Llengua">
+            <img src="{{asset('img/plataforma.jpg')}}" class="img-fluid w-100" alt="">
+        </a>
+
+
+    </div>
+
+
+
+    @endif
     <div class="row mb-3">
         <div class="col-md-12">
             <h2 class="mt-2 ubuntu">Autors:</h2>
@@ -224,8 +361,7 @@ TSUNDOKU
         </div>
     </div>
 
-
-
+    @if (count($baix))
     <div class="row mb-3">
         @foreach ($baix as $item)
         <a href="{{$item->url}}" target="_blank" rel="noopener noreferrer" data-bs-toggle="tooltip"
@@ -239,6 +375,18 @@ TSUNDOKU
         @endforeach
 
     </div>
+    @else
+    <div class=" d-flex justify-content-center align-items-center">
+        <a href="https://www.escriptors.cat/" target="_blank" rel="noopener noreferrer" data-bs-toggle="tooltip"
+            data-bs-title="L'Associació d'Escriptors en Llengua Catalana (AELC)">
+            <img src="{{asset('img/banner.jpg')}}" class="img-fluid w-100" alt="">
+        </a>
+
+
+    </div>
+    @endif
+
+
 
     <div class="row mb-3">
 
