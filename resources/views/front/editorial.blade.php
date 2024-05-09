@@ -2,6 +2,20 @@
 @section('title')
 {{ $editorial->editorial_nom }}
 @endsection
+@section('meta_title')
+{{ $editorial->editorial_nom }}
+@endsection
+@section('meta_url')
+{{url('editorials/'.$editorial->slug)}}
+@endsection
+
+@section('meta_image')
+@if ($editorial->logo != null)
+{{ $editorial->logo }}
+@else
+{{url(Storage::url($editorial->image))}}
+@endif
+@endsection
 @section('css')
 <link rel="stylesheet" href="{{asset('css/owl.carousel.min.css')}}">
 <link rel="stylesheet" href="{{asset('css/owl.theme.default.min.css')}}">

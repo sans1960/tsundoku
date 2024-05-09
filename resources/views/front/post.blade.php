@@ -2,6 +2,18 @@
 @section('title')
 {{ $post->titol }}
 @endsection
+@section('meta_title')
+{{ $post->titol }}
+@endsection
+@section('meta_url')
+{{url('posts/'.$post->slug)}}
+@endsection
+
+@section('meta_image')
+
+{{url(Storage::url($post->image))}}
+
+@endsection
 @section('css')
 <link rel="stylesheet" href="{{asset('css/owl.carousel.min.css')}}">
 <link rel="stylesheet" href="{{asset('css/owl.theme.default.min.css')}}">

@@ -1,7 +1,23 @@
 @extends('layouts.front')
+
 @section('title')
 {{ $autor->autor_nom }}
 @endsection
+@section('meta_title')
+{{ $autor->autor_nom }}
+@endsection
+@section('meta_url')
+{{url('autors/'.$autor->slug)}}
+@endsection
+
+@section('meta_image')
+@if ($autor->url_foto != null)
+{{ $autor->url_foto }}
+@else
+{{url(Storage::url($autor->image))}}
+@endif
+@endsection
+
 @section('css')
 <link rel="stylesheet" href="{{asset('css/owl.carousel.min.css')}}">
 <link rel="stylesheet" href="{{asset('css/owl.theme.default.min.css')}}">

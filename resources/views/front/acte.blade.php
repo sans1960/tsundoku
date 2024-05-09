@@ -1,7 +1,21 @@
 @extends('layouts.front')
+
 @section('title')
 {{ $acte->titol }}
 @endsection
+@section('meta_title')
+{{ $acte->titol }}
+@endsection
+@section('meta_url')
+{{url('actes/'.$acte->slug)}}
+@endsection
+
+@section('meta_image')
+
+{{url(Storage::url($acte->image))}}
+
+@endsection
+
 @section('css')
 <link rel="stylesheet" href="{{asset('css/owl.carousel.min.css')}}">
 <link rel="stylesheet" href="{{asset('css/owl.theme.default.min.css')}}">

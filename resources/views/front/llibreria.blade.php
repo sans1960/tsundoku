@@ -2,6 +2,20 @@
 @section('title')
 {{ $bookshop->nom }}
 @endsection
+@section('meta_title')
+{{ $bookshop->nom }}
+@endsection
+@section('meta_url')
+{{url('bookshops/'.$bookshop->slug)}}
+@endsection
+
+@section('meta_image')
+@if ($bookshop->logo != null)
+{{ $bookshop->logo }}
+@else
+{{url(Storage::url($bookshop->image))}}
+@endif
+@endsection
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/leaflet.css') }}">
 @endsection

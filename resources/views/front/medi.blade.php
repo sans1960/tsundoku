@@ -2,6 +2,18 @@
 @section('title')
 {{ $medi->titol }}
 @endsection
+@section('meta_title')
+{{ $medi->titol }}
+@endsection
+@section('meta_url')
+{{url('medis/'.$medi->slug)}}
+@endsection
+
+@section('meta_image')
+
+{{url(Storage::url($medi->image))}}
+
+@endsection
 @section('css')
 <link rel="stylesheet" href="{{asset('css/owl.carousel.min.css')}}">
 <link rel="stylesheet" href="{{asset('css/owl.theme.default.min.css')}}">
