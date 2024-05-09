@@ -11,6 +11,11 @@
                     Crear Autor
                 </div>
                 <div class="card-body">
+                    <ul class="list-group mb-5">
+                        @foreach ($errors->all() as $error)
+                        <li class="list-group-item bg-danger border-0 text-white fw-bold ubuntu">{{ $error }}</li>
+                        @endforeach
+                    </ul>
                     <form action="{{ route('admin.autors.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="user_id" value="{{Auth()->user()->id}}">
@@ -18,9 +23,7 @@
                             <label for="nom" class="form-label">Nom</label>
                             <input type="text" class="form-control" value="{{old('autor_nom')}}" id="autor_nom"
                                 placeholder="Nom" name="autor_nom" autofocus required>
-                            @if ($errors->has('autor_nom'))
-                            <span class="text-danger">{{ $errors->first('autor_nom') }}</span>
-                            @endif
+
                         </div>
 
                         <div class="mb-3">
@@ -28,9 +31,7 @@
                             <label for="foto" class="form-label">Imatge de l&#39;autor/a (copia i enganxa
                                 l&#39;adreça web a la imatge)</label>
                             <input class="form-control" type="text" id="foto" name="url_foto">
-                            @if ($errors->has('url_foto'))
-                            <span class="text-danger">{{ $errors->first('url_foto') }}</span>
-                            @endif
+
                         </div>
                         <p>O si prefereixes</p>
                         <div class="row mb-3">
@@ -45,16 +46,14 @@
                                     src="https://cdn.pixabay.com/photo/2022/02/22/17/25/stork-7029266_960_720.jpg"
                                     alt="">
                             </div>
-                            @if ($errors->has('image'))
-                            <span class="text-danger">{{ $errors->first('image') }}</span>
-                            @endif
+
                         </div>
                         <div class="row mb-3">
                             @if (Auth()->user()->type == 'admin')
                             <div class="col p-4">
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="active" id="flexRadioDefault1"
-                                        value="0" {{ (old('active')=='0' ) ? 'checked' : '' }} required>
+                                        value="0" {{ (old('active')=='0' ) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="flexRadioDefault1">
                                         No actiu
                                     </label>
@@ -76,7 +75,7 @@
                                 <p>És un autor autopublicat/da?</p>
                                 <div class="form-check">
                                     <input class="form-check-input me-2" type="radio" name="auto" id="flexRadioDefault1"
-                                        value="0" {{ (old('auto')=='0' ) ? 'checked' : '' }} required>
+                                        value="0" {{ (old('auto')=='0' ) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="flexRadioDefault1">
                                         No
                                     </label>
@@ -100,17 +99,13 @@
                                 <label for="web" class="form-label">Web de l&#39;autor/a (opcional)</label>
                                 <input type="text" class="form-control" value="{{old('web')}}" id="web"
                                     placeholder="Web" name="web">
-                                @if ($errors->has('web'))
-                                <span class="text-danger">{{ $errors->first('web') }}</span>
-                                @endif
+
                             </div>
                             <div class="col">
                                 <label for="facebook" class="form-label">Facebook de l&#39;autor/a (opcional)</label>
                                 <input type="text" class="form-control" value="{{old('facebook')}}" id="facebook"
                                     placeholder="Facebook" name="facebook">
-                                @if ($errors->has('facebook'))
-                                <span class="text-danger">{{ $errors->first('facebook') }}</span>
-                                @endif
+
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -118,17 +113,13 @@
                                 <label for="instagram" class="form-label">Instagram de l&#39;autor/a (opcional)</label>
                                 <input type="text" class="form-control" value="{{old('instagram')}}" id="instagram"
                                     placeholder="Instagram" name="instagram">
-                                @if ($errors->has('instagram'))
-                                <span class="text-danger">{{ $errors->first('instagram') }}</span>
-                                @endif
+
                             </div>
                             <div class="col">
                                 <label for="twitter" class="form-label">Twiter de l&#39;autor/a (opcional)</label>
                                 <input type="text" class="form-control" value="{{old('twitter')}}" id="twitter"
                                     placeholder="Twitter" name="twitter">
-                                @if ($errors->has('twitter'))
-                                <span class="text-danger">{{ $errors->first('twitter') }}</span>
-                                @endif
+
                             </div>
                         </div>
 
@@ -137,9 +128,7 @@
                             <textarea class="form-control " name="biopic" id="" rows="3">
                                 {!! old('biopic')!!}
                             </textarea>
-                            @if ($errors->has('biopic'))
-                            <span class="text-danger">{{ $errors->first('biopic') }}</span>
-                            @endif
+
                         </div>
                         <div class="mb-3 d-flex justify-content-center">
                             <button type="submit" class="btn btn-success">

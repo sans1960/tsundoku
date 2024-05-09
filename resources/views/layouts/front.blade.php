@@ -7,9 +7,13 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta property="og:title" content="@yield('meta_title')" />
+
+    <meta property="og:url" content="@yield('meta_url')" />
+    <meta property="og:image" content="@yield('meta_image')" />
 
     <title>@yield('title')</title>
-    <link rel="icon" type="image/x-icon" href="{{asset('img/logo.ico')}}">
+    <link rel="icon" type="image/x-icon" href="{{asset('img/ulls.ico')}}">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
@@ -37,7 +41,7 @@
     <nav class="navbar navbar-expand-lg bg-white">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{route('index')}}">
-                <img src="{{asset('img/logo.png')}}" class="img-fluid  " width="100" alt="">
+                <img src="{{asset('img/ulls.png')}}" class="img-fluid  " width="100" alt="">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"

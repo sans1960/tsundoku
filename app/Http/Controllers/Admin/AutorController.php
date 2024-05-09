@@ -46,15 +46,15 @@ class AutorController extends Controller
   public function store(Request $request)
   {
     $request->validate([
-      'autor_nom' => 'required|string|max:255',
+      'autor_nom' => 'required|string|max:255|unique:autors',
 
       'biopic' => 'required',
 
       'image' => File::types(['jpg', 'png', 'webp', 'jpeg'])
 
         ->max(1024),
-      'active' => 'boolean',
-      'auto' => 'required',
+      // 'active' => 'boolean',
+      // 'auto' => 'required',
 
     ]);
     if ($request->hasFile('image')) {
@@ -80,7 +80,13 @@ class AutorController extends Controller
     $autor->facebook = $request->facebook;
     $autor->instagram = $request->instagram;
     $autor->twitter = $request->twitter;
-    $autor->auto = $request->auto;
+    if ($request->auto) {
+      $autor->auto = $request->auto;
+    } else {
+      $autor->auto = 0;
+    }
+
+
 
     $autor->save();
 

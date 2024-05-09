@@ -57,7 +57,7 @@ class BookController extends Controller
 
             'autor_nom' => 'string',
             'genere_id' => 'required',
-            'active' => 'boolean',
+            // 'active' => 'boolean',
             'editorial_nom' => 'required|string',
             'editorial_web' => 'required|string',
             'idioma' => 'required|string',
@@ -67,10 +67,10 @@ class BookController extends Controller
             'sinopsi' => 'required',
             'user_id' => 'required',
             'isbn' => 'required|string',
-            'novetat' => 'required',
-            'primera' => 'required',
-            'auto' => 'required',
-            'estrena' => 'required',
+            // 'novetat' => 'required',
+            // 'primera' => 'required',
+            // 'auto' => 'required',
+            // 'estrena' => 'required',
 
 
         ]);
@@ -84,8 +84,12 @@ class BookController extends Controller
         $book->autor_nom = $request->autor_nom;
         $book->genere_id = $request->genere_id;
         $book->autor_id = $request->autor_id;
+        if ($request->active) {
+            $book->active = $request->active;
+        } else {
+            $book->active = 1;
+        }
 
-        $book->active = $request->active;
 
         $book->editorial_nom = $request->editorial_nom;
         $book->editorial_web = $request->editorial_web;
@@ -101,10 +105,33 @@ class BookController extends Controller
 
         $book->sinopsi = $request->sinopsi;
         $book->isbn = $request->isbn;
-        $book->novetat = $request->novetat;
-        $book->primera = $request->primera;
-        $book->estrena = $request->estrena;
-        $book->auto = $request->auto;
+        if ($request->novetat) {
+            $book->novetat = $request->novetat;
+        } else {
+            $book->novetat = 0;
+        }
+        if ($request->primera) {
+            $book->primera = $request->primera;
+        } else {
+            $book->primera = 0;
+        }
+        if ($request->estrena) {
+            $book->estrena = $request->estrena;
+        } else {
+            $book->estrena = 0;
+        }
+
+        if ($request->auto) {
+            $book->auto = $request->auto;
+        } else {
+            $book->auto = 0;
+        }
+
+
+
+
+
+
         $book->cita = $request->cita;
         $book->comentari = $request->comentari;
         $book->save();
@@ -166,10 +193,10 @@ class BookController extends Controller
             'sinopsi' => 'required',
             'user_id' => 'required',
             'isbn' => 'required|string',
-            'novetat' => 'required',
-            'primera' => 'required',
-            'auto' => 'required',
-            'estrena' => 'required',
+            // 'novetat' => 'required',
+            // 'primera' => 'required',
+            // 'auto' => 'required',
+            // 'estrena' => 'required',
 
 
         ]);

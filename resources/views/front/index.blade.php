@@ -2,6 +2,12 @@
 @section('title')
 TSUNDOKU
 @endsection
+@section('meta_title')
+Tsundoku
+@endsection
+@section('meta_url')
+{{env('APP_URL')}}
+@endsection
 @section('css')
 <link rel="stylesheet" href="{{asset('css/owl.carousel.min.css')}}">
 <link rel="stylesheet" href="{{asset('css/owl.theme.default.min.css')}}">

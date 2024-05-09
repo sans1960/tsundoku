@@ -11,17 +11,22 @@
                     Crear Llibre
                 </div>
                 <div class="card-body">
+                    <ul class="list-group mb-5">
+                        @foreach ($errors->all() as $error)
+                        <li class="list-group-item bg-danger border-0 text-white fw-bold ubuntu">{{ $error }}</li>
+                        @endforeach
+                    </ul>
                     <form action="{{ route('admin.books.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
                             <label for="titol" class="form-label">Títol del llibre</label>
                             <input type="text" class="form-control" id="titol" placeholder="Títol" name="titol"
                                 value="{{old('titol')}}" autofocus required>
-                            @if ($errors->has('titol'))
+                            {{-- @if ($errors->has('titol'))
                             @foreach ($errors as $error)
                             <span class="text-danger">{{ $error }}</span>
                             @endforeach
-                            @endif
+                            @endif --}}
                         </div>
 
 
@@ -68,18 +73,18 @@
                                 <label for="autor_nom" class="form-label">Nom de l'autor/a</label>
                                 <input class="form-control" type="text" id="autor_nom" name="autor_nom"
                                     value="{{old('autor_nom')}}">
-                                @if ($errors->has('autor_nom'))
+                                {{-- @if ($errors->has('autor_nom'))
                                 <span class="text-danger">{{ $errors->first('autor_nom') }}</span>
-                                @endif
+                                @endif --}}
                             </div>
                         </div>
                         <div class="mb-3">
                             <label for="imatge" class="form-label">Imatge de portada (copia i enganxa l'adreça web a la
                                 imatge)</label>
                             <input class="form-control" type="text" id="imatge" name="imatge" value="{{old('imatge')}}">
-                            @if ($errors->has('imatge'))
+                            {{-- @if ($errors->has('imatge'))
                             <span class="text-danger">{{ $errors->first('imatge') }}</span>
-                            @endif
+                            @endif --}}
                         </div>
                         <p class="fw-bold">O si prefereixes</p>
                         <div class="row mb-3">
@@ -92,9 +97,9 @@
                                     src="https://bibliotecavirtual.diba.cat/documents/346477/222119188/Fa%C3%A7ana+3.jpeg/9baedb6e-e203-ceba-d7d6-ca106fff5c31?t=1708770713249"
                                     alt="">
                             </div>
-                            @if ($errors->has('foto'))
+                            {{-- @if ($errors->has('foto'))
                             <span class="text-danger">{{ $errors->first('foto') }}</span>
-                            @endif
+                            @endif --}}
                         </div>
                         <div class="row mb-3">
                             <div class="col">
@@ -112,16 +117,16 @@
                                         @endforeach
                                     </optgroup>
                                 </select>
-                                @if ($errors->has('genere_id'))
+                                {{-- @if ($errors->has('genere_id'))
                                 <span class="text-danger">{{ $errors->first('genere_id') }}</span>
-                                @endif
+                                @endif --}}
                             </div>
                         </div>
                         @if (Auth()->user()->type == 'admin')
                         <div class="col d-flex flex-column align-items-center">
                             <div class="form-check">
                                 <input class="form-check-input me-2" type="radio" name="active" id="flexRadioDefault1"
-                                    value="0" {{ (old('active')=='0' ) ? 'checked' : '' }} required>
+                                    value="0" {{ (old('active')=='0' ) ? 'checked' : '' }}>
                                 <label class="form-check-label" for="flexRadioDefault1">
                                     No actiu
                                 </label>
@@ -146,17 +151,17 @@
 
                                 <input type="text" class="form-control" id="" value="{{old('editorial_nom')}}"
                                     placeholder="Editorial" name="editorial_nom" required>
-                                @if ($errors->has('editorial_nom'))
+                                {{-- @if ($errors->has('editorial_nom'))
                                 <span class="text-danger">{{ $errors->first('editorial_nom') }}</span>
-                                @endif
+                                @endif --}}
                             </div>
 
                             <div class="col">
                                 <input type="text" class="form-control" id="" value="{{old('editorial_web')}}"
                                     placeholder="Editorial web" name="editorial_web" required>
-                                @if ($errors->has('editorial_web'))
+                                {{-- @if ($errors->has('editorial_web'))
                                 <span class="text-danger">{{ $errors->first('editorial_web') }}</span>
-                                @endif
+                                @endif --}}
                             </div>
                         </div>
 
@@ -166,9 +171,9 @@
                             <div class="col">
                                 <input type="text" class="form-control" id="" value="{{old('isbn')}}" placeholder="ISBN"
                                     name="isbn" required>
-                                @if ($errors->has('isbn'))
+                                {{-- @if ($errors->has('isbn'))
                                 <span class="text-danger">{{ $errors->first('isbn') }}</span>
-                                @endif
+                                @endif --}}
                             </div>
 
                             <div class="col">
@@ -182,9 +187,9 @@
                                     </option>
 
                                 </select>
-                                @if ($errors->has('idioma'))
+                                {{-- @if ($errors->has('idioma'))
                                 <span class="text-danger">{{ $errors->first('idioma') }}</span>
-                                @endif
+                                @endif --}}
 
 
                             </div>
@@ -200,8 +205,7 @@
                                 <p>És novetat editorial?</p>
                                 <div class="form-check">
                                     <input class="form-check-input me-2" type="radio" name="novetat"
-                                        id="flexRadioDefault1" value="0" {{ (old('novetat')=='0' ) ? 'checked' : '' }}
-                                        required>
+                                        id="flexRadioDefault1" value="0" {{ (old('novetat')=='0' ) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="flexRadioDefault1">
                                         No
                                     </label>
@@ -220,8 +224,7 @@
                                 <p>És la primera obra publicada de l'autor?</p>
                                 <div class="form-check">
                                     <input class="form-check-input me-2" type="radio" name="primera"
-                                        id="flexRadioDefault1" value="0" {{ (old('primera')=='0' ) ? 'checked' : '' }}
-                                        required>
+                                        id="flexRadioDefault1" value="0" {{ (old('primera')=='0' ) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="flexRadioDefault1">
                                         No
                                     </label>
@@ -240,7 +243,7 @@
                                 <p>És autopublicat?</p>
                                 <div class="form-check">
                                     <input class="form-check-input me-2" type="radio" name="auto" id="flexRadioDefault1"
-                                        value="0" {{ (old('auto')=='0' ) ? 'checked' : '' }} required>
+                                        value="0" {{ (old('auto')=='0' ) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="flexRadioDefault1">
                                         No
                                     </label>
@@ -259,8 +262,7 @@
                                 <p>És la primera vegada que publiques?</p>
                                 <div class="form-check">
                                     <input class="form-check-input me-2" type="radio" name="estrena"
-                                        id="flexRadioDefault1" value="0" {{ (old('estrena')=='0' ) ? 'checked' : '' }}
-                                        required>
+                                        id="flexRadioDefault1" value="0" {{ (old('estrena')=='0' ) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="flexRadioDefault1">
                                         No
                                     </label>
@@ -282,9 +284,9 @@
                             <textarea class="form-control " name="sinopsi" id="" rows="3">
         {!! old('sinopsi')!!}
     </textarea>
-                            @if ($errors->has('sinopsi'))
+                            {{-- @if ($errors->has('sinopsi'))
                             <span class="text-danger">{{ $errors->first('sinopsi') }}</span>
-                            @endif
+                            @endif --}}
                         </div>
 
                         <div class="mb-4">
@@ -293,18 +295,18 @@
                             <input type="text" name="cita" placeholder="Máxim 250 caracters" class="form-control"
                                 value="{{old('cita')}}" id="">
 
-                            @if ($errors->has('cita'))
+                            {{-- @if ($errors->has('cita'))
                             <span class="text-danger">{{ $errors->first('cita') }}</span>
-                            @endif
+                            @endif --}}
                         </div>
                         <div class="mb-4">
                             <label for="" class="form-label">Escriu la teva ressenya (opcional)</label>
                             <textarea class="form-control " name="comentari" id="" rows="3">
                                                         {!! old('comentari')!!}
                                                     </textarea>
-                            @if ($errors->has('comentari'))
+                            {{-- @if ($errors->has('comentari'))
                             <span class="text-danger">{{ $errors->first('comentari') }}</span>
-                            @endif
+                            @endif --}}
                         </div>
                         <div class="mb-3 d-flex justify-content-center">
                             <button type="submit" class="btn btn-success">

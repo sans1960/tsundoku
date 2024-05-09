@@ -14,8 +14,8 @@ Resultats
             <h4 class="text-center">Hem trobat {{ $searchResults->count() }} resultats per : <b>"{{ $searchterm }}"</b>
             </h4>
             @foreach($searchResults->groupByType() as $type => $modelSearchResults)
-            <div class="card">
-                <div class="card-header">
+            <div class="card border-0">
+                <div class="card-header bg-white">
                     {{ ucwords($type) }}
                 </div>
                 <div class="card-body">

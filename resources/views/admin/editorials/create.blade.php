@@ -11,24 +11,25 @@
                     Crear Editorial
                 </div>
                 <div class="card-body">
+                    <ul class="list-group mb-5">
+                        @foreach ($errors->all() as $error)
+                        <li class="list-group-item bg-danger border-0 text-white fw-bold ubuntu">{{ $error }}</li>
+                        @endforeach
+                    </ul>
                     <form action="{{ route('admin.editorials.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
                             <label for="nom" class="form-label">Nom</label>
                             <input type="text" class="form-control" id="editorial_nom" placeholder="Nom"
                                 name="editorial_nom" autofocus required value="{{old('editorial_nom')}}">
-                            @if ($errors->has('editorial_nom'))
-                            <span class="text-danger">{{ $errors->first('editorial_nom') }}</span>
-                            @endif
+
                         </div>
                         <input type="hidden" name="user_id" value="{{Auth()->user()->id}}">
                         <div class="row mb-3">
                             <div class="col">
                                 <label for="url" class="form-label">Url</label>
                                 <input class="form-control" value="{{old('url')}}" type=" text" id="url" name="url">
-                                @if ($errors->has('url'))
-                                <span class="text-danger">{{ $errors->first('url') }}</span>
-                                @endif
+
                             </div>
 
                         </div>
@@ -37,9 +38,7 @@
                             <label for="foto" class="form-label">Logo de l'editorial (copia i enganxa l&#39;adreça
                                 web del logo)</label>
                             <input class="form-control" type="text" id="foto" value="{{old('logo')}}" name="logo">
-                            @if ($errors->has('logo'))
-                            <span class="text-danger">{{ $errors->first('logo') }}</span>
-                            @endif
+
                         </div>
                         <p>O si prefereixes</p>
                         <div class="row mb-3">
@@ -53,17 +52,14 @@
                                     src="https://cdn.pixabay.com/photo/2022/02/22/17/25/stork-7029266_960_720.jpg"
                                     alt="">
                             </div>
-                            @if ($errors->has('image'))
-                            <span class="text-danger">{{ $errors->first('image') }}</span>
-                            @endif
+
                         </div>
                         @if (Auth()->user()->type == 'admin')
                         <div class="row">
                             <div class="col d-flex flex-column align-items-center">
                                 <div class="form-check">
                                     <input class="form-check-input me-2" type="radio" name="active"
-                                        id="flexRadioDefault1" value="0" {{ (old('active')=='0' ) ? 'checked' : '' }}
-                                        required>
+                                        id="flexRadioDefault1" value="0" {{ (old('active')=='0' ) ? 'checked' : '' }}>
                                     <label class="form-check-label" for="flexRadioDefault1">
                                         No actiu
                                     </label>
@@ -75,9 +71,7 @@
                                         Actiu
                                     </label>
                                 </div>
-                                @if ($errors->has('active'))
-                                <span class="text-danger">{{ $errors->first('active') }}</span>
-                                @endif
+
                             </div>
                             @endif
                         </div>
@@ -89,9 +83,7 @@
                             <textarea class="form-control " name="descripcio" id="" rows="3">
                                 {!! old('descripcio')!!}
                             </textarea>
-                            @if ($errors->has('descripcio'))
-                            <span class="text-danger">{{ $errors->first('descripcio') }}</span>
-                            @endif
+
                         </div>
                         <div class="mb-3 d-flex justify-content-center">
                             <button type="submit" class="btn btn-success">

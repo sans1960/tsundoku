@@ -1,6 +1,20 @@
 @extends('layouts.front')
+@section('meta_title')
+{{ $book->titol }}
+@endsection
 @section('title')
 {{ $book->titol }}
+@endsection
+@section('meta_url')
+{{url('books/'.$book->slug)}}
+@endsection
+
+@section('meta_image')
+@if ($book->imatge != null)
+{{ $book->imatge }}
+@else
+{{url(Storage::url($book->foto))}}
+@endif
 @endsection
 @section('css')
 

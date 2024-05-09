@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title')</title>
-    <link rel="icon" type="image/x-icon" href="{{asset('img/logo.ico')}}">
+    <link rel="icon" type="image/x-icon" href="{{asset('img/ulls.ico')}}">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
@@ -33,7 +33,7 @@
                 </a>
                 @else --}}
                 <a class="navbar-brand" href="{{ route('index') }}">
-                    <img src="{{asset('img/logo.png')}}" class="img-fluid  " width="100" alt="">
+                    <img src="{{asset('img/ulls.png')}}" class="img-fluid  " width="100" alt="">
                 </a>
                 {{-- @endif --}}
 

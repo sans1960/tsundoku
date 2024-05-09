@@ -12,11 +12,9 @@ use Illuminate\Validation\Rules\File;
 
 class BookshopController extends Controller
 {
-      public function __construct()
+    public function __construct()
     {
-        $this->middleware('admin')->except('create','store');
- 
-       
+        $this->middleware('admin')->except('create', 'store');
     }
 
 
@@ -30,8 +28,8 @@ class BookshopController extends Controller
      */
     public function index()
     {
-         $bookshops = Bookshop::all();
-        return view('admin.bookshops.index',compact('bookshops'));
+        $bookshops = Bookshop::all();
+        return view('admin.bookshops.index', compact('bookshops'));
     }
 
     /**
@@ -47,60 +45,60 @@ class BookshopController extends Controller
      */
     public function store(Request $request)
     {
-         $request->validate([
-        'nom' => 'required|string|max:255',
-        'image'=> File::types(['jpg', 'png','webp','jpeg'])
-                    
-        ->max(1024),
+        $request->validate([
+            'nom' => 'required|string|max:255|unique:bookshops',
+            'image' => File::types(['jpg', 'png', 'webp', 'jpeg'])
 
-        'qui_som'=>'required',
-       
-        'active'=>'boolean',
-        'url'=>'required|string',
-        'latitud'=>'required|string',
-        'longitud'=>'required|string',
-        'zoom'=> 'integer',
-        
-        
-             ]);
-             if ($request->hasFile('image')) {
-                // put image in the public storage
-               $filePath = Storage::disk('public')->put('images/bookshops', request()->file('image'));
-               
-           }
+                ->max(1024),
+
+            'qui_som' => 'required',
+
+            // 'active'=>'boolean',
+            'url' => 'required|string',
+            'latitud' => 'required|string',
+            'longitud' => 'required|string',
+            // 'zoom' => 'integer',
+
+
+        ]);
+        if ($request->hasFile('image')) {
+            // put image in the public storage
+            $filePath = Storage::disk('public')->put('images/bookshops', request()->file('image'));
+        }
         $bookshop = new Bookshop;
         $bookshop->nom = $request->nom;
         $bookshop->slug = Str::slug($request->nom);
         $bookshop->qui_som = $request->qui_som;
         $bookshop->logo = $request->logo;
-         if (Auth()->user()->type == 'admin') {
-        $bookshop->active = $request->active;
-         }
-         if ($request->logo) {
+        if (Auth()->user()->type == 'admin') {
+            $bookshop->active = $request->active;
+        }
+        if ($request->logo) {
             $bookshop->logo = $request->logo;
-            
-            }else{
-               $bookshop->image =$filePath;
-            }
+        } else {
+            $bookshop->image = $filePath;
+        }
         $bookshop->url = $request->url;
         $bookshop->latitud = $request->latitud;
         $bookshop->longitud = $request->longitud;
         if ($request->zoom) {
-            $bookshop->zoom = $request->zoom;   
+            $bookshop->zoom = $request->zoom;
+        } else {
+            $bookshop->zoom = 14;
         }
-        
-      
+
+
         $bookshop->user_id = $request->user_id;
         $bookshop->save();
-            
-           
+
+
         if (Auth()->user()->type == 'admin') {
-                session()->flash('notif.success', 'Llibreria creada amb éxit!');
-                return redirect()->route('admin.bookshops.index');
-             }else {
-                session()->flash('notif.success', 'Llibreria creada amb éxit!');
-                return redirect()->route('home');
-             }
+            session()->flash('notif.success', 'Llibreria creada amb éxit!');
+            return redirect()->route('admin.bookshops.index');
+        } else {
+            session()->flash('notif.success', 'Llibreria creada amb éxit!');
+            return redirect()->route('home');
+        }
     }
 
     /**
@@ -108,7 +106,7 @@ class BookshopController extends Controller
      */
     public function show(Bookshop $bookshop)
     {
-        return view('admin.bookshops.show',compact('bookshop'));
+        return view('admin.bookshops.show', compact('bookshop'));
     }
 
     /**
@@ -117,7 +115,7 @@ class BookshopController extends Controller
     public function edit(Bookshop $bookshop)
     {
         $users = User::all();
-        return view('admin.bookshops.edit',compact('bookshop','users'));
+        return view('admin.bookshops.edit', compact('bookshop', 'users'));
     }
 
     /**
@@ -125,51 +123,50 @@ class BookshopController extends Controller
      */
     public function update(Request $request, Bookshop $bookshop)
     {
-          $request->validate([
-        'nom' => 'required|string|max:255',
-        
-        'qui_som'=>'required',
-        'image'=> File::types(['jpg', 'png','webp','jpeg'])
-                    
-        ->max(1024),
-        'active'=>'boolean',
-        'url'=>'required|string',
-        'latitud'=>'required|string',
-        'longitud'=>'required|string',
-        'zoom'=> 'required|integer',
-       
-        
-             ]);
-             if ($request->hasFile('image')) {
-                if ($bookshop->image) {
-                    Storage::disk('public')->delete($bookshop->image);
-      
-              $filePath = Storage::disk('public')->put('images/bookshops', request()->file('image'));
-               $bookshop->image = $filePath;
-                }else{
-                    $filePath = Storage::disk('public')->put('images/bookshops', request()->file('image'));
-                      $bookshop->image = $filePath;
-                }
-            
-              }
+        $request->validate([
+            'nom' => 'required|string|max:255',
+
+            'qui_som' => 'required',
+            'image' => File::types(['jpg', 'png', 'webp', 'jpeg'])
+
+                ->max(1024),
+            'active' => 'boolean',
+            'url' => 'required|string',
+            'latitud' => 'required|string',
+            'longitud' => 'required|string',
+            'zoom' => 'required|integer',
+
+
+        ]);
+        if ($request->hasFile('image')) {
+            if ($bookshop->image) {
+                Storage::disk('public')->delete($bookshop->image);
+
+                $filePath = Storage::disk('public')->put('images/bookshops', request()->file('image'));
+                $bookshop->image = $filePath;
+            } else {
+                $filePath = Storage::disk('public')->put('images/bookshops', request()->file('image'));
+                $bookshop->image = $filePath;
+            }
+        }
         $bookshop->nom = $request->nom;
         $bookshop->slug = Str::slug($request->nom);
         $bookshop->qui_som = $request->qui_som;
         if (empty($request->logo)) {
-            $bookshop->logo = $request->logo; 
-         }else{
             $bookshop->logo = $request->logo;
-         }
+        } else {
+            $bookshop->logo = $request->logo;
+        }
         $bookshop->active = $request->active;
         $bookshop->url = $request->url;
         $bookshop->latitud = $request->latitud;
         $bookshop->longitud = $request->longitud;
         $bookshop->zoom = $request->zoom;
-   
+
         $bookshop->user_id = $request->user_id;
         $bookshop->update();
-         session()->flash('notif.success', 'Llibreria actualitzada amb éxit!');
-            return redirect()->route('admin.bookshops.index');
+        session()->flash('notif.success', 'Llibreria actualitzada amb éxit!');
+        return redirect()->route('admin.bookshops.index');
     }
 
     /**
@@ -178,7 +175,7 @@ class BookshopController extends Controller
     public function destroy(Bookshop $bookshop)
     {
         $bookshop->delete();
-           session()->flash('notif.success', 'Llibreria eliminada amb éxit!');
-            return redirect()->route('admin.bookshops.index');
+        session()->flash('notif.success', 'Llibreria eliminada amb éxit!');
+        return redirect()->route('admin.bookshops.index');
     }
 }
