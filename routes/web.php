@@ -51,6 +51,7 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', [Frontcontroller::class, 'index'])->name('index');
 Route::get('/books', [Frontcontroller::class, 'books'])->name('books');
 Route::get('/books/{book}', [Frontcontroller::class, 'book'])->name('book');
+Route::get('/quisom', [Frontcontroller::class, 'quiSom'])->name('quisom');
 Route::get('/autors', [Frontcontroller::class, 'autors'])->name('autors');
 Route::get('/editorials', [Frontcontroller::class, 'editorials'])->name('editorials');
 Route::get('/editorials/{editorial}', [Frontcontroller::class, 'editorial'])->name('editorial');

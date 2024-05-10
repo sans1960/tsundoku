@@ -156,4 +156,8 @@ class FrontController extends Controller
         $actes = Acte::all();
         return view('front.actes', compact('actes'));
     }
+    public function quiSom()
+    {
+        return view('front.quisom');
+    }
 }
