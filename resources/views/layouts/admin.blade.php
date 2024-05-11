@@ -25,7 +25,7 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light  shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light  shadow-sm ubuntu">
             <div class="container">
                 {{-- @if (Auth()->user()->type == 'admin')
                 <a class="navbar-brand" href="{{ route('admin') }}">
@@ -205,7 +205,7 @@
                         @endif
                         @else
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle ubuntu" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
                             </a>

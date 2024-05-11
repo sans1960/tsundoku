@@ -87,7 +87,7 @@ class BookController extends Controller
         if ($request->active) {
             $book->active = $request->active;
         } else {
-            $book->active = 1;
+            $book->active = 0;
         }
 
 

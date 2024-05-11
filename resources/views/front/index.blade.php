@@ -86,6 +86,7 @@ Tsundoku
             <h2 class="mt-2 ubuntu">Últims llibres afegits:</h3>
                 <div class="owl-carousel owl-theme dos">
                     @foreach ($allbooks as $book)
+                    @if ($book->active == 1)
                     <a href="{{route('book',$book)}}" class="nav-link" data-bs-toggle="tooltip"
                         data-bs-title="{{$book->titol}}">
                         <div class="card d-flex justify-content-center align-items-center border-0"
@@ -100,6 +101,8 @@ Tsundoku
                         </div>
 
                     </a>
+                    @endif
+
                     @endforeach
 
                 </div>
@@ -227,6 +230,7 @@ Tsundoku
             <h2 class="mt-2 ubuntu">Acabats de sortir d'impremta:</h2>
             <div class="owl-carousel owl-theme dos">
                 @foreach ($novetats as $book)
+                @if ($book->active == 1)
                 <a href="{{route('book',$book)}}" class="nav-link" data-bs-toggle="tooltip"
                     data-bs-title="{{$book->titol}}">
                     <div class="card border-0 d-flex justify-content-center align-items-center"
@@ -238,6 +242,7 @@ Tsundoku
                     </div>
 
                 </a>
+                @endif
 
                 @endforeach
             </div>
@@ -284,6 +289,7 @@ Tsundoku
             <h2 class="mt-2 ubuntu">S'estrenen:</h2>
             <div class="owl-carousel owl-theme dos">
                 @foreach ($estrenes as $book)
+                @if ($book->active == 1)
                 <a href="{{route('book',$book)}}" class="nav-link" data-bs-toggle="tooltip"
                     data-bs-title="{{$book->titol}}">
                     <div class="card border-0 d-flex justify-content-center align-items-center"
@@ -295,6 +301,7 @@ Tsundoku
                     </div>
 
                 </a>
+                @endif
 
                 @endforeach
             </div>

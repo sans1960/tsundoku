@@ -6,6 +6,7 @@
 <div class="container">
     <div class="row">
         @foreach ($books as $book)
+        @if ($book->active == 1)
         <div class="col-md-4 mb-2">
 
             <div class="card mb-3 border-0">
@@ -48,6 +49,7 @@
 
             </div>
         </div>
+        @endif
         @endforeach
     </div>
 </div>

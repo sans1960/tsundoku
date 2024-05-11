@@ -2,26 +2,26 @@
 
 @section('content')
 <div class="container">
-    <h3>Crear nou missatge</h3>
+    <h3 class="ubuntu text-success">Crear nou missatge</h3>
     <form action="{{ route('messages.store') }}" method="post">
         {{ csrf_field() }}
         <div class="col-md-10 mx-auto">
             <!-- Subject Form Input -->
             <div class="form-group">
-                <label class="control-label">Assumpte</label>
+                <label class="control-label ubuntu">Assumpte</label>
                 <input type="text" class="form-control" required name="subject" placeholder="Assumpte"
                     value="{{ old('subject') }}">
             </div>
 
             <!-- Message Form Input -->
             <div class="form-group">
-                <label class="control-label">Missatge</label>
+                <label class="control-label ubuntu">Missatge</label>
                 <textarea name="message" required class="form-control">{{ old('message') }}</textarea>
             </div>
 
 
             <div class="mb-3 mt-3">
-                <select name="recipient" required class="form-select" id="">
+                <select name="recipient" required class="form-select ubuntu" id="">
                     <option value="">Destinatari</option>
                     <option value=""></option>
                     @foreach($users as $user)
