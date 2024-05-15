@@ -23,6 +23,7 @@ Autors
         </div>
         @endforeach
     </div>
+    {!! $autors->withQueryString()->links('pagination::bootstrap-5') !!}
 </div>
 @endsection
 @section('js')

@@ -51,45 +51,53 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 menu">
-                    <li class="nav-item ">
+                    <li class="nav-item {{ request()->routeIs('quisom*') ? 'active fw-bold ' : '' }}">
                         <a class="nav-link " href="{{route('quisom')}}">
                             Qui som ?
                         </a>
 
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link " href="{{route('generes')}}">
+                        <a class="nav-link {{ request()->routeIs('generes*') ? 'active fw-bold ' : '' }}"
+                            href="{{route('generes')}}">
                             Gèneres
                         </a>
 
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link " href="{{route('books')}}">
+                        <a class="nav-link {{ request()->routeIs('books*') ? 'active fw-bold ' : '' }}"
+                            href="{{route('books')}}">
                             Llibres
                         </a>
 
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link " href="{{route('autors')}}">Autors</a>
+                        <a class="nav-link {{ request()->routeIs('autors*') ? 'active fw-bold ' : '' }}"
+                            href="{{route('autors')}}">Autors</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="{{route('editorials')}}">Editorials</a>
+                        <a class="nav-link {{ request()->routeIs('editorials*') ? 'active fw-bold ' : '' }} "
+                            href="{{route('editorials')}}">Editorials</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('bookshops')}}">Llibreries</a>
+                        <a class="nav-link {{ request()->routeIs('bookshops*') ? 'active fw-bold ' : '' }}"
+                            href="{{route('bookshops')}}">Llibreries</a>
                     </li>
 
 
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('medis')}}">Tsundoku TV</a>
+                        <a class="nav-link {{ request()->routeIs('medis*') ? 'active fw-bold ' : '' }}"
+                            href="{{route('medis')}}">Tsundoku TV</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="{{route('posts')}}">Ens ha agradat</a>
+                        <a class="nav-link {{ request()->routeIs('posts*') ? 'active fw-bold ' : '' }}"
+                            href="{{route('posts')}}">Ens ha agradat</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="{{route('actes')}}">Agenda</a>
+                        <a class="nav-link {{ request()->routeIs('actes*') ? 'active fw-bold ' : '' }}"
+                            href="{{route('actes')}}">Agenda</a>
                     </li>
 
 
@@ -202,7 +210,7 @@
         @yield('content')
     </main>
 
-    <div class="container-fluid  p-3 mt-5" style="background-color: 	#E80080;">
+    <div class="container-fluid  p-3 mt-5 text-white" style="background-color:#9C155F;">
 
         <div class="row">
             <p class="mt-3 fs-5 text-center mb-5">Tsundoku.cat és un projecte d'agitació i propaganda literàries en

@@ -59,7 +59,7 @@ class FrontController extends Controller
     }
     public function autors()
     {
-        $autors = Autor::all();
+        $autors = Autor::orderBy('created_at', 'DESC')->paginate(16);
         return view('front.autors', compact('autors'));
     }
     public function autor(Autor $autor)
