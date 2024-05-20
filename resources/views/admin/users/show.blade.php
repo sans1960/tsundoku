@@ -23,6 +23,15 @@
             <h4 class="text-danger fw-bold ms-3">{{$item->comment}}</h4>
             @endforeach
         </div>
+        <div class="col-md-4 mt-5">
+            @if ($user->novetats == "Si")
+            <h6 class="ms-3">Rebre novetats</h6>
+            @else
+            <h6 class="ms-3">No rebre novetats</h6>
+            @endif
+        </div>
+
+
 
     </div>
     <h4 class="mt-5 mb-5">Activitat</h4>

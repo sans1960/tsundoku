@@ -95,4 +95,9 @@ class AdminController extends Controller
             return redirect()->route('admin.users.index');
         }
     }
+    public function bulleti()
+    {
+        $users = User::where('novetats', 'Si')->get();
+        return view('admin.users.bulleti', compact('users'));
+    }
 }

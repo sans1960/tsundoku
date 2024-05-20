@@ -33,11 +33,13 @@
         </div>
         <div class="col-md-8">
             <h3 class="ubuntu">{{$medi->titol}}</h3>
-            <div class="row mt-3 mb-3">
+            <div class="row mt-5 mb-3">
 
-                <div class="col d-flex justify-content-center">
+                <div class="col d-flex justify-content-start">
                     <a href="{{$medi->url}}" target="_blank" class="nav-link text-success fw-bold">Reproduir
-                        {{$medi->tipus}}</a>
+                        {{$medi->tipus}} <span><i class="bi bi-play-fill"></i></span>
+
+                    </a>
                 </div>
 
                 <div class="col d-flex justify-content-center">

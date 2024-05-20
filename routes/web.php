@@ -101,7 +101,7 @@ Route::middleware(['auth', 'forbid-banned-user'])->group(function () {
     Route::get('/admin/users/{user}/ban', [AdminController::class, 'ban'])->name('admin.users.ban');
     Route::get('/admin/users/{user}/unban', [AdminController::class, 'unban'])->name('admin.users.unban');
     Route::patch('/admin/users/{user}/updateban', [AdminController::class, 'updateban'])->name('admin.users.updateban');
-
+    Route::get('/admin/bulleti', [AdminController::class, 'bulleti'])->name('admin.users.bulleti');
     Route::resource('/admin/generes', GenereController::class)->names('admin.generes');
     Route::resource('/admin/autors', AutorController::class)->names('admin.autors');
     Route::get('/admin/findautors', [AutorController::class, 'findautor'])->name('admin.findautors');
