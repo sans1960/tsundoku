@@ -1,6 +1,6 @@
 <x-mail::message>
 
-    Benvolgut {{$book->user->nickname}},ell llibre {{$book->titol}} ja está disponible.
+    Benvolgut: {{$book->user->nickname}}, el llibre {{$book->titol}} ja está disponible.
     Moltes grácies.
 
 

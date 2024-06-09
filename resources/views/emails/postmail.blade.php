@@ -1,6 +1,6 @@
 <x-mail::message>
 
-    L'usuari {{$post->user->nickname}},ha pujat la noticia {{$post->titol}}
+    L'usuari {{$post->user->nickname}}, ha pujat la noticia {{$post->titol}}
 
 
 

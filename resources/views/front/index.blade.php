@@ -44,13 +44,44 @@ Tsundoku
 
         </div>
     </div>
+    <div class="row mb-3">
+        <div class="col-md-12 p-3 ">
+            <h2 class="mt-2 ubuntu">Últims llibres afegits:</h3>
+                <div class="owl-carousel owl-theme dos">
+                    @foreach ($allbooks as $book)
+                    @if ($book->active == 1)
+                    <a href="{{route('book',$book)}}" class="nav-link" data-bs-toggle="tooltip"
+                        data-bs-title="{{$book->titol}}">
+                        <div class="card d-flex justify-content-center align-items-center border-0"
+                            style="height: 300px;background-image:url(@if ($book->imatge != null){{ $book->imatge }} @else {{Storage::url($book->foto)}} @endif);background-size:cover;background-position:center;object-fit:fill;">
+                            @if ($book->auto == 1)
+                            <p class="bg-success text-white p-1 rounded">Autopublicat</p>
+                            @endif
+                            @if ($book->novetat == 1)
+                            <p class="bg-primary text-white p-1 rounded">Novetat</p>
+                            @endif
 
+                        </div>
+
+                    </a>
+                    @endif
+
+                    @endforeach
+
+                </div>
+        </div>
+    </div>
     @if (count($primer))
     <div class="row mb-3">
         <div class="col-md-12 p-3">
             @foreach ($primer as $item)
             <h2 class="mt-2 ubuntu">{{$item->titol}}</h3>
-                <h5 class="mt-2 ubuntu">{{$item->subtitol}}</h5>
+                <div class="d-flex justify-content-between">
+                    <h5 class="mt-2 ubuntu">{{$item->subtitol}}</h5>
+                    <h5 class="mt-2 ubuntu">{{$item->tema}}</h5>
+
+                </div>
+
                 <div class="owl-carousel owl-theme dos">
                     @foreach ($item->books as $book)
                     <a href="{{route('book',$book)}}" class="nav-link" data-bs-toggle="tooltip"
@@ -81,39 +112,17 @@ Tsundoku
 
 
 
-    <div class="row mb-3">
-        <div class="col-md-12 p-3 ">
-            <h2 class="mt-2 ubuntu">Últims llibres afegits:</h3>
-                <div class="owl-carousel owl-theme dos">
-                    @foreach ($allbooks as $book)
-                    @if ($book->active == 1)
-                    <a href="{{route('book',$book)}}" class="nav-link" data-bs-toggle="tooltip"
-                        data-bs-title="{{$book->titol}}">
-                        <div class="card d-flex justify-content-center align-items-center border-0"
-                            style="height: 300px;background-image:url(@if ($book->imatge != null){{ $book->imatge }} @else {{Storage::url($book->foto)}} @endif);background-size:cover;background-position:center;object-fit:fill;">
-                            @if ($book->auto == 1)
-                            <p class="bg-success text-white p-1 rounded">Autopublicat</p>
-                            @endif
-                            @if ($book->novetat == 1)
-                            <p class="bg-primary text-white p-1 rounded">Novetat</p>
-                            @endif
 
-                        </div>
-
-                    </a>
-                    @endif
-
-                    @endforeach
-
-                </div>
-        </div>
-    </div>
     @if (count($segon))
     <div class="row mb-3">
         <div class="col-md-12 p-3">
             @foreach ($segon as $item)
             <h2 class="mt-2 ubuntu">{{$item->titol}}</h3>
-                <h5 class="mt-2 ubuntu">{{$item->subtitol}}</h5>
+                <div class="d-flex justify-content-between">
+                    <h5 class="mt-2 ubuntu">{{$item->subtitol}}</h5>
+                    <h5 class="mt-2 ubuntu">{{$item->tema}}</h5>
+
+                </div>
                 <div class="owl-carousel owl-theme dos">
                     @foreach ($item->books as $book)
                     <a href="{{route('book',$book)}}" class="nav-link" data-bs-toggle="tooltip"
@@ -139,6 +148,261 @@ Tsundoku
         </div>
 
     </div>
+
+    @endif
+    @if (count($tercer))
+    <div class="row mb-3">
+        <div class="col-md-12 p-3">
+            @foreach ($tercer as $item)
+            <h2 class="mt-2 ubuntu">{{$item->titol}}</h3>
+                <div class="d-flex justify-content-between">
+                    <h5 class="mt-2 ubuntu">{{$item->subtitol}}</h5>
+                    <h5 class="mt-2 ubuntu">{{$item->tema}}</h5>
+
+                </div>
+                <div class="owl-carousel owl-theme dos">
+                    @foreach ($item->books as $book)
+                    <a href="{{route('book',$book)}}" class="nav-link" data-bs-toggle="tooltip"
+                        data-bs-title="{{$book->titol}}">
+                        <div class="card d-flex justify-content-center align-items-center border-0"
+                            style="height: 300px;background-image:url(@if ($book->imatge != null){{ $book->imatge }} @else {{Storage::url($book->foto)}} @endif);background-size:cover;background-position:center;object-fit:fill;">
+                            @if ($book->auto == 1)
+                            <p class="bg-success text-white p-1 rounded">Autopublicat</p>
+                            @endif
+                            @if ($book->novetat == 1)
+                            <p class="bg-primary text-white p-1 rounded">Novetat</p>
+                            @endif
+
+                        </div>
+
+                    </a>
+                    @endforeach
+
+                </div>
+
+                @endforeach
+
+        </div>
+
+    </div>
+
+    @endif
+    @if (count($un))
+    <div class="row mb-3">
+        @foreach ($un as $item)
+        <a href="{{$item->url}}" target="_blank" rel="noopener noreferrer" data-bs-toggle="tooltip"
+            data-bs-title="{{$item->nom}}">
+            <div class="col-md-12  rounded "
+                style="height: 250px; background-image:url({{Storage::url($item->image)}});background-position:center;background-size:cover; object-fit:fill;">
+
+
+            </div>
+        </a>
+        @endforeach
+    </div>
+
+    @endif
+    @if (count($cuart))
+    <div class="row mb-3">
+        <div class="col-md-12 p-3">
+            @foreach ($cuart as $item)
+            <h2 class="mt-2 ubuntu">{{$item->titol}}</h3>
+                <div class="d-flex justify-content-between">
+                    <h5 class="mt-2 ubuntu">{{$item->subtitol}}</h5>
+                    <h5 class="mt-2 ubuntu">{{$item->tema}}</h5>
+
+                </div>
+                <div class="owl-carousel owl-theme dos">
+                    @foreach ($item->books as $book)
+                    <a href="{{route('book',$book)}}" class="nav-link" data-bs-toggle="tooltip"
+                        data-bs-title="{{$book->titol}}">
+                        <div class="card d-flex justify-content-center align-items-center border-0"
+                            style="height: 300px;background-image:url(@if ($book->imatge != null){{ $book->imatge }} @else {{Storage::url($book->foto)}} @endif);background-size:cover;background-position:center;object-fit:fill;">
+                            @if ($book->auto == 1)
+                            <p class="bg-success text-white p-1 rounded">Autopublicat</p>
+                            @endif
+                            @if ($book->novetat == 1)
+                            <p class="bg-primary text-white p-1 rounded">Novetat</p>
+                            @endif
+
+                        </div>
+
+                    </a>
+                    @endforeach
+
+                </div>
+
+                @endforeach
+
+        </div>
+
+    </div>
+
+    @endif
+    @if (count($cinque))
+    <div class="row mb-3">
+        <div class="col-md-12 p-3">
+            @foreach ($cinque as $item)
+            <h2 class="mt-2 ubuntu">{{$item->titol}}</h3>
+                <div class="d-flex justify-content-between">
+                    <h5 class="mt-2 ubuntu">{{$item->subtitol}}</h5>
+                    <h5 class="mt-2 ubuntu">{{$item->tema}}</h5>
+
+                </div>
+                <div class="owl-carousel owl-theme dos">
+                    @foreach ($item->books as $book)
+                    <a href="{{route('book',$book)}}" class="nav-link" data-bs-toggle="tooltip"
+                        data-bs-title="{{$book->titol}}">
+                        <div class="card d-flex justify-content-center align-items-center border-0"
+                            style="height: 300px;background-image:url(@if ($book->imatge != null){{ $book->imatge }} @else {{Storage::url($book->foto)}} @endif);background-size:cover;background-position:center;object-fit:fill;">
+                            @if ($book->auto == 1)
+                            <p class="bg-success text-white p-1 rounded">Autopublicat</p>
+                            @endif
+                            @if ($book->novetat == 1)
+                            <p class="bg-primary text-white p-1 rounded">Novetat</p>
+                            @endif
+
+                        </div>
+
+                    </a>
+                    @endforeach
+
+                </div>
+
+                @endforeach
+
+        </div>
+
+    </div>
+
+    @endif
+    @if (count($sise))
+    <div class="row mb-3">
+        <div class="col-md-12 p-3">
+            @foreach ($sise as $item)
+            <h2 class="mt-2 ubuntu">{{$item->titol}}</h3>
+                <div class="d-flex justify-content-between">
+                    <h5 class="mt-2 ubuntu">{{$item->subtitol}}</h5>
+                    <h5 class="mt-2 ubuntu">{{$item->tema}}</h5>
+
+                </div>
+                <div class="owl-carousel owl-theme dos">
+                    @foreach ($item->books as $book)
+                    <a href="{{route('book',$book)}}" class="nav-link" data-bs-toggle="tooltip"
+                        data-bs-title="{{$book->titol}}">
+                        <div class="card d-flex justify-content-center align-items-center border-0"
+                            style="height: 300px;background-image:url(@if ($book->imatge != null){{ $book->imatge }} @else {{Storage::url($book->foto)}} @endif);background-size:cover;background-position:center;object-fit:fill;">
+                            @if ($book->auto == 1)
+                            <p class="bg-success text-white p-1 rounded">Autopublicat</p>
+                            @endif
+                            @if ($book->novetat == 1)
+                            <p class="bg-primary text-white p-1 rounded">Novetat</p>
+                            @endif
+
+                        </div>
+
+                    </a>
+                    @endforeach
+
+                </div>
+
+                @endforeach
+
+        </div>
+
+    </div>
+
+    @endif
+    @if (count($sete))
+    <div class="row mb-3">
+        <div class="col-md-12 p-3">
+            @foreach ($sete as $item)
+            <h2 class="mt-2 ubuntu">{{$item->titol}}</h3>
+                <div class="d-flex justify-content-between">
+                    <h5 class="mt-2 ubuntu">{{$item->subtitol}}</h5>
+                    <h5 class="mt-2 ubuntu">{{$item->tema}}</h5>
+
+                </div>
+                <div class="owl-carousel owl-theme dos">
+                    @foreach ($item->books as $book)
+                    <a href="{{route('book',$book)}}" class="nav-link" data-bs-toggle="tooltip"
+                        data-bs-title="{{$book->titol}}">
+                        <div class="card d-flex justify-content-center align-items-center border-0"
+                            style="height: 300px;background-image:url(@if ($book->imatge != null){{ $book->imatge }} @else {{Storage::url($book->foto)}} @endif);background-size:cover;background-position:center;object-fit:fill;">
+                            @if ($book->auto == 1)
+                            <p class="bg-success text-white p-1 rounded">Autopublicat</p>
+                            @endif
+                            @if ($book->novetat == 1)
+                            <p class="bg-primary text-white p-1 rounded">Novetat</p>
+                            @endif
+
+                        </div>
+
+                    </a>
+                    @endforeach
+
+                </div>
+
+                @endforeach
+
+        </div>
+
+    </div>
+
+    @endif
+    @if (count($vuite))
+    <div class="row mb-3">
+        <div class="col-md-12 p-3">
+            @foreach ($vuite as $item)
+            <h2 class="mt-2 ubuntu">{{$item->titol}}</h3>
+                <div class="d-flex justify-content-between">
+                    <h5 class="mt-2 ubuntu">{{$item->subtitol}}</h5>
+                    <h5 class="mt-2 ubuntu">{{$item->tema}}</h5>
+
+                </div>
+                <div class="owl-carousel owl-theme dos">
+                    @foreach ($item->books as $book)
+                    <a href="{{route('book',$book)}}" class="nav-link" data-bs-toggle="tooltip"
+                        data-bs-title="{{$book->titol}}">
+                        <div class="card d-flex justify-content-center align-items-center border-0"
+                            style="height: 300px;background-image:url(@if ($book->imatge != null){{ $book->imatge }} @else {{Storage::url($book->foto)}} @endif);background-size:cover;background-position:center;object-fit:fill;">
+                            @if ($book->auto == 1)
+                            <p class="bg-success text-white p-1 rounded">Autopublicat</p>
+                            @endif
+                            @if ($book->novetat == 1)
+                            <p class="bg-primary text-white p-1 rounded">Novetat</p>
+                            @endif
+
+                        </div>
+
+                    </a>
+                    @endforeach
+
+                </div>
+
+                @endforeach
+
+        </div>
+
+    </div>
+
+    @endif
+    @if (count($dos))
+    <div class="row mb-3">
+        @foreach ($dos as $item)
+        <a href="{{$item->url}}" target="_blank" rel="noopener noreferrer" data-bs-toggle="tooltip"
+            data-bs-title="{{$item->nom}}">
+            <div class="col-md-12  rounded "
+                style="height: 250px; background-image:url({{Storage::url($item->image)}});background-position:center;background-size:cover; object-fit:fill;">
+
+
+            </div>
+        </a>
+        @endforeach
+
+    </div>
+
+
 
     @endif
     <div class="row mb-3">
@@ -202,29 +466,7 @@ Tsundoku
             </div>
         </div>
     </div>
-    @if (count($dalt))
-    <div class="row mb-3">
-        @foreach ($dalt as $item)
-        <a href="{{$item->url}}" target="_blank" rel="noopener noreferrer" data-bs-toggle="tooltip"
-            data-bs-title="{{$item->nom}}">
-            <div class="col-md-12  rounded "
-                style="height: 250px; background-image:url({{Storage::url($item->image)}});background-position:center;background-size:cover; object-fit:fill;">
 
-
-            </div>
-        </a>
-        @endforeach
-    </div>
-    @else
-    <div class=" d-flex justify-content-center align-items-center">
-        <a href="https://www.plataforma-llengua.cat/" target="_blank" rel="noopener noreferrer" data-bs-toggle="tooltip"
-            data-bs-title="Plataforma per la Llengua">
-            <img src="{{asset('img/plataforma.jpg')}}" class="img-fluid w-100" alt="">
-        </a>
-
-
-    </div>
-    @endif
     <div class="row mb-3">
         <div class="col-md-12 p-3">
             <h2 class="mt-2 ubuntu">Acabats de sortir d'impremta:</h2>
@@ -249,39 +491,7 @@ Tsundoku
         </div>
 
     </div>
-    @if (count($tercer))
-    <div class="row mb-3">
-        <div class="col-md-12 p-3">
-            @foreach ($tercer as $item)
-            <h2 class="mt-2 ubuntu">{{$item->titol}}</h3>
-                <h5 class="mt-2 ubuntu">{{$item->subtitol}}</h5>
-                <div class="owl-carousel owl-theme dos">
-                    @foreach ($item->books as $book)
-                    <a href="{{route('book',$book)}}" class="nav-link" data-bs-toggle="tooltip"
-                        data-bs-title="{{$book->titol}}">
-                        <div class="card d-flex justify-content-center align-items-center border-0"
-                            style="height: 300px;background-image:url(@if ($book->imatge != null){{ $book->imatge }} @else {{Storage::url($book->foto)}} @endif);background-size:cover;background-position:center;object-fit:fill;">
-                            @if ($book->auto == 1)
-                            <p class="bg-success text-white p-1 rounded">Autopublicat</p>
-                            @endif
-                            @if ($book->novetat == 1)
-                            <p class="bg-primary text-white p-1 rounded">Novetat</p>
-                            @endif
 
-                        </div>
-
-                    </a>
-                    @endforeach
-
-                </div>
-
-                @endforeach
-
-        </div>
-
-    </div>
-
-    @endif
 
     <div class="row mb-3" style="">
 
@@ -307,9 +517,9 @@ Tsundoku
             </div>
         </div>
     </div>
-    @if (count($mitg))
+    @if (count($tres))
     <div class="row mb-3">
-        @foreach ($mitg as $item)
+        @foreach ($tres as $item)
         <a href="{{$item->url}}" target="_blank" rel="noopener noreferrer" data-bs-toggle="tooltip"
             data-bs-title="{{$item->nom}}">
             <div class="col-md-12  rounded "
@@ -321,17 +531,6 @@ Tsundoku
         @endforeach
 
     </div>
-    @else
-    <div class=" d-flex justify-content-center align-items-center">
-        <a href="https://www.plataforma-llengua.cat/" target="_blank" rel="noopener noreferrer" data-bs-toggle="tooltip"
-            data-bs-title="Plataforma per la Llengua">
-            <img src="{{asset('img/plataforma.jpg')}}" class="img-fluid w-100" alt="">
-        </a>
-
-
-    </div>
-
-
 
     @endif
     <div class="row mb-3">
@@ -374,9 +573,11 @@ Tsundoku
         </div>
     </div>
 
-    @if (count($baix))
+
+
+    @if (count($cuatre))
     <div class="row mb-3">
-        @foreach ($baix as $item)
+        @foreach ($cuatre as $item)
         <a href="{{$item->url}}" target="_blank" rel="noopener noreferrer" data-bs-toggle="tooltip"
             data-bs-title="{{$item->nom}}">
             <div class="col-md-12  rounded "
@@ -388,18 +589,8 @@ Tsundoku
         @endforeach
 
     </div>
-    @else
-    <div class=" d-flex justify-content-center align-items-center">
-        <a href="https://www.escriptors.cat/" target="_blank" rel="noopener noreferrer" data-bs-toggle="tooltip"
-            data-bs-title="L'Associació d'Escriptors en Llengua Catalana (AELC)">
-            <img src="{{asset('img/banner.jpg')}}" class="img-fluid w-100" alt="">
-        </a>
 
-
-    </div>
     @endif
-
-
 
     <div class="row mb-3">
 
@@ -429,7 +620,22 @@ Tsundoku
 
 
     </div>
+    @if (count($cinc))
+    <div class="row mb-3">
+        @foreach ($cinc as $item)
+        <a href="{{$item->url}}" target="_blank" rel="noopener noreferrer" data-bs-toggle="tooltip"
+            data-bs-title="{{$item->nom}}">
+            <div class="col-md-12  rounded "
+                style="height: 250px; background-image:url({{Storage::url($item->image)}});background-position:center;background-size:cover; object-fit:fill;">
 
+
+            </div>
+        </a>
+        @endforeach
+
+    </div>
+
+    @endif
     <div class="row mb-3" style="">
         <div class="col-md-12">
             <h2 class="mt-2 ubuntu">Agenda:</h2>
@@ -450,6 +656,22 @@ Tsundoku
 
         </div>
     </div>
+    @if (count($sis))
+    <div class="row mb-3">
+        @foreach ($sis as $item)
+        <a href="{{$item->url}}" target="_blank" rel="noopener noreferrer" data-bs-toggle="tooltip"
+            data-bs-title="{{$item->nom}}">
+            <div class="col-md-12  rounded "
+                style="height: 250px; background-image:url({{Storage::url($item->image)}});background-position:center;background-size:cover; object-fit:fill;">
+
+
+            </div>
+        </a>
+        @endforeach
+
+    </div>
+
+    @endif
 </div>
 
 

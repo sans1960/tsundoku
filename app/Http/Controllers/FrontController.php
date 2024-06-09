@@ -48,14 +48,23 @@ class FrontController extends Controller
         $medis = Medi::orderBy('created_at', 'desc')->get();
         $posts = Post::orderBy('created_at', 'desc')->get();
         $actes = Acte::orderBy('created_at', 'desc')->get();
-        $dalt = Banner::where('posicio', 'Dalt')->where('actiu', 1)->get();
-        $mitg = Banner::where('posicio', 'Mitg')->where('actiu', 1)->get();
-        $baix = Banner::where('posicio', 'Baix')->where('actiu', 1)->get();
+        $un = Banner::where('posicio', 'Un')->where('actiu', 1)->get();
+        $dos = Banner::where('posicio', 'Dos')->where('actiu', 1)->get();
+        $tres = Banner::where('posicio', 'Tres')->where('actiu', 1)->get();
+        $cuatre = Banner::where('posicio', 'Cuatre')->where('actiu', 1)->get();
+        $cinc = Banner::where('posicio', 'Cinc')->where('actiu', 1)->get();
+        $sis = Banner::where('posicio', 'Sis')->where('actiu', 1)->get();
         $primer = Carrusel::where('posicio', 'Primer')->where('actiu', 1)->get();
         $segon = Carrusel::where('posicio', 'Segon')->where('actiu', 1)->get();
         $tercer = Carrusel::where('posicio', 'Tercer')->where('actiu', 1)->get();
+        $cuart = Carrusel::where('posicio', 'Cuart')->where('actiu', 1)->get();
+        $cinque = Carrusel::where('posicio', 'Cinque')->where('actiu', 1)->get();
+        $sise = Carrusel::where('posicio', 'Sise')->where('actiu', 1)->get();
+        $sete = Carrusel::where('posicio', 'Sete')->where('actiu', 1)->get();
+        $vuite = Carrusel::where('posicio', 'Vuite')->where('actiu', 1)->get();
 
-        return view('front.index', compact('books', 'allbooks', 'autors', 'topratedbook', 'novetats', 'estrenes', 'autos', 'medis', 'posts', 'topcoment', 'actes', 'dalt', 'baix', 'mitg', 'primer', 'segon', 'tercer'));
+
+        return view('front.index', compact('books', 'allbooks', 'autors', 'topratedbook', 'novetats', 'estrenes', 'autos', 'medis', 'posts', 'topcoment', 'actes', 'un', 'dos', 'tres', 'cuatre', 'cinc', 'sis', 'primer', 'segon', 'tercer', 'cuart', 'cinque', 'sise', 'sete', 'vuite'));
     }
     public function autors()
     {

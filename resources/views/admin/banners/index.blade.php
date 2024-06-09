@@ -22,6 +22,7 @@ Banners
 </div>
 <div class="container">
     <div class="row">
+        <h5 class="mt-3 mb-3">Un,Dos,Tres,Cuatre,Cinc,Sis</h5>
         <div class="col-md-12 d-flex justify-content-end">
             <a href="{{ route('admin.banners.create') }}" class="btn btn-success mt-5">
                 <i class="bi bi-plus-square"></i>

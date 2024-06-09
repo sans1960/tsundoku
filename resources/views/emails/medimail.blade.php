@@ -2,7 +2,7 @@
 
 
 
-    L'usuari {{$medi->user->nickname}},ha pujat multimedia {{$medi->titol}}
+    L'usuari {{$medi->user->nickname}}, ha pujat multimedia {{$medi->titol}}
 
 
 

@@ -22,6 +22,7 @@ Carrusels
 </div>
 <div class="container">
     <div class="row">
+        <h5 class="mt-3 mb-3">Primer,Segon,Tercer,Cuart,Cinque,Sise,Sete,Vuite</h5>
         <div class="col-md-12 d-flex justify-content-end">
             <a href="{{ route('admin.carrusels.create') }}" class="btn btn-success mt-5">
                 <i class="bi bi-plus-square"></i>

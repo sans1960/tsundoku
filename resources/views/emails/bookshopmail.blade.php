@@ -1,6 +1,6 @@
 <x-mail::message>
 
-    L'usuari {{$bookshop->user->nickname}},ha pujat la llibreria {{$bookshop->nom}}
+    L'usuari {{$bookshop->user->nickname}}, ha pujat la llibreria {{$bookshop->nom}}
 
 
 

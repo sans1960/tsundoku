@@ -1,6 +1,6 @@
 <x-mail::message>
 
-    L'usuari {{$autor->user->nickname}},ha pujat l'autor {{$autor->autor_nom}}
+    L'usuari {{$autor->user->nickname}}, ha pujat l'autor {{$autor->autor_nom}}
 
 
 

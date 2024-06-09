@@ -1,5 +1,5 @@
 <x-mail::message>
-    L'usuari {{$acte->user->nickname}},ha pujat l'acte {{$acte->titol}}
+    L'usuari {{$acte->user->nickname}}, ha pujat l'acte {{$acte->titol}}
 
 
 

@@ -13,7 +13,7 @@
                 <div class="card-header bg-white ubuntu fw-bold">
                     <h3 class="text-success">
                         {{ __('Register') }}</h3>
-                    <p class="text-danger">Els camps marcats amb * son obligatoris</p>
+                    <p class="text-danger">Els camps marcats amb * són obligatoris</p>
                 </div>
 
                 <div class="card-body ">
