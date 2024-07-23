@@ -1,9 +1,15 @@
 @extends('layouts.front')
 @section('title')
-TSUNDOKU
+Tsundoku.cat és una plataforma digital de suport a la literatura catalana i aranesa i a l'obra publicada en aquestes
+ambdues llengües als PP.CC.
 @endsection
 @section('meta_title')
-Tsundoku
+Tsundoku.cat és una plataforma digital de suport a la literatura catalana i aranesa i a l'obra publicada en aquestes
+ambdues llengües als PP.CC.
+@endsection
+@section('meta_description')
+Tsundoku.cat és una plataforma digital de suport a la literatura catalana i aranesa i a l'obra publicada en aquestes
+ambdues llengües als PP.CC.
 @endsection
 @section('meta_url')
 {{env('APP_URL')}}
@@ -19,7 +25,7 @@ Tsundoku
 @endsection
 @section('content')
 <div class=" d-flex justify-content-center align-items-center">
-    <img src="{{asset('img/capsmile.png')}}" class="img-fluid w-100" alt="">
+    <img src="{{asset('img/capsmile.png')}}" class="img-fluid w-100" alt="Tsundoku.cat">
 
 </div>
 
@@ -46,6 +52,12 @@ Tsundoku
     </div>
     <div class="row mb-3">
         <div class="col-md-12 p-3 ">
+            <h1 class="fs-2 ubuntu mb-4">Tsundoku.cat és una plataforma digital de suport a la literatura catalana i
+                aranesa
+                i a
+                l'obra publicada
+                en aquestes
+                ambdues llengües als PP.CC.</h1>
             <h2 class="mt-2 ubuntu">Últims llibres afegits:</h3>
                 <div class="owl-carousel owl-theme dos">
                     @foreach ($allbooks as $book)
@@ -187,6 +199,25 @@ Tsundoku
     </div>
 
     @endif
+
+    <div class="row mb-3">
+
+        <a href="https://www.awin1.com/cread.php?s=2821954&v=21491&q=405855&r=1656093" target="_blank" rel="sponsored"
+            data-bs-toggle="tooltip" data-bs-title="Casa del llibre">
+            <div class="col-md-12  rounded ">
+                {{-- style="height: 250px;
+                background-image:url({{asset('img/imglanzamientosjunio2024_468x60-1717407183897.jpg')}});background-position:center;background-size:cover;">
+                --}}
+                {{-- <img src="{{asset('img/imglanzamientosjunio2024_468x60-1717407183897.jpg')}}"
+                    class="img-fluid w-100" alt=""> --}}
+                <img src="https://www.awin1.com/cshow.php?s=2821954&v=21491&q=405855&r=1656093" class="img-fluid w-100"
+                    alt="">
+
+            </div>
+        </a>
+
+    </div>
+
     @if (count($un))
     <div class="row mb-3">
         @foreach ($un as $item)

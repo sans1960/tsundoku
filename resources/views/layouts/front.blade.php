@@ -7,11 +7,14 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta property="og:title" content="@yield('meta_title')" />
-    <meta property="og:description"
-        content="Tsundoku.cat és una plataforma digital de suport a la literatura catalana i aranesa i a l'obra publicada en aquestes ambdues llengües als PP.CC." />
-    <meta property="og:url" content="@yield('meta_url')" />
-    <meta property="og:image" content="@yield('meta_image')" />
+    <meta property="title" content="@yield('meta_title')" />
+
+    <meta property="description" content="@yield('meta_description')" />
+
+
+    <meta name="author" content="Tsundoku.cat">
+    <meta property="url" content="@yield('meta_url')" />
+    <meta property="image" content="@yield('meta_image')" />
 
     <title>@yield('title')</title>
     <link rel="icon" type="image/x-icon" href="{{asset('img/ulls.ico')}}">
@@ -42,7 +45,7 @@
     <nav class="navbar navbar-expand-lg bg-white">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{route('index')}}">
-                <img src="{{asset('img/ulls.png')}}" class="img-fluid  " width="100" alt="">
+                <img src="{{asset('img/ulls.png')}}" class="img-fluid  " width="100" alt="Tsundoku.cat">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -99,6 +102,10 @@
                         <a class="nav-link {{ request()->routeIs('actes*') ? 'active fw-bold ' : '' }}"
                             href="{{route('actes')}}">Agenda</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://blog.tsundoku.cat/" target="_blank"
+                            rel="noopener noreferrer">BLOG</a>
+                    </li>
 
 
 
@@ -151,60 +158,7 @@
         </div>
     </nav>
 
-    {{-- @include('front.partials.superior')
 
-    <nav class="navbar navbar-expand-lg ">
-        <div class="container-fluid">
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse " id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0 menu">
-                    <li class="nav-item ">
-                        <a class="nav-link " href="{{route('generes')}}">
-                            Gèneres
-                        </a>
-
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link " href="{{route('books')}}">
-                            Llibres
-                        </a>
-
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link " href="{{route('autors')}}">Autors</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="{{route('editorials')}}">Editorials</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('bookshops')}}">Llibreries</a>
-                    </li>
-
-
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('medis')}}">Tsundoku TV</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="{{route('posts')}}">Ens ha agradat</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="{{route('calendari')}}">Agenda</a>
-                    </li>
-
-
-
-                </ul>
-
-            </div>
-        </div>
-    </nav> --}}
 
     <main class=" mb-5">
         @yield('content')

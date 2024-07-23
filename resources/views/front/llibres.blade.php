@@ -1,10 +1,19 @@
 @extends('layouts.front')
 @section('title')
-TSUNDOKU
+Tsundoku.cat-Tots els llibres
+@endsection
+@section('meta_title')
+Tsundoku.cat-Tots els llibres
+@endsection
+@section('meta_description')
+Tots els llibres
+@endsection
+@section('meta_url')
+{{url()->current()}}
 @endsection
 @section('content')
 <div class="container">
-    <h1 class="ubuntu mb-3">Tots els llibres</h1>
+    <h1 class="ubuntu fs-2 mb-3">Tots els llibres</h1>
     <div class="row">
         @foreach ($books as $book)
         @if ($book->active == 1)
@@ -14,11 +23,11 @@ TSUNDOKU
                 <div class="row g-0">
                     <div class="col-md-4">
                         @if ($book->imatge != null)
-                        <img src="{{ $book->imatge }}" class="img-fluid rounded-start" alt="..."
+                        <img src="{{ $book->imatge }}" class="img-fluid rounded-start" alt="{{ $book->titol }}"
                             style="object-fit:cover;width:100%;height:100%;">
                         @else
-                        <img src="{{Storage::url($book->foto)}}" alt="" class="img-fluid rounded-start"
-                            style="object-fit:cover;width:100%;height:100%;">
+                        <img src="{{Storage::url($book->foto)}}" alt="{{ $book->titol }}"
+                            class="img-fluid rounded-start" style="object-fit:cover;width:100%;height:100%;">
                         @endif
 
                     </div>

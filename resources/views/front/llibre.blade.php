@@ -3,10 +3,13 @@
 {{ $book->titol }}
 @endsection
 @section('title')
-{{ $book->titol }}
+Tsundoku.cat-Llibres-{{ $book->titol }}
 @endsection
 @section('meta_url')
 {{url('books/'.$book->slug)}}
+@endsection
+@section('meta_description')
+{{ $book->titol }}
 @endsection
 
 @section('meta_image')
@@ -22,14 +25,15 @@
 @section('content')
 <div class="container">
     <div class="row">
+        <h1 class="fs-2 mb-3 ubuntu">{{ $book->titol }}</h1>
         <div class="col-md-2">
             <div class="card mb-3 p-2 border-0">
 
                 @if ($book->imatge != null)
-                <img src="{{ $book->imatge }}" class="img-fluid" alt="..."
+                <img src="{{ $book->imatge }}" class="img-fluid" alt="{{ $book->titol }}"
                     style="object-fit:cover;width:100%;height:100%;">
                 @else
-                <img src="{{Storage::url($book->foto)}}" alt="" class="img-fluid"
+                <img src="{{Storage::url($book->foto)}}" alt="{{ $book->titol }}" class="img-fluid"
                     style="object-fit:cover;width:100%;height:100%;">
                 @endif
 
